@@ -1,9 +1,7 @@
 import React from "react"
 
-type Props = {}
-
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  return children
+  return <div className="bg-primary/5">{children}</div>
 }
 
 export default AuthLayout

@@ -20,6 +20,32 @@
         "passwordRequired": "Password is required",
         "invalid-phone-number": "Invalid phone number"
       }
+    },
+    "signup": {
+      "welcome": "Create your account in seconds",
+      "subtitle": "Register now and enjoy an exceptional shopping experience",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "firstNamePlaceholder": "First Name",
+      "lastNamePlaceholder": "Last Name",
+      "phonePlaceholder": "50 123 4567",
+      "passwordPlaceholder": "Password",
+      "confirmPasswordPlaceholder": "Confirm Password",
+      "signupButton": "Register Now",
+      "haveAccount": "Already have an account?",
+      "loginNow": "Login now",
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "phoneRequired": "Phone number is required",
+        "passwordRequired": "Password is required",
+        "confirmPasswordRequired": "Please confirm your password",
+        "passwordsDoNotMatch": "Passwords do not match",
+        "invalid-phone-number": "Invalid phone number"
+      }
     }
   }
 }

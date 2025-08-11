@@ -20,6 +20,32 @@
         "passwordRequired": "كلمة المرور مطلوبة",
         "invalid-phone-number": "رقم الهاتف غير صالح"
       }
+    },
+    "signup": {
+      "welcome": "أنشئ حسابك في ثوان",
+      "subtitle": "سجل الآن وتمتع بتجربة تسوق استثنائية",
+      "firstName": "الأسم الأول",
+      "lastName": "الأسم الأخير",
+      "phone": "رقم الهاتف",
+      "password": "كلمة السر",
+      "confirmPassword": "تأكيد كلمة السر",
+      "firstNamePlaceholder": "الأسم الأول",
+      "lastNamePlaceholder": "الأسم الأخير",
+      "phonePlaceholder": "50 123 4567",
+      "passwordPlaceholder": "كلمة السر",
+      "confirmPasswordPlaceholder": "تأكيد كلمة السر",
+      "signupButton": "سجل الآن",
+      "haveAccount": "لديك حساب بالفعل ؟",
+      "loginNow": "سجل الدخول الآن",
+      "validation": {
+        "firstNameRequired": "الأسم الأول مطلوب",
+        "lastNameRequired": "الأسم الأخير مطلوب",
+        "phoneRequired": "رقم الهاتف مطلوب",
+        "passwordRequired": "كلمة السر مطلوبة",
+        "confirmPasswordRequired": "يرجى تأكيد كلمة السر",
+        "passwordsDoNotMatch": "كلمات السر غير متطابقة",
+        "invalid-phone-number": "رقم الهاتف غير صالح"
+      }
     }
   }
 }

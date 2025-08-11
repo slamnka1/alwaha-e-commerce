@@ -1,20 +1,20 @@
-import { LoginImage } from "@/assets"
-import LoginForm from "./_components/login-form"
+import { SignupImage } from "@/assets"
+import SignupForm from "./_components/signup-form"
 import Image from "next/image"
 import React from "react"
 
 type Props = {}
 
-const LoginPage = (props: Props) => {
+const SignupPage = (props: Props) => {
   return (
     <section className="min-h-screen flex items-center justify-center">
       <div className="container">
         <div className="flex flex-col md:flex-row items-center justify-center gap-10">
           <div className="w-2/3 md:w-1/2">
-            <Image alt="login" className="mx-auto" src={LoginImage} />
+            <Image alt="signup" className="mx-auto" src={SignupImage} />
           </div>
           <div className="w-full md:w-1/2">
-            <LoginForm />
+            <SignupForm />
           </div>
         </div>
       </div>
@@ -22,4 +22,4 @@ const LoginPage = (props: Props) => {
   )
 }
 
-export default LoginPage
+export default SignupPage
