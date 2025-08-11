@@ -2,5 +2,24 @@
   "home-page": {
     "title": "Hello world!",
     "about": "Go to the about page"
+  },
+  "auth": {
+    "login": {
+      "welcome": "Welcome, we're happy to see you again.",
+      "subtitle": "Please enter your details to access your account.",
+      "phone": "Phone Number",
+      "password": "Password",
+      "phonePlaceholder": "50 123 4567",
+      "passwordPlaceholder": "Password",
+      "forgotPassword": "Did you forget your password?",
+      "loginButton": "Login",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up now",
+      "validation": {
+        "phoneRequired": "Phone number is required",
+        "passwordRequired": "Password is required",
+        "invalid-phone-number": "Invalid phone number"
+      }
+    }
   }
 }

@@ -2,5 +2,24 @@
   "home-page": {
     "title": "مرحبا بك في الواحة",
     "about": "اذهب إلى صفحة الحول"
+  },
+  "auth": {
+    "login": {
+      "welcome": "أهلاً بك، يسعدنا رؤيتك مرة أخرى.",
+      "subtitle": "الرجاء إدخال بياناتك للوصول إلى حسابك.",
+      "phone": "رقم الهاتف",
+      "password": "كلمة المرور",
+      "phonePlaceholder": "50 123 4567",
+      "passwordPlaceholder": "كلمة المرور",
+      "forgotPassword": "هل نسيت كلمة المرور ؟",
+      "loginButton": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب ؟",
+      "signUp": "سجل الآن",
+      "validation": {
+        "phoneRequired": "رقم الهاتف مطلوب",
+        "passwordRequired": "كلمة المرور مطلوبة",
+        "invalid-phone-number": "رقم الهاتف غير صالح"
+      }
+    }
   }
 }

@@ -1,0 +1,117 @@
+"use client"
+
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import PhoneInput from "@/components/ui/phone-input"
+import { Link } from "@/lib/i18n/navigation"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { isPossiblePhoneNumber } from "react-phone-number-input"
+import { Loader2 } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+
+const LoginForm = () => {
+  const t = useTranslations("auth.login")
+
+  const loginSchema = z.object({
+    phone: z
+      .string()
+      .min(1, t("validation.phoneRequired"))
+      .refine((value) => isPossiblePhoneNumber(value), {
+        message: t("validation.invalid-phone-number"),
+      }),
+    password: z.string().min(6, t("validation.passwordRequired")),
+  })
+
+  type LoginFormData = z.infer<typeof loginSchema>
+
+  const form = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      phone: "",
+      password: "",
+    },
+  })
+
+  const onSubmit = (data: LoginFormData) => {
+    console.log(data)
+    // Handle login logic here
+  }
+
+  return (
+    <div className="w-full max-w-lg mx-auto space-y-6">
+      {/* Welcome Message */}
+      <div className="text-center space-y-4">
+        <h1 className="text-2xl lg:text-4xl font-bold ">{t("welcome")}</h1>
+        <p className="text-lg lg:text-2xl font-semibold">{t("subtitle")}</p>
+      </div>
+
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4 max-w-md"
+        >
+          <PhoneInput />
+
+          {/* Password Field */}
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    type="password"
+                    placeholder={t("passwordPlaceholder")}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Forgot Password Link */}
+          <div className="text-right">
+            <a href="#" className="text-xs font-semibold hover:underline">
+              {t("forgotPassword")}
+            </a>
+          </div>
+
+          {/* Login Button */}
+          <Button
+            disabled={form.formState.isSubmitting}
+            type="submit"
+            className="w-full  text-white py-3 text-lg font-medium"
+          >
+            {t("loginButton")}
+            {form.formState.isSubmitting && (
+              <Loader2 className="animate-spin" />
+            )}
+          </Button>
+
+          {/* Sign Up Link */}
+          <div className="text-center">
+            <span className="text-gray-600">{t("noAccount")} </span>
+            <Link
+              href="/auth/signup"
+              className=" text-primary hover:underline font-medium"
+            >
+              {t("signUp")}
+            </Link>
+          </div>
+        </form>
+      </Form>
+    </div>
+  )
+}
+
+export default LoginForm
