@@ -44,8 +44,10 @@
         "passwordRequired": "كلمة السر مطلوبة",
         "confirmPasswordRequired": "يرجى تأكيد كلمة السر",
         "passwordsDoNotMatch": "كلمات السر غير متطابقة",
-        "invalid-phone-number": "رقم الهاتف غير صالح"
-      }
+        "invalid-phone-number": "رقم الهاتف غير صالح",
+        "privacyPolicyRequired": "يجب الموافقة على سياسة الخصوصية وشروط الاستخدام للمتابعة"
+      },
+      "privacyPolicy": "هل توافق على<a> سياسة الخصوصية</a>, <a2>وشروط الاستخدام</a2>؟"
     }
   }
 }

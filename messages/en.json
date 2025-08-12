@@ -44,8 +44,10 @@
         "passwordRequired": "Password is required",
         "confirmPasswordRequired": "Please confirm your password",
         "passwordsDoNotMatch": "Passwords do not match",
-        "invalid-phone-number": "Invalid phone number"
-      }
+        "invalid-phone-number": "Invalid phone number",
+        "privacyPolicyRequired": "You must accept the privacy policy to continue"
+      },
+      "privacyPolicy": "I agree to the <a>Privacy Policy</a> and <a2>Terms of Service</a2>"
     }
   }
 }
