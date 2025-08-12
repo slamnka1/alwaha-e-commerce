@@ -49,5 +49,30 @@
       },
       "privacyPolicy": "I agree to the <a>Privacy Policy</a> and <a2>Terms of Service</a2>"
     }
+  },
+  "profile": {
+    "size": {
+      "skip": "Skip",
+      "title": "Choose your size with confidence",
+      "subtitle": "Follow the size guide for ideal comfort and elegance. All you have to do is accurately measure your chest and hip circumference, and we will tell you your suitable size.",
+      "importantNote": "Important note: It is preferable to use a fabric measuring tape, and that the measurement process is done while you are wearing light clothing to get an accurate result.",
+      "chestMeasurement": "Chest circumference measurement",
+      "hipMeasurement": "Hip circumference measurement",
+      "chestPlaceholder": "Enter measurement in centimeters",
+      "hipPlaceholder": "Enter measurement in centimeters",
+      "chestInstructionsTitle": "How to measure chest circumference",
+      "chestInstructions": "Wrap the measuring tape around the fullest part of your chest (usually directly above the nipples). Make sure the tape is straight and not too tight or loose. Keep the tape parallel to the floor.",
+      "hipInstructionsTitle": "How to measure hip circumference",
+      "hipInstructions": "Wrap the measuring tape around the widest part of your hips (upper hip). Make sure the tape completely surrounds you horizontally and evenly. Do not pull the tape too tight.",
+      "tipsTitle": "Tips for more accurate results:",
+      "tips": "It is preferable to take measurements twice to ensure accuracy. If your measurements fall between two sizes, we recommend choosing the larger size for more comfort. You can ask another person to help you with the measurement for a more accurate result.",
+      "saveButton": "Save Data",
+      "validation": {
+        "chestRequired": "Chest measurement is required",
+        "hipRequired": "Hip measurement is required",
+        "invalidChest": "Please enter a valid chest measurement",
+        "invalidHip": "Please enter a valid hip measurement"
+      }
+    }
   }
 }
