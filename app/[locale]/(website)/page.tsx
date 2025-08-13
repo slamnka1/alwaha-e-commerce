@@ -3,6 +3,7 @@ import React from 'react'
 import { getTypeCategories } from '@/lib/api/types'
 
 import Hero from './_components/hero'
+import KnowYourSize from './_components/know-your-size'
 import TypeSlider from './_components/type'
 
 export default async function HomePage() {
@@ -11,6 +12,7 @@ export default async function HomePage() {
     <React.Fragment>
       <Hero />
       <TypeSlider typeData={typeData} />
+      <KnowYourSize />
     </React.Fragment>
   )
 }
