@@ -1,16 +1,16 @@
 import React from 'react'
 
-import { useTranslations } from 'next-intl'
+import { getTypeCategories } from '@/lib/api/types'
 
-import { Link } from '@/lib/i18n/navigation'
+import Hero from './_components/hero'
+import TypeSlider from './_components/type'
 
-import Hero from '../_components/hero'
-
-export default function HomePage() {
-  const t = useTranslations('home-page')
+export default async function HomePage() {
+  const typeData = await getTypeCategories()
   return (
     <React.Fragment>
       <Hero />
+      <TypeSlider typeData={typeData} />
     </React.Fragment>
   )
 }

@@ -84,5 +84,9 @@
     "login": "Login",
     "signup": "New Account",
     "search": "Search"
+  },
+  "categories": {
+    "title": "Product Categories",
+    "subtitle": "Discover a diverse collection of distinctive products"
   }
 }
