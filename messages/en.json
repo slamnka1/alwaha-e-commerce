@@ -1,7 +1,12 @@
 {
   "home-page": {
     "title": "Hello world!",
-    "about": "Go to the about page"
+    "about": "Go to the about page",
+    "hero": {
+      "title": "All your needs as a veiled woman... and all sizes are available at Wahat Al Zain.",
+      "description": "Shop with confidence... because you will always find your size at Wahat Al Zain",
+      "button": "SHOP NOW"
+    }
   },
   "auth": {
     "login": {

@@ -15,7 +15,7 @@ const UserButton = (props: Props) => {
   const t = useTranslations('header')
   return (
     <>
-      <div className="grid lg:grid-cols-2 gap-3 max-w-20 lg:max-w-58 ms-auto">
+      <div className="ms-auto grid max-w-20 gap-3 lg:max-w-58 lg:grid-cols-2">
         <Button
           className="max-md:h-10 max-md:text-base"
           variant={'outline'}

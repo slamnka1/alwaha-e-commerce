@@ -32,7 +32,7 @@ const LanguageSwitch = (props: Props) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
-            className="shrink-0 size-6"
+            className="size-6 shrink-0"
             height="30"
             viewBox="0 0 30 30"
             fill="none"
@@ -66,13 +66,13 @@ const LanguageSwitch = (props: Props) => {
       >
         <div className="flex flex-col gap-2">
           <DropdownMenuItem
-            className="font-medium text-sm"
+            className="text-sm font-medium"
             onClick={() => handleSwitchLanguage('en')}
           >
             <span>English</span>
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="font-medium text-sm"
+            className="text-sm font-medium"
             onClick={() => handleSwitchLanguage('ar')}
           >
             <span>عربي</span>
