@@ -74,5 +74,10 @@
         "invalidHip": "Please enter a valid hip measurement"
       }
     }
+  },
+  "header": {
+    "login": "Login",
+    "signup": "New Account",
+    "search": "Search"
   }
 }

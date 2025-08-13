@@ -1,3 +1,5 @@
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
+
 import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { Cairo } from 'next/font/google'
 import { notFound } from 'next/navigation'
@@ -27,8 +29,11 @@ export default async function LocaleLayout({
   return (
     <html dir={locale === 'ar' ? 'rtl' : 'ltr'} lang={locale}>
       <body className={cn(font.variable, font.className)}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
-        <Toaster />
+        <NuqsAdapter>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+
+          <Toaster />
+        </NuqsAdapter>
       </body>
     </html>
   )
