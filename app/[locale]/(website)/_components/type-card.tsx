@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
 import { Button } from '@/components/ui/button'
@@ -17,8 +18,12 @@ export function TypeCard({
   buttonText,
   link,
 }: TypeCardProps) {
+  const t = useTranslations('common')
   return (
     <div className="group relative h-80 w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-300 select-none hover:shadow-xl">
+      <div className="text-primary absolute top-0 left-0 z-10 rounded-br-3xl bg-white px-4 py-2 text-sm font-semibold shadow-md md:hidden">
+        {t('see-more')}
+      </div>
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -33,7 +38,7 @@ export function TypeCard({
       </div>
 
       {/* Content */}
-      <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
+      <div className="relative hidden h-full flex-col items-center justify-center p-6 text-center md:flex">
         {/* Category Name */}
         <h3 className="mb-4 text-2xl font-medium text-white md:text-3xl">
           {categoryName}

@@ -21,14 +21,15 @@ export default function TypeSlider({ typeData }: { typeData: TypeCategory[] }) {
             opts={{
               loop: true,
               slidesToScroll: 1,
+              dragFree: true,
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-2 md:-ml-4">
+            <CarouselContent className="-ml-3 md:-ml-4">
               {typeData.map((item) => (
                 <CarouselItem
                   key={item.id}
-                  className="pl-2 md:basis-1/2 md:pl-4 lg:basis-1/3 xl:basis-1/4"
+                  className="mx-1 basis-[38%] pl-2 md:pl-4 lg:basis-1/4"
                 >
                   <TypeCard
                     imageUrl={item.imageUrl}
@@ -41,8 +42,8 @@ export default function TypeSlider({ typeData }: { typeData: TypeCategory[] }) {
             </CarouselContent>
 
             {/* Navigation Arrows */}
-            <CarouselPrevious className="left-4 border-orange-400 bg-orange-400 text-white hover:border-orange-500 hover:bg-orange-500" />
-            <CarouselNext className="right-4 border-orange-400 bg-orange-400 text-white hover:border-orange-500 hover:bg-orange-500" />
+            <CarouselPrevious className="left-4 border-orange-400 bg-orange-400 text-white hover:border-orange-500 hover:bg-orange-500 max-md:hidden" />
+            <CarouselNext className="right-4 border-orange-400 bg-orange-400 text-white hover:border-orange-500 hover:bg-orange-500 max-md:hidden" />
           </Carousel>
         </div>
       </div>
