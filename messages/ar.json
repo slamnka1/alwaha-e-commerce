@@ -100,5 +100,14 @@
   },
   "common": {
     "see-more": " رؤية المزيد"
+  },
+  "product-card": {
+    "plus-size": "مقاس كبير",
+    "colors": "الوان",
+    "add-to-cart": "أضف إلى السلة",
+    "currency": "درهم"
+  },
+  "products-slider": {
+    "view-all": "رؤية المزيد"
   }
 }

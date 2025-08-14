@@ -100,5 +100,11 @@
   },
   "common": {
     "see-more": "See more"
+  },
+  "product-card": {
+    "plus-size": "plus size",
+    "colors": "colors",
+    "add-to-cart": "Add to Cart",
+    "currency": "AED"
   }
 }

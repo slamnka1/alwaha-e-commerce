@@ -6,12 +6,10 @@ import { SignupImage } from '@/assets'
 
 import SignupForm from './_components/signup-form'
 
-type Props = {}
-
-const SignupPage = (props: Props) => {
+const SignupPage = () => {
   return (
     <div className="container">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+      <div className="flex flex-col items-center justify-center gap-10 md:flex-row">
         <div className="w-2/3 md:w-1/2">
           <Image alt="signup" className="mx-auto" src={SignupImage} />
         </div>

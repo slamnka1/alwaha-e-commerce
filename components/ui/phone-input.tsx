@@ -2,24 +2,19 @@
 
 import { useFormContext } from 'react-hook-form'
 import PhoneInputComponent from 'react-phone-number-input'
-import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import ar from 'react-phone-number-input/locale/ar.json'
 import en from 'react-phone-number-input/locale/en.json'
 import 'react-phone-number-input/style.css'
 
 import { useLocale } from 'next-intl'
-import { useTranslations } from 'next-intl'
 
-import { FormField, FormMessage } from './form'
-import { FormItem } from './form'
-import { FormControl } from './form'
+import { FormControl, FormField, FormItem, FormMessage } from './form'
 import { Input } from './input'
 import { Select } from './select'
 
 const PhoneInput = () => {
   const locale = useLocale()
   const form = useFormContext()
-  const t = useTranslations('auth.login.validation')
   return (
     <FormField
       control={form.control}
