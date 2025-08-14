@@ -14,7 +14,7 @@ import { TypeCard } from './type-card'
 // Main Type Slider Component
 export default function TypeSlider({ typeData }: { typeData: TypeCategory[] }) {
   return (
-    <section className="relative bg-gray-50 py-16">
+    <section className="relative bg-gray-50 py-8 lg:py-10">
       <div className="container mx-auto px-4">
         <div className="relative">
           <Carousel
