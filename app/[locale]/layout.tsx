@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils'
 const font = Cairo({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   variable: '--font-sans',
+  subsets: ['arabic', 'latin'],
 })
 
 export default async function LocaleLayout({
