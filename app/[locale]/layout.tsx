@@ -29,7 +29,7 @@ export default async function LocaleLayout({
 
   return (
     <html dir={locale === 'ar' ? 'rtl' : 'ltr'} lang={locale}>
-      <body className={cn(font.variable, font.className)}>
+      <body className={cn(font.variable, font.className, 'bg-primary/2')}>
         <NuqsAdapter>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
 

@@ -26,7 +26,7 @@ export function ProductCard({
   const onAddToCart = () => {}
   const toggleFavorite = () => {}
   return (
-    <Card className="overflow-hidden border-0 bg-white py-3 shadow-none">
+    <Card className="overflow-hidden border-0 bg-white py-3 shadow-none select-none">
       {/* Image Section */}
       <div className="relative">
         <AspectRatio
@@ -38,21 +38,25 @@ export function ProductCard({
             alt={name}
             className="h-full w-full object-cover"
           />
+          {/* Badges */}
+          <div className="absolute top-0 left-0 flex gap-1" dir="ltr">
+            {isPlusSize && (
+              <div className="bg-foreground relative z-[1] rounded-br-xl border border-white px-4 py-1 font-bold text-white md:rounded-br-3xl">
+                {t('plus-size')}
+              </div>
+            )}
+            {discount && (
+              <div
+                className={cn(
+                  'bg-primary rounded-br-xl border border-white px-3 py-1 font-bold text-white md:rounded-br-3xl',
+                  isPlusSize && '-ml-8 pe-8'
+                )}
+              >
+                {discount}%
+              </div>
+            )}
+          </div>
         </AspectRatio>
-
-        {/* Badges */}
-        <div className="absolute top-3 left-3 flex gap-1">
-          {isPlusSize && (
-            <div className="rounded-br-md bg-black px-2 py-1 text-xs font-medium text-white">
-              {t('plus-size')}
-            </div>
-          )}
-          {discount && (
-            <div className="rounded-bl-md bg-orange-500 px-2 py-1 text-xs font-medium text-white">
-              {discount}%
-            </div>
-          )}
-        </div>
       </div>
 
       {/* Content Section */}
@@ -99,7 +103,7 @@ export function ProductCard({
           onClick={() => onAddToCart()}
           variant="secondary"
           size={'lg'}
-          className="w-full bg-white font-normal md:text-2xl"
+          className="w-full bg-white font-normal shadow-lg md:text-2xl"
         >
           {t('add-to-cart')}
         </Button>

@@ -11,7 +11,10 @@
       "title": "Your guide to choosing your suitable size",
       "description": "Why choose randomly? With us, you can easily know your ideal size based on your weight, to feel comfortable and elegant at the same time.",
       "button": "Know your size now"
-    }
+    },
+    "new-products": "Latest dresses:",
+    "offers": "Our offers:",
+    "pluse-size": "Pluse sizes:"
   },
   "auth": {
     "login": {
