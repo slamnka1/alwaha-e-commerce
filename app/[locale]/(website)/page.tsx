@@ -19,6 +19,8 @@ export default async function HomePage() {
       <PreviewCarousel />
       <KnowYourSize />
       <ProductsSlider products={products} title="Products" />
+      <ProductsSlider products={products} title="Products" />
+      <ProductsSlider products={products} title="Products" />
     </React.Fragment>
   )
 }

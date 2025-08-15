@@ -1,5 +1,7 @@
 'use client'
 
+import Autoplay from 'embla-carousel-autoplay'
+
 import { useTranslations } from 'next-intl'
 
 import { Button } from '@/components/ui/button'
@@ -35,6 +37,11 @@ export default function ProductsSlider({
               slidesToScroll: 1,
               dragFree: true,
             }}
+            plugins={[
+              Autoplay({
+                delay: Math.floor(Math.random() * 3000) + 3000,
+              }),
+            ]}
             className="w-full"
           >
             <CarouselContent className="-ml-3 md:-ml-4">

@@ -31,7 +31,7 @@ export function PreviewCard({
   return (
     <Card
       className={cn(
-        'group relative my-4 cursor-pointer overflow-hidden border-4 border-white p-0 shadow-[0px_4px_4px_0px_#00000040] transition-transform max-md:rounded-md lg:border-8'
+        'group relative my-4 cursor-pointer overflow-hidden border-4 border-white p-0 shadow-[0px_4px_4px_0px_#00000040] transition-transform select-none max-md:rounded-md'
       )}
       onClick={onClick}
     >
@@ -52,7 +52,7 @@ export function PreviewCard({
               style={{
                 writingMode: 'vertical-lr',
               }}
-              className="bg-primary rounded-bl-md border-[0.5px] border-white px-2 py-1 !text-[8px] text-white"
+              className="bg-primary rounded-bl-md border-[0.5px] border-white px-2 py-1 !text-[8px] font-medium text-white"
             >
               FREE SIZE
             </div>
