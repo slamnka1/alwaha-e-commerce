@@ -68,17 +68,17 @@ const SignupForm = () => {
   }
 
   return (
-    <div className="w-full max-w-lg mx-auto space-y-6">
+    <div className="mx-auto w-full max-w-lg space-y-6">
       {/* Welcome Message */}
-      <div className="text-center space-y-4">
-        <h1 className="text-2xl lg:text-4xl font-bold ">{t('welcome')}</h1>
-        <p className="text-lg lg:text-2xl font-semibold">{t('subtitle')}</p>
+      <div className="space-y-4 text-center">
+        <h1 className="text-2xl font-bold lg:text-4xl">{t('welcome')}</h1>
+        <p className="text-lg font-semibold lg:text-2xl">{t('subtitle')}</p>
       </div>
 
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 max-w-md"
+          className="mx-auto max-w-md space-y-4"
           autoComplete="off"
         >
           {/* First Name Field */}
@@ -154,7 +154,7 @@ const SignupForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Label className="text-sm flex items-center gap-2">
+                  <Label className="flex items-center gap-2 text-sm">
                     <Checkbox
                       checked={field.value}
                       onCheckedChange={field.onChange}
@@ -163,7 +163,7 @@ const SignupForm = () => {
                       a: (chunks) => (
                         <Link
                           href="/privacy-policy"
-                          className="text-primary hover:underline font-medium"
+                          className="text-primary font-medium hover:underline"
                         >
                           {chunks}
                         </Link>
@@ -171,7 +171,7 @@ const SignupForm = () => {
                       a2: (chunks) => (
                         <Link
                           href="/terms-of-service"
-                          className="text-primary hover:underline font-medium"
+                          className="text-primary font-medium hover:underline"
                         >
                           {chunks}
                         </Link>
@@ -187,7 +187,7 @@ const SignupForm = () => {
           <Button
             disabled={form.formState.isSubmitting}
             type="submit"
-            className="w-full  text-white py-3 text-lg font-medium"
+            className="w-full py-3 text-lg font-medium text-white"
           >
             {t('signupButton')}
             {form.formState.isSubmitting && (
@@ -200,7 +200,7 @@ const SignupForm = () => {
             <span className="text-gray-600">{t('haveAccount')} </span>
             <Link
               href="/auth/login"
-              className=" text-primary hover:underline font-medium"
+              className="text-primary font-medium hover:underline"
             >
               {t('loginNow')}
             </Link>
