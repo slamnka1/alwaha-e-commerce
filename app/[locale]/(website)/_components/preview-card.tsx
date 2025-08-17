@@ -40,8 +40,12 @@ export function PreviewCard({
 
         {/* Discount Badge */}
         {discount && (
-          <div className="absolute top-0.5 right-4.5 z-10">
-            <Image src={discountIcon} alt="discount" width={30} height={30} />
+          <div className="absolute top-0.5 right-3.5 z-10 lg:right-4.5">
+            <Image
+              src={discountIcon}
+              alt="discount"
+              className="size-7 lg:size-8"
+            />
           </div>
         )}
 
@@ -52,7 +56,7 @@ export function PreviewCard({
               style={{
                 writingMode: 'vertical-lr',
               }}
-              className="bg-primary rounded-bl-md border-[0.5px] border-white px-2 py-1 !text-[8px] font-medium text-white"
+              className="bg-primary rounded-bl-md border-[0.5px] border-white px-1.5 py-0.5 text-[6px] font-medium text-white lg:px-2 lg:py-1 lg:!text-[8px]"
             >
               FREE SIZE
             </div>
