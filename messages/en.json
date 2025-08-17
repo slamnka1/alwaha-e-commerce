@@ -93,6 +93,14 @@
     "signup": "New Account",
     "search": "Search"
   },
+  "search": {
+    "title": "The latest distinctive pieces at Wahat Al Zain",
+    "description": "Dresses, Islamic rosary clothes, the best place for veiled women",
+    "placeholder": "Search for dresses, swimwear, hijabs...",
+    "results": "Search Results",
+    "noResults": "No results found for your search",
+    "tryAgain": "Try searching with different keywords"
+  },
   "categories": {
     "title": "Product Categories",
     "subtitle": "Discover a diverse collection of distinctive products"

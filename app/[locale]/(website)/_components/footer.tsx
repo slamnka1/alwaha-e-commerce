@@ -64,9 +64,9 @@ const Footer = (props: Props) => {
       <div className="container mx-auto">
         <div className="flex gap-8 max-lg:flex-wrap lg:gap-26">
           {/* Brand Information - Rightmost Column */}
-          <div className="flex h-full max-w-[300] flex-col justify-between">
+          <div className="flex h-full flex-col justify-between max-md:w-full max-md:text-center md:max-w-[300]">
             <div className="flex flex-col gap-4">
-              <Image src={LogoWithText} alt="logo" />
+              <Image src={LogoWithText} alt="logo" className="max-md:mx-auto" />
               <p className="leading-relaxed font-medium">{t('description')}</p>
             </div>
           </div>

@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 
 import { girls } from '@/assets'
 import { Button } from '@/components/ui/button'
+import { Link } from '@/lib/i18n/navigation'
 
 const Hero = () => {
   const t = useTranslations('home-page.hero')
@@ -27,7 +28,7 @@ const Hero = () => {
   }, [currentSlide])
 
   return (
-    <div className="mx-auto lg:container">
+    <div className="mx-auto lg:container lg:mt-28">
       <section className="relative h-screen w-full overflow-hidden lg:h-[calc(100vh-115px)] lg:rounded-3xl">
         {/* Image Carousel */}
         <div className="relative h-full w-full">
@@ -60,8 +61,11 @@ const Hero = () => {
             <p className="text-center text-sm font-medium text-white lg:text-xl">
               {t('description')}
             </p>
-            <Button className="text-primary mt-4 w-full max-w-60 bg-white hover:bg-white/90">
-              {t('button')}
+            <Button
+              asChild
+              className="text-primary mt-4 w-full max-w-60 bg-white hover:bg-white/90"
+            >
+              <Link href="/search">{t('button')}</Link>
             </Button>
           </div>
         </div>
