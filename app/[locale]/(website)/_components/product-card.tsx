@@ -103,7 +103,7 @@ export function ProductCard({
           onClick={() => onAddToCart()}
           variant="secondary"
           size={'lg'}
-          className="w-full bg-white font-normal shadow-lg md:text-2xl"
+          className="w-full bg-white font-semibold shadow-lg md:text-2xl"
         >
           {t('add-to-cart')}
         </Button>

@@ -97,9 +97,12 @@
     "title": "The latest distinctive pieces at Wahat Al Zain",
     "description": "Dresses, Islamic rosary clothes, the best place for veiled women",
     "placeholder": "Search for dresses, swimwear, hijabs...",
-    "results": "Search Results",
     "noResults": "No results found for your search",
-    "tryAgain": "Try searching with different keywords"
+    "tryAgain": "Try searching with different keywords",
+    "error": "Something went wrong!",
+    "results": {
+      "title": "All available pieces:"
+    }
   },
   "categories": {
     "title": "Product Categories",
@@ -130,5 +133,12 @@
     "email": "alwaha@gmail.com",
     "phone": "+990 120 129 129",
     "copyright": "{value} Wahat Al Zain. All rights reserved."
+  },
+  "error": "Something wrong!",
+  "pagination": {
+    "general": {
+      "Previous": "Previous",
+      "Next": "Next"
+    }
   }
 }

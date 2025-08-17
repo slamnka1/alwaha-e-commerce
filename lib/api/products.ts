@@ -308,19 +308,12 @@ export async function getNewProducts(): Promise<Product[]> {
 }
 
 // Search products
-export async function searchProducts(query: string): Promise<Product[]> {
+export async function searchProducts(
+  query: URLSearchParams
+): Promise<Product[]> {
   await new Promise((resolve) => setTimeout(resolve, 400))
 
-  const searchTerm = query.toLowerCase()
-  const results = dummyProductData.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchTerm) ||
-      product.nameAr.includes(searchTerm) ||
-      product.description.toLowerCase().includes(searchTerm) ||
-      product.descriptionAr.includes(searchTerm) ||
-      product.tags.some((tag) => tag.toLowerCase().includes(searchTerm))
-  )
-  return results
+  return dummyProductData
 }
 
 // Get products with discount
