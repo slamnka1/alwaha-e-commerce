@@ -32,7 +32,6 @@ export default async function LocaleLayout({
       <body className={cn(font.variable, font.className, 'bg-primary/2')}>
         <NuqsAdapter>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
-
           <Toaster />
         </NuqsAdapter>
       </body>

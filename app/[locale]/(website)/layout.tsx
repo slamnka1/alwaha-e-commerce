@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Footer from './_components/footer'
 import Header from './_components/header'
 
 export default async function Layout({
@@ -11,6 +12,7 @@ export default async function Layout({
     <React.Fragment>
       <Header />
       {children}
+      <Footer />
     </React.Fragment>
   )
 }
