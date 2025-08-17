@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 
 import { Toaster } from '@/components/ui/sonner'
 import { routing } from '@/lib/i18n/routing'
+import { QueryProvider } from '@/lib/react-query/query-provider'
 import { cn } from '@/lib/utils'
 
 const font = Cairo({
@@ -31,7 +32,9 @@ export default async function LocaleLayout({
     <html dir={locale === 'ar' ? 'rtl' : 'ltr'} lang={locale}>
       <body className={cn(font.variable, font.className, 'bg-primary/2')}>
         <NuqsAdapter>
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            <QueryProvider>{children}</QueryProvider>
+          </NextIntlClientProvider>
           <Toaster />
         </NuqsAdapter>
       </body>

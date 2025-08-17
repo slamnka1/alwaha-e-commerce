@@ -19,6 +19,9 @@ const eslintConfig = [
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-empty-interface': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
+      // React Query specific rules
+      'react-hooks/exhaustive-deps': 'warn',
+      '@typescript-eslint/no-floating-promises': 'warn',
     },
   }),
 ]
