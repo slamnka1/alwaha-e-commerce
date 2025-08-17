@@ -20,7 +20,7 @@ export function TypeCard({
 }: TypeCardProps) {
   const t = useTranslations('common')
   return (
-    <div className="group relative h-80 w-full overflow-hidden rounded-2xl shadow-lg transition-all duration-300 select-none hover:shadow-xl">
+    <div className="group relative h-100 w-full max-w-xs overflow-hidden rounded-2xl shadow-lg transition-all duration-300 select-none hover:shadow-xl">
       <div className="text-primary absolute top-0 left-0 z-10 rounded-br-3xl bg-white px-4 py-2 text-sm font-semibold shadow-md md:hidden">
         {t('see-more')}
       </div>
@@ -48,7 +48,7 @@ export function TypeCard({
         <Button
           variant="secondary"
           size="default"
-          className="text-primary bg-white/90 transition-all duration-200 hover:scale-105 hover:bg-white"
+          className="text-primary bg-white/90 font-semibold transition-all duration-200 hover:scale-105 hover:bg-white"
           asChild
         >
           <a href={link}>{buttonText}</a>

@@ -24,7 +24,7 @@ export default function ProductsSlider({
 }) {
   const t = useTranslations('common')
   return (
-    <section className="relative bg-gray-50 py-8 lg:py-10">
+    <section className="relative py-8 lg:py-10">
       <div className="container mx-auto px-4">
         <div className="my-4 flex items-center justify-between gap-8">
           <p className="md:text-3xl md:font-bold lg:text-4xl">{title}</p>

@@ -20,7 +20,7 @@ export default function SearchInput() {
     search(e.target.value)
   }
   return (
-    <div className="relative">
+    <div className="relative w-full max-w-sm">
       <Input
         value={value}
         onChange={handleChange}

@@ -14,7 +14,7 @@ import { TypeCard } from './type-card'
 // Main Type Slider Component
 export default function TypeSlider({ typeData }: { typeData: TypeCategory[] }) {
   return (
-    <section className="relative bg-gray-50 py-8 lg:py-10">
+    <section className="relative py-8 lg:py-10">
       <div className="container mx-auto px-4">
         <div className="relative">
           <Carousel
@@ -29,7 +29,7 @@ export default function TypeSlider({ typeData }: { typeData: TypeCategory[] }) {
               {typeData.map((item) => (
                 <CarouselItem
                   key={item.id}
-                  className="mx-1 basis-[38%] pl-2 md:pl-4 lg:basis-1/4"
+                  className="mx-1 w-full max-w-xs basis-auto pl-2 md:pl-4"
                 >
                   <TypeCard
                     imageUrl={item.imageUrl}

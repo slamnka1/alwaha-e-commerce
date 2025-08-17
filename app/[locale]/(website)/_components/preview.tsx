@@ -324,7 +324,7 @@ const PreviewCarousel = () => {
           setApi={setApi}
           className="w-full"
         >
-          <CarouselContent className="my-20 -ml-2 md:-ml-4 lg:my-36">
+          <CarouselContent className="my-24 -ml-2 md:-ml-4 lg:my-36 xl:my-48">
             {slides.map((value, index) => (
               <CarouselItem key={value.id} className="basis-1/4 md:basis-1/6">
                 <PreviewCard {...value} onClick={() => scrollToSlide(index)} />
