@@ -31,7 +31,7 @@ export function ProductCard({
       <div className="relative">
         <AspectRatio
           ratio={9 / 13}
-          className="relative w-full overflow-hidden rounded-xl md:rounded-3xl"
+          className="relative w-full overflow-hidden rounded-xl shadow-lg md:rounded-3xl"
         >
           <img
             src={imageUrl}

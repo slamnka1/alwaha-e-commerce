@@ -33,6 +33,7 @@ export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
           <PaginationItem key={i}>
             <Button
               size={'icon'}
+              className="rounded-sm text-sm font-normal"
               onClick={() => {
                 setPage(i)
               }}
@@ -48,6 +49,7 @@ export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
         <PaginationItem key={1}>
           <Button
             size={'icon'}
+            className="rounded-sm text-sm font-normal"
             onClick={() => {
               setPage(1)
             }}
@@ -74,6 +76,7 @@ export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
           <PaginationItem key={i}>
             <Button
               size={'icon'}
+              className="rounded-sm text-sm font-normal"
               onClick={() => {
                 setPage(i)
               }}
@@ -97,6 +100,7 @@ export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
         <PaginationItem key={totalPageCount}>
           <Button
             size={'icon'}
+            className="rounded-sm text-sm font-normal"
             onClick={() => {
               setPage(totalPageCount)
             }}
@@ -118,6 +122,7 @@ export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
           <PaginationItem>
             <Button
               size={'sm'}
+              className="rounded-sm text-sm font-normal"
               onClick={() => {
                 setPage(Math.max(page - 1, 1))
               }}
@@ -133,6 +138,7 @@ export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
           <PaginationItem>
             <Button
               size={'sm'}
+              className="rounded-sm text-sm font-normal"
               onClick={() => {
                 setPage(Math.min(page + 1, totalPageCount))
               }}

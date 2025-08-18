@@ -290,7 +290,7 @@ const PreviewCarousel = () => {
   )
 
   return (
-    <section className="pb-8 md:pb-16">
+    <section className="pt-6 pb-8 md:pb-16">
       {/* Content Section */}
       <div className="container mx-auto px-4 text-center">
         <h2 className="mb-4 text-xl leading-tight font-bold lg:text-4xl">

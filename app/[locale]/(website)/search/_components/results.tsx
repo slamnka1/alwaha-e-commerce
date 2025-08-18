@@ -43,8 +43,8 @@ const Results = (props: Props) => {
 
   return (
     <div className="container py-16">
-      <h2 className="pb-3 text-3xl font-bold">{t('results.title')}</h2>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+      <h2 className="pb-4 text-3xl font-bold">{t('results.title')}</h2>
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-6">
         {data.map((product, index) => {
           return <ProductCard {...product} key={index} />
         })}
