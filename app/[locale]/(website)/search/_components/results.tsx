@@ -13,6 +13,7 @@ import { DynamicPagination } from '@/components/ui/dynamic-pagination'
 import { searchProducts } from '@/lib/api/products'
 
 import { ProductCard } from '../../_components/product-card'
+import Filters from './filters'
 
 type Props = {}
 
@@ -28,7 +29,7 @@ const Results = (props: Props) => {
 
   if (status === 'pending')
     return (
-      <div className="flex items-center justify-center py-10">
+      <div className="flex items-center justify-center py-40">
         <Loader2 className="text-primary size-10 animate-spin" />
       </div>
     )
@@ -43,11 +44,16 @@ const Results = (props: Props) => {
 
   return (
     <div className="container py-16">
-      <h2 className="pb-4 text-3xl font-bold">{t('results.title')}</h2>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-6">
-        {data.map((product, index) => {
-          return <ProductCard {...product} key={index} />
-        })}
+      <div className="flex gap-8">
+        <div className="w-full">
+          <h2 className="pb-4 text-3xl font-bold">{t('results.title')}</h2>
+          <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:gap-6">
+            {data.map((product, index) => {
+              return <ProductCard {...product} key={index} />
+            })}
+          </div>
+        </div>
+        <Filters />
       </div>
       <div className="flex justify-center">
         <DynamicPagination totalPageCount={10} />

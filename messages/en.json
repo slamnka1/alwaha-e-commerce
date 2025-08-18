@@ -102,6 +102,14 @@
     "error": "Something went wrong!",
     "results": {
       "title": "All available pieces:"
+    },
+    "filters": {
+      "title": "Filter By",
+      "categories": "Our Available Items",
+      "size": "Specify Your Size Exactly",
+      "weightSizes": "Sizes Relative to Weights",
+      "plusSize": "Plus Size",
+      "exclusiveOffers": "Our Exclusive Offers"
     }
   },
   "categories": {
