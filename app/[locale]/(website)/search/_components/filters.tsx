@@ -25,6 +25,8 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
+import SearchInput from '../../_components/search-input'
+
 type Props = {}
 const categories = [
   'dresses',
@@ -84,10 +86,21 @@ const Filters = (props: Props) => {
     }),
   ]
   return (
-    <div className="w-[270px] shrink-0">
+    <div className="w-full shrink-0 lg:w-[270px]">
       <div className="mb-6 flex items-center justify-between">
-        <h3 className="font-bold lg:text-xl 2xl:text-2xl">{t('title')}</h3>
-        <Filter className="size-6" />
+        <div className="lg:hidden">
+          <SearchInput
+            classNames={{
+              input: 'h-8 shadow-none border rounded-sm border-foreground',
+            }}
+          />
+        </div>
+        <div className="flex items-center justify-between gap-2 lg:w-full">
+          <h3 className="text-xs font-medium lg:text-xl lg:font-bold 2xl:text-2xl">
+            {t('title')}
+          </h3>
+          <Filter className="size-4.5 lg:size-6" strokeWidth={1.5} />
+        </div>
       </div>
 
       <Accordion type="multiple" className="space-y-2">
@@ -96,7 +109,9 @@ const Filters = (props: Props) => {
             iconClassName="size-6 2xl:size-7 text-foreground"
             className="py-2 font-semibold hover:no-underline"
           >
-            <span className="text-lg 2xl:text-xl">{t('categories')}</span>
+            <span className="text-sm lg:text-lg 2xl:text-xl">
+              {t('categories')}
+            </span>
           </AccordionTrigger>
           <AccordionContent>
             <div className="space-y-2 pt-2">
@@ -108,7 +123,7 @@ const Filters = (props: Props) => {
                     checked={filters.category.includes(category)}
                     onCheckedChange={(checked) =>
                       setFilters({
-                        category: checked
+                        category: !checked
                           ? filters.category.filter((c) => c !== category)
                           : [...filters.category, category],
                       })
@@ -116,7 +131,7 @@ const Filters = (props: Props) => {
                   />
                   <label
                     htmlFor={category}
-                    className="cursor-pointer text-sm font-medium"
+                    className="cursor-pointer text-xs font-medium lg:text-sm"
                   >
                     {t(`categoryOptions.${category}`)}
                   </label>
@@ -131,17 +146,17 @@ const Filters = (props: Props) => {
             iconClassName="size-6 2xl:size-7 text-foreground"
             className="py-2 font-semibold hover:no-underline"
           >
-            <span className="text-lg 2xl:text-xl">{t('size')}</span>
+            <span className="text-sm lg:text-lg 2xl:text-xl">{t('size')}</span>
           </AccordionTrigger>
           <AccordionContent>
             {/* Measurement-based Filtering */}
             <div className="my-2 space-y-3">
-              <h4 className="text-xs font-semibold">{t('measurementTitle')}</h4>
+              <h4 className="text-sm font-semibold">{t('measurementTitle')}</h4>
 
               {/* Measurement Input Form */}
-              <div className="space-y-1 rounded-lg px-6">
-                <div className="flex items-center justify-between gap-2">
-                  <label className="text-xs font-medium">
+              <div className="mx-auto max-w-52 space-y-1 rounded-lg">
+                <div className="mx-auto flex items-center justify-between gap-2">
+                  <label className="text-sm font-medium">
                     {t('chestMeasurement')}
                   </label>
                   <Input
@@ -159,7 +174,7 @@ const Filters = (props: Props) => {
                   />
                 </div>
                 <div className="flex items-center justify-between gap-2">
-                  <label className="text-xs font-medium">
+                  <label className="text-sm font-medium">
                     {t('hipMeasurement')}
                   </label>
                   <Input
@@ -181,7 +196,7 @@ const Filters = (props: Props) => {
                 <Button
                   size="sm"
                   variant={'secondary'}
-                  className="h-8 bg-white px-4 text-xs font-medium"
+                  className="h-8 bg-white px-4 text-sm font-medium"
                   onClick={handleClearMeasurement}
                 >
                   {t('delete')}
@@ -190,7 +205,7 @@ const Filters = (props: Props) => {
                 <Button
                   size="sm"
                   variant={'secondary'}
-                  className="h-8 bg-white px-4 text-xs font-medium"
+                  className="h-8 bg-white px-4 text-sm font-medium"
                   onClick={handleMeasurementSubmit}
                 >
                   {t('filterButton')}
@@ -208,7 +223,9 @@ const Filters = (props: Props) => {
             iconClassName="size-6 2xl:size-7 text-foreground"
             className="py-2 font-semibold hover:no-underline"
           >
-            <span className="text-lg 2xl:text-xl">{t('weightSizes')}</span>
+            <span className="text-sm lg:text-lg 2xl:text-xl">
+              {t('weightSizes')}
+            </span>
           </AccordionTrigger>
           <AccordionContent>
             <div className="space-y-2 pt-2">
@@ -250,7 +267,10 @@ const Filters = (props: Props) => {
             }
             id="plus-size"
           />
-          <label htmlFor="plus-size" className="cursor-pointer text-xl">
+          <label
+            htmlFor="plus-size"
+            className="cursor-pointer text-sm lg:text-xl"
+          >
             {t('plusSize')}
           </label>
         </div>
@@ -265,7 +285,10 @@ const Filters = (props: Props) => {
             }
             id="exclusive-offers"
           />
-          <label htmlFor="exclusive-offers" className="cursor-pointer text-xl">
+          <label
+            htmlFor="exclusive-offers"
+            className="cursor-pointer text-sm lg:text-xl"
+          >
             {t('exclusiveOffers')}
           </label>
         </div>

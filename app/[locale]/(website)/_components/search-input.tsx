@@ -7,8 +7,17 @@ import { useTranslations } from 'next-intl'
 
 import { Input } from '@/components/ui/input'
 import { useDebouncedCallback } from '@/hooks/user-debounced-callback'
+import { cn } from '@/lib/utils'
 
-export default function SearchInput() {
+type Props = {
+  classNames?: {
+    wrapper?: string
+    input?: string
+    icon?: string
+  }
+}
+
+export default function SearchInput({ classNames }: Props) {
   const t = useTranslations('header')
   const [q, setQ] = useQueryState('q', parseAsString.withDefault(''))
   const [value, setValue] = useState(q)
@@ -20,14 +29,19 @@ export default function SearchInput() {
     search(e.target.value)
   }
   return (
-    <div className="relative w-full max-w-sm">
+    <div className={cn('relative w-full max-w-sm', classNames?.wrapper)}>
       <Input
         value={value}
         onChange={handleChange}
-        className="peer ps-9 max-2xl:h-10"
+        className={cn('peer h-10 ps-9 2xl:h-12', classNames?.input)}
         placeholder={t('search')}
       />
-      <div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
+      <div
+        className={cn(
+          'text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50',
+          classNames?.icon
+        )}
+      >
         <Search size={20} aria-hidden="true" />
       </div>
     </div>

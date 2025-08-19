@@ -1,7 +1,12 @@
 'use client'
 
+import { Filter } from 'lucide-react'
+
+import { useState } from 'react'
+
 import { useTranslations } from 'next-intl'
 
+import { Button } from '@/components/ui/button'
 import { DynamicPagination } from '@/components/ui/dynamic-pagination'
 
 import Filters from './filters'
@@ -9,12 +14,39 @@ import Results from './results'
 
 const ResultsWrapper = () => {
   const t = useTranslations('search')
+  const [openFilters, setOpenFilters] = useState(true)
+  if (openFilters) {
+    return (
+      <div className="container mb-20 space-y-8 py-6">
+        <Filters />
+        <Button
+          onClick={() => {
+            setOpenFilters(false)
+          }}
+          className="w-full"
+        >
+          {t('filters.filter-now')}
+        </Button>
+      </div>
+    )
+  }
   return (
     <div className="container py-6 lg:py-12">
-      <div className="flex items-center justify-between gap-10 pb-2 lg:pb-6">
+      <div className="flex items-center justify-between gap-10 lg:pb-6">
         <h2 className="text-sm font-semibold lg:text-3xl lg:font-bold">
           {t('results.title')}
         </h2>
+        <Button
+          onClick={() => {
+            setOpenFilters(true)
+          }}
+          variant={'ghost'}
+          className="text-xs font-medium lg:hidden"
+          size={'sm'}
+        >
+          <Filter />
+          {t('filters.title')}
+        </Button>
         <h3 className="hidden w-[270px] flex-nowrap items-center justify-between gap-4 font-bold lg:flex lg:text-xl 2xl:text-2xl rtl:flex-row-reverse">
           <span className="text-foreground/50 font-medium">
             {t('filters.home')}
