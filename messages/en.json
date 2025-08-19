@@ -109,7 +109,17 @@
       "size": "Specify Your Size Exactly",
       "weightSizes": "Sizes Relative to Weights",
       "plusSize": "Plus Size",
-      "exclusiveOffers": "Our Exclusive Offers"
+      "exclusiveOffers": "Our Exclusive Offers",
+      "categoryOptions": {
+        "dresses": "Dresses",
+        "travelWear": "Travel Clothes",
+        "winterWear": "Winter Clothes",
+        "swimwear": "Swimwear",
+        "hijabsAndPrayer": "Hijabs and Prayer Clothes",
+        "allItems": "All Available Items"
+      },
+      "home": "Home",
+      "products": "Products"
     }
   },
   "categories": {

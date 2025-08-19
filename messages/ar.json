@@ -109,7 +109,17 @@
       "size": "حددي مقاسك بالتحديد",
       "weightSizes": "المقاسات بالنسبة للأوزان",
       "plusSize": "مقاس كبير",
-      "exclusiveOffers": "عروضنا الحصرية"
+      "exclusiveOffers": "عروضنا الحصرية",
+      "categoryOptions": {
+        "dresses": "فساتين",
+        "travelWear": "ملابس السفر",
+        "winterWear": "ملابس الشتاء",
+        "swimwear": "ملابس السباحة",
+        "hijabsAndPrayer": "الحجابات وملابس الصلاة",
+        "allItems": "جميع القطع المتوفرة"
+      },
+      "home": "الرئيسية",
+      "products": "المنتجات"
     }
   },
   "categories": {

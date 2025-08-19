@@ -31,7 +31,7 @@ export function ProductCard({
       <div className="relative">
         <AspectRatio
           ratio={9 / 13}
-          className="relative w-full overflow-hidden rounded-xl shadow-lg md:rounded-3xl"
+          className="relative w-full overflow-hidden rounded-xl shadow-lg md:rounded-[32px]"
         >
           <img
             src={imageUrl}
@@ -39,16 +39,16 @@ export function ProductCard({
             className="h-full w-full object-cover"
           />
           {/* Badges */}
-          <div className="absolute top-0 left-0 flex gap-1" dir="ltr">
+          <div className="absolute top-0 left-[-1px] flex gap-1" dir="ltr">
             {isPlusSize && (
-              <div className="bg-foreground relative z-[1] rounded-br-xl border border-white px-4 py-1 font-bold text-white md:rounded-br-3xl">
+              <div className="bg-foreground relative z-[1] rounded-br-xl border border-white px-5 py-1 font-bold text-white md:rounded-br-3xl">
                 {t('plus-size')}
               </div>
             )}
             {discount && (
               <div
                 className={cn(
-                  'bg-primary rounded-br-xl border border-white px-3 py-1 font-bold text-white md:rounded-br-3xl',
+                  'bg-primary rounded-br-xl border border-white px-4 py-1 font-bold text-white md:rounded-br-3xl',
                   isPlusSize && '-ml-8 pe-8'
                 )}
               >
@@ -70,7 +70,7 @@ export function ProductCard({
             onClick={() => toggleFavorite()}
             variant="secondary"
             size={'icon'}
-            className="rounded-full"
+            className="rounded-full bg-white"
           >
             <Heart
               className={cn(
