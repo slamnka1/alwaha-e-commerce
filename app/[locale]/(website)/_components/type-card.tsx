@@ -20,8 +20,8 @@ export function TypeCard({
 }: TypeCardProps) {
   const t = useTranslations('common')
   return (
-    <div className="group relative h-100 w-full max-w-xs overflow-hidden rounded-2xl shadow-lg transition-all duration-300 select-none hover:shadow-xl">
-      <div className="text-primary absolute top-0 left-0 z-10 rounded-br-3xl bg-white px-4 py-2 text-sm font-semibold shadow-md md:hidden">
+    <div className="group relative h-50 w-full max-w-xs overflow-hidden rounded-md shadow-lg transition-all duration-300 select-none hover:shadow-xl lg:h-100 lg:rounded-2xl">
+      <div className="text-primary absolute top-0 left-0 z-10 rounded-br-md bg-white px-2 py-0.5 text-[8px] font-semibold shadow-md md:hidden lg:rounded-br-2xl lg:px-4 lg:py-2 lg:text-sm">
         {t('see-more')}
       </div>
       {/* Background Image */}

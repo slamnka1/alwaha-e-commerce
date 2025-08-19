@@ -25,11 +25,11 @@ export default function TypeSlider({ typeData }: { typeData: TypeCategory[] }) {
             }}
             className="w-full"
           >
-            <CarouselContent className="-ml-3 md:-ml-4">
+            <CarouselContent className="-ml-2 md:-ml-4">
               {typeData.map((item) => (
                 <CarouselItem
                   key={item.id}
-                  className="mx-1 w-full max-w-xs basis-auto pl-2 md:pl-4"
+                  className="mx-1 w-full max-w-[120px] basis-auto pl-0 md:pl-4 lg:max-w-xs"
                 >
                   <TypeCard
                     imageUrl={item.imageUrl}
