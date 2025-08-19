@@ -40,9 +40,7 @@ const Results = (props: Props) => {
 
   return (
     <div className="w-full">
-      <h2 className="pb-4 text-3xl font-bold">{t('results.title')}</h2>
-
-      <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 lg:gap-6">
+      <div className="grid w-full grid-cols-2 gap-2 md:grid-cols-3 lg:gap-6">
         {data.map((product, index) => {
           return <ProductCard {...product} key={index} />
         })}

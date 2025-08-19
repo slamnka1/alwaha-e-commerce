@@ -26,7 +26,7 @@ export function ProductCard({
   const onAddToCart = () => {}
   const toggleFavorite = () => {}
   return (
-    <Card className="overflow-hidden border-0 bg-transparent py-3 shadow-none select-none max-lg:gap-2.5">
+    <Card className="overflow-hidden border-0 bg-transparent py-2 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
       <div className="relative">
         <AspectRatio
