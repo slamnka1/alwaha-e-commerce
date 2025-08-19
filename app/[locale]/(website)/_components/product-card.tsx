@@ -63,7 +63,7 @@ export function ProductCard({
       <CardContent className="space-y-1 px-0 md:space-y-2">
         {/* Header with Heart and Product Name */}
         <div className="flex items-center justify-between gap-2">
-          <h3 className="flex-1 text-sm leading-tight font-semibold text-gray-900 md:text-2xl">
+          <h3 className="flex-1 text-sm leading-tight font-semibold text-gray-900 md:text-xl 2xl:text-2xl">
             {name}
           </h3>
           <Button
@@ -83,7 +83,7 @@ export function ProductCard({
 
         {/* Pricing */}
         <div className="flex items-center gap-2">
-          <span className="text-primary text-sm font-bold md:text-2xl">
+          <span className="text-primary text-sm font-bold md:text-xl 2xl:text-2xl">
             {price} {t('currency')}
           </span>
           <span className="text-xs font-semibold text-[#00000033] line-through md:text-lg">
@@ -103,7 +103,7 @@ export function ProductCard({
           onClick={() => onAddToCart()}
           variant="secondary"
           size={'lg'}
-          className="w-full bg-white font-semibold shadow-lg md:text-2xl"
+          className="w-full bg-white font-semibold shadow-lg md:text-xl 2xl:text-2xl"
         >
           {t('add-to-cart')}
         </Button>

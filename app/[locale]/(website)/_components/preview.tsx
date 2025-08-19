@@ -293,7 +293,7 @@ const PreviewCarousel = () => {
     <section className="pt-6 pb-8 md:pb-16">
       {/* Content Section */}
       <div className="container mx-auto px-4 text-center">
-        <h2 className="mb-4 text-xl leading-tight font-bold lg:text-4xl">
+        <h2 className="mb-4 text-xl leading-tight font-bold lg:text-3xl 2xl:text-4xl">
           {t('title')}
         </h2>
         <p className="mx-auto max-w-3xl text-sm leading-relaxed font-medium text-[#1A1A1A] lg:text-lg">

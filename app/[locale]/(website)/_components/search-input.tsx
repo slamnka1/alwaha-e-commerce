@@ -24,7 +24,7 @@ export default function SearchInput() {
       <Input
         value={value}
         onChange={handleChange}
-        className="peer ps-9"
+        className="peer ps-9 max-2xl:h-10"
         placeholder={t('search')}
       />
       <div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">

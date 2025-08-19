@@ -26,7 +26,7 @@ const LanguageSwitch = (props: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="max-md:h-10 max-md:text-base" variant={'ghost'}>
+        <Button className="max-2xl:h-10 max-md:text-base" variant={'ghost'}>
           <span className="text-sm font-normal">{locale.toUpperCase()}</span>
 
           <svg

@@ -17,7 +17,7 @@ const UserButton = (props: Props) => {
     <>
       <div className="ms-auto grid max-w-20 gap-3 lg:max-w-58 lg:grid-cols-2">
         <Button
-          className="h-11.5 max-md:h-10 max-md:text-base"
+          className="h-10 max-md:h-10 max-md:text-base 2xl:h-11.5"
           variant={'outline'}
           asChild
         >
@@ -26,7 +26,7 @@ const UserButton = (props: Props) => {
           </Link>
         </Button>
 
-        <Button className="hidden h-11.5 lg:flex" asChild>
+        <Button className="hidden h-10 lg:flex 2xl:h-11.5" asChild>
           <Link href="/auth/signup">
             <span className="text-sm">{t('signup')}</span>
           </Link>

@@ -28,9 +28,9 @@ const Hero = () => {
   }, [currentSlide])
 
   return (
-    <div className="lg:pt-28">
+    <div className="lg:pt-24 2xl:pt-28">
       <div className="mx-auto lg:container lg:px-8">
-        <section className="relative h-screen w-full overflow-hidden lg:h-[calc(100vh-115px)] lg:rounded-3xl">
+        <section className="relative h-screen w-full overflow-hidden lg:h-[calc(100vh-115px)] lg:rounded-3xl xl:h-[calc(100vh-115px)]">
           {/* Image Carousel */}
           <div className="relative h-full w-full">
             {images.map((image, index) => (
@@ -55,13 +55,13 @@ const Hero = () => {
                 />
               </div>
             ))}
-            <div className="relative z-[1] flex h-screen w-full flex-col items-center justify-center gap-3 px-4 lg:h-[calc(100vh-115px)] lg:gap-8">
-              <h1 className="max-w-[840px] text-center text-3xl leading-relaxed font-bold text-white lg:text-5xl lg:font-[900]">
+            <div className="relative z-[1] flex h-screen w-full flex-col items-center justify-center gap-3 px-4 lg:h-[calc(100vh-115px)] lg:gap-5 2xl:gap-8">
+              <h1 className="max-w-[840px] text-center text-3xl leading-relaxed font-bold text-white lg:text-4xl lg:font-[900] 2xl:text-5xl">
                 {t.rich('title', {
                   br: () => <br />,
                 })}
               </h1>
-              <p className="text-center text-sm font-medium text-white lg:text-xl">
+              <p className="text-center text-sm font-medium text-white lg:text-lg 2xl:text-xl">
                 {t('description')}
               </p>
               <Button

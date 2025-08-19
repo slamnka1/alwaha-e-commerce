@@ -16,7 +16,7 @@ type Props = {}
 const Header = (props: Props) => {
   return (
     <header className="absolute top-0 right-0 left-0 z-[10]">
-      <div className="container py-4">
+      <div className="container py-3.5 2xl:py-4">
         <div className="rounded-2xl border border-[#F3E0C8] bg-white shadow-lg md:rounded-3xl">
           <div className="grid grid-cols-3 items-center p-2.5">
             <div className="lg:hidden">
@@ -29,7 +29,7 @@ const Header = (props: Props) => {
             </div>
             <div className="flex items-center justify-center">
               <Image
-                className="w-[235px] max-md:hidden"
+                className="w-[215px] max-md:hidden 2xl:w-[235px]"
                 src={LogoWithText}
                 alt="logo"
               />
