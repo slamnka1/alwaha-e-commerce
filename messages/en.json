@@ -118,8 +118,28 @@
         "hijabsAndPrayer": "Hijabs and Prayer Clothes",
         "allItems": "All Available Items"
       },
+      "sizeOptions": {
+        "xs": "XS",
+        "s": "S",
+        "m": "M",
+        "l": "L",
+        "xl": "XL",
+        "xxl": "XXL",
+        "xxxl": "XXXL"
+      },
+      "measurementTitle": "By measuring the hip and chest circumference",
+      "chestMeasurement": "Chest circumference measurement",
+      "hipMeasurement": "Hip circumference measurement",
+      "measurementPlaceholder": "Enter measurement in cm",
+      "filterButton": "Filter",
+      "editButton": "Edit",
+      "deleteButton": "Delete",
+      "clearAll": "Clear All",
+      "applyFilters": "Apply Filters",
       "home": "Home",
-      "products": "Products"
+      "products": "Products",
+      "delete": "Delete",
+      "edit": "Edit"
     }
   },
   "categories": {

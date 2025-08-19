@@ -5,14 +5,18 @@ import { CircleIcon } from 'lucide-react'
 
 import * as React from 'react'
 
+import { useLocale, useTranslations } from 'next-intl'
+
 import { cn } from '@/lib/utils'
 
 function RadioGroup({
   className,
   ...props
 }: React.ComponentProps<typeof RadioGroupPrimitive.Root>) {
+  const locale = useLocale()
   return (
     <RadioGroupPrimitive.Root
+      dir={locale === 'ar' ? 'rtl' : 'ltr'}
       data-slot="radio-group"
       className={cn('grid gap-3', className)}
       {...props}

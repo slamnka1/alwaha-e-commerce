@@ -118,8 +118,28 @@
         "hijabsAndPrayer": "الحجابات وملابس الصلاة",
         "allItems": "جميع القطع المتوفرة"
       },
+      "sizeOptions": {
+        "xs": "إكس إس",
+        "s": "إس",
+        "m": "إم",
+        "l": "إل",
+        "xl": "إكس إل",
+        "xxl": "إكس إكس إل",
+        "xxxl": "إكس إكس إكس إل"
+      },
+      "measurementTitle": "بقياس دوران الورك والصدر",
+      "chestMeasurement": "قياس دوران الصدر",
+      "hipMeasurement": "قياس دوران الورك",
+      "measurementPlaceholder": "أدخلي القياس بالسنتيمتر",
+      "filterButton": "فلترة",
+      "editButton": "تعديل",
+      "deleteButton": "حذف",
+      "clearAll": "مسح الكل",
+      "applyFilters": "تطبيق الفلاتر",
       "home": "الرئيسية",
-      "products": "المنتجات"
+      "products": "المنتجات",
+      "delete": "حذف",
+      "edit": "تعديل"
     }
   },
   "categories": {
