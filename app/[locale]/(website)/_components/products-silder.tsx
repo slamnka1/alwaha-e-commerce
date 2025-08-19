@@ -26,11 +26,13 @@ export default function ProductsSlider({
   return (
     <section className="relative py-8 lg:py-10">
       <div className="container mx-auto px-4">
-        <div className="my-4 flex items-center justify-between gap-8">
+        <div className="my-1 flex items-center justify-between gap-8 lg:my-4">
           <p className="md:text-3xl md:font-bold lg:text-3xl 2xl:text-4xl">
             {title}
           </p>
-          <Button variant={'link'}>{t('see-more')}</Button>
+          <Button variant={'link'} className="text-xs lg:text-xl">
+            {t('see-more')}
+          </Button>
         </div>
         <div className="relative">
           <Carousel

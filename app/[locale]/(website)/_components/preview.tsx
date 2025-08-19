@@ -125,8 +125,8 @@ const slides: ProductCardType[] = [
 ]
 
 const TWEEN_FACTOR_BASE = 0.15
-const SCALE_MIN = 0.6
-const SCALE_MAX = 2
+const SCALE_MIN = 0.8
+const SCALE_MAX = 2.5
 
 const numberWithinRange = (number: number, min: number, max: number): number =>
   Math.min(Math.max(number, min), max)
@@ -159,8 +159,7 @@ const useCarouselScaling = (emblaApi: CarouselApi | undefined) => {
       tweenFactorValue: number
     ): { scale: string; zIndex: string } => {
       // Scale up based on proximity to active slide (closer = higher scale)
-      const tweenValue =
-        1 + (1 - Math.abs(diffToTarget * tweenFactorValue)) * 0.8
+      const tweenValue = 1 + (1 - Math.abs(diffToTarget * tweenFactorValue)) * 1
       const scale = numberWithinRange(tweenValue, SCALE_MIN, SCALE_MAX)
 
       // Calculate z-index based on proximity to center (closer = higher z-index)
@@ -293,10 +292,10 @@ const PreviewCarousel = () => {
     <section className="pt-6 pb-8 md:pb-16">
       {/* Content Section */}
       <div className="container mx-auto px-4 text-center">
-        <h2 className="mb-4 text-xl leading-tight font-bold lg:text-3xl 2xl:text-4xl">
+        <h2 className="mb-4 text-lg leading-tight font-bold lg:text-3xl 2xl:text-4xl">
           {t('title')}
         </h2>
-        <p className="mx-auto max-w-3xl text-sm leading-relaxed font-medium text-[#1A1A1A] lg:text-lg">
+        <p className="mx-auto max-w-3xl text-xs leading-relaxed font-medium text-[#1A1A1A] lg:text-lg">
           {t('description')}
         </p>
       </div>

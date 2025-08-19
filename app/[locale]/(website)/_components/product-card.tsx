@@ -26,7 +26,7 @@ export function ProductCard({
   const onAddToCart = () => {}
   const toggleFavorite = () => {}
   return (
-    <Card className="overflow-hidden border-0 bg-transparent py-3 shadow-none select-none">
+    <Card className="overflow-hidden border-0 bg-transparent py-3 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
       <div className="relative">
         <AspectRatio
@@ -41,14 +41,14 @@ export function ProductCard({
           {/* Badges */}
           <div className="absolute top-0 left-[-1px] flex gap-1" dir="ltr">
             {isPlusSize && (
-              <div className="bg-foreground relative z-[1] rounded-br-xl border border-white px-5 py-1 font-bold text-white md:rounded-br-3xl">
+              <div className="bg-foreground relative z-[1] rounded-br-xl border border-white px-4 py-1 text-xs font-bold text-white md:rounded-br-3xl lg:px-5 lg:text-base">
                 {t('plus-size')}
               </div>
             )}
             {discount && (
               <div
                 className={cn(
-                  'bg-primary rounded-br-xl border border-white px-4 py-1 font-bold text-white md:rounded-br-3xl',
+                  'bg-primary rounded-br-xl border border-white px-3 py-1 text-xs font-bold text-white md:rounded-br-3xl lg:px-4 lg:text-base',
                   isPlusSize && '-ml-8 pe-8'
                 )}
               >
@@ -103,7 +103,7 @@ export function ProductCard({
           onClick={() => onAddToCart()}
           variant="secondary"
           size={'lg'}
-          className="w-full bg-white font-semibold shadow-lg md:text-xl 2xl:text-2xl"
+          className="w-full bg-white font-semibold shadow-lg max-lg:h-11 md:text-xl 2xl:text-2xl"
         >
           {t('add-to-cart')}
         </Button>

@@ -31,7 +31,7 @@ export function PreviewCard({
   return (
     <Card
       className={cn(
-        'group relative my-4 cursor-pointer overflow-hidden border-4 border-white p-0 shadow-[0px_4px_4px_0px_#00000040] transition-transform select-none max-md:rounded-md'
+        'group relative my-4 cursor-pointer overflow-hidden border-2 border-white p-0 shadow-[0px_4px_4px_0px_#00000040] transition-transform select-none max-md:rounded-md'
       )}
       onClick={onClick}
     >
