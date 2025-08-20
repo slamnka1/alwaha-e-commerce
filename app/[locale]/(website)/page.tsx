@@ -6,6 +6,7 @@ import { getProducts } from '@/lib/api/products'
 import { getTypeCategories } from '@/lib/api/types'
 
 import Hero from './_components/hero'
+import KnowYourSizeAuth from './_components/know-you-size-auth'
 import KnowYourSize from './_components/know-your-size'
 import PreviewCarousel from './_components/preview'
 import ProductsSlider from './_components/products-silder'
@@ -21,6 +22,7 @@ export default async function HomePage() {
       <TypeSlider typeData={typeData} />
       <PreviewCarousel />
       <KnowYourSize />
+      <KnowYourSizeAuth />
       <ProductsSlider products={products} title={t('new-products')} />
       <ProductsSlider products={products} title={t('offers')} />
       <ProductsSlider products={products} title={t('pluse-size')} />
