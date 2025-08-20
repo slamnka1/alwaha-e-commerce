@@ -2,7 +2,7 @@
 
 import { Filter } from 'lucide-react'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
@@ -14,7 +14,20 @@ import Results from './results'
 
 const ResultsWrapper = () => {
   const t = useTranslations('search')
-  const [openFilters, setOpenFilters] = useState(true)
+  const [openFilters, setOpenFilters] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      console.log('resize')
+      if (window.innerWidth > 1024) {
+        setOpenFilters(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
   if (openFilters) {
     return (
       <div className="container mb-20 space-y-8 py-6">
