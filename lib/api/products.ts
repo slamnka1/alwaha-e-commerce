@@ -13,6 +13,11 @@ export interface Product {
   categoryAr: string
   colors: string[]
   sizes: string[]
+  images: {
+    id: number
+    url: string
+    alt: string
+  }[]
   inStock: boolean
   isNew: boolean
   isFeatured: boolean
@@ -35,6 +40,13 @@ const dummyProductData: Product[] = [
     originalPrice: 120,
     discount: 60,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Black Abaya' },
+      { id: 2, url: '/girls.jpg', alt: 'Black Abaya' },
+      { id: 3, url: '/girls.jpg', alt: 'Black Abaya' },
+      { id: 4, url: '/girls.jpg', alt: 'Black Abaya' },
+      { id: 5, url: '/girls.jpg', alt: 'Black Abaya' },
+    ],
     category: 'abayas',
     categoryAr: 'عبايات',
     colors: ['Black', 'Navy', 'Brown', 'Gray', 'Beige', 'White', 'Burgundy'],
@@ -58,6 +70,13 @@ const dummyProductData: Product[] = [
     originalPrice: 80,
     discount: 44,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Embroidered Hijab' },
+      { id: 2, url: '/girls.jpg', alt: 'Embroidered Hijab' },
+      { id: 3, url: '/girls.jpg', alt: 'Embroidered Hijab' },
+      { id: 4, url: '/girls.jpg', alt: 'Embroidered Hijab' },
+      { id: 5, url: '/girls.jpg', alt: 'Embroidered Hijab' },
+    ],
     category: 'hijabat',
     categoryAr: 'حجابات',
     colors: ['Black', 'White', 'Pink', 'Blue', 'Purple'],
@@ -81,6 +100,13 @@ const dummyProductData: Product[] = [
     originalPrice: 150,
     discount: 20,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Swimming Suit' },
+      { id: 2, url: '/girls.jpg', alt: 'Swimming Suit' },
+      { id: 3, url: '/girls.jpg', alt: 'Swimming Suit' },
+      { id: 4, url: '/girls.jpg', alt: 'Swimming Suit' },
+      { id: 5, url: '/girls.jpg', alt: 'Swimming Suit' },
+    ],
     category: 'swimming',
     categoryAr: 'سباحة',
     colors: ['Black', 'Navy', 'Purple'],
@@ -104,6 +130,13 @@ const dummyProductData: Product[] = [
     originalPrice: 280,
     discount: 29,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Evening Dress' },
+      { id: 2, url: '/girls.jpg', alt: 'Evening Dress' },
+      { id: 3, url: '/girls.jpg', alt: 'Evening Dress' },
+      { id: 4, url: '/girls.jpg', alt: 'Evening Dress' },
+      { id: 5, url: '/girls.jpg', alt: 'Evening Dress' },
+    ],
     category: 'dresses',
     categoryAr: 'فساتين',
     colors: ['Black', 'Red', 'Blue', 'Green'],
@@ -127,6 +160,13 @@ const dummyProductData: Product[] = [
     originalPrice: 120,
     discount: 29,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Leather Handbag' },
+      { id: 2, url: '/girls.jpg', alt: 'Leather Handbag' },
+      { id: 3, url: '/girls.jpg', alt: 'Leather Handbag' },
+      { id: 4, url: '/girls.jpg', alt: 'Leather Handbag' },
+      { id: 5, url: '/girls.jpg', alt: 'Leather Handbag' },
+    ],
     category: 'bags',
     categoryAr: 'حقائب',
     colors: ['Brown', 'Black', 'Tan'],
@@ -150,6 +190,13 @@ const dummyProductData: Product[] = [
     originalPrice: 130,
     discount: 27,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Comfortable Shoes' },
+      { id: 2, url: '/girls.jpg', alt: 'Comfortable Shoes' },
+      { id: 3, url: '/girls.jpg', alt: 'Comfortable Shoes' },
+      { id: 4, url: '/girls.jpg', alt: 'Comfortable Shoes' },
+      { id: 5, url: '/girls.jpg', alt: 'Comfortable Shoes' },
+    ],
     category: 'shoes',
     categoryAr: 'أحذية',
     colors: ['Black', 'White', 'Brown', 'Gray'],
@@ -173,6 +220,13 @@ const dummyProductData: Product[] = [
     originalPrice: 95,
     discount: 32,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Travel Abaya' },
+      { id: 2, url: '/girls.jpg', alt: 'Travel Abaya' },
+      { id: 3, url: '/girls.jpg', alt: 'Travel Abaya' },
+      { id: 4, url: '/girls.jpg', alt: 'Travel Abaya' },
+      { id: 5, url: '/girls.jpg', alt: 'Travel Abaya' },
+    ],
     category: 'travel',
     categoryAr: 'سفر',
     colors: ['Black', 'Gray', 'Navy', 'Brown'],
@@ -196,6 +250,13 @@ const dummyProductData: Product[] = [
     originalPrice: 75,
     discount: 27,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Silver Necklace' },
+      { id: 2, url: '/girls.jpg', alt: 'Silver Necklace' },
+      { id: 3, url: '/girls.jpg', alt: 'Silver Necklace' },
+      { id: 4, url: '/girls.jpg', alt: 'Silver Necklace' },
+      { id: 5, url: '/girls.jpg', alt: 'Silver Necklace' },
+    ],
     category: 'accessories',
     categoryAr: 'إكسسوارات',
     colors: ['Silver', 'Gold'],
@@ -219,6 +280,13 @@ const dummyProductData: Product[] = [
     originalPrice: 100,
     discount: 25,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Silver Necklace' },
+      { id: 2, url: '/girls.jpg', alt: 'Silver Necklace' },
+      { id: 3, url: '/girls.jpg', alt: 'Silver Necklace' },
+      { id: 4, url: '/girls.jpg', alt: 'Silver Necklace' },
+      { id: 5, url: '/girls.jpg', alt: 'Silver Necklace' },
+    ],
     category: 'dresses',
     categoryAr: 'فساتين',
     colors: ['Blue', 'Pink', 'Yellow', 'White'],
@@ -242,6 +310,44 @@ const dummyProductData: Product[] = [
     originalPrice: 50,
     discount: 30,
     imageUrl: '/girls.jpg',
+    images: [
+      { id: 1, url: '/girls.jpg', alt: 'Designer Hijab' },
+      { id: 2, url: '/girls.jpg', alt: 'Designer Hijab' },
+      { id: 3, url: '/girls.jpg', alt: 'Designer Hijab' },
+      { id: 4, url: '/girls.jpg', alt: 'Designer Hijab' },
+      { id: 5, url: '/girls.jpg', alt: 'Designer Hijab' },
+      { id: 6, url: '/girls.jpg', alt: 'Designer Hijab' },
+      {
+        id: 1,
+        url: '/girls.jpg',
+        alt: 'Designer Hijab',
+      },
+      {
+        id: 1,
+        url: '/girls.jpg',
+        alt: 'Designer Hijab',
+      },
+      {
+        id: 1,
+        url: '/girls.jpg',
+        alt: 'Designer Hijab',
+      },
+      {
+        id: 1,
+        url: '/girls.jpg',
+        alt: 'Designer Hijab',
+      },
+      {
+        id: 1,
+        url: '/girls.jpg',
+        alt: 'Designer Hijab',
+      },
+      {
+        id: 1,
+        url: '/girls.jpg',
+        alt: 'Designer Hijab',
+      },
+    ],
     category: 'hijabat',
     categoryAr: 'حجابات',
     colors: ['Black', 'White', 'Gray', 'Beige'],

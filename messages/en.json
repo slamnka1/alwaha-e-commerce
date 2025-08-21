@@ -103,6 +103,10 @@
     "results": {
       "title": "All available pieces:"
     },
+    "hero": {
+      "title": "Your Favorite Product, Up Close!",
+      "description": "We offer you a comprehensive look at the product, from raw material and details to usage - because every detail matters to you."
+    },
     "filters": {
       "title": "Filter By",
       "categories": "Our Available Items",
