@@ -164,6 +164,19 @@
     "add-to-cart": "أضف إلى السلة",
     "currency": "درهم"
   },
+  "product-description": {
+    "plus-size": "مقاس كبير",
+    "colors": "الألوان",
+    "sizes": "المقاسات",
+    "decrease-quantity": "إنقاص الكمية",
+    "increase-quantity": "زيادة الكمية",
+    "add-to-cart": "أضف إلى السلة",
+    "buy-now": "اشتري الآن",
+    "tags": "الوسوم",
+    "out-of-stock": "نفدت الكمية مؤقتاً",
+    "currency": "درهم",
+    "color": "لون"
+  },
   "products-slider": {
     "view-all": "رؤية المزيد"
   },

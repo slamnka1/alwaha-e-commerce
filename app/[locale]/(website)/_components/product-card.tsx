@@ -8,6 +8,7 @@ import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Product } from '@/lib/api/products'
+import { Link } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 export function ProductCard({
@@ -28,7 +29,7 @@ export function ProductCard({
   return (
     <Card className="overflow-hidden border-0 bg-transparent py-2 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
-      <div className="relative">
+      <Link href={`/search/${id}`} className="relative">
         <AspectRatio
           ratio={9 / 13}
           className="relative w-full overflow-hidden rounded-xl shadow-lg md:rounded-[32px]"
@@ -49,7 +50,7 @@ export function ProductCard({
               <div
                 className={cn(
                   'bg-primary rounded-br-xl border border-white px-3 py-1 text-xs font-bold text-white md:rounded-br-3xl lg:px-4 lg:text-base',
-                  isPlusSize && '-ml-8 pe-8'
+                  isPlusSize && '-ml-8 pl-8'
                 )}
               >
                 {discount}%
@@ -57,7 +58,7 @@ export function ProductCard({
             )}
           </div>
         </AspectRatio>
-      </div>
+      </Link>
 
       {/* Content Section */}
       <CardContent className="space-y-1 px-0 md:space-y-2">

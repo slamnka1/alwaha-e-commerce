@@ -74,7 +74,7 @@ export function ProductSlider({
             loop: true,
           }}
         >
-          <CarouselContent className="h-[680px]">
+          <CarouselContent className="h-[93vh] max-h-[680px]">
             {images.map((image) => (
               <CarouselItem key={image.id} className="basis-full">
                 <div
@@ -132,9 +132,9 @@ export function ProductSlider({
           dragFree: true,
         }}
       >
-        <CarouselContent className="h-[700px]">
+        <CarouselContent className="h-[95vh] max-h-[700px]">
           {images.map((image, index) => (
-            <CarouselItem key={image.id} className="basis-[22%] px-1">
+            <CarouselItem key={image.id} className="max-h-[160px] px-1">
               <button
                 key={image.id}
                 onClick={() => scrollTo(index)}

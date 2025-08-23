@@ -164,6 +164,19 @@
     "add-to-cart": "Add to Cart",
     "currency": "AED"
   },
+  "product-description": {
+    "plus-size": "Plus size",
+    "colors": "Colors",
+    "sizes": "Sizes",
+    "decrease-quantity": "Decrease quantity",
+    "increase-quantity": "Increase quantity",
+    "add-to-cart": "Add to cart",
+    "buy-now": "Buy now",
+    "tags": "Tags",
+    "out-of-stock": "Out of stock",
+    "currency": "UAE",
+    "color": "Color"
+  },
   "footer": {
     "description": "An Emirati online store specializing in modest hijab clothing, combining elegance and comfort in a wide range of sizes from 5 to 12, providing a unique and seamless shopping experience at any time.",
     "sections": "Sections",
