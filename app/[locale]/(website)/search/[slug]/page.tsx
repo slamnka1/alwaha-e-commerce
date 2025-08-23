@@ -19,7 +19,7 @@ const SearchPage = async (props: Props) => {
     <React.Fragment>
       <Hero />
       <div className="container mx-auto py-12">
-        <div className="flex gap-6">
+        <div className="flex gap-9">
           <div className="w-full max-w-xl">
             <ProductSlider images={product?.images || []} />
           </div>

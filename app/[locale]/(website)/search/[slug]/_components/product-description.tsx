@@ -26,7 +26,6 @@ export default function ProductDescription({
   product,
   className,
 }: ProductDescriptionProps) {
-  const locale = useLocale()
   const t = useTranslations('product-description')
   const [selectedColor, setSelectedColor] = useQueryState(
     'color',
@@ -53,10 +52,10 @@ export default function ProductDescription({
           <h1 className="text-sm lg:text-4xl lg:font-bold">{product.name}</h1>
           <Button
             variant={'ghost'}
-            className="size-9 rounded-full"
+            className="size-11 rounded-full"
             size={'icon'}
           >
-            <Heart className="text-primary size-8" />
+            <Heart className="text-primary size-8" strokeWidth={1.5} />
           </Button>
         </div>
       </div>
@@ -75,7 +74,7 @@ export default function ProductDescription({
             </>
           )}
         </div>
-        <p className="text-xs text-[#A97C50] lg:text-base">
+        <p className="text-xs text-[#A97C50] lg:text-lg">
           {product.description}
         </p>
       </div>
@@ -100,7 +99,7 @@ export default function ProductDescription({
               {product.images.map((image, index) => (
                 <CarouselItem
                   key={image.id}
-                  className="h-16 w-12 basis-[unset] pl-1"
+                  className="h-16 w-14 basis-[unset] pl-2"
                 >
                   <button
                     key={image.id}

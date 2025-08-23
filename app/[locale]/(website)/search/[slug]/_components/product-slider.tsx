@@ -1,6 +1,7 @@
 'use client'
 
 import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
+import { parseAsInteger, useQueryState } from 'nuqs'
 
 import * as React from 'react'
 import { useState } from 'react'
@@ -34,14 +35,17 @@ export function ProductSlider({
   className,
   showCounter = true,
 }: ProductSliderProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedColor, setSelectedColor] = useQueryState(
+    'color',
+    parseAsInteger.withDefault(1)
+  )
   const [api, setApi] = React.useState<any>(null)
 
   React.useEffect(() => {
     if (!api) return
 
     api.on('select', () => {
-      setSelectedIndex(api.selectedScrollSnap())
+      setSelectedColor(api.selectedScrollSnap())
     })
   }, [api])
 
@@ -117,7 +121,7 @@ export function ProductSlider({
           {/* Image Counter */}
           {showCounter && (
             <div className="absolute right-4 bottom-4 rounded-full bg-black/60 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
-              {selectedIndex + 1} / {images.length}
+              {selectedColor + 1} / {images.length}
             </div>
           )}
         </Carousel>
@@ -125,7 +129,7 @@ export function ProductSlider({
       {/* Thumbnail Strip */}
       <Carousel
         orientation="vertical"
-        className="w-26 flex-shrink-0"
+        className="w-30 flex-shrink-0"
         opts={{
           align: 'start',
           loop: true,
@@ -134,15 +138,15 @@ export function ProductSlider({
       >
         <CarouselContent className="h-[95vh] max-h-[700px]">
           {images.map((image, index) => (
-            <CarouselItem key={image.id} className="max-h-[160px] px-1">
+            <CarouselItem key={image.id} className="max-h-[160px] px-1 py-1">
               <button
                 key={image.id}
                 onClick={() => scrollTo(index)}
                 className={cn(
-                  'relative h-full w-full overflow-hidden rounded-lg border-2 transition-all duration-300 hover:scale-105',
-                  selectedIndex === index
-                    ? 'border-primary ring-primary/20 shadow-lg ring-2'
-                    : 'border-gray-200 hover:border-gray-300'
+                  'relative h-full w-full overflow-hidden rounded-[12px] border-2 transition-all duration-300',
+                  selectedColor === index
+                    ? 'border-primary'
+                    : 'border-transparent'
                 )}
               >
                 <img
@@ -150,7 +154,7 @@ export function ProductSlider({
                   alt={image.alt}
                   className="h-full w-full object-cover"
                 />
-                {selectedIndex === index && (
+                {selectedColor === index && (
                   <div className="bg-primary/10 absolute inset-0" />
                 )}
               </button>
@@ -167,14 +171,14 @@ export function ProductSliderCompact({
   images,
   className,
 }: ProductSliderProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selectedColor, setselectedColor] = useState(0)
   const [api, setApi] = React.useState<any>(null)
 
   React.useEffect(() => {
     if (!api) return
 
     api.on('select', () => {
-      setSelectedIndex(api.selectedScrollSnap())
+      setselectedColor(api.selectedScrollSnap())
     })
   }, [api])
 
@@ -209,7 +213,7 @@ export function ProductSliderCompact({
               onClick={() => api?.scrollTo(index)}
               className={cn(
                 'h-2 w-2 rounded-full transition-all duration-200',
-                selectedIndex === index
+                selectedColor === index
                   ? 'bg-white shadow-lg'
                   : 'bg-white/50 hover:bg-white/75'
               )}
