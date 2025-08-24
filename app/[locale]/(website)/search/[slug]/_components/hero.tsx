@@ -19,9 +19,11 @@ const Hero = (props: Props) => {
         />
       </div>
       <div className="container">
-        <div className="pt-12 pb-6 text-center lg:pt-16 lg:pb-12">
-          <h1 className="mb-4 text-2xl font-bold lg:text-4xl">{t('title')}</h1>
-          <p className="mx-auto max-w-3xl text-lg font-semibold lg:text-xl">
+        <div className="pt-12 pb-4 text-center lg:pt-16 lg:pb-12">
+          <h1 className="mb-2 text-xl font-medium lg:mb-4 lg:text-4xl lg:font-bold">
+            {t('title')}
+          </h1>
+          <p className="mx-auto max-w-3xl text-sm lg:text-xl lg:font-semibold">
             {t('description')}
           </p>
         </div>

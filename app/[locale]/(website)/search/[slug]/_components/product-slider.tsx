@@ -1,12 +1,9 @@
 'use client'
 
-import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { parseAsInteger, useQueryState } from 'nuqs'
 
 import * as React from 'react'
-import { useState } from 'react'
-
-import { useLocale } from 'next-intl'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -14,7 +11,6 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel'
-import { Product } from '@/lib/api/products'
 import { cn } from '@/lib/utils'
 
 interface ProductImage {
@@ -78,7 +74,7 @@ export function ProductSlider({
             loop: true,
           }}
         >
-          <CarouselContent className="h-[95vh] max-h-[700px]">
+          <CarouselContent className="h-screen max-h-[350px] lg:h-[95vh] lg:max-h-[700px]">
             {images.map((image) => (
               <CarouselItem key={image.id} className="basis-full">
                 <div
@@ -99,7 +95,7 @@ export function ProductSlider({
           </CarouselContent>
 
           {/* Custom Navigation Buttons */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-between p-4">
+          <div className="pointer-events-none absolute inset-0 hidden items-center justify-between p-4 lg:flex">
             <Button
               variant="secondary"
               size="icon"
@@ -120,7 +116,7 @@ export function ProductSlider({
 
           {/* Image Counter */}
           {showCounter && (
-            <div className="absolute right-4 bottom-4 rounded-full bg-black/60 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
+            <div className="absolute right-4 bottom-4 rounded-full bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm lg:text-sm">
               {selectedColor + 1} / {images.length}
             </div>
           )}
@@ -129,16 +125,18 @@ export function ProductSlider({
       {/* Thumbnail Strip */}
       <Carousel
         orientation="vertical"
-        className="w-30 flex-shrink-0"
+        className="w-20 flex-shrink-0 lg:w-26 xl:w-30"
         opts={{
           align: 'start',
-          loop: true,
           dragFree: true,
         }}
       >
-        <CarouselContent className="mt-0 h-[95vh] max-h-[700px]">
+        <CarouselContent className="mt-0 h-screen max-h-[350px] lg:h-[95vh] lg:max-h-[700px]">
           {images.map((image, index) => (
-            <CarouselItem key={image.id} className="max-h-[160px] px-1 pt-1">
+            <CarouselItem
+              key={image.id}
+              className="max-h-[90px] px-1 pt-1 lg:max-h-[160px]"
+            >
               <button
                 key={image.id}
                 onClick={() => scrollTo(index)}
@@ -161,98 +159,6 @@ export function ProductSlider({
             </CarouselItem>
           ))}
         </CarouselContent>
-      </Carousel>
-    </div>
-  )
-}
-
-// Compact version for smaller screens
-export function ProductSliderCompact({
-  images,
-  className,
-}: ProductSliderProps) {
-  const [selectedColor, setselectedColor] = useState(0)
-  const [api, setApi] = React.useState<any>(null)
-
-  React.useEffect(() => {
-    if (!api) return
-
-    api.on('select', () => {
-      setselectedColor(api.selectedScrollSnap())
-    })
-  }, [api])
-
-  if (!images || images.length === 0) {
-    return (
-      <div
-        className={cn(
-          'flex h-64 items-center justify-center rounded-lg bg-gray-100',
-          className
-        )}
-      >
-        <p className="text-gray-500">No images available</p>
-      </div>
-    )
-  }
-
-  return (
-    <div className={cn('relative', className)}>
-      <Carousel
-        setApi={setApi}
-        className="w-full"
-        opts={{
-          align: 'start',
-          loop: true,
-        }}
-      >
-        {/* Dots Indicator */}
-        <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 transform gap-1">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => api?.scrollTo(index)}
-              className={cn(
-                'h-2 w-2 rounded-full transition-all duration-200',
-                selectedColor === index
-                  ? 'bg-white shadow-lg'
-                  : 'bg-white/50 hover:bg-white/75'
-              )}
-            />
-          ))}
-        </div>
-        <CarouselContent>
-          {images.map((image) => (
-            <CarouselItem key={image.id}>
-              <div className="relative aspect-square w-full overflow-hidden rounded-lg">
-                <img
-                  src={image.url}
-                  alt={image.alt}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-
-        {/* Navigation Buttons */}
-        <div className="absolute inset-0 flex items-center justify-between p-2">
-          <Button
-            variant="secondary"
-            size="icon"
-            className="h-8 w-8 bg-white/80 shadow-lg hover:bg-white"
-            onClick={() => api?.scrollPrev()}
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="secondary"
-            size="icon"
-            className="h-8 w-8 bg-white/80 shadow-lg hover:bg-white"
-            onClick={() => api?.scrollNext()}
-          >
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
       </Carousel>
     </div>
   )

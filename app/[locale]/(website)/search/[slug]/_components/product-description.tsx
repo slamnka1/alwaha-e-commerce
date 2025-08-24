@@ -7,7 +7,7 @@ import React from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import NumberInput from '@/components/number-input'
+import NumberInput from '@/app/[locale]/(website)/search/[slug]/_components/number-input'
 import { Button } from '@/components/ui/button'
 import {
   Carousel,
@@ -152,10 +152,15 @@ export default function ProductDescription({
       )}
 
       <div className="flex items-center gap-3">
-        <Button variant="secondary" className="flex-1 bg-white font-normal">
+        <Button
+          variant="secondary"
+          className="flex-1 bg-white font-normal max-lg:h-10 max-lg:text-xs"
+        >
           {t('buy-now')}
         </Button>
-        <Button className="flex-1 font-normal">{t('add-to-cart')}</Button>
+        <Button className="flex-1 font-normal max-lg:h-10 max-lg:text-xs">
+          {t('add-to-cart')}
+        </Button>
 
         <NumberInput />
       </div>

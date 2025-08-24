@@ -215,5 +215,7 @@
       "Previous": "Previous",
       "Next": "Next"
     }
-  }
+  },
+  "home": "Home",
+  "product": "products details"
 }
