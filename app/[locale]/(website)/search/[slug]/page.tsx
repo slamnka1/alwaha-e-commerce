@@ -20,7 +20,7 @@ const SearchPage = async (props: Props) => {
       <Hero />
       <div className="container mx-auto py-12">
         <div className="flex gap-9">
-          <div className="w-full max-w-xl">
+          <div className="w-full max-w-2xl">
             <ProductSlider images={product?.images || []} />
           </div>
           {product ? <ProductDescription product={product} /> : null}

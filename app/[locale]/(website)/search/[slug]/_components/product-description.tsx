@@ -5,17 +5,21 @@ import { parseAsInteger, useQueryState } from 'nuqs'
 
 import React from 'react'
 
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
-import { Badge } from '@/components/ui/badge'
+import NumberInput from '@/components/number-input'
 import { Button } from '@/components/ui/button'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Product } from '@/lib/api/products'
+import { Link } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
+
+import UserSize from './user-size'
 
 type ProductDescriptionProps = {
   product: Product
@@ -31,16 +35,10 @@ export default function ProductDescription({
     'color',
     parseAsInteger
   )
-  const [selectedSize, setSelectedSize] = React.useState<string | null>(
-    product.sizes?.[0] ?? null
-  )
-  const [quantity, setQuantity] = React.useState<number>(1)
+  const [selectedSize, setSelectedSize] = useQueryState('size')
 
   const hasDiscount =
     product.originalPrice && product.originalPrice > product.price
-
-  const decQty = () => setQuantity((q) => Math.max(1, q - 1))
-  const incQty = () => setQuantity((q) => Math.min(99, q + 1))
 
   return (
     <div className={cn('flex w-full max-w-xl flex-col gap-6', className)}>
@@ -127,70 +125,49 @@ export default function ProductDescription({
 
       {product.sizes && product.sizes.length > 0 && (
         <div className="space-y-2">
-          <p className="text-sm font-semibold">{t('sizes')}</p>
+          <p className="text-xs lg:text-base lg:font-bold">{t('sizes')}:</p>
+          <UserSize />
           <div className="flex flex-wrap gap-2">
-            {product.sizes.map((size) => (
-              <button
-                key={size}
-                onClick={() => setSelectedSize(size)}
-                className={cn(
-                  'h-9 min-w-9 rounded-md border px-2 text-sm transition-colors',
-                  selectedSize === size
-                    ? 'border-primary bg-primary/10'
-                    : 'border-border hover:bg-muted'
-                )}
-                aria-pressed={selectedSize === size}
-              >
-                {size}
-              </button>
-            ))}
+            <RadioGroup
+              value={selectedSize}
+              onValueChange={(value) => setSelectedSize(value)}
+              className="flex flex-wrap gap-2"
+            >
+              {product.sizes.map((size) => (
+                <label
+                  key={size}
+                  className="has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex size-9 cursor-pointer flex-col items-center justify-center rounded-xs border border-black text-center text-xs font-bold shadow-[4px] transition-all outline-none has-focus-visible:ring-[3px] has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50 has-data-[state=checked]:border-[#00000033] has-data-[state=checked]:bg-[#00000034] has-data-[state=checked]:text-white"
+                >
+                  <RadioGroupItem
+                    id={size}
+                    value={size}
+                    className="sr-only after:absolute after:inset-0"
+                  />
+                  {size}
+                </label>
+              ))}
+            </RadioGroup>
           </div>
         </div>
       )}
 
       <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2">
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            onClick={decQty}
-            aria-label={t('decrease-quantity')}
-          >
-            <Minus className="size-4" />
-          </Button>
-          <span className="w-10 text-center text-base font-semibold">
-            {quantity}
-          </span>
-          <Button
-            type="button"
-            variant="outline"
-            size="icon"
-            onClick={incQty}
-            aria-label={t('increase-quantity')}
-          >
-            <Plus className="size-4" />
-          </Button>
-        </div>
-
-        <Button className="flex-1">{t('add-to-cart')}</Button>
-        <Button variant="secondary" className="flex-1">
+        <Button variant="secondary" className="flex-1 bg-white font-normal">
           {t('buy-now')}
         </Button>
-      </div>
+        <Button className="flex-1 font-normal">{t('add-to-cart')}</Button>
 
-      {/* Meta */}
-      <div className="text-muted-foreground text-xs">
-        {product.tags && product.tags.length > 0 ? (
-          <p>
-            {t('tags') + ': '}
-            {product.tags.join(', ')}
-          </p>
-        ) : null}
-        {!product.inStock && (
-          <p className="text-destructive">{t('out-of-stock')}</p>
-        )}
+        <NumberInput />
       </div>
+      <p className="text-xs font-semibold">
+        <span>{t('changing-item')}</span>
+        <Link
+          className="text-[#006FFF] hover:underline"
+          href={`/change-policy`}
+        >
+          {t('change-policy')}
+        </Link>
+      </p>
     </div>
   )
 }

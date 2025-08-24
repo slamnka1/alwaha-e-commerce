@@ -144,7 +144,24 @@
       "products": "المنتجات",
       "delete": "حذف",
       "edit": "تعديل",
-      "filter-now": "فلتر الان"
+      "filter-now": "فلتر الان",
+      "userSize": {
+        "savedMeasurements": "قياساتك المحفوظة",
+        "savedMeasurementsDescription": "بناءً على هذه المعلومات، سيتم تحديد المقاس الأنسب لك تلقائيا.",
+        "hipCircumference": "دوران الورك",
+        "chestCircumference": "دوران الصدر",
+        "editQuestion": "هل تريدي تعديل قياسك؟",
+        "yes": "نعم",
+        "editMeasurements": "تعديل قياساتك المحفوظة، بناءً على هذه المعلومات، سيتم تحديد المقاس الأنسب لك تلقائيا.",
+        "enterChestMeasurement": "ادخلي قياس دوران الصدر",
+        "enterHipMeasurement": "ادخلي قياس دوران الورك",
+        "edit": "تعديل",
+        "deleteQuestion": "هل تريدي حذف قياسك؟",
+        "addMeasurements": "إضافة مقاسي",
+        "addMeasurementsDescription": "كل جسم له تفاصيله، بناءً على هيك بنخليك تضيفي مقاسك بكل سهولة ونرشح لك الأنسب!",
+        "importantNote": "سيتم تحديد مقاسك بالتحديد عند قيامك باضافة مقاسك بناءً على دوران الصدر ودوران الورك",
+        "edit-importantNote": "سيتم اختيار المقاس المناسب لك عند ادخال مقاساتك تلقائياً"
+      }
     }
   },
   "categories": {
@@ -175,7 +192,9 @@
     "tags": "الوسوم",
     "out-of-stock": "نفدت الكمية مؤقتاً",
     "currency": "درهم",
-    "color": "لون"
+    "color": "لون",
+    "changing-item": "نقبل الاستبدال وفق ضوابط مبسّطة — \n",
+    "change-policy": "تعرّفي على التفاصيل هنا."
   },
   "products-slider": {
     "view-all": "رؤية المزيد"

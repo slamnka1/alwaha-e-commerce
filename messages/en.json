@@ -144,7 +144,24 @@
       "products": "Products",
       "delete": "Delete",
       "edit": "Edit",
-      "filter-now": "Filter now"
+      "filter-now": "Filter now",
+      "userSize": {
+        "savedMeasurements": "Your Saved Measurements",
+        "savedMeasurementsDescription": "Based on this information, the most suitable size will be automatically determined for you.",
+        "hipCircumference": "Hip Circumference",
+        "chestCircumference": "Chest Circumference",
+        "editQuestion": "Do you want to modify your measurements?",
+        "yes": "Yes",
+        "editMeasurements": "Edit your saved measurements, based on this information, the most suitable size will be determined for you automatically.",
+        "enterChestMeasurement": "Enter chest circumference measurement",
+        "enterHipMeasurement": "Enter hip circumference measurement",
+        "edit": "Edit",
+        "deleteQuestion": "Do you want to delete your measurement?",
+        "addMeasurements": "Add my size",
+        "addMeasurementsDescription": "Every body has its details, based on this we let you add your size easily and recommend the most suitable for you!",
+        "importantNote": "Based on your saved measurements, the most suitable size for you is:",
+        "edit-importantNote": "Based on your saved measurements, the most suitable size for you is:"
+      }
     }
   },
   "categories": {
@@ -175,7 +192,9 @@
     "tags": "Tags",
     "out-of-stock": "Out of stock",
     "currency": "UAE",
-    "color": "Color"
+    "color": "Color",
+    "changing-item": "We accept the replacement according to simplified conditions -",
+    "change-policy": "Learn about the details here."
   },
   "footer": {
     "description": "An Emirati online store specializing in modest hijab clothing, combining elegance and comfort in a wide range of sizes from 5 to 12, providing a unique and seamless shopping experience at any time.",
