@@ -22,7 +22,8 @@ export function ProductCard({
 
   isFavorite,
   isPlusSize,
-}: Product) {
+  imageOnly,
+}: Product & { imageOnly?: boolean }) {
   const t = useTranslations('product-card')
   const onAddToCart = () => {}
   const toggleFavorite = () => {}
@@ -50,7 +51,7 @@ export function ProductCard({
               <div
                 className={cn(
                   'bg-primary rounded-br-xl border border-white px-3 py-1 text-xs font-bold text-white md:rounded-br-3xl lg:px-4 lg:text-base',
-                  isPlusSize && '-ml-8 pl-8'
+                  isPlusSize && '-ml-8 !pl-8'
                 )}
               >
                 {discount}%
@@ -61,54 +62,56 @@ export function ProductCard({
       </Link>
 
       {/* Content Section */}
-      <CardContent className="space-y-1 px-0 md:space-y-2">
-        {/* Header with Heart and Product Name */}
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="flex-1 text-sm leading-tight font-semibold text-gray-900 md:text-xl 2xl:text-2xl">
-            {name}
-          </h3>
+      {imageOnly ? null : (
+        <CardContent className="space-y-1 px-0 md:space-y-2">
+          {/* Header with Heart and Product Name */}
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="flex-1 text-sm leading-tight font-semibold text-gray-900 md:text-xl 2xl:text-2xl">
+              {name}
+            </h3>
+            <Button
+              onClick={() => toggleFavorite()}
+              variant="secondary"
+              size={'icon'}
+              className="rounded-full bg-white"
+            >
+              <Heart
+                className={cn(
+                  isFavorite ? 'fill-red-500 text-red-500' : 'text-orange-500',
+                  'size-4 md:size-5'
+                )}
+              />
+            </Button>
+          </div>
+
+          {/* Pricing */}
+          <div className="flex items-center gap-2">
+            <span className="text-primary text-sm font-bold md:text-xl 2xl:text-2xl">
+              {price} {t('currency')}
+            </span>
+            <span className="text-xs font-semibold text-[#00000033] line-through md:text-lg">
+              {originalPrice} {t('currency')}
+            </span>
+          </div>
+
+          {/* Color Options */}
+          <div>
+            <span className="text-sm font-semibold text-[#0000006c]">
+              {t('colors')} : {colors.length}
+            </span>
+          </div>
+
+          {/* Add to Cart Button */}
           <Button
-            onClick={() => toggleFavorite()}
+            onClick={() => onAddToCart()}
             variant="secondary"
-            size={'icon'}
-            className="rounded-full bg-white"
+            size={'lg'}
+            className="w-full bg-white font-semibold shadow-lg max-lg:h-11 md:text-xl 2xl:text-2xl"
           >
-            <Heart
-              className={cn(
-                isFavorite ? 'fill-red-500 text-red-500' : 'text-orange-500',
-                'size-4 md:size-5'
-              )}
-            />
+            {t('add-to-cart')}
           </Button>
-        </div>
-
-        {/* Pricing */}
-        <div className="flex items-center gap-2">
-          <span className="text-primary text-sm font-bold md:text-xl 2xl:text-2xl">
-            {price} {t('currency')}
-          </span>
-          <span className="text-xs font-semibold text-[#00000033] line-through md:text-lg">
-            {originalPrice} {t('currency')}
-          </span>
-        </div>
-
-        {/* Color Options */}
-        <div>
-          <span className="text-sm font-semibold text-[#0000006c]">
-            {t('colors')} : {colors.length}
-          </span>
-        </div>
-
-        {/* Add to Cart Button */}
-        <Button
-          onClick={() => onAddToCart()}
-          variant="secondary"
-          size={'lg'}
-          className="w-full bg-white font-semibold shadow-lg max-lg:h-11 md:text-xl 2xl:text-2xl"
-        >
-          {t('add-to-cart')}
-        </Button>
-      </CardContent>
+        </CardContent>
+      )}
     </Card>
   )
 }

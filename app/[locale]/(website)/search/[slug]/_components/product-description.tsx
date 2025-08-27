@@ -136,7 +136,7 @@ export default function ProductDescription({
               {product.sizes.map((size) => (
                 <label
                   key={size}
-                  className="has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex size-9 cursor-pointer flex-col items-center justify-center rounded-xs border border-black text-center text-xs font-bold shadow-[4px] transition-all outline-none has-focus-visible:ring-[3px] has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50 has-data-[state=checked]:border-[#00000033] has-data-[state=checked]:bg-[#00000034] has-data-[state=checked]:text-white"
+                  className="has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex size-9 cursor-pointer flex-col items-center justify-center rounded-xs border border-black text-center text-xs font-bold shadow-[4px] transition-all outline-none has-focus-visible:ring-[3px] has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50 has-data-[state=checked]:border-[#00000033] has-data-[state=checked]:bg-black has-data-[state=checked]:text-white"
                 >
                   <RadioGroupItem
                     id={size}

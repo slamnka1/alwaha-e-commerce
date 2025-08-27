@@ -2,8 +2,9 @@ import React from 'react'
 
 import { getTranslations } from 'next-intl/server'
 
-import { getProduct } from '@/lib/api/products'
+import { getProduct, getProducts } from '@/lib/api/products'
 
+import ProductsSlider from '../../_components/products-silder'
 import Hero from './_components/hero'
 import ProductDescription from './_components/product-description'
 import { ProductSlider } from './_components/product-slider'
@@ -17,6 +18,7 @@ type Props = {
 const SearchPage = async (props: Props) => {
   const { slug } = await props.params
   const product = await getProduct(Number(slug))
+  const products = await getProducts()
   const t = await getTranslations()
   return (
     <React.Fragment>
@@ -49,6 +51,12 @@ const SearchPage = async (props: Props) => {
           {product ? <ProductDescription product={product} /> : null}
         </div>
       </div>
+      <ProductsSlider
+        products={products}
+        title={t('more-products')}
+        imageOnly
+        titleClassName="font-medium"
+      />
     </React.Fragment>
   )
 }
