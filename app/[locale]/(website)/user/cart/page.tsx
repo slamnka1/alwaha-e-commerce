@@ -13,7 +13,7 @@ const SearchPage = async (props: Props) => {
     <React.Fragment>
       <Hero />
       <div className="container">
-        <div className="mb-8 flex items-center justify-between gap-6 lg:gap-20 rtl:flex-row-reverse">
+        <div className="mb-4 flex items-center justify-between gap-6 lg:gap-20 rtl:flex-row-reverse">
           <h3 className="flex shrink-0 flex-nowrap items-center gap-4 font-bold lg:text-xl 2xl:text-2xl rtl:flex-row-reverse">
             <span className="text-foreground/50 font-medium">{t('home')}</span>
             <svg

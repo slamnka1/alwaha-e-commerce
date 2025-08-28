@@ -225,6 +225,15 @@
       "description": "Check your selected products before completing your order, and you can easily modify quantities or remove items."
     },
     "warrning": "Note: To ensure the best shopping experience, the purchasing basket will be automatically unloaded after 7 days has passed without completing the request.",
+    "table": {
+      "item": "Item",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "color": "Color",
+      "size": "Size",
+      "noItems": "No items in cart"
+    },
     "summary": {
       "title": "Order Summary",
       "itemCount": "Number of pieces",
@@ -237,7 +246,16 @@
       "confirmOrder": "Confirm Order",
       "shopWithConfidence": "Shop with confidence, exchange is available according to",
       "policy": "policy"
-    }
+    },
+    "operations": {
+      "loading": "Loading cart...",
+      "error": "Error loading cart",
+      "updateSuccess": "Cart updated successfully",
+      "updateError": "Failed to update cart",
+      "removeSuccess": "Item removed from cart",
+      "removeError": "Failed to remove item from cart"
+    },
+    "currancy": "UAE"
   },
   "cart-page": "Purchases"
 }
