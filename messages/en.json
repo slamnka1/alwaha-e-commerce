@@ -224,7 +224,20 @@
       "title": "Shopping cart",
       "description": "Check your selected products before completing your order, and you can easily modify quantities or remove items."
     },
-    "warrning": "Note: To ensure the best shopping experience, the purchasing basket will be automatically unloaded after 7 days has passed without completing the request."
+    "warrning": "Note: To ensure the best shopping experience, the purchasing basket will be automatically unloaded after 7 days has passed without completing the request.",
+    "summary": {
+      "title": "Order Summary",
+      "itemCount": "Number of pieces",
+      "subtotal": "Subtotal",
+      "purchase": "Purchase",
+      "purchaseTax": "Purchase tax",
+      "deliveryPrice": "Delivery price",
+      "discountCoupon": "Discount coupon",
+      "total": "Total",
+      "confirmOrder": "Confirm Order",
+      "shopWithConfidence": "Shop with confidence, exchange is available according to",
+      "policy": "policy"
+    }
   },
   "cart-page": "Purchases"
 }

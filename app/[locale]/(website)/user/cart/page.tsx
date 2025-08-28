@@ -3,6 +3,7 @@ import React from 'react'
 import { getTranslations } from 'next-intl/server'
 
 import Hero from './_components/hero'
+import Wrapper from './_components/wrapper'
 
 type Props = {}
 
@@ -35,6 +36,7 @@ const SearchPage = async (props: Props) => {
           </p>
         </div>
       </div>
+      <Wrapper />
     </React.Fragment>
   )
 }

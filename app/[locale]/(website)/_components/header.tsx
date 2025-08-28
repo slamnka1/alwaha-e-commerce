@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 import { LogoWithText, logo } from '@/assets'
 import { Separator } from '@/components/ui/separator'
+import { Link } from '@/lib/i18n/navigation'
 
 import LanguageSwitch from './language-switch'
 import SearchInput from './search-input'
@@ -27,14 +28,14 @@ const Header = (props: Props) => {
               <Separator orientation="vertical" className="!h-8 bg-[#F3E0C8]" />
               <SearchInput />
             </div>
-            <div className="flex items-center justify-center">
+            <Link href={'/'} className="flex items-center justify-center">
               <Image
                 className="w-[215px] max-md:hidden 2xl:w-[235px]"
                 src={LogoWithText}
                 alt="logo"
               />
               <Image className="w-10 md:hidden" src={logo} alt="logo" />
-            </div>
+            </Link>
 
             <div>
               <UserButton />
