@@ -83,22 +83,20 @@ const Wrapper = (props: Props) => {
   return (
     <section>
       <div className="container">
-        <div className="flex gap-4 pb-20">
+        <div className="flex flex-col gap-4 pb-20 md:flex-row">
           <div className="flex-1">
             <CartItems items={cartItems} />
           </div>
-          <div className="w-80">
-            <CartSummary
-              data={summaryData}
-              onConfirmOrder={() => {
-                console.log('Confirm order clicked')
-              }}
-              onPolicyClick={() => {
-                console.log('Policy clicked')
-              }}
-              className=""
-            />
-          </div>
+          <CartSummary
+            data={summaryData}
+            onConfirmOrder={() => {
+              console.log('Confirm order clicked')
+            }}
+            onPolicyClick={() => {
+              console.log('Policy clicked')
+            }}
+            className=""
+          />
         </div>
       </div>
     </section>
