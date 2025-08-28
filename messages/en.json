@@ -218,5 +218,13 @@
   },
   "home": "Home",
   "product": "products details",
-  "more-products": "More dresses:"
+  "more-products": "More dresses:",
+  "cart": {
+    "hero": {
+      "title": "Shopping cart",
+      "description": "Check your selected products before completing your order, and you can easily modify quantities or remove items."
+    },
+    "warrning": "Note: To ensure the best shopping experience, the purchasing basket will be automatically unloaded after 7 days has passed without completing the request."
+  },
+  "cart-page": "Purchases"
 }
