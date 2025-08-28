@@ -255,6 +255,12 @@
       "removeSuccess": "Item removed from cart",
       "removeError": "Failed to remove item from cart"
     },
+    "deleteConfirm": {
+      "title": "Remove Item",
+      "description": "Are you sure you want to remove \"{itemName}\" from your cart?",
+      "cancel": "Cancel",
+      "confirm": "Remove"
+    },
     "currancy": "UAE"
   },
   "cart-page": "Purchases"

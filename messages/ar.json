@@ -257,6 +257,12 @@
       "removeSuccess": "تم إزالة المنتج من السلة",
       "removeError": "فشل في إزالة المنتج من السلة"
     },
+    "deleteConfirm": {
+      "title": "إزالة المنتج",
+      "description": "هل أنت متأكدة من إزالة \"{itemName}\" من سلة مشترياتك؟",
+      "cancel": "إلغاء",
+      "confirm": "إزالة"
+    },
     "currancy": "درهم"
   },
   "cart-page": "Purchases"

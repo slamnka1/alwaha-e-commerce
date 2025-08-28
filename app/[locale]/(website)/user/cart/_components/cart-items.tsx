@@ -2,9 +2,22 @@
 
 import { CircleX, Loader2, Minus, Plus } from 'lucide-react'
 
+import { useState } from 'react'
+
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -27,6 +40,7 @@ interface CartItemsProps {
 
 export function CartItems({ items }: CartItemsProps) {
   const t = useTranslations('cart')
+  const [itemToDelete, setItemToDelete] = useState<string | null>(null)
 
   const updateQuantityMutation = useUpdateCartItemQuantity(t)
   const removeItemMutation = useRemoveCartItem(t)
@@ -39,6 +53,15 @@ export function CartItems({ items }: CartItemsProps) {
 
   const handleRemoveItem = (id: string) => {
     removeItemMutation.mutate(id)
+    setItemToDelete(null)
+  }
+
+  const openDeleteDialog = (id: string) => {
+    setItemToDelete(id)
+  }
+
+  const closeDeleteDialog = () => {
+    setItemToDelete(null)
   }
 
   const formatPrice = (price: number) => {
@@ -96,19 +119,45 @@ export function CartItems({ items }: CartItemsProps) {
                 <div className="flex items-center gap-3">
                   {/* Remove Button */}
                   <div className="col-span-1 flex justify-center">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="size-9"
-                      onClick={() => handleRemoveItem(item.id)}
-                      disabled={removeItemMutation.isPending}
-                    >
-                      {isRemoving ? (
-                        <Loader2 className="size-4 animate-spin" />
-                      ) : (
-                        <CircleX className="size-8" strokeWidth={1} />
-                      )}
-                    </Button>
+                    <AlertDialog onOpenChange={closeDeleteDialog}>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="size-9"
+                          disabled={removeItemMutation.isPending}
+                        >
+                          {isRemoving ? (
+                            <Loader2 className="size-4 animate-spin" />
+                          ) : (
+                            <CircleX className="size-8" strokeWidth={1} />
+                          )}
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            {t('deleteConfirm.title')}
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            {t('deleteConfirm.description', {
+                              itemName: item.name,
+                            })}
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel className="px-6 font-medium">
+                            {t('deleteConfirm.cancel')}
+                          </AlertDialogCancel>
+                          <AlertDialogAction
+                            className="bg-destructive hover:bg-destructive/90 px-6 font-medium"
+                            onClick={() => handleRemoveItem(item.id)}
+                          >
+                            {t('deleteConfirm.confirm')}
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                   <div className="bg-muted relative aspect-square h-18 w-18 overflow-hidden rounded-lg">
                     <Image
