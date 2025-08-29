@@ -1,5 +1,7 @@
 'use client'
 
+import { Heart } from 'lucide-react'
+
 import React from 'react'
 
 import Image from 'next/image'
@@ -20,12 +22,20 @@ const Header = (props: Props) => {
       <div className="container py-3.5 2xl:py-4">
         <div className="rounded-2xl border border-[#F3E0C8] bg-white shadow-lg md:rounded-3xl">
           <div className="grid grid-cols-3 items-center p-1.5 lg:p-2.5">
-            <div className="lg:hidden">
+            <div className="flex items-center gap-2 lg:hidden">
               <LanguageSwitch />
+              <Separator orientation="vertical" className="!h-8 bg-[#F3E0C8]" />
+
+              <Link href={'/user/favorite'}>
+                <Heart />
+              </Link>
             </div>
             <div className="hidden items-center gap-2 lg:flex">
               <LanguageSwitch />
               <Separator orientation="vertical" className="!h-8 bg-[#F3E0C8]" />
+              <Link href={'/user/favorite'}>
+                <Heart strokeWidth={1} />
+              </Link>
               <SearchInput />
             </div>
             <Link href={'/'} className="flex items-center justify-center">
