@@ -28,8 +28,7 @@ const FavoritePage = async (props: Props) => {
                 fill="black"
               />
             </svg>
-
-            {t('favorite-page')}
+            Favorite Page
           </h3>
           <p className="text-xs font-medium text-red-500 lg:text-lg lg:font-semibold">
             {t('favorite.warning')}
