@@ -293,5 +293,37 @@
     },
     "currancy": "UAE"
   },
-  "cart-page": "Purchases"
+  "cart-page": "Purchases",
+  "favorite-page": "Favorite Page",
+  "favorite": {
+    "hero": {
+      "title": "Favorite Products",
+      "description": "Your unique choices, all in one place!"
+    },
+    "warning": "Note: Favorite items do not guarantee reservation, hurry to complete your order before stock runs out or removal within 7 days.",
+    "table": {
+      "item": "Item",
+      "price": "Price",
+      "addToCart": "Add to Cart",
+      "remove": "Remove",
+      "color": "Color",
+      "size": "Size",
+      "noItems": "No favorite items",
+      "noItemsDescription": "You haven't added any items to your favorites yet.",
+      "currency": "AED"
+    },
+    "categories": {
+      "title": "Favorite Pieces",
+      "totalItems": "Number of Pieces",
+      "noItems": "No items in favorites"
+    },
+    "operations": {
+      "loading": "Loading favorites...",
+      "error": "Error loading favorites",
+      "addSuccess": "Item added to favorites",
+      "addError": "Failed to add item to favorites",
+      "removeSuccess": "Item removed from favorites",
+      "removeError": "Failed to remove item from favorites"
+    }
+  }
 }
