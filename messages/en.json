@@ -310,7 +310,8 @@
       "size": "Size",
       "noItems": "No favorite items",
       "noItemsDescription": "You haven't added any items to your favorites yet.",
-      "currency": "AED"
+      "currency": "AED",
+      "favoriteItem": "Favorite piece"
     },
     "categories": {
       "title": "Favorite Pieces",

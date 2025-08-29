@@ -5,11 +5,13 @@ import { CircleX, Heart, Plus, X } from 'lucide-react'
 import React from 'react'
 
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Product } from '@/lib/api/products'
+import { cn } from '@/lib/utils'
 
 export interface FavoriteItem {
   id: string
@@ -128,6 +130,78 @@ export const FavoriteItems = ({ items }: FavoriteItemsProps) => {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile Compact Version */}
+      <div className="overflow-hidden rounded-lg border lg:hidden">
+        {/* Table Header */}
+        <div className="bg-border p-3">
+          <div className="font-semibold">{t('favoriteItem')}</div>
+        </div>
+
+        <div className="">
+          {items.map((item) => (
+            <Card key={item.id} className="border-none p-3 shadow-none">
+              <div className="flex items-center gap-1">
+                <Heart
+                  className="text-primary fill-primary size-5"
+                  strokeWidth={1}
+                />
+
+                {/* Product Image */}
+                <div className="bg-muted relative aspect-square h-22 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Product Details */}
+                <div className="min-w-0 flex-1 ps-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="mb-1 text-sm leading-tight font-medium">
+                        {item.name}
+                      </h3>
+                      <p className="text-muted-foreground mb-2 text-xs">
+                        {t('color')}: {item.color} | {t('size')}: {item.size}
+                      </p>
+                      <p className="text-sm font-medium">
+                        {item.price} {t('currency')}
+                      </p>
+
+                      {/* Add to Cart Button */}
+                      <Button
+                        onClick={() => handleAddToCart(item)}
+                        variant="link"
+                        size="sm"
+                        className="flex items-center gap-2"
+                      >
+                        <Plus className="h-3 w-3" />
+                        {t('addToCart')}
+                      </Button>
+                    </div>
+
+                    {/* Price and Favorite Icon */}
+                    <div className="flex flex-col items-end gap-2">
+                      {/* Remove Button */}
+                      <Button
+                        onClick={() => handleRemoveFromFavorites(item)}
+                        variant="ghost"
+                        size="icon"
+                        className="size-8 rounded-full"
+                      >
+                        <CircleX className="size-5" strokeWidth={1} />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Card>
           ))}
         </div>
       </div>

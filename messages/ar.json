@@ -312,7 +312,8 @@
       "size": "المقاس",
       "noItems": "لا توجد منتجات مفضلة",
       "noItemsDescription": "لم تقوم بإضافة أي منتجات إلى المفضلة بعد.",
-      "currency": "درهم"
+      "currency": "درهم",
+      "favoriteItem": "القطعة المفضلة "
     },
     "categories": {
       "title": "القطع المفضلة",
