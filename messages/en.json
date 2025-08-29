@@ -91,7 +91,10 @@
   "header": {
     "login": "Login",
     "signup": "New Account",
-    "search": "Search"
+    "search": "Search",
+    "cart": "Shopping cart",
+    "profile": "My Profile",
+    "logout": "Log out"
   },
   "search": {
     "title": "The latest distinctive pieces at Wahat Al Zain",
