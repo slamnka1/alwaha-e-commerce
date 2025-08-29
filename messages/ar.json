@@ -248,7 +248,36 @@
       "total": "المجموع الكلي",
       "confirmOrder": "تأكيد الطلب",
       "shopWithConfidence": "تسوقي بثقة الاستبدال متاح وفق",
-      "policy": "السياسة"
+      "policy": "السياسة",
+      "cancel": "إلغاء"
+    },
+    "checkout": {
+      "title": "من فضلك, أكمل بياناتك",
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "phone": "رقم الهاتف",
+      "emirate": "الإمارة",
+      "region": "المنطقة",
+      "fullAddress": "العنوان الكامل",
+      "completePayment": "أكمل عملية الدفع",
+      "firstNamePlaceholder": "الاسم الأول",
+      "lastNamePlaceholder": "اسم العائلة",
+      "phonePlaceholder": "50 123 4567",
+      "emiratePlaceholder": "اختر الإمارة",
+      "regionPlaceholder": "اختر المنطقة",
+      "addressPlaceholder": "أدخل عنوانك الكامل",
+      "validation": {
+        "firstNameRequired": "الاسم الأول مطلوب",
+        "lastNameRequired": "اسم العائلة مطلوب",
+        "phoneRequired": "رقم الهاتف مطلوب",
+        "emirateRequired": "الإمارة مطلوبة",
+        "regionRequired": "المنطقة مطلوبة",
+        "addressRequired": "العنوان الكامل مطلوب",
+        "invalidPhone": "يرجى إدخال رقم هاتف صحيح"
+      },
+      "shopWithConfidence": "تسوقي بثقة الاستبدال متاح وفق",
+      "policy": "السياسة",
+      "cancel": "إلغاء"
     },
     "operations": {
       "loading": "جاري تحميل السلة...",

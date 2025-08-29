@@ -246,7 +246,36 @@
       "total": "Total",
       "confirmOrder": "Confirm Order",
       "shopWithConfidence": "Shop with confidence, exchange is available according to",
-      "policy": "policy"
+      "policy": "policy",
+      "cancel": "Cancel"
+    },
+    "checkout": {
+      "title": "Please, complete your data",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "emirate": "Emirate",
+      "region": "Region/Area",
+      "fullAddress": "Full Address",
+      "completePayment": "Complete Payment Process",
+      "firstNamePlaceholder": "First Name",
+      "lastNamePlaceholder": "Last Name",
+      "phonePlaceholder": "50 123 4567",
+      "emiratePlaceholder": "Select Emirate",
+      "regionPlaceholder": "Select Region",
+      "addressPlaceholder": "Enter your full address",
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "phoneRequired": "Phone number is required",
+        "emirateRequired": "Emirate is required",
+        "regionRequired": "Region is required",
+        "addressRequired": "Full address is required",
+        "invalidPhone": "Please enter a valid phone number"
+      },
+      "shopWithConfidence": "Shop with confidence, exchange is available according to",
+      "policy": "policy",
+      "cancel": "Cancel"
     },
     "operations": {
       "loading": "Loading cart...",
