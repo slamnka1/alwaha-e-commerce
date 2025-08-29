@@ -96,17 +96,17 @@ export function CheckoutForm() {
   const t = useTranslations('cart.checkout')
   // Form validation schema
   const checkoutSchema = z.object({
-    first_name: z.string().min(1, 'First name is required'),
-    last_name: z.string().min(1, 'Last name is required'),
+    first_name: z.string().min(1, t('validation.firstNameRequired')),
+    last_name: z.string().min(1, t('validation.lastNameRequired')),
     phone: z
       .string()
       .min(1, t('validation.phoneRequired'))
       .refine((value) => isPossiblePhoneNumber(value), {
-        message: t('validation.invalid-phone-number'),
+        message: t('validation.invalidPhone'),
       }),
-    emirate: z.string().min(1, 'Emirate is required'),
-    region: z.string().min(1, 'Region is required'),
-    fullAddress: z.string().min(1, 'Full address is required'),
+    emirate: z.string().min(1, t('validation.emirateRequired')),
+    region: z.string().min(1, t('validation.regionRequired')),
+    fullAddress: z.string().min(1, t('validation.addressRequired')),
   })
 
   type CheckoutFormData = z.infer<typeof checkoutSchema>
