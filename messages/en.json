@@ -71,6 +71,11 @@
       "size": "My Size",
       "address": "My Address"
     },
+    "orders": {
+      "title": "My Previous Orders",
+      "color": "Color",
+      "size": "Size"
+    },
     "size": {
       "skip": "Skip",
       "title": "Choose your size with confidence",

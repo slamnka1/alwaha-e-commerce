@@ -54,7 +54,7 @@ export default function ProfileLayout({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {/* Navigation Menu */}
           <div className="md:col-span-1">
             <ProfileNav />
