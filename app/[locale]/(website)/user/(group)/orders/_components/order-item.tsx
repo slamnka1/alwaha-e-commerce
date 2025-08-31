@@ -3,18 +3,7 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
-interface Product {
-  title: string
-  color: string
-  size: string
-  image: string
-}
-
-interface Order {
-  id: number
-  date: string
-  product: Product
-}
+import { type Order } from '@/lib/api/orders'
 
 interface OrderItemProps {
   order: Order

@@ -74,7 +74,8 @@
     "orders": {
       "title": "My Previous Orders",
       "color": "Color",
-      "size": "Size"
+      "size": "Size",
+      "noOrders": "No orders found"
     },
     "size": {
       "skip": "Skip",
