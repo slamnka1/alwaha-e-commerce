@@ -56,9 +56,8 @@ export default function ProfileLayout({
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {/* Navigation Menu */}
-          <div className="md:col-span-1">
-            <ProfileNav />
-          </div>
+          <ProfileNav />
+
           {/* Main Content - Personal Profile Form */}
           <div className="md:col-span-2">{children}</div>
         </div>

@@ -122,6 +122,32 @@
       }
     }
   },
+  "security": {
+    "form": {
+      "title": "تعديل كلمة المرور",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة",
+      "currentPasswordPlaceholder": "أدخلي كلمة المرور الحالية",
+      "newPasswordPlaceholder": "أدخلي كلمة المرور الجديدة",
+      "confirmPasswordPlaceholder": "أكدي كلمة المرور الجديدة",
+      "updateButton": "تحديث كلمة المرور",
+      "validation": {
+        "currentPasswordRequired": "كلمة المرور الحالية مطلوبة",
+        "newPasswordMinLength": "كلمة المرور الجديدة يجب أن تكون 8 أحرف على الأقل",
+        "confirmPasswordRequired": "يرجى تأكيد كلمة المرور الجديدة",
+        "passwordsDoNotMatch": "كلمات المرور غير متطابقة"
+      }
+    },
+    "otp": {
+      "title": "تعديل كلمة المرور",
+      "description": "قم بإدخال الكود المُرسل على رقم هاتفك:",
+      "submitButton": "ارسال الكود",
+      "validation": {
+        "otpLength": "يجب أن يكون الكود 5 أرقام بالضبط"
+      }
+    }
+  },
   "header": {
     "login": "حسابي",
     "signup": "حساب جديد",
