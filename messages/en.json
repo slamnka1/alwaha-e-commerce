@@ -226,6 +226,42 @@
       }
     }
   },
+  "userSize": {
+    "savedMeasurements": "Your Saved Measurements",
+    "savedMeasurementsDescription": "Based on this information, the most suitable size will be automatically determined for you.",
+    "hipCircumference": "Hip Circumference",
+    "chestCircumference": "Chest Circumference",
+    "editQuestion": "Do you want to modify your measurements?",
+    "yes": "Yes",
+    "editMeasurements": "Edit your saved measurements, based on this information, the most suitable size will be determined for you automatically.",
+    "enterChestMeasurement": "Enter chest circumference measurement",
+    "enterHipMeasurement": "Enter hip circumference measurement",
+    "edit": "Edit",
+    "deleteQuestion": "Do you want to delete your measurement?",
+    "addMeasurements": "Add my size",
+    "addMeasurementsDescription": "Every body has its details, based on this we let you add your size easily and recommend the most suitable for you!",
+    "importantNote": "Based on your saved measurements, the most suitable size for you is:",
+    "edit-importantNote": "Based on your saved measurements, the most suitable size for you is:",
+    "sizeForm": {
+      "title": "Add your size",
+      "nameLabel": "Write your name",
+      "tips": "It is preferable to take measurements twice to ensure accuracy. If your measurements fall between two sizes, we recommend choosing the larger size for more comfort.",
+      "emptyStateTitle": "My Size",
+      "emptyStateMessage": "You have not entered your measurements yet",
+      "emptyStateDescription": "Enter your chest and hip measurements now to get the most suitable size for you in every model.",
+      "addButton": "Add your size",
+      "deleteTitle": "Delete Maryam's current size",
+      "deleteWarning": "Are you sure you want to delete the sizes?",
+      "deleteDescription": "The current data will be removed and no automatic size will be displayed from now on.",
+      "deleteConfirmQuestion": "Do you want to delete your current size?",
+      "chestCircumference": "Chest Circumference",
+      "hipCircumference": "Hip Circumference",
+      "edit": "Edit",
+      "cancel": "Cancel",
+      "yes": "Yes",
+      "deleteButton": "Delete"
+    }
+  },
   "categories": {
     "title": "Product Categories",
     "subtitle": "Discover a diverse collection of distinctive products"
