@@ -64,6 +64,13 @@
     }
   },
   "profile": {
+    "nav": {
+      "profile": " بياناتي الشخصية ",
+      "orders": "طلباتي السابقة",
+      "security": "كلمة المرور",
+      "size": "مقاسي",
+      "address": "عنواني"
+    },
     "size": {
       "skip": "تخطي",
       "title": "اختاري مقاسك بكل ثقة",
@@ -85,6 +92,27 @@
         "hipRequired": "قياس الورك مطلوب",
         "invalidChest": "يرجى إدخال قياس صحيح للصدر",
         "invalidHip": "يرجى إدخال قياس صحيح للورك"
+      }
+    },
+    "title": "ملفي الشخصي ",
+    "form": {
+      "title": "تعديل الملف الشخصي",
+      "firstName": "الاسم الأول",
+      "lastName": "الاسم الأخير",
+      "phone": "رقم الهاتف",
+      "address": "العنوان بالتفصيل",
+      "firstNamePlaceholder": "الاسم الأول",
+      "lastNamePlaceholder": "الاسم الأخير",
+      "phonePlaceholder": "50 123 4567",
+      "addressPlaceholder": "الامارات ، امارة الشارقة شارع 8 عمارة 147",
+      "forgotPassword": "هل نسيت كلمة المرور؟",
+      "updateButton": "تحديث الملف الشخصي",
+      "validation": {
+        "firstNameRequired": "الاسم الأول مطلوب",
+        "lastNameRequired": "الاسم الأخير مطلوب",
+        "phoneRequired": "رقم الهاتف مطلوب",
+        "addressRequired": "العنوان مطلوب",
+        "invalidPhone": "رقم هاتف غير صحيح"
       }
     }
   },

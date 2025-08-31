@@ -64,6 +64,13 @@
     }
   },
   "profile": {
+    "nav": {
+      "profile": "Edit my personal data",
+      "orders": "My Previous Orders",
+      "security": "Security & Password",
+      "size": "My Size",
+      "address": "My Address"
+    },
     "size": {
       "skip": "Skip",
       "title": "Choose your size with confidence",
@@ -85,6 +92,27 @@
         "hipRequired": "Hip measurement is required",
         "invalidChest": "Please enter a valid chest measurement",
         "invalidHip": "Please enter a valid hip measurement"
+      }
+    },
+    "title": "My profile",
+    "form": {
+      "title": "Edit Profile",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "address": "Full Address",
+      "firstNamePlaceholder": "First Name",
+      "lastNamePlaceholder": "Last Name",
+      "phonePlaceholder": "50 123 4567",
+      "addressPlaceholder": "UAE, Sharjah, Street 8, Building 147",
+      "forgotPassword": "Forgot your password?",
+      "updateButton": "Update Profile",
+      "validation": {
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "phoneRequired": "Phone number is required",
+        "addressRequired": "Address is required",
+        "invalidPhone": "Invalid phone number"
       }
     }
   },
