@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { type TypeCategory } from '@/lib/api/types'
+import { type TypeCategory } from '@/services/types'
 
 import { TypeCard } from './type-card'
 

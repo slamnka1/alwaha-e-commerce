@@ -2,8 +2,8 @@ import React from 'react'
 
 import { getTranslations } from 'next-intl/server'
 
-import { getProducts } from '@/lib/api/products'
-import { getTypeCategories } from '@/lib/api/types'
+import { getProducts } from '@/services/products'
+import { getTypeCategories } from '@/services/types'
 
 import Hero from './_components/hero'
 import KnowYourSizeAuth from './_components/know-you-size-auth'

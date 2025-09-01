@@ -5,7 +5,7 @@ import {
   getCartItems,
   removeCartItem,
   updateCartItemQuantity,
-} from '@/lib/api/cart'
+} from '@/services/cart'
 
 // Type for translation function
 type TranslationFunction = (key: string) => string

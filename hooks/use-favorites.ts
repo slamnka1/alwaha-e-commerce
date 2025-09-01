@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { getFavoriteItems } from '@/lib/api/favorites'
+import { getFavoriteItems } from '@/services/favorites'
 
 export function useFavoriteItems() {
   return useQuery({

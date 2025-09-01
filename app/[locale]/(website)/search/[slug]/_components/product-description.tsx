@@ -15,9 +15,9 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Product } from '@/lib/api/products'
 import { Link } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
+import { Product } from '@/services/products'
 
 import UserSize from './user-size'
 

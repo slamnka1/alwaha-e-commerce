@@ -10,8 +10,8 @@ import Image from 'next/image'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Product } from '@/lib/api/products'
 import { cn } from '@/lib/utils'
+import { Product } from '@/services/products'
 
 export interface FavoriteItem {
   id: string

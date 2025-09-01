@@ -10,8 +10,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel'
-import { Product } from '@/lib/api/products'
 import { cn } from '@/lib/utils'
+import { Product } from '@/services/products'
 
 import { ProductCard } from './product-card'
 

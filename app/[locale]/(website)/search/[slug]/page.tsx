@@ -2,7 +2,7 @@ import React from 'react'
 
 import { getTranslations } from 'next-intl/server'
 
-import { getProduct, getProducts } from '@/lib/api/products'
+import { getProduct, getProducts } from '@/services/products'
 
 import ProductsSlider from '../../_components/products-silder'
 import Hero from './_components/hero'

@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { searchProducts } from '@/lib/api/products'
+import { searchProducts } from '@/services/products'
 
 import { ProductCard } from '../../_components/product-card'
 

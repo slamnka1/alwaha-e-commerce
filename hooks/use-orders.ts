@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 
 import { useCallback, useEffect, useRef } from 'react'
 
-import { type OrdersResponse, getOrders } from '@/lib/api/orders'
+import { type OrdersResponse, getOrders } from '@/services/orders'
 
 // Query key for orders data
 export const ordersQueryKey = ['orders']
