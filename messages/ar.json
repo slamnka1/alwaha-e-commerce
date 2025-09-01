@@ -357,6 +357,7 @@
       "firstName": "الاسم الأول",
       "lastName": "اسم العائلة",
       "phone": "رقم الهاتف",
+      "otherPhone": "رقم الهاتف الآخر",
       "emirate": "الإمارة",
       "region": "المنطقة",
       "fullAddress": "العنوان الكامل",
@@ -367,6 +368,8 @@
       "emiratePlaceholder": "اختر الإمارة",
       "regionPlaceholder": "اختر المنطقة",
       "addressPlaceholder": "أدخل عنوانك الكامل",
+      "addCurrentAddress": "اضافة العنوان الحالي",
+      "currentAddressTitle": "عنواني الحالي",
       "validation": {
         "firstNameRequired": "الاسم الأول مطلوب",
         "lastNameRequired": "اسم العائلة مطلوب",

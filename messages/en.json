@@ -352,6 +352,7 @@
       "firstName": "First Name",
       "lastName": "Last Name",
       "phone": "Phone Number",
+      "otherPhone": "Other Phone Number",
       "emirate": "Emirate",
       "region": "Region/Area",
       "fullAddress": "Full Address",
@@ -362,6 +363,8 @@
       "emiratePlaceholder": "Select Emirate",
       "regionPlaceholder": "Select Region",
       "addressPlaceholder": "Enter your full address",
+      "addCurrentAddress": "Add Current Address",
+      "currentAddressTitle": "My Current Address",
       "validation": {
         "firstNameRequired": "First name is required",
         "lastNameRequired": "Last name is required",
