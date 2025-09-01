@@ -3,6 +3,7 @@
 import Autoplay from 'embla-carousel-autoplay'
 import Fade from 'embla-carousel-fade'
 import { UseEmblaCarouselType } from 'embla-carousel-react'
+import { ShoppingCart } from 'lucide-react'
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
@@ -274,6 +275,7 @@ const useCarouselScaling = (emblaApi: CarouselApi | undefined) => {
 const PreviewCarousel = () => {
   const t = useTranslations('preview')
   const [emblaApi, setApi] = useState<CarouselApi>()
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
 
   // Use the custom hook for scaling animations
   useCarouselScaling(emblaApi)
@@ -288,8 +290,22 @@ const PreviewCarousel = () => {
     [emblaApi]
   )
 
+  // Update current slide index when carousel changes
+  useEffect(() => {
+    if (!emblaApi) return
+
+    const onSlideChange = () => {
+      setCurrentSlideIndex(emblaApi.selectedScrollSnap())
+    }
+
+    emblaApi.on('select', onSlideChange)
+    return () => {
+      emblaApi.off('select', onSlideChange)
+    }
+  }, [emblaApi])
+
   return (
-    <section className="pt-6 pb-8 md:pb-16">
+    <section className="pt-6">
       {/* Content Section */}
       <div className="container mx-auto px-4 text-center">
         <h2 className="mb-4 text-lg leading-tight font-bold lg:text-3xl 2xl:text-4xl">
@@ -310,7 +326,6 @@ const PreviewCarousel = () => {
           opts={{
             align: 'center',
             slidesToScroll: 1,
-            dragFree: true,
             containScroll: false,
           }}
           plugins={[
@@ -323,10 +338,26 @@ const PreviewCarousel = () => {
           setApi={setApi}
           className="w-full"
         >
-          <CarouselContent className="my-24 -ml-2 md:-ml-4 lg:my-36 xl:my-48">
+          <CarouselContent className="my-14 ml-0 pb-8 sm:my-24 md:pb-16 lg:my-36 xl:my-48">
             {slides.map((value, index) => (
-              <CarouselItem key={value.id} className="basis-1/4 md:basis-1/6">
-                <PreviewCard {...value} onClick={() => scrollToSlide(index)} />
+              <CarouselItem
+                key={value.id}
+                className="basis-1/6 pl-0 md:basis-1/7"
+              >
+                <div className="relative">
+                  <PreviewCard
+                    {...value}
+                    onClick={() => scrollToSlide(index)}
+                  />
+                  {/* Shopping cart icon for active slide */}
+                  {index === currentSlideIndex && (
+                    <div className="absolute right-1/2 bottom-0 z-20 translate-x-1/2 translate-y-1/2 cursor-pointer">
+                      <div className="bg-primary rounded-full border border-white p-1 shadow-md md:p-1.5 lg:border-[3px] lg:p-2.5 lg:shadow-lg">
+                        <ShoppingCart className="size-2.5 text-white md:size-3 lg:size-6" />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>

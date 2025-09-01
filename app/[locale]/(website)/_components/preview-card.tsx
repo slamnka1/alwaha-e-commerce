@@ -18,6 +18,7 @@ export interface ProductCardType {
 
 interface PreviewCardProps extends ProductCardType {
   onClick?: () => void
+  active?: boolean
 }
 
 export function PreviewCard({
@@ -27,11 +28,12 @@ export function PreviewCard({
   discount,
   price,
   onClick,
+  active,
 }: PreviewCardProps) {
   return (
     <Card
       className={cn(
-        'group relative my-4 cursor-pointer overflow-hidden border-2 border-white p-0 shadow-[0px_4px_4px_0px_#00000040] transition-transform select-none max-md:rounded-md'
+        'group relative my-4 cursor-pointer overflow-hidden rounded-[8px] border-1 border-white p-0 shadow-md transition-transform select-none md:rounded-md lg:rounded-xl lg:border-[3px] lg:shadow-lg'
       )}
       onClick={onClick}
     >
@@ -40,11 +42,11 @@ export function PreviewCard({
 
         {/* Discount Badge */}
         {discount && (
-          <div className="absolute top-0.5 right-3.5 z-10 lg:right-4.5">
+          <div className="absolute top-0.5 right-2.5 z-10 md:right-3.5 lg:right-4.5">
             <Image
               src={discountIcon}
               alt="discount"
-              className="size-7 lg:size-8"
+              className="size-4 lg:size-8"
             />
           </div>
         )}
@@ -56,7 +58,7 @@ export function PreviewCard({
               style={{
                 writingMode: 'vertical-lr',
               }}
-              className="bg-primary rounded-bl-md border-[0.5px] border-white px-1.5 py-0.5 text-[6px] font-medium text-white lg:px-2 lg:py-1 lg:!text-[8px]"
+              className="bg-primary rounded-bl-[8px] border-[0.5px] border-white px-1 py-0.5 text-[4px] font-medium text-white md:text-[6px] lg:rounded-tr-lg lg:rounded-bl-md lg:px-2 lg:py-1 lg:!text-[8px]"
             >
               FREE SIZE
             </div>
