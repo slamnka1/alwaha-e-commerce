@@ -16,9 +16,8 @@ export interface ApiResponse<T = any> {
 }
 
 // Create axios instance with default config
-const apiClient: AxiosInstance = axios.create({
+export const apiClient: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
-  timeout: 10000, // 10 seconds
 })
 
 // Request interceptor

@@ -33,7 +33,7 @@ export function PreviewCard({
   return (
     <Card
       className={cn(
-        'group relative my-4 cursor-pointer overflow-hidden rounded-[8px] border-1 border-white p-0 shadow-md transition-transform select-none md:rounded-md lg:rounded-xl lg:border-[3px] lg:shadow-lg'
+        'group relative my-4 cursor-pointer overflow-hidden rounded-[8px] border-2 border-white p-0 shadow-md transition-transform select-none md:rounded-md lg:rounded-xl lg:border-[3px] lg:shadow-lg'
       )}
       onClick={onClick}
     >
