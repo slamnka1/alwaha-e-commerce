@@ -1,4 +1,10 @@
 {
+  "common": {
+    "selectEmirate": "اختر الإمارة",
+    "loadingEmirates": "جاري تحميل الإمارات...",
+    "errorLoadingEmirates": "خطأ في تحميل الإمارات",
+    "see-more": " رؤية المزيد"
+  },
   "home-page": {
     "title": "مرحبا بك في الواحة",
     "about": "اذهب إلى صفحة الحول",
@@ -37,27 +43,32 @@
     "signup": {
       "welcome": "أنشئ حسابك في ثوان",
       "subtitle": "سجل الآن وتمتع بتجربة تسوق استثنائية",
-      "firstName": "الأسم الأول",
-      "lastName": "الأسم الأخير",
+      "name": "الاسم الكامل",
       "phone": "رقم الهاتف",
+      "email": "البريد الإلكتروني",
       "password": "كلمة السر",
       "confirmPassword": "تأكيد كلمة السر",
-      "firstNamePlaceholder": "الأسم الأول",
-      "lastNamePlaceholder": "الأسم الأخير",
+      "emirate": "الإمارة",
+      "namePlaceholder": "أدخل اسمك الكامل",
       "phonePlaceholder": "50 123 4567",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
       "passwordPlaceholder": "كلمة السر",
       "confirmPasswordPlaceholder": "تأكيد كلمة السر",
+      "emiratePlaceholder": "اختر الإمارة",
       "signupButton": "سجل الآن",
       "haveAccount": "لديك حساب بالفعل ؟",
       "loginNow": "سجل الدخول الآن",
       "validation": {
-        "firstNameRequired": "الأسم الأول مطلوب",
-        "lastNameRequired": "الأسم الأخير مطلوب",
+        "nameRequired": "الاسم الكامل مطلوب",
         "phoneRequired": "رقم الهاتف مطلوب",
+        "emailRequired": "البريد الإلكتروني مطلوب",
+        "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
         "passwordRequired": "كلمة السر مطلوبة",
         "confirmPasswordRequired": "يرجى تأكيد كلمة السر",
         "passwordsDoNotMatch": "كلمات السر غير متطابقة",
         "invalid-phone-number": "رقم الهاتف غير صالح",
+        "emirateRequired": "يرجى اختيار الإمارة",
+        "errorLoadingEmirates": "خطأ في تحميل الإمارات",
         "privacyPolicyRequired": "يجب الموافقة على سياسة الخصوصية وشروط الاستخدام للمتابعة"
       },
       "privacyPolicy": "هل توافق على<a> سياسة الخصوصية</a>, <a2>وشروط الاستخدام</a2>؟"
@@ -273,9 +284,7 @@
     "title": "تشكيلة سباحة شرعية... أناقة وراحة لكل الأجسام",
     "description": "تصاميم عملية وعصرية تلبي احتياجك للستر والأناقة، وتمنحك راحة حقيقية في كل طلعة بحر أو مسبح. اختاري لونك ومقاسك بكل سهولة... وعيشي صيفك بثقة"
   },
-  "common": {
-    "see-more": " رؤية المزيد"
-  },
+
   "product-card": {
     "plus-size": "مقاس كبير",
     "colors": "الوان",

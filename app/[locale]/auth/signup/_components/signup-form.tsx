@@ -4,12 +4,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
+import { toast } from 'sonner'
 import * as z from 'zod'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
+import { EmirateSelect } from '@/components/ui/emirate-select'
 import {
   Form,
   FormControl,
@@ -21,31 +24,35 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import PhoneInput from '@/components/ui/phone-input'
 import { Link } from '@/lib/i18n/navigation'
+import { authService } from '@/services/auth'
 
 const SignupForm = () => {
   const t = useTranslations('auth.signup')
+  const router = useRouter()
+  const locale = useLocale()
 
   const signupSchema = z
     .object({
-      firstName: z.string().min(1, t('validation.firstNameRequired')),
-      lastName: z.string().min(1, t('validation.lastNameRequired')),
-      phone: z
+      name: z.string().min(1, t('validation.nameRequired')),
+      phone_number: z
         .string()
         .min(1, t('validation.phoneRequired'))
         .refine((value) => isPossiblePhoneNumber(value), {
           message: t('validation.invalid-phone-number'),
         }),
+      email: z.email(t('validation.invalidEmail')),
       password: z.string().min(6, t('validation.passwordRequired')),
-      confirmPassword: z
+      password_confirmation: z
         .string()
         .min(1, t('validation.confirmPasswordRequired')),
+      emirate_id: z.string().min(1, t('validation.emirateRequired')),
       approve: z.boolean().refine((value) => value, {
         message: t('validation.privacyPolicyRequired'),
       }),
     })
-    .refine((data) => data.password === data.confirmPassword, {
+    .refine((data) => data.password === data.password_confirmation, {
       message: t('validation.passwordsDoNotMatch'),
-      path: ['confirmPassword'],
+      path: ['password_confirmation'],
     })
 
   type SignupFormData = z.infer<typeof signupSchema>
@@ -53,18 +60,26 @@ const SignupForm = () => {
   const form = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      phone: '',
+      name: '',
+      phone_number: '',
+      email: '',
       password: '',
-      confirmPassword: '',
+      password_confirmation: '',
+      emirate_id: '',
       approve: false,
     },
   })
 
-  const onSubmit = (data: SignupFormData) => {
-    console.log(data)
-    // Handle signup logic here
+  const onSubmit = async (data: SignupFormData) => {
+    try {
+      const response = await authService.signup(data)
+      console.log('🚀 ~ onSubmit ~ response:', response)
+    } catch (error: any) {
+      console.error('Signup error:', error)
+      toast.error(
+        error.response?.data?.message || 'An error occurred during signup'
+      )
+    }
   }
 
   return (
@@ -81,35 +96,57 @@ const SignupForm = () => {
           className="mx-auto max-w-md space-y-4"
           autoComplete="off"
         >
-          {/* First Name Field */}
+          {/* Full Name Field */}
           <FormField
             control={form.control}
-            name="firstName"
+            name="name"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input placeholder={t('firstNamePlaceholder')} {...field} />
+                  <Input placeholder={t('namePlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          {/* Last Name Field */}
-          <FormField
-            control={form.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder={t('lastNamePlaceholder')} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
+          {/* Phone Number Field */}
           <PhoneInput />
+
+          {/* Email Field */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder={t('emailPlaceholder')}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Emirate Field */}
+          <FormField
+            control={form.control}
+            name="emirate_id"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <EmirateSelect
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           {/* Password Field */}
           <FormField
@@ -132,7 +169,7 @@ const SignupForm = () => {
           {/* Confirm Password Field */}
           <FormField
             control={form.control}
-            name="confirmPassword"
+            name="password_confirmation"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
@@ -183,6 +220,7 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
+
           {/* Signup Button */}
           <Button
             disabled={form.formState.isSubmitting}
@@ -191,7 +229,7 @@ const SignupForm = () => {
           >
             {t('signupButton')}
             {form.formState.isSubmitting && (
-              <Loader2 className="animate-spin" />
+              <Loader2 className="ml-2 h-4 w-4 animate-spin" />
             )}
           </Button>
 

@@ -24,7 +24,7 @@ const LoginForm = () => {
   const t = useTranslations('auth.login')
 
   const loginSchema = z.object({
-    phone: z
+    phone_number: z
       .string()
       .min(1, t('validation.phoneRequired'))
       .refine((value) => isPossiblePhoneNumber(value), {
@@ -38,7 +38,7 @@ const LoginForm = () => {
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      phone: '',
+      phone_number: '',
       password: '',
     },
   })
@@ -49,17 +49,17 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="w-full max-w-xl mx-auto space-y-6">
+    <div className="mx-auto w-full max-w-xl space-y-6">
       {/* Welcome Message */}
-      <div className="text-center space-y-4">
-        <h1 className="text-2xl lg:text-4xl font-bold ">{t('welcome')}</h1>
-        <p className="text-lg lg:text-2xl font-semibold">{t('subtitle')}</p>
+      <div className="space-y-4 text-center">
+        <h1 className="text-2xl font-bold lg:text-4xl">{t('welcome')}</h1>
+        <p className="text-lg font-semibold lg:text-2xl">{t('subtitle')}</p>
       </div>
 
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 max-w-md mx-auto"
+          className="mx-auto max-w-md space-y-4"
           autoComplete="off"
         >
           <PhoneInput />
@@ -93,7 +93,7 @@ const LoginForm = () => {
           <Button
             disabled={form.formState.isSubmitting}
             type="submit"
-            className="w-full  text-white py-3 text-lg font-medium"
+            className="w-full py-3 text-lg font-medium text-white"
           >
             {t('loginButton')}
             {form.formState.isSubmitting && (
@@ -106,7 +106,7 @@ const LoginForm = () => {
             <span className="text-gray-600">{t('noAccount')} </span>
             <Link
               href="/auth/signup"
-              className=" text-primary hover:underline font-medium"
+              className="text-primary font-medium hover:underline"
             >
               {t('signUp')}
             </Link>

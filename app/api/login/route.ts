@@ -3,39 +3,30 @@ import axios from 'axios'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-import { Session } from '@/@types/user'
+import { Session, UserResponse } from '@/@types/user'
 import apiClient from '@/services/axios'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const response = await apiClient.post<Session>('/account/otp/check', body)
-    const session = response.data
+    const response = await apiClient.post<UserResponse>(
+      '/auth/verify-otp',
+      body
+    )
+    const session: Session = {
+      ...response.data.user,
+      access_token: response.data.authorization.token,
+    }
     const cookieStore = await cookies()
     const expiresAt = new Date(Date.now() + 360 * 24 * 60 * 60 * 1000)
 
-    cookieStore.set(
-      'session',
-      JSON.stringify({
-        ...session,
-        user: {
-          id: session.user.id,
-          name: session.user.name,
-          email: session.user.email,
-          phonenumber: session.user.phonenumber,
-          nafath_validated: session.user.nafath_validated,
-          wallet_balance: session.user.wallet_balance,
-          avatar: session.user.avatar,
-        },
-      }),
-      {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
-        path: '/',
-        expires: expiresAt,
-      }
-    )
+    cookieStore.set('session', JSON.stringify(session), {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
+      expires: expiresAt,
+    })
 
     return NextResponse.json(session)
   } catch (error) {

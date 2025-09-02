@@ -1,4 +1,10 @@
 {
+  "common": {
+    "selectEmirate": "Select Emirate",
+    "loadingEmirates": "Loading emirates...",
+    "errorLoadingEmirates": "Error loading emirates",
+    "see-more": "See more"
+  },
   "home-page": {
     "title": "Hello world!",
     "about": "Go to the about page",
@@ -37,27 +43,32 @@
     "signup": {
       "welcome": "Create your account in seconds",
       "subtitle": "Register now and enjoy an exceptional shopping experience",
-      "firstName": "First Name",
-      "lastName": "Last Name",
+      "name": "Full Name",
       "phone": "Phone Number",
+      "email": "Email Address",
       "password": "Password",
       "confirmPassword": "Confirm Password",
-      "firstNamePlaceholder": "First Name",
-      "lastNamePlaceholder": "Last Name",
+      "emirate": "Emirate",
+      "namePlaceholder": "Enter your full name",
       "phonePlaceholder": "50 123 4567",
+      "emailPlaceholder": "Enter your email address",
       "passwordPlaceholder": "Password",
       "confirmPasswordPlaceholder": "Confirm Password",
+      "emiratePlaceholder": "Select Emirate",
       "signupButton": "Register Now",
       "haveAccount": "Already have an account?",
       "loginNow": "Login now",
       "validation": {
-        "firstNameRequired": "First name is required",
-        "lastNameRequired": "Last name is required",
+        "nameRequired": "Full name is required",
         "phoneRequired": "Phone number is required",
+        "emailRequired": "Email address is required",
+        "invalidEmail": "Please enter a valid email address",
         "passwordRequired": "Password is required",
         "confirmPasswordRequired": "Please confirm your password",
         "passwordsDoNotMatch": "Passwords do not match",
         "invalid-phone-number": "Invalid phone number",
+        "emirateRequired": "Please select an emirate",
+        "errorLoadingEmirates": "Error loading emirates",
         "privacyPolicyRequired": "You must accept the privacy policy to continue"
       },
       "privacyPolicy": "I agree to the <a>Privacy Policy</a> and <a2>Terms of Service</a2>"
@@ -270,9 +281,7 @@
     "title": "Modest Swimwear Collection... Elegance and Comfort for All Body Types",
     "description": "Practical and modern designs that meet your need for modesty and elegance, and give you real comfort on every beach trip or in the pool. Choose your color and size with ease... and live your summer with confidence."
   },
-  "common": {
-    "see-more": "See more"
-  },
+
   "product-card": {
     "plus-size": "plus size",
     "colors": "colors",

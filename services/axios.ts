@@ -1,23 +1,8 @@
 import axios, { AxiosInstance } from 'axios'
 
-// Define error response structure
-export interface ApiError {
-  message: string
-  status: number
-  code?: string
-  details?: any
-}
-
-// Define successful response structure
-export interface ApiResponse<T = any> {
-  data: T
-  message?: string
-  status: number
-}
-
 // Create axios instance with default config
 export const apiClient: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api',
+  baseURL: 'https://waha.droos.live/api',
 })
 
 // Request interceptor

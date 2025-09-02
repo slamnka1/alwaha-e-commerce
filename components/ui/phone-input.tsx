@@ -25,7 +25,7 @@ const PhoneInput = ({ withLabel = false }: { withLabel?: boolean }) => {
   return (
     <FormField
       control={form.control}
-      name="phone"
+      name="phone_number"
       render={({ field }) => (
         <FormItem>
           {withLabel && (
