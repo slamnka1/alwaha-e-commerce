@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
 import { Link } from '@/lib/i18n/navigation'
+import { authService } from '@/services/auth'
 import { useSession } from '@/store/session-store'
 
 type Props = {}
@@ -72,7 +73,10 @@ const UserButton = (props: Props) => {
           </DropdownMenuItem>
           <Separator />
 
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem
+            onClick={() => authService.logout()}
+            className="cursor-pointer"
+          >
             {t('logout')}
           </DropdownMenuItem>
         </DropdownMenuContent>

@@ -1,4 +1,7 @@
+import axios from 'axios'
+
 import { Session, UserResponse } from '@/@types/user'
+import { useSession } from '@/store/session-store'
 
 import { apiClient } from './axios'
 
@@ -59,6 +62,12 @@ export const authService = {
   },
 
   async logout(): Promise<void> {
-    await apiClient.post('/auth/logout')
+    try {
+      await axios.post('/api/logout')
+      useSession.getState().clearSession()
+      await apiClient.post('/auth/logout')
+    } catch (error) {
+      console.error('Logout error:', error)
+    }
   },
 }

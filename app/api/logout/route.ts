@@ -1,11 +1,10 @@
-import { cookies } from "next/headers"
-import { NextResponse } from "next/server"
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 export async function POST() {
   const cookieStore = await cookies()
-  cookieStore.delete("session")
+  cookieStore.delete('session')
+  console.log('first')
 
-  return NextResponse.json({
-    message: "Logged out successfully",
-  })
+  return redirect('/')
 }
