@@ -26,7 +26,7 @@ const KnowYourSize = () => {
           {t('description')}
         </p>
         <Button asChild variant="secondary" className="px-8">
-          <Link href="/profile/size">{t('button')}</Link>
+          <Link href="/auth/register">{t('button')}</Link>
         </Button>
       </div>
     </section>
