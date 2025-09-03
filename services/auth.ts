@@ -2,7 +2,7 @@ import { Session, UserResponse } from '@/@types/user'
 
 import { apiClient } from './axios'
 
-export interface SignupData {
+interface SignupData {
   name: string
   phone_number: string
   email: string
@@ -11,16 +11,9 @@ export interface SignupData {
   emirate_id: string
 }
 
-export interface SignupResponse {
-  message: string
-  user?: {
-    id: number
-    name: string
-    email: string
-    phone_number: string
-    emirate_id: number
-  }
-  token?: string
+interface LoginData {
+  phone_number: string
+  password: string
 }
 
 export const authService = {
@@ -32,12 +25,15 @@ export const authService = {
     }
   },
 
-  async login(phone: string, password: string): Promise<SignupResponse> {
-    const response = await apiClient.post('/auth/login', {
+  async login(phone: string, password: string): Promise<Session> {
+    const response = await apiClient.post<UserResponse>('/auth/login', {
       phone_number: phone,
       password,
     })
-    return response.data
+    return {
+      ...response.data.user,
+      access_token: response.data.authorization.token,
+    }
   },
 
   async logout(): Promise<void> {

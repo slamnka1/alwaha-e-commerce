@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-import { Session } from '@/@types/user'
+import { Session, UserResponse } from '@/@types/user'
 import apiClient from '@/services/axios'
 
 export const GET = async () => {
@@ -13,9 +13,9 @@ export const GET = async () => {
   // parse session
   const oldSession = JSON.parse(session) as Session
 
-  const {
-    data: { data: updatedSession },
-  } = await apiClient.get<{ data: Session }>('/account/me', {
+  const updatedSessionResponse = await apiClient.get<{
+    user: UserResponse['user']
+  }>('/account/me', {
     headers: {
       Authorization: `Bearer ${oldSession.access_token}`,
     },
@@ -24,16 +24,8 @@ export const GET = async () => {
   cookieStore.set(
     'session',
     JSON.stringify({
-      ...updatedSession,
-      user: {
-        id: updatedSession.user.id,
-        name: updatedSession.user.name,
-        email: updatedSession.user.email,
-        phonenumber: updatedSession.user.phonenumber,
-        nafath_validated: updatedSession.user.nafath_validated,
-        wallet_balance: updatedSession.user.wallet_balance,
-        avatar: updatedSession.user.avatar,
-      },
+      ...updatedSessionResponse.data.user,
+      access_token: oldSession.access_token,
     }),
     {
       httpOnly: true,
@@ -44,5 +36,5 @@ export const GET = async () => {
     }
   )
 
-  return NextResponse.json(updatedSession)
+  return NextResponse.json(updatedSessionResponse.data.user)
 }
