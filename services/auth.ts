@@ -16,6 +16,12 @@ interface LoginData {
   password: string
 }
 
+interface SendOTPResponse {
+  status: 'success'
+  message: 'OTP sent successfully.'
+  otp: number
+}
+
 export const authService = {
   async signup(data: SignupData): Promise<Session> {
     const response = await apiClient.post<UserResponse>('/auth/register', data)
@@ -25,10 +31,26 @@ export const authService = {
     }
   },
 
-  async login(phone: string, password: string): Promise<Session> {
-    const response = await apiClient.post<UserResponse>('/auth/login', {
-      phone_number: phone,
-      password,
+  async sendOTP({
+    phone_number,
+  }: {
+    phone_number: string
+  }): Promise<SendOTPResponse> {
+    const response = await apiClient.post<SendOTPResponse>('/auth/login', {
+      phone_number,
+    })
+    return response.data
+  },
+  async verifyOTP({
+    phone_number,
+    otp,
+  }: {
+    phone_number: string
+    otp: number
+  }): Promise<Session> {
+    const response = await apiClient.post<UserResponse>('/auth/verify-otp', {
+      phone_number,
+      otp,
     })
     return {
       ...response.data.user,

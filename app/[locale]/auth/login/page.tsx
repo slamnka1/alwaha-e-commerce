@@ -11,7 +11,7 @@ type Props = {}
 const LoginPage = (props: Props) => {
   return (
     <div className="container">
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+      <div className="flex flex-col items-center justify-center gap-10 md:flex-row">
         <div className="w-2/3 md:w-1/2">
           <Image alt="login" className="mx-auto" src={LoginImage} />
         </div>

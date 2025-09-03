@@ -154,8 +154,9 @@
       "description": "Please enter the code sent to your phone number:",
       "submitButton": "Send Code",
       "validation": {
-        "otpLength": "OTP must be exactly 5 digits"
-      }
+        "otpLength": "OTP must be exactly 6 digits"
+      },
+      "resendOTP": "Resend OTP"
     }
   },
   "header": {
@@ -281,7 +282,6 @@
     "title": "Modest Swimwear Collection... Elegance and Comfort for All Body Types",
     "description": "Practical and modern designs that meet your need for modesty and elegance, and give you real comfort on every beach trip or in the pool. Choose your color and size with ease... and live your summer with confidence."
   },
-
   "product-card": {
     "plus-size": "plus size",
     "colors": "colors",

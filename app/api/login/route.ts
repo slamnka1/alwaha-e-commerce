@@ -3,20 +3,14 @@ import axios from 'axios'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-import { Session, UserResponse } from '@/@types/user'
-import apiClient from '@/services/axios'
+import { authService } from '@/services/auth'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const response = await apiClient.post<UserResponse>(
-      '/auth/verify-otp',
-      body
-    )
-    const session: Session = {
-      ...response.data.user,
-      access_token: response.data.authorization.token,
-    }
+    console.log('🚀 ~ POST ~ body:', body)
+    const session = await authService.verifyOTP(body)
+
     const cookieStore = await cookies()
     const expiresAt = new Date(Date.now() + 360 * 24 * 60 * 60 * 1000)
 
@@ -32,13 +26,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       return NextResponse.json(
-        {
-          message:
-            error.response?.status === 403 ? 'invalid-OTP' : 'server-error',
-          errors: [
-            error.response?.status === 403 ? 'invalid-OTP' : 'server-error',
-          ],
-        },
+        { ...error.response?.data },
         { status: error.response?.status }
       )
     }

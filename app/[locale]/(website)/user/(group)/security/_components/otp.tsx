@@ -28,7 +28,7 @@ export function OTPForm() {
 
   // Form validation schema
   const otpSchema = z.object({
-    otp: z.string().length(5, t('validation.otpLength')),
+    otp: z.string().length(6, t('validation.otpLength')),
   })
 
   type OTPFormData = z.infer<typeof otpSchema>
