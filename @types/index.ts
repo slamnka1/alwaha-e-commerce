@@ -1,9 +1,8 @@
 // Define error response structure
 export interface ApiError {
+  status: string
   message: string
-  status: number
-  code?: string
-  details?: any
+  errors?: { [key: string]: string[] }
 }
 
 // Define successful response structure

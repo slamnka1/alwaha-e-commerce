@@ -1,14 +1,14 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import axios from 'axios'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import { toast } from 'sonner'
 import * as z from 'zod'
 
-import { useLocale, useTranslations } from 'next-intl'
-import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -20,16 +20,16 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form'
+import { FormErrorMessage } from '@/components/ui/form-error-message'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import PhoneInput from '@/components/ui/phone-input'
-import { Link } from '@/lib/i18n/navigation'
-import { authService } from '@/services/auth'
+import { Link, useRouter } from '@/lib/i18n/navigation'
+import { handleFormError } from '@/utils/handle-form-errors'
 
 const SignupForm = () => {
   const t = useTranslations('auth.signup')
   const router = useRouter()
-  const locale = useLocale()
 
   const signupSchema = z
     .object({
@@ -72,9 +72,10 @@ const SignupForm = () => {
 
   const onSubmit = async (data: SignupFormData) => {
     try {
-      const response = await authService.signup(data)
-      console.log('🚀 ~ onSubmit ~ response:', response)
+      await axios.post('/api/register', data)
+      router.push('/')
     } catch (error: any) {
+      handleFormError(error, form)
       console.error('Signup error:', error)
       toast.error(
         error.response?.data?.message || 'An error occurred during signup'
@@ -232,6 +233,7 @@ const SignupForm = () => {
               <Loader2 className="ml-2 h-4 w-4 animate-spin" />
             )}
           </Button>
+          <FormErrorMessage />
 
           {/* Login Link */}
           <div className="text-center">

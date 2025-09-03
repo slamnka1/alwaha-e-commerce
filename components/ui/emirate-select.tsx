@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useEmirates } from '@/hooks'
+import { cn } from '@/lib/utils'
 
 interface EmirateSelectProps {
   value: string
@@ -40,7 +41,7 @@ export const EmirateSelect = ({
       onValueChange={onValueChange}
       disabled={disabled || isLoading}
     >
-      <SelectTrigger className={className}>
+      <SelectTrigger className={cn('w-full', className)}>
         <SelectValue
           placeholder={
             isLoading
@@ -52,16 +53,6 @@ export const EmirateSelect = ({
         />
       </SelectTrigger>
       <SelectContent>
-        {isLoading && (
-          <SelectItem value="" disabled>
-            {loadingText}
-          </SelectItem>
-        )}
-        {error && (
-          <SelectItem value="" disabled>
-            {errorText}
-          </SelectItem>
-        )}
         {emirates.map((emirate) => (
           <SelectItem key={emirate.id} value={emirate.id.toString()}>
             {getEmirateName(emirate.id)}

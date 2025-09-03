@@ -9,14 +9,14 @@ export const apiClient: AxiosInstance = axios.create({
 apiClient.interceptors.request.use(
   (config) => {
     // Add auth token if available
-    const token = localStorage.getItem('auth-token')
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
-    }
+    // const token = localStorage.getItem('auth-token')
+    // if (token) {
+    //   config.headers.Authorization = `Bearer ${token}`
+    // }
 
-    // Add locale header for internationalization
-    const locale = document.documentElement.lang || 'en'
-    config.headers['Accept-Language'] = locale
+    // // Add locale header for internationalization
+    // const locale = document.documentElement.lang || 'en'
+    // config.headers['Accept-Language'] = locale
 
     return config
   },
