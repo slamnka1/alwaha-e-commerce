@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { getProducts } from '@/services/products'
 import { getTypeCategories } from '@/services/types'
+import { getServerSession } from '@/utils/get-server-session'
 
 import Hero from './_components/hero'
 import KnowYourSizeAuth from './_components/know-you-size-auth'
@@ -16,13 +17,13 @@ export default async function HomePage() {
   const typeData = await getTypeCategories()
   const products = await getProducts()
   const t = await getTranslations('home-page')
+  const session = await getServerSession()
   return (
     <React.Fragment>
       <Hero />
       <TypeSlider typeData={typeData} />
       <PreviewCarousel />
-      <KnowYourSize />
-      <KnowYourSizeAuth />
+      {!session ? <KnowYourSize /> : <KnowYourSizeAuth />}
       <ProductsSlider products={products} title={t('new-products')} />
       <ProductsSlider products={products} title={t('offers')} />
       <ProductsSlider products={products} title={t('pluse-size')} />
