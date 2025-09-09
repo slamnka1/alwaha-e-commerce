@@ -35,7 +35,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
                 {t('plus-size')}
               </div>
             )}
-            {Number(props.discount_percent) && (
+            {Number(props.discount_percent) > 0 && (
               <div
                 className={cn(
                   'bg-primary rounded-br-xl border border-white px-3 py-1 text-xs font-bold text-white md:rounded-br-3xl lg:px-4 lg:text-base',
