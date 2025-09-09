@@ -18,14 +18,20 @@ import {
 import { Input } from './input'
 import { Select } from './select'
 
-const PhoneInput = ({ withLabel = false }: { withLabel?: boolean }) => {
+const PhoneInput = ({
+  withLabel = false,
+  name = 'phone_number',
+}: {
+  withLabel?: boolean
+  name?: string
+}) => {
   const locale = useLocale()
   const form = useFormContext()
   const t = useTranslations('cart.checkout')
   return (
     <FormField
       control={form.control}
-      name="phone_number"
+      name={name}
       render={({ field }) => (
         <FormItem>
           {withLabel && (

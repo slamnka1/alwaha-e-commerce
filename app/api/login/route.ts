@@ -8,8 +8,7 @@ import { authService } from '@/services/auth'
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    console.log('🚀 ~ POST ~ body:', body)
-    const session = await authService.verifyOTP(body)
+    const session = await authService.login(body)
 
     const cookieStore = await cookies()
     const expiresAt = new Date(Date.now() + 360 * 24 * 60 * 60 * 1000)

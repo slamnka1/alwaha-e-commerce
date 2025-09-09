@@ -60,6 +60,22 @@ export const authService = {
       access_token: response.data.authorization.token,
     }
   },
+  async login({
+    phone_number,
+    password,
+  }: {
+    phone_number: string
+    password: number
+  }): Promise<Session> {
+    const response = await apiClient.post<UserResponse>('/auth/login', {
+      phone_number,
+      password,
+    })
+    return {
+      ...response.data.user,
+      access_token: response.data.authorization.token,
+    }
+  },
 
   async logout(): Promise<void> {
     try {

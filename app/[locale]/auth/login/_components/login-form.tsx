@@ -1,8 +1,8 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import axios from 'axios'
 import { Loader2 } from 'lucide-react'
-import { parseAsInteger, parseAsString, useQueryStates } from 'nuqs'
 import { useForm } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import * as z from 'zod'
@@ -20,23 +20,20 @@ import {
 import { FormErrorMessage } from '@/components/ui/form-error-message'
 import { Input } from '@/components/ui/input'
 import PhoneInput from '@/components/ui/phone-input'
-import { Link } from '@/lib/i18n/navigation'
+import { Link, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
-import { authService } from '@/services/auth'
 import { handleFormError } from '@/utils/handle-form-errors'
-
-import { OTPForm } from './otp-form'
 
 const LoginForm = () => {
   const t = useTranslations('auth.login')
-  const [{ phone_number }, setQueryStates] = useQueryStates({
-    phone_number: parseAsString.withDefault(''),
-    time: parseAsInteger,
-    otp: parseAsInteger,
-  })
+  // const [{ phone_number }, setQueryStates] = useQueryStates({
+  //   phone_number: parseAsString.withDefault(''),
+  //   time: parseAsInteger,
+  //   otp: parseAsInteger,
+  // })
 
   const loginSchema = z.object({
-    phone_number: z
+    username: z
       .string()
       .min(1, t('validation.phoneRequired'))
       .refine((value) => isPossiblePhoneNumber(value), {
@@ -50,21 +47,17 @@ const LoginForm = () => {
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      phone_number: '',
+      username: '',
       password: '',
     },
   })
 
+  const router = useRouter()
   const onSubmit = async (data: LoginFormData) => {
     try {
-      const response = await authService.sendOTP({
-        phone_number: data.phone_number,
-      })
-      setQueryStates({
-        phone_number: data.phone_number,
-        time: Date.now(),
-        otp: response.otp,
-      })
+      const response = await axios.post('/api/login', data)
+      console.log('🚀 ~ onSubmit ~ response:', response)
+      router.push('/')
     } catch (error) {
       handleFormError(error, form)
     }
@@ -81,10 +74,10 @@ const LoginForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className={cn('mx-auto max-w-md space-y-4', phone_number && 'hidden')}
+          className={cn('mx-auto max-w-md space-y-4')}
           autoComplete="off"
         >
-          <PhoneInput />
+          <PhoneInput name="username" />
 
           {/* Password Field */}
           <FormField
@@ -136,7 +129,7 @@ const LoginForm = () => {
           </div>
         </form>
       </Form>
-      {phone_number && <OTPForm />}
+      {/* {phone_number && <OTPForm />} */}
     </div>
   )
 }
