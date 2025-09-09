@@ -3,21 +3,12 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
+import { Category } from '@/@types/categories'
+import { girls } from '@/assets'
 import { Button } from '@/components/ui/button'
+import { Link } from '@/lib/i18n/navigation'
 
-export interface TypeCardProps {
-  imageUrl: string
-  categoryName: string
-  buttonText: string
-  link: string
-}
-
-export function TypeCard({
-  imageUrl,
-  categoryName,
-  buttonText,
-  link,
-}: TypeCardProps) {
+export function TypeCard(props: Category) {
   const t = useTranslations('common')
   return (
     <div className="group relative h-50 w-full max-w-xs overflow-hidden rounded-md shadow-lg transition-all duration-300 select-none hover:shadow-xl md:h-70 lg:h-100 lg:rounded-2xl">
@@ -27,8 +18,8 @@ export function TypeCard({
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src={imageUrl}
-          alt={categoryName}
+          src={girls}
+          alt={props.category_name}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -41,7 +32,7 @@ export function TypeCard({
       <div className="relative hidden h-full flex-col items-center justify-center p-6 text-center md:flex">
         {/* Category Name */}
         <h3 className="mb-4 text-2xl font-medium text-white lg:text-3xl">
-          {categoryName}
+          {props.category_name}
         </h3>
 
         {/* View More Button */}
@@ -51,7 +42,9 @@ export function TypeCard({
           className="text-primary bg-white/90 font-semibold transition-all duration-200 hover:scale-105 hover:bg-white max-lg:h-10"
           asChild
         >
-          <a href={link}>{buttonText}</a>
+          <Link href={'/search?category=' + props.slug}>
+            {props.category_name}
+          </Link>
         </Button>
       </div>
     </div>

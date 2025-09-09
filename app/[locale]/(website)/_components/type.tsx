@@ -1,5 +1,6 @@
 'use client'
 
+import { Category } from '@/@types/categories'
 import {
   Carousel,
   CarouselContent,
@@ -7,12 +8,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { type TypeCategory } from '@/services/types'
 
 import { TypeCard } from './type-card'
 
 // Main Type Slider Component
-export default function TypeSlider({ typeData }: { typeData: TypeCategory[] }) {
+export default function TypeSlider({ typeData }: { typeData: Category[] }) {
   return (
     <section className="relative py-8 lg:py-10">
       <div className="container mx-auto px-4">
@@ -31,12 +31,7 @@ export default function TypeSlider({ typeData }: { typeData: TypeCategory[] }) {
                   key={item.id}
                   className="mx-1 w-full max-w-[120px] basis-auto pl-0 md:max-w-48 md:pl-4 lg:max-w-xs"
                 >
-                  <TypeCard
-                    imageUrl={item.imageUrl}
-                    categoryName={item.categoryName}
-                    buttonText={item.buttonText}
-                    link={item.link}
-                  />
+                  <TypeCard {...item} />
                 </CarouselItem>
               ))}
             </CarouselContent>

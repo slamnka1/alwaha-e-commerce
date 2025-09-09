@@ -4,6 +4,7 @@ import Autoplay from 'embla-carousel-autoplay'
 
 import { useTranslations } from 'next-intl'
 
+import { Product } from '@/@types/product'
 import { Button } from '@/components/ui/button'
 import {
   Carousel,
@@ -11,7 +12,6 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
-import { Product } from '@/services/products'
 
 import { ProductCard } from './product-card'
 
