@@ -8,13 +8,14 @@ import { Product } from '@/@types/product'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import useFavorite from '@/hooks/use-favorites'
 import { Link } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 export function ProductCard(props: Product & { imageOnly?: boolean }) {
   const t = useTranslations('product-card')
+  const { isFavorite, mutate: toggleFavorite, isPending } = useFavorite(props)
   const onAddToCart = () => {}
-  const toggleFavorite = () => {}
   return (
     <Card className="overflow-hidden border-0 bg-transparent py-2 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
@@ -62,12 +63,11 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
               variant="secondary"
               size={'icon'}
               className="rounded-full bg-white"
+              disabled={isPending}
             >
               <Heart
                 className={cn(
-                  props.is_favourite
-                    ? 'fill-red-500 text-red-500'
-                    : 'text-orange-500',
+                  isFavorite ? 'fill-red-500 text-red-500' : 'text-orange-500',
                   'size-4 md:size-5'
                 )}
               />
