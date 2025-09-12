@@ -4,13 +4,12 @@ import React from 'react'
 
 import { useTranslations } from 'next-intl'
 
+import { Product } from '@/@types/product'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 
-import { FavoriteItem } from './favorite-items'
-
 interface FavoriteCategoriesProps {
-  items: FavoriteItem[]
+  items: Product[]
 }
 
 export const FavoriteCategories = ({ items }: FavoriteCategoriesProps) => {
@@ -19,7 +18,7 @@ export const FavoriteCategories = ({ items }: FavoriteCategoriesProps) => {
   // Calculate category counts
   const categoryCounts = items.reduce(
     (acc, item) => {
-      const category = item.category
+      const category = item.category || 'unknown'
       acc[category] = (acc[category] || 0) + 1
       return acc
     },

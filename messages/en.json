@@ -416,6 +416,9 @@
       "description": "Your unique choices, all in one place!"
     },
     "warning": "Note: Favorite items do not guarantee reservation, hurry to complete your order before stock runs out or removal within 7 days.",
+    "pagination": {
+      "showing": "Showing {from} to {to} of {total} items"
+    },
     "table": {
       "item": "Item",
       "price": "Price",

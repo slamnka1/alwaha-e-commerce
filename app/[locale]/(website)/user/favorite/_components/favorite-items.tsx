@@ -1,44 +1,25 @@
 'use client'
 
-import { CircleX, Heart, Plus, X } from 'lucide-react'
-
-import React from 'react'
+import { Heart } from 'lucide-react'
 
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 
-import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { Button } from '@/components/ui/button'
+import { Product } from '@/@types/product'
 import { Card, CardContent } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
-import { Product } from '@/services/products'
 
-export interface FavoriteItem {
-  id: string
-  name: string
-  price: number
-  image: string
-  color: string
-  size: string
-  category: string
-  categoryAr: string
-}
+import FavoriteRow from './favorite-row'
+import MobileFavoriteRow from './mobile-favorite-row'
 
 interface FavoriteItemsProps {
-  items: FavoriteItem[]
+  items: Product[]
 }
 
 export const FavoriteItems = ({ items }: FavoriteItemsProps) => {
   const t = useTranslations('favorite.table')
 
-  const handleAddToCart = (item: FavoriteItem) => {
+  const handleAddToCart = (item: Product) => {
     // TODO: Implement add to cart functionality
     console.log('Add to cart:', item)
-  }
-
-  const handleRemoveFromFavorites = (item: FavoriteItem) => {
-    // TODO: Implement remove from favorites functionality
-    console.log('Remove from favorites:', item)
   }
 
   if (items.length === 0) {
@@ -70,66 +51,7 @@ export const FavoriteItems = ({ items }: FavoriteItemsProps) => {
         {/* Table Body */}
         <div className="divide-y">
           {items.map((item) => (
-            <div key={item.id} className="px-6 py-4">
-              <div className="grid grid-cols-9 items-center gap-4">
-                {/* Item */}
-
-                <div className="col-span-4 flex shrink-0 items-center gap-3">
-                  {/* Remove Button */}
-                  <div className="col-span-1 flex justify-center">
-                    <Heart
-                      className="text-primary fill-primary size-8"
-                      strokeWidth={1}
-                    />
-                  </div>
-                  <div className="relative aspect-square h-18 w-18 shrink-0 overflow-hidden rounded-lg">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="flex-1 space-y-4">
-                    <h3 className="font-medium">{item.name}</h3>
-                    <p className="text-xs text-[#A97C50]">
-                      {t('color')}: {item.color} | {t('size')}: {item.size}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Price */}
-                <div className="col-span-2 text-center">
-                  <span className="font-semibold">
-                    {item.price} {t('currency')}
-                  </span>
-                </div>
-
-                {/* Add to Cart */}
-                <div className="col-span-2 text-center">
-                  <Button
-                    onClick={() => handleAddToCart(item)}
-                    variant="link"
-                    size="sm"
-                    className="mx-auto flex items-center gap-2"
-                  >
-                    <Plus className="h-4 w-4" />
-                    {t('addToCart')}
-                  </Button>
-                </div>
-
-                {/* Remove */}
-                <div className="col-span-1 text-center">
-                  <Button
-                    onClick={() => handleRemoveFromFavorites(item)}
-                    variant="ghost"
-                    size="sm"
-                    className="size-9 cursor-pointer p-0"
-                  >
-                    <CircleX className="size-7" strokeWidth={1.2} />
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <FavoriteRow key={item.id} item={item} />
           ))}
         </div>
       </div>
@@ -143,65 +65,7 @@ export const FavoriteItems = ({ items }: FavoriteItemsProps) => {
 
         <div className="">
           {items.map((item) => (
-            <Card key={item.id} className="border-none p-3 shadow-none">
-              <div className="flex items-center gap-1">
-                <Heart
-                  className="text-primary fill-primary size-5"
-                  strokeWidth={1}
-                />
-
-                {/* Product Image */}
-                <div className="bg-muted relative aspect-square h-22 w-16 flex-shrink-0 overflow-hidden rounded-lg">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                {/* Product Details */}
-                <div className="min-w-0 flex-1 ps-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="min-w-0 flex-1">
-                      <h3 className="mb-1 text-sm leading-tight font-medium">
-                        {item.name}
-                      </h3>
-                      <p className="text-muted-foreground mb-2 text-xs">
-                        {t('color')}: {item.color} | {t('size')}: {item.size}
-                      </p>
-                      <p className="text-sm font-medium">
-                        {item.price} {t('currency')}
-                      </p>
-
-                      {/* Add to Cart Button */}
-                      <Button
-                        onClick={() => handleAddToCart(item)}
-                        variant="link"
-                        size="sm"
-                        className="flex items-center gap-2"
-                      >
-                        <Plus className="h-3 w-3" />
-                        {t('addToCart')}
-                      </Button>
-                    </div>
-
-                    {/* Price and Favorite Icon */}
-                    <div className="flex flex-col items-end gap-2">
-                      {/* Remove Button */}
-                      <Button
-                        onClick={() => handleRemoveFromFavorites(item)}
-                        variant="ghost"
-                        size="icon"
-                        className="size-8 rounded-full"
-                      >
-                        <CircleX className="size-5" strokeWidth={1} />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Card>
+            <MobileFavoriteRow key={item.id} item={item} />
           ))}
         </div>
       </div>

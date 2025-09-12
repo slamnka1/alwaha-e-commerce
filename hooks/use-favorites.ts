@@ -12,19 +12,10 @@ import { getFavoriteItems } from '@/services/favorites'
 import { useSession } from '@/store/session-store'
 
 export const favoriteQueryKey = ['favorites']
-export function useFavoriteItems() {
+export function useFavoriteItems(page: number = 1) {
   return useQuery({
-    queryKey: favoriteQueryKey,
-    queryFn: getFavoriteItems,
-  })
-}
-
-export function useFavoriteItem(id: string) {
-  return useQuery({
-    queryKey: [...favoriteQueryKey, id],
-    queryFn: () =>
-      getFavoriteItems().then((items) => items.find((item) => item.id === id)),
-    enabled: !!id,
+    queryKey: [...favoriteQueryKey, page],
+    queryFn: () => getFavoriteItems(page),
   })
 }
 
