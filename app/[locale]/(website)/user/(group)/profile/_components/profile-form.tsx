@@ -6,6 +6,8 @@ import { useForm } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import * as z from 'zod'
 
+import { useEffect } from 'react'
+
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 
@@ -23,28 +25,44 @@ import { Input } from '@/components/ui/input'
 import PhoneInput from '@/components/ui/phone-input'
 import { Separator } from '@/components/ui/separator'
 import { Link as I18nLink } from '@/lib/i18n/navigation'
+import { useSession } from '@/store/session-store'
 
 export function ProfileForm() {
   const t = useTranslations('profile.form')
 
   // Form validation schema
   const profileSchema = z.object({
-    first_name: z.string().min(1, t('validation.firstNameRequired')),
-    last_name: z.string().min(1, t('validation.lastNameRequired')),
-    phone: z
+    name: z.string().min(1, t('validation.required')),
+    phone_number: z
       .string()
       .min(1, t('validation.phoneRequired'))
       .refine((value) => isPossiblePhoneNumber(value), {
         message: t('validation.invalidPhone'),
       }),
-    address: z.string().min(1, t('validation.addressRequired')),
+    email: z.email(t('validation.required')),
   })
 
   type ProfileFormData = z.infer<typeof profileSchema>
 
+  const { session, isPending } = useSession()
   const form = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
+    values: {
+      name: session?.name || '',
+      email: session?.email || '',
+      phone_number: session?.phone_number || '',
+    },
   })
+
+  // useEffect(() => {
+  //   if (!isPending && session) {
+  //     form.reset({
+  //       name: session.name,
+  //       email: session.email,
+  //       phone_number: session.phone_number,
+  //     })
+  //   }
+  // }, [isPending])
 
   const onSubmitForm = (data: ProfileFormData) => {
     // Handle form submission
@@ -64,64 +82,41 @@ export function ProfileForm() {
             className="space-y-4 lg:space-y-6"
           >
             {/* Name Fields */}
-            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:gap-4">
-              <FormField
-                control={form.control}
-                name="first_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="block text-sm font-medium text-gray-700">
-                      {t('firstName')}
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={t('firstNamePlaceholder')}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="last_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="block text-sm font-medium text-gray-700">
-                      {t('lastName')}
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={t('lastNamePlaceholder')}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            {/* Phone Number Field */}
             <FormField
               control={form.control}
-              name="phone"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="block text-sm font-medium text-gray-700">
-                    {t('phone')}
+                    {t('name')}
                   </FormLabel>
                   <FormControl>
-                    <PhoneInput />
+                    <Input placeholder={t('namePlaceholder')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            {/* Address Field */}
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="block text-sm font-medium text-gray-700">
+                    {t('email')}
+                  </FormLabel>
+                  <FormControl>
+                    <Input placeholder={t('emailPlaceholder')} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <PhoneInput />
+
+            {/* Address Field
             <FormField
               control={form.control}
               name="address"
@@ -136,7 +131,7 @@ export function ProfileForm() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
 
             {/* Password Reset Link */}
             <div className="">

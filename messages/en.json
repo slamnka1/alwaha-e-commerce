@@ -129,8 +129,13 @@
         "lastNameRequired": "Last name is required",
         "phoneRequired": "Phone number is required",
         "addressRequired": "Address is required",
-        "invalidPhone": "Invalid phone number"
-      }
+        "invalidPhone": "Invalid phone number",
+        "required": "This field is required"
+      },
+      "email": "Your email",
+      "emailPlaceholder": "your email",
+      "name": "Your full name:",
+      "namePlaceholder": "enter your full name"
     }
   },
   "security": {

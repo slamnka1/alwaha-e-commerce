@@ -1,8 +1,10 @@
 import axios, { AxiosInstance } from 'axios'
 
 import { getLocale } from 'next-intl/server'
+import { redirect } from 'next/navigation'
 
 import { useSession } from '@/store/session-store'
+import { getLocaleFromUrl } from '@/utils/get-locale'
 import { getServerSession } from '@/utils/get-server-session'
 
 // Create axios instance with default config
@@ -20,7 +22,7 @@ apiClient.interceptors.request.use(
         config.headers.Authorization = `Bearer ${session.access_token}`
       }
       // Add locale header for internationalization
-      const locale = document.documentElement.lang || 'en'
+      const locale = getLocaleFromUrl()
       config.headers['Accept-Language'] = locale
     } else {
       const session = await getServerSession()
@@ -32,9 +34,61 @@ apiClient.interceptors.request.use(
       config.headers['Accept-Language'] = locale
     }
 
+    // turn URLSearchParams to object , and handle arrays
+    if (config.params && config.params instanceof URLSearchParams) {
+      const paramsObject: Record<string, unknown> = {}
+      for (const [key, value] of config.params.entries()) {
+        if (key.endsWith('[]')) {
+          //  for arrays
+          paramsObject[key.slice(0, -2)] = value.split(',').filter(Boolean)
+        } else {
+          // Otherwise, just assign the value
+          paramsObject[key] = value
+        }
+      }
+
+      config.params = paramsObject
+    }
+
     return config
   },
   (error) => {
+    return Promise.reject(error)
+  }
+)
+
+apiClient.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  async (error) => {
+    console.log('🚀 ~ error:', error)
+    if (error.response?.status === 401) {
+      if (typeof window === 'undefined') {
+        const { cookies } = await import('next/headers')
+
+        const cookieStore = await cookies()
+        cookieStore.delete('session')
+        redirect('/')
+      } else {
+        axios.post('/api/logout')
+        useSession.getState().updateSession(null)
+
+        const locale = getLocaleFromUrl()
+        window.location.href = `/${locale}`
+      }
+    }
+
+    // Prepare fallback message with status code
+    const statusCode = error?.response?.status ?? 'Unknown'
+    const fallbackMessage = `Request failed with status code ${statusCode}`
+
+    // Set custom message
+    error.message =
+      error?.response?.data?.errors?.[0] ??
+      error?.response?.data?.message ??
+      fallbackMessage
+
     return Promise.reject(error)
   }
 )

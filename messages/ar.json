@@ -129,8 +129,13 @@
         "lastNameRequired": "الاسم الأخير مطلوب",
         "phoneRequired": "رقم الهاتف مطلوب",
         "addressRequired": "العنوان مطلوب",
-        "invalidPhone": "رقم هاتف غير صحيح"
-      }
+        "invalidPhone": "رقم هاتف غير صحيح",
+        "required": "هذا الحقل مطلوب"
+      },
+      "email": "بريدك الإلكتروني",
+      "emailPlaceholder": "بريدك الإلكتروني",
+      "name": "اسمك الكامل:",
+      "namePlaceholder": "أدخل اسمك الكامل"
     }
   },
   "security": {

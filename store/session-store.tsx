@@ -2,7 +2,7 @@
 
 import { create } from 'zustand'
 
-import { Session } from '@/@types/user'
+import { Session, User } from '@/@types/user'
 
 type SessionStore = {
   session: Session | null

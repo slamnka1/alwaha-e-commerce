@@ -4,7 +4,6 @@ import { redirect } from 'next/navigation'
 export async function POST() {
   const cookieStore = await cookies()
   cookieStore.delete('session')
-  console.log('first')
 
   return redirect('/')
 }
