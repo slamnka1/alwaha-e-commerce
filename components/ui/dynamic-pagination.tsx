@@ -115,6 +115,7 @@ export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
     return items
   }
 
+  if (totalPageCount === 1) return null
   return (
     <div className="mt-4 flex w-fit flex-col items-center gap-3 md:flex-row">
       <Pagination>

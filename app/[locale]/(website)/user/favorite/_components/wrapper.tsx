@@ -84,19 +84,7 @@ const Wrapper = (props: Props) => {
             <FavoriteItems items={favoriteItems} />
 
             {/* Pagination */}
-            {paginationInfo && paginationInfo.lastPage > 1 && (
-              <div className="mt-6 flex flex-col items-center gap-4">
-                <div className="text-muted-foreground text-sm">
-                  {t('pagination.showing', {
-                    from: paginationInfo.from,
-                    to: paginationInfo.to,
-                    total: paginationInfo.total,
-                  })}
-                </div>
-
-                <DynamicPagination totalPageCount={paginationInfo.lastPage} />
-              </div>
-            )}
+            <DynamicPagination totalPageCount={paginationInfo?.lastPage || 0} />
           </div>
           <FavoriteCategories items={favoriteItems} />
         </div>
