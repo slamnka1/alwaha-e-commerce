@@ -90,7 +90,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
           {/* Color Options */}
           <div>
             <span className="text-sm font-semibold text-[#0000006c]">
-              {t('colors')} : 11
+              {t('colors')} : {props.available_colors_count}
             </span>
           </div>
 

@@ -17,12 +17,10 @@ export function TypeCard(props: Category) {
       </div>
       {/* Background Image */}
       <div className="absolute inset-0">
-        <Image
-          src={girls}
+        <img
+          src={props.image}
           alt={props.category_name}
-          fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-black/30" />

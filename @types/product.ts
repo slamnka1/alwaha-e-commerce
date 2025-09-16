@@ -14,6 +14,8 @@ export interface Product {
   best_fit_size: null
   is_favourite: boolean
   colors: Colors
+  available_quantity: string | null
+  available_colors_count: number | null
 }
 
 export interface Colors {

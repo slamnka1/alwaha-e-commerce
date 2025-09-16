@@ -23,7 +23,6 @@ export function InitSession({
     queryFn: async () =>
       (await axios.get<Session | null>('/api/updated-session')).data,
     initialData: initialValue,
-    staleTime: Infinity,
   })
 
   useEffect(() => {

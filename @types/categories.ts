@@ -5,4 +5,5 @@ export interface Category {
   slug: string
   created_at: string
   category_name: string
+  image: string
 }
