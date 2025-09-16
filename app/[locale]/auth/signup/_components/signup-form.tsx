@@ -24,6 +24,7 @@ import { FormErrorMessage } from '@/components/ui/form-error-message'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import PhoneInput from '@/components/ui/phone-input'
+import { RegionSelect } from '@/components/ui/region-select'
 import { Link, useRouter } from '@/lib/i18n/navigation'
 import { handleFormError } from '@/utils/handle-form-errors'
 
@@ -46,6 +47,8 @@ const SignupForm = () => {
         .string()
         .min(1, t('validation.confirmPasswordRequired')),
       emirate_id: z.string().min(1, t('validation.emirateRequired')),
+      region_id: z.string().min(1, t('validation.regionRequired')),
+      address: z.string().min(1, t('validation.addressRequired')),
       approve: z.boolean().refine((value) => value, {
         message: t('validation.privacyPolicyRequired'),
       }),
@@ -66,7 +69,9 @@ const SignupForm = () => {
       password: '',
       password_confirmation: '',
       emirate_id: '',
+      region_id: '',
       approve: false,
+      address: '',
     },
   })
 
@@ -132,23 +137,6 @@ const SignupForm = () => {
             )}
           />
 
-          {/* Emirate Field */}
-          <FormField
-            control={form.control}
-            name="emirate_id"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <EmirateSelect
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           {/* Password Field */}
           <FormField
             control={form.control}
@@ -179,6 +167,54 @@ const SignupForm = () => {
                     placeholder={t('confirmPasswordPlaceholder')}
                     {...field}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* Emirate Field */}
+          <FormField
+            control={form.control}
+            name="emirate_id"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <EmirateSelect
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Region Field */}
+
+          <FormField
+            control={form.control}
+            name="region_id"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <RegionSelect
+                    emirateId={form.watch('emirate_id')}
+                    value={field.value}
+                    onValueChange={field.onChange}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* Address Field */}
+          <FormField
+            control={form.control}
+            name="address"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder={t('addressPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -25,10 +25,8 @@ export const useEmirates = (): UseEmiratesReturn => {
   } = useQuery({
     queryKey: ['emirates'],
     queryFn: listsService.getEmirates,
-    staleTime: 1000 * 60 * 60, // 1 hour
-    gcTime: 1000 * 60 * 60 * 24, // 24 hours
-    retry: 3,
-    retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    staleTime: Infinity,
+    retry: 2,
   })
 
   const emirates = emiratesData?.data || []

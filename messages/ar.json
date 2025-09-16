@@ -69,9 +69,12 @@
         "invalid-phone-number": "رقم الهاتف غير صالح",
         "emirateRequired": "يرجى اختيار الإمارة",
         "errorLoadingEmirates": "خطأ في تحميل الإمارات",
-        "privacyPolicyRequired": "يجب الموافقة على سياسة الخصوصية وشروط الاستخدام للمتابعة"
+        "privacyPolicyRequired": "يجب الموافقة على سياسة الخصوصية وشروط الاستخدام للمتابعة",
+        "regionRequired": "من فضلك ، حدد المنطقة",
+        "addressRequired": "العنوان مطلوب"
       },
-      "privacyPolicy": "هل توافق على<a> سياسة الخصوصية</a>, <a2>وشروط الاستخدام</a2>؟"
+      "privacyPolicy": "هل توافق على<a> سياسة الخصوصية</a>, <a2>وشروط الاستخدام</a2>؟",
+      "addressPlaceholder": "العنوان بالكامل"
     }
   },
   "profile": {

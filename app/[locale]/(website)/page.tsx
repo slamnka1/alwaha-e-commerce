@@ -18,6 +18,7 @@ import PreviewCarousel from './_components/preview'
 import ProductsSlider from './_components/products-silder'
 import TypeSlider from './_components/type'
 
+export const dynamic = 'force-dynamic'
 export default async function HomePage() {
   const session = await getServerSession()
   const t = await getTranslations('home-page')
