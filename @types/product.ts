@@ -29,3 +29,31 @@ export interface Size {
   size_code: string
   quantity: number
 }
+
+export interface ProductFullData {
+  id: number
+  product_id: number
+  product_name: string
+  description: string
+  product_code: string
+  color_name: string
+  main_image_url: string
+  price: number
+  product_base_price: string
+  offer_active: null
+  discount_percent: null
+  discounted_price: null
+  sizes_quantity: string
+  is_favorited: boolean
+  sizes: {
+    id: number
+    size_code: string
+    quantity: number
+  }[]
+  other_colors: {
+    id: number
+    color_name: string
+    main_image_url: string
+    url: string
+  }[]
+}

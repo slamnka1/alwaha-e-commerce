@@ -1,5 +1,5 @@
 import { ApiResponse, PaginatedApiResponse } from '@/@types'
-import { Product } from '@/@types/product'
+import { Product, ProductFullData } from '@/@types/product'
 
 import { apiClient } from './axios'
 
@@ -25,5 +25,11 @@ export const productsService = {
       '/home/recent-products'
     )
     return response.data
+  },
+  async getProductFullData(id: number) {
+    const response = await apiClient.get<ApiResponse<ProductFullData>>(
+      `/products/${id}`
+    )
+    return response.data.data
   },
 }
