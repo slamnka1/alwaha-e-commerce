@@ -20,7 +20,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
     <Card className="overflow-hidden border-0 bg-transparent py-2 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
       <Link
-        href={`/search/${props.product_id}?color=${props.colors.id}`}
+        href={`/search/${props.id}?color=${props.colors.id}`}
         className="relative"
       >
         <AspectRatio
@@ -59,7 +59,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
           {/* Header with Heart and Product Name */}
           <div className="flex items-center justify-between gap-2">
             <Link
-              href={`/search/${props.product_id}?color=${props.colors.id}`}
+              href={`/search/${props.id}?color=${props.colors.id}`}
               className="flex-1 text-sm leading-tight font-semibold text-gray-900 md:text-xl 2xl:text-2xl"
             >
               {props.product_name}
