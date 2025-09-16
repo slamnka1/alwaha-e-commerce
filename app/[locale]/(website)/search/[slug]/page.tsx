@@ -22,6 +22,7 @@ const SearchPage = async (props: Props) => {
   try {
     const { slug } = await props.params
     const product = await productsService.getProductFullData(Number(slug))
+    console.log('🚀 ~ SearchPage ~ product:', product)
     const products = await productsService.getProducts(new URLSearchParams())
     const t = await getTranslations()
     return (
@@ -50,13 +51,7 @@ const SearchPage = async (props: Props) => {
         <div className="container mx-auto pt-6 pb-12 lg:py-12">
           <div className="flex flex-col gap-9 lg:flex-row">
             <div className="w-full max-w-2xl">
-              <ProductSlider
-                images={product?.other_colors.map((color) => ({
-                  id: color.id,
-                  url: color.main_image_url,
-                  alt: color.color_name,
-                }))}
-              />
+              <ProductSlider product={product} />
             </div>
             <ProductDescription product={product} />
           </div>
