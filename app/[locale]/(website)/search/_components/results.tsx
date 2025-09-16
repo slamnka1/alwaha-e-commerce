@@ -7,7 +7,8 @@ import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { searchProducts } from '@/services/products'
+import { DynamicPagination } from '@/components/ui/dynamic-pagination'
+import { productsService } from '@/services'
 
 import { ProductCard } from '../../_components/product-card'
 
@@ -19,7 +20,7 @@ const Results = (props: Props) => {
   const { status, data, error } = useQuery({
     queryKey: ['search', searchParams.toString()],
     queryFn: () => {
-      return searchProducts(searchParams)
+      return productsService.getProducts(searchParams)
     },
   })
 
@@ -41,9 +42,12 @@ const Results = (props: Props) => {
   return (
     <div className="w-full">
       <div className="grid w-full grid-cols-2 gap-2 md:grid-cols-3 lg:gap-6">
-        {data.map((product, index) => {
+        {data.data.map((product, index) => {
           return <ProductCard {...product} key={index} />
         })}
+      </div>
+      <div className="flex justify-center">
+        <DynamicPagination totalPageCount={data.last_page} />
       </div>
     </div>
   )

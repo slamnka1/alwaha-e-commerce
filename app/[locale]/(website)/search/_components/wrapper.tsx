@@ -89,9 +89,6 @@ const ResultsWrapper = () => {
           <Filters />
         </div>
       </div>
-      <div className="flex justify-center">
-        <DynamicPagination totalPageCount={10} />
-      </div>
     </div>
   )
 }
