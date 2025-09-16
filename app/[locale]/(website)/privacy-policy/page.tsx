@@ -1,6 +1,6 @@
 export default function PrivacyPolicyPage() {
   return (
-    <main className="container mx-auto mt-28 space-y-12 py-10">
+    <main className="container mx-auto space-y-12 py-10 pt-38">
       <h1 className="text-center text-2xl font-bold lg:text-4xl ltr:hidden">
         سياسة الخصوصية
       </h1>

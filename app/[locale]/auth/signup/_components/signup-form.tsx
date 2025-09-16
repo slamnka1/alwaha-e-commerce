@@ -244,7 +244,7 @@ const SignupForm = () => {
                       ),
                       a2: (chunks) => (
                         <Link
-                          href="/terms-of-service"
+                          href="/change-policy"
                           className="text-primary font-medium hover:underline"
                         >
                           {chunks}

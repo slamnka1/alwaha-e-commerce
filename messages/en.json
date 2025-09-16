@@ -73,7 +73,7 @@
         "regionRequired": "Please, select region",
         "addressRequired": "Address is required"
       },
-      "privacyPolicy": "I agree to the <a>Privacy Policy</a> and <a2>Terms of Service</a2>",
+      "privacyPolicy": "I agree to the <a>Privacy Policy</a> and <a2>Replacement policy </a2>",
       "addressPlaceholder": "Address"
     }
   },
@@ -322,7 +322,9 @@
     "contactUs": "Contact Us",
     "email": "alwaha@gmail.com",
     "phone": "+990 120 129 129",
-    "copyright": "{value} Wahat Al Zain. All rights reserved."
+    "copyright": "{value} Wahat Al Zain. All rights reserved.",
+    "privacyPolicy": "Privacy policy",
+    "changePolicy": "Replacement policy"
   },
   "error": "Something wrong!",
   "pagination": {

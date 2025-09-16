@@ -73,7 +73,7 @@
         "regionRequired": "من فضلك ، حدد المنطقة",
         "addressRequired": "العنوان مطلوب"
       },
-      "privacyPolicy": "هل توافق على<a> سياسة الخصوصية</a>, <a2>وشروط الاستخدام</a2>؟",
+      "privacyPolicy": "أوافق على سياسة الخصوصية <a> </a> و <a2> سياسة الاستبدال </a2>",
       "addressPlaceholder": "العنوان بالكامل"
     }
   },
@@ -328,7 +328,9 @@
     "contactUs": "تواصل معنا",
     "email": "alwaha@gmail.com",
     "phone": "+990 120 129 129",
-    "copyright": "{value} واحة الزين جميع الحقوق محفوظة."
+    "copyright": "{value} واحة الزين جميع الحقوق محفوظة.",
+    "privacyPolicy": "سياسة الخصوصية",
+    "changePolicy": "سياسة الاستبدال"
   },
   "pagination": {
     "general": {
