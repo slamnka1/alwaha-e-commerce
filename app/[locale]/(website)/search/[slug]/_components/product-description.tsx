@@ -16,6 +16,7 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import useFavorite from '@/hooks/use-favorites'
 import { Link } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 
@@ -38,6 +39,17 @@ export default function ProductDescription({
   const [selectedSize, setSelectedSize] = useQueryState('size')
 
   const hasDiscount = !!Number(product.discount_percent)
+  const {
+    isFavorite,
+    mutate: toggleFavorite,
+    isPending,
+  } = useFavorite({
+    // Product color-level id appears as `id` on ProductFullData
+    // This minimal shape satisfies what the hook needs
+    product_id: product.product_id,
+    colors: { id: product.id as unknown as number },
+    is_favourite: product.is_favorited,
+  } as unknown as any)
 
   return (
     <div className={cn('flex w-full max-w-xl flex-col gap-6', className)}>
@@ -53,8 +65,16 @@ export default function ProductDescription({
             variant={'ghost'}
             className="size-11 rounded-full"
             size={'icon'}
+            onClick={() => toggleFavorite()}
+            disabled={isPending}
           >
-            <Heart className="text-primary size-8" strokeWidth={1.5} />
+            <Heart
+              className={cn(
+                isFavorite ? 'fill-red-500 text-red-500' : 'text-orange-500',
+                'size-8'
+              )}
+              strokeWidth={1.5}
+            />
           </Button>
         </div>
       </div>

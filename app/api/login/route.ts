@@ -8,6 +8,7 @@ import { authService } from '@/services/auth'
 export async function POST(request: Request) {
   try {
     const body = await request.json()
+    console.log('🚀 ~ POST ~ body:', body)
     const session = await authService.login(body)
 
     const cookieStore = await cookies()
@@ -23,6 +24,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(session)
   } catch (error) {
+    console.log('🚀 ~ POST ~ error:', error)
     if (axios.isAxiosError(error)) {
       return NextResponse.json(
         { ...error.response?.data },

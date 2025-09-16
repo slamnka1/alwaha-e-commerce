@@ -61,14 +61,14 @@ export const authService = {
     }
   },
   async login({
-    phone_number,
+    username,
     password,
   }: {
-    phone_number: string
+    username: string
     password: number
   }): Promise<Session> {
     const response = await apiClient.post<UserResponse>('/auth/login', {
-      phone_number,
+      username,
       password,
     })
     return {
