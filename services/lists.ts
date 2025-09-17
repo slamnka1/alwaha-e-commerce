@@ -1,3 +1,7 @@
+import { ApiResponse } from '@/@types'
+import { Category } from '@/@types/categories'
+import { Size } from '@/@types/lists'
+
 import { apiClient } from './axios'
 
 export interface EmiratesResponse {
@@ -51,6 +55,15 @@ export const listsService = {
     const response = await apiClient.get('/lists/regions', {
       params: { emirate_id: emirateId },
     })
+    return response.data
+  },
+  async getCategories() {
+    const response =
+      await apiClient.get<ApiResponse<Category[]>>('/lists/categories')
+    return response.data
+  },
+  async getSizes() {
+    const response = await apiClient.get<ApiResponse<Size[]>>('/lists/sizes')
     return response.data
   },
 }

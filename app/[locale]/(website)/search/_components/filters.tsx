@@ -24,17 +24,11 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { useCategories, useSizes } from '@/hooks'
 
 import SearchInput from '../../_components/search-input'
 
 type Props = {}
-const categories = [
-  'dresses',
-  'travelWear',
-  'winterWear',
-  'swimwear',
-  'hijabsAndPrayer',
-]
 
 const weightSizes = [
   { value: 'S', label: 'S (45→55k)' },
@@ -55,12 +49,12 @@ const weightSizes = [
 const Filters = (props: Props) => {
   const t = useTranslations('search.filters')
   const [filters, setFilters] = useQueryStates({
-    category: parseAsArrayOf(parseAsString).withDefault([]),
+    'category_id[]': parseAsArrayOf(parseAsString).withDefault([]),
     size: parseAsArrayOf(parseAsString).withDefault([]),
     chestMeasurement: parseAsInteger.withDefault(0),
     hipMeasurement: parseAsInteger.withDefault(0),
-    weightSize: parseAsString.withDefault(''),
-    pluseSizes: parseAsBoolean.withDefault(false),
+    size_size: parseAsString.withDefault(''),
+    pluse_sizes: parseAsBoolean.withDefault(false),
     offers: parseAsBoolean.withDefault(false),
   })
 
@@ -85,6 +79,9 @@ const Filters = (props: Props) => {
       chest: 0,
     }),
   ]
+
+  const categories = useCategories()
+  const sizes = useSizes()
   return (
     <div className="w-full shrink-0 lg:w-[270px]">
       <div className="mb-6 flex items-center justify-between">
@@ -117,23 +114,25 @@ const Filters = (props: Props) => {
             <div className="space-y-2 pt-2">
               {/* All Items checkbox */}
               {categories.map((category) => (
-                <div key={category} className="flex items-center space-x-3">
+                <div key={category.id} className="flex items-center space-x-3">
                   <Checkbox
-                    id={category}
-                    checked={filters.category.includes(category)}
+                    id={category.id}
+                    checked={filters['category_id[]'].includes(category.id)}
                     onCheckedChange={(checked) =>
                       setFilters({
-                        category: !checked
-                          ? filters.category.filter((c) => c !== category)
-                          : [...filters.category, category],
+                        'category_id[]': !checked
+                          ? filters['category_id[]'].filter(
+                              (c) => c !== category.id
+                            )
+                          : [...filters['category_id[]'], category.id],
                       })
                     }
                   />
                   <label
-                    htmlFor={category}
+                    htmlFor={category.id}
                     className="cursor-pointer text-xs font-medium lg:text-sm"
                   >
-                    {t(`categoryOptions.${category}`)}
+                    {category.category_name}
                   </label>
                 </div>
               ))}
@@ -230,23 +229,23 @@ const Filters = (props: Props) => {
           <AccordionContent>
             <div className="space-y-2 pt-2">
               <RadioGroup
-                value={filters.weightSize}
-                onValueChange={(value) => setFilters({ weightSize: value })}
+                value={filters.size_size}
+                onValueChange={(value) => setFilters({ size_size: value })}
                 className="space-y-2"
               >
-                {weightSizes.map((size) => (
-                  <div key={size.value} className="flex items-center gap-x-3">
+                {sizes.map((size) => (
+                  <div key={size.id} className="flex items-center gap-x-3">
                     <RadioGroupItem
-                      value={size.value}
-                      id={`size-${size.value.toLowerCase()}`}
+                      value={size.id + ''}
+                      id={`size-${size.id}`}
                     />
                     <label
-                      htmlFor={`size-${size.value.toLowerCase()}`}
+                      htmlFor={`size-${size.id}`}
                       className={`cursor-pointer text-sm font-semibold ${
-                        size.isSpecial ? 'text-red-500' : ''
+                        size.name === 'FREE_SIZE' ? 'text-red-500' : ''
                       }`}
                     >
-                      {size.label}
+                      {size.name}
                     </label>
                   </div>
                 ))}
@@ -259,10 +258,10 @@ const Filters = (props: Props) => {
       <div className="mt-6 space-y-3">
         <div className="flex items-center space-x-3">
           <Checkbox
-            checked={filters.pluseSizes}
+            checked={filters.pluse_sizes}
             onCheckedChange={(checked) =>
               setFilters({
-                pluseSizes: checked ? true : false,
+                pluse_sizes: checked ? true : false,
               })
             }
             id="plus-size"

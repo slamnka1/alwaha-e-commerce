@@ -2,9 +2,7 @@ import React from 'react'
 
 import { getTranslations } from 'next-intl/server'
 
-import { ApiResponse } from '@/@types'
-import { Category } from '@/@types/categories'
-import { apiClient } from '@/services/axios'
+import { listsService } from '@/services/lists'
 import { productsService } from '@/services/products'
 import { getServerSession } from '@/utils/get-server-session'
 import { safeExtractNested } from '@/utils/promise-helpers'
@@ -26,7 +24,7 @@ export default async function HomePage() {
       productsService.getPlusSizes(),
       productsService.getOffers(),
       productsService.getRecentProducts(),
-      apiClient.get<ApiResponse<Category[]>>('/categories'),
+      listsService.getCategories(),
     ])
 
   // Handle each result with appropriate fallbacks using helper functions
@@ -47,7 +45,7 @@ export default async function HomePage() {
   )
   const categories = safeExtractNested(
     categoriesResult,
-    (response) => response.data.data,
+    (response) => response.data,
     []
   )
 
