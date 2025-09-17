@@ -37,6 +37,8 @@ export const GET = async () => {
 
     return NextResponse.json(updatedSessionResponse.data.user)
   } catch (error) {
-    return NextResponse.json(null, { status: 401 })
+    const cookieStore = await cookies()
+    cookieStore.delete('session')
+    return NextResponse.json(null)
   }
 }
