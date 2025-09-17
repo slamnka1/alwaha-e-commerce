@@ -22,7 +22,6 @@ const SearchPage = async (props: Props) => {
   try {
     const { slug } = await props.params
     const product = await productsService.getProductFullData(Number(slug))
-    console.log('🚀 ~ SearchPage ~ product:', product)
     const products = await productsService.getProducts(new URLSearchParams())
     const t = await getTranslations()
     return (

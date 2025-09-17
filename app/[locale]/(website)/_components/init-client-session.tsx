@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import { useEffect } from 'react'
 
-import { Session } from '@/@types/user'
+import { Session, SessionWithUser } from '@/@types/user'
 import { useSession } from '@/store/session-store'
 
 export function InitSession({
@@ -21,7 +21,7 @@ export function InitSession({
   const { data } = useQuery({
     queryKey: ['session'],
     queryFn: async () =>
-      (await axios.get<Session | null>('/api/updated-session')).data,
+      (await axios.get<SessionWithUser>('/api/updated-session')).data,
     initialData: initialValue,
   })
 

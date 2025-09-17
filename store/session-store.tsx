@@ -2,12 +2,12 @@
 
 import { create } from 'zustand'
 
-import { Session, User } from '@/@types/user'
+import { SessionWithUser, User } from '@/@types/user'
 
 type SessionStore = {
-  session: Session | null
+  session: Partial<SessionWithUser> | null
   isAuthenticated: boolean
-  updateSession: (session: Session | null) => void
+  updateSession: (session: Partial<SessionWithUser> | null) => void
   clearSession: () => void
   isPending: boolean
 }

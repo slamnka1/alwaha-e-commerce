@@ -22,6 +22,7 @@ export interface User {
   full_address: string
 }
 
-export interface Session extends User {
+export interface Session {
   access_token: string
 }
+export interface SessionWithUser extends Session, User {}

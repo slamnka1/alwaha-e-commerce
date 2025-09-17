@@ -14,13 +14,19 @@ export async function POST(request: Request) {
     const cookieStore = await cookies()
     const expiresAt = new Date(Date.now() + 360 * 24 * 60 * 60 * 1000)
 
-    cookieStore.set('session', JSON.stringify(session), {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-      expires: expiresAt,
-    })
+    cookieStore.set(
+      'session',
+      JSON.stringify({
+        access_token: session.access_token,
+      }),
+      {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        expires: expiresAt,
+      }
+    )
 
     return NextResponse.json(session)
   } catch (error) {

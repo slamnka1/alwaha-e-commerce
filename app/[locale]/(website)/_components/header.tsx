@@ -27,7 +27,7 @@ const Header = (props: Props) => {
               <Separator orientation="vertical" className="!h-8 bg-[#F3E0C8]" />
 
               <Link href={'/user/favorite'}>
-                <Heart />
+                <Heart strokeWidth={1} />
               </Link>
             </div>
             <div className="hidden items-center gap-2 lg:flex">

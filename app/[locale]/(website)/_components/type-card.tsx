@@ -1,10 +1,8 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 
 import { Category } from '@/@types/categories'
-import { girls } from '@/assets'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/lib/i18n/navigation'
 
@@ -20,7 +18,7 @@ export function TypeCard(props: Category) {
         <img
           src={props.image}
           alt={props.category_name}
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-black/30" />

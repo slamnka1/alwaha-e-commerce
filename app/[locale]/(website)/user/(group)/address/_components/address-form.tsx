@@ -36,7 +36,6 @@ export function AddressForm({}) {
 
   type AddressFormData = z.infer<typeof addressSchema>
   const { session, isPending } = useSession()
-  console.log('🚀 ~ AddressForm ~ session:', session)
 
   const form = useForm<AddressFormData>({
     resolver: zodResolver(addressSchema),

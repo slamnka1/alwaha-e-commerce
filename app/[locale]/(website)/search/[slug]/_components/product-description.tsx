@@ -6,6 +6,7 @@ import { parseAsInteger, useQueryState } from 'nuqs'
 import React from 'react'
 
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { ProductFullData } from '@/@types/product'
 import NumberInput from '@/app/[locale]/(website)/search/[slug]/_components/number-input'
@@ -17,7 +18,7 @@ import {
 } from '@/components/ui/carousel'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import useFavorite from '@/hooks/use-favorites'
-import { Link } from '@/lib/i18n/navigation'
+import { Link, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 import UserSize from './user-size'
@@ -32,12 +33,9 @@ export default function ProductDescription({
   className,
 }: ProductDescriptionProps) {
   const t = useTranslations('product-description')
-  const [selectedColor, setSelectedColor] = useQueryState(
-    'color',
-    parseAsInteger
-  )
+  const { slug } = useParams<{ slug: string }>()
   const [selectedSize, setSelectedSize] = useQueryState('size')
-
+  const router = useRouter()
   const hasDiscount = !!Number(product.discount_percent)
   const {
     isFavorite,
@@ -115,25 +113,25 @@ export default function ProductDescription({
             }}
           >
             <CarouselContent>
-              {product.other_colors.map((image, index) => (
+              {product.other_colors.map((item, index) => (
                 <CarouselItem
-                  key={image.id}
+                  key={item.id}
                   className="h-16 w-14 basis-[unset] pl-2"
                 >
                   <button
-                    key={image.id}
-                    onClick={() => setSelectedColor(index)}
+                    key={item.id}
+                    onClick={() => router.push(`/search/${item.id}`)}
                     className={cn(
                       'relative h-full w-full overflow-hidden rounded-[8px] transition-all duration-300',
-                      selectedColor === index ? 'scale-95' : ''
+                      slug === item.id + '' ? 'scale-95' : ''
                     )}
                   >
                     <img
-                      src={image.main_image_url}
-                      alt={image.color_name}
+                      src={item.main_image_url}
+                      alt={item.color_name}
                       className="h-full w-full object-cover"
                     />
-                    {selectedColor === index && (
+                    {slug === item.id + '' && (
                       <div className="absolute inset-0 bg-white/20" />
                     )}
                   </button>

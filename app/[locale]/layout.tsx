@@ -37,8 +37,8 @@ export default async function LocaleLayout({
         <NuqsAdapter>
           <NextIntlClientProvider>
             <QueryProvider>{children}</QueryProvider>
+            <Toaster />
           </NextIntlClientProvider>
-          <Toaster />
         </NuqsAdapter>
       </body>
     </html>

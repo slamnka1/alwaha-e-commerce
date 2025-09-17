@@ -18,7 +18,6 @@ const ResultsWrapper = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      console.log('resize')
       if (window.innerWidth > 1024) {
         setOpenFilters(false)
       }
