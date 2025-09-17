@@ -14,7 +14,8 @@ interface FavoriteRowProps {
 
 const FavoriteRow = ({ item }: FavoriteRowProps) => {
   const t = useTranslations('favorite.table')
-  const { mutate: removeFromFavorites, isPending } = useFavorite(item)
+  const { mutate: toggleFavorite, isPending } = useFavorite(item)
+
   const handleAddToCart = () => {
     // TODO: Implement add to cart functionality
     console.log('Add to cart:', item)
@@ -71,7 +72,7 @@ const FavoriteRow = ({ item }: FavoriteRowProps) => {
         {/* Remove */}
         <div className="col-span-1 text-center">
           <Button
-            onClick={removeFromFavorites}
+            onClick={() => toggleFavorite()}
             variant="ghost"
             size="sm"
             className="size-9 cursor-pointer p-0"

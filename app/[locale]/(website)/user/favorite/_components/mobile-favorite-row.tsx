@@ -15,7 +15,7 @@ interface MobileFavoriteRowProps {
 
 const MobileFavoriteRow = ({ item }: MobileFavoriteRowProps) => {
   const t = useTranslations('favorite.table')
-  const { mutate: removeFromFavorites, isPending } = useFavorite(item)
+  const { mutate: toggleFavorite, isPending } = useFavorite(item)
   const handleAddToCart = () => {
     // TODO: Implement add to cart functionality
     console.log('Add to cart:', item)
@@ -65,7 +65,7 @@ const MobileFavoriteRow = ({ item }: MobileFavoriteRowProps) => {
             <div className="flex flex-col items-end gap-2">
               {/* Remove Button */}
               <Button
-                onClick={removeFromFavorites}
+                onClick={() => toggleFavorite()}
                 variant="ghost"
                 size="icon"
                 className="size-8 rounded-full"
@@ -76,7 +76,6 @@ const MobileFavoriteRow = ({ item }: MobileFavoriteRowProps) => {
                 ) : (
                   <CircleX className="size-5" strokeWidth={1} />
                 )}
-                <CircleX className="size-5" strokeWidth={1} />
               </Button>
             </div>
           </div>

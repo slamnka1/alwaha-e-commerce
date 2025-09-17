@@ -60,10 +60,13 @@ const useFavorite = (product: Product) => {
       if (is_favourite) {
         return removeFromFavorite({
           product_id: product.product_id,
-          color_id: product.colors.id,
+          color_id: product.id,
         })
       } else
-        return addToFavorite({ product_id: product.product_id, color_id: 9 })
+        return addToFavorite({
+          product_id: product.product_id,
+          color_id: product.id,
+        })
     },
 
     onSuccess(data, vars) {

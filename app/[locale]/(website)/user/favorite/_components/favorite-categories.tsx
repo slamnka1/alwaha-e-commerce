@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { Product } from '@/@types/product'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -15,10 +15,13 @@ interface FavoriteCategoriesProps {
 export const FavoriteCategories = ({ items }: FavoriteCategoriesProps) => {
   const t = useTranslations('favorite.categories')
 
+  const locale = useLocale()
   // Calculate category counts
   const categoryCounts = items.reduce(
     (acc, item) => {
-      const category = item.category || 'unknown'
+      const category =
+        item.category.category_name ||
+        item.category[locale == 'ar' ? 'category_name_ar' : 'category_name_en']
       acc[category] = (acc[category] || 0) + 1
       return acc
     },

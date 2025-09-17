@@ -1,9 +1,11 @@
+import { Category } from './categories'
+
 export interface Product {
   id: number
   product_id: number
   product_code: string
   product_name: string
-  category: null
+  category: Category
   base_price: string
   description: string
   main_image_url: string
