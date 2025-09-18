@@ -1,14 +1,22 @@
 import React from 'react'
 
+import { getLocale } from 'next-intl/server'
 import Image from 'next/image'
 
 import { ProductHeroImage } from '@/assets'
+import { redirect } from '@/lib/i18n/navigation'
+import { getServerSession } from '@/utils/get-server-session'
 
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await getServerSession()
+  const locale = await getLocale()
+  if (!session) {
+    redirect({ href: '/auth/login', locale: locale })
+  }
   return (
     <React.Fragment>
       <div className="relative h-20 lg:h-65">

@@ -138,7 +138,10 @@
       "email": "بريدك الإلكتروني",
       "emailPlaceholder": "بريدك الإلكتروني",
       "name": "اسمك الكامل:",
-      "namePlaceholder": "أدخل اسمك الكامل"
+      "namePlaceholder": "أدخل اسمك الكامل",
+      "operations": {
+        "updateSuccess": "تم تحديث ملف التعريف بنجاح"
+      }
     }
   },
   "security": {

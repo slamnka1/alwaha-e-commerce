@@ -17,9 +17,11 @@ apiClient.interceptors.request.use(
   async (config) => {
     // Add auth token if available
     if (typeof window !== 'undefined') {
-      const session = useSession.getState().session
-      if (session) {
-        config.headers.Authorization = `Bearer ${session.access_token}`
+      if (config.url !== '/auth/me') {
+        const session = useSession.getState().session
+        if (session) {
+          config.headers.Authorization = `Bearer ${session.access_token}`
+        }
       }
       // Add locale header for internationalization
       const locale = getLocaleFromUrl()

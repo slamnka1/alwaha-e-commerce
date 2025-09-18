@@ -138,7 +138,10 @@
       "email": "Your email",
       "emailPlaceholder": "your email",
       "name": "Your full name:",
-      "namePlaceholder": "enter your full name"
+      "namePlaceholder": "enter your full name",
+      "operations": {
+        "updateSuccess": "Profile updated successfully "
+      }
     }
   },
   "security": {

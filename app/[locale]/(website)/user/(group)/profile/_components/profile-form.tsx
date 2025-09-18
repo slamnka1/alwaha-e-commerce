@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
+import { toast } from 'sonner'
 import * as z from 'zod'
 
 import { useEffect } from 'react'
@@ -25,7 +26,9 @@ import { Input } from '@/components/ui/input'
 import PhoneInput from '@/components/ui/phone-input'
 import { Separator } from '@/components/ui/separator'
 import { Link as I18nLink } from '@/lib/i18n/navigation'
+import apiClient from '@/services/axios'
 import { useSession } from '@/store/session-store'
+import { handleFormError } from '@/utils/handle-form-errors'
 
 export function ProfileForm() {
   const t = useTranslations('profile.form')
@@ -45,6 +48,7 @@ export function ProfileForm() {
   type ProfileFormData = z.infer<typeof profileSchema>
 
   const { session, isPending } = useSession()
+  console.log('🚀 ~ ProfileForm ~ session:', session)
   const form = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
     values: {
@@ -64,9 +68,17 @@ export function ProfileForm() {
   //   }
   // }, [isPending])
 
-  const onSubmitForm = (data: ProfileFormData) => {
+  const onSubmitForm = async (data: ProfileFormData) => {
     // Handle form submission
     console.log('Profile data:', data)
+
+    try {
+      const response = await apiClient.put('/auth/profile/update', data)
+      console.log('🚀 ~ onSubmitForm ~ response:', response)
+      toast.success(t('operations.updateSuccess'))
+    } catch (error) {
+      handleFormError(error, form)
+    }
   }
 
   return (
