@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import * as z from 'zod'
 
 import { useEffect } from 'react'
@@ -20,9 +21,13 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { FormErrorMessage } from '@/components/ui/form-error-message'
 import { Input } from '@/components/ui/input'
+import { RegionSelect } from '@/components/ui/region-select'
 import { Separator } from '@/components/ui/separator'
+import apiClient from '@/services/axios'
 import { useSession } from '@/store/session-store'
+import { handleFormError } from '@/utils/handle-form-errors'
 
 export function AddressForm({}) {
   const t = useTranslations('cart.checkout')
@@ -30,8 +35,8 @@ export function AddressForm({}) {
   // Form validation schema
   const addressSchema = z.object({
     emirate_id: z.string().min(1, t('validation.emirateRequired')),
-    region: z.string().min(1, t('validation.regionRequired')),
-    full_address: z.string().min(1, t('validation.addressRequired')),
+    region_id: z.string().min(1, t('validation.regionRequired')),
+    address: z.string().min(1, t('validation.addressRequired')),
   })
 
   type AddressFormData = z.infer<typeof addressSchema>
@@ -41,24 +46,28 @@ export function AddressForm({}) {
     resolver: zodResolver(addressSchema),
     defaultValues: {
       emirate_id: session?.emirate_id || '',
-      region: session?.region || '',
-      full_address: session?.full_address || '',
+      region_id: session?.region_id || '',
+      address: session?.address || '',
     },
   })
 
   useEffect(() => {
-    if (isPending && session) {
-      form.reset({
-        emirate_id: session.emirate_id,
-        region: session.region,
-        full_address: session.full_address,
-      })
+    if (!isPending) {
+      console.log('🚀 ~ AddressForm ~ isPending:', isPending, session)
+      form.setValue('emirate_id', session?.emirate_id || '')
+      form.setValue('region_id', session?.region_id || '')
+      form.setValue('address', session?.address || '')
     }
   }, [isPending])
 
-  const onSubmitForm = (data: AddressFormData) => {
-    // Handle form submission
-    console.log('Address data:', data)
+  const onSubmitForm = async (data: AddressFormData) => {
+    try {
+      const response = await apiClient.post('/auth/address', data)
+      console.log('🚀 ~ onSubmitForm ~ response:', response)
+      toast.success(t('operations.updateSuccess'))
+    } catch (error) {
+      handleFormError(error, form)
+    }
   }
 
   return (
@@ -75,82 +84,6 @@ export function AddressForm({}) {
             onSubmit={form.handleSubmit(onSubmitForm)}
             className="space-y-4 lg:space-y-6"
           >
-            {/* Name Fields */}
-            {/* <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:gap-4">
-              <FormField
-                control={form.control}
-                name="first_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="block text-sm font-medium text-gray-700">
-                      {t('firstName')}
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={t('firstNamePlaceholder')}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="last_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="block text-sm font-medium text-gray-700">
-                      {t('lastName')}
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder={t('lastNamePlaceholder')}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div> */}
-
-            {/* Phone Number Fields */}
-            {/* <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="block text-sm font-medium text-gray-700">
-                      {t('phone')}
-                    </FormLabel>
-                    <FormControl>
-                      <PhoneInput />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="other_phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="block text-sm font-medium text-gray-700">
-                      {t('otherPhone')}
-                    </FormLabel>
-                    <FormControl>
-                      <PhoneInput />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div> */}
-
             {/* Address Fields */}
             <FormField
               control={form.control}
@@ -173,14 +106,18 @@ export function AddressForm({}) {
 
             <FormField
               control={form.control}
-              name="region"
+              name="region_id"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="block text-sm font-medium text-gray-700">
                     {t('region')}
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder={t('regionPlaceholder')} {...field} />
+                    <RegionSelect
+                      emirateId={form.watch('emirate_id')}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -190,7 +127,7 @@ export function AddressForm({}) {
             {/* Full Address Field */}
             <FormField
               control={form.control}
-              name="full_address"
+              name="address"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="block text-sm font-medium text-gray-700">
@@ -216,6 +153,7 @@ export function AddressForm({}) {
                 <Loader2 className="ml-2 h-4 w-4 animate-spin" />
               )}
             </Button>
+            <FormErrorMessage />
           </form>
         </Form>
       </CardContent>

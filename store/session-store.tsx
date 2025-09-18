@@ -2,11 +2,12 @@
 
 import { create } from 'zustand'
 
-import { SessionWithUser, User } from '@/@types/user'
+import { Session, SessionWithUser } from '@/@types/user'
 
 type SessionStore = {
   session: Partial<SessionWithUser> | null
   isAuthenticated: boolean
+  initSession: (session: Session | null) => void
   updateSession: (session: Partial<SessionWithUser> | null) => void
   clearSession: () => void
   isPending: boolean
@@ -16,6 +17,12 @@ export const useSession = create<SessionStore>((set) => ({
   session: null,
   isAuthenticated: false,
   isPending: true,
+
+  initSession: (session) =>
+    set({
+      session,
+      isAuthenticated: !!session?.access_token,
+    }),
 
   updateSession: (session) =>
     set({

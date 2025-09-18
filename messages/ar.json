@@ -403,7 +403,10 @@
       },
       "shopWithConfidence": "تسوقي بثقة الاستبدال متاح وفق",
       "policy": "السياسة",
-      "cancel": "إلغاء"
+      "cancel": "إلغاء",
+      "operations": {
+        "updateSuccess": "تم تحديث العنوان بنجاح"
+      }
     },
     "operations": {
       "loading": "جاري تحميل السلة...",

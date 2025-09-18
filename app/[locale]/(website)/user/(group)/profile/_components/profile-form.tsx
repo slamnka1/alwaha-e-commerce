@@ -22,6 +22,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { FormErrorMessage } from '@/components/ui/form-error-message'
 import { Input } from '@/components/ui/input'
 import PhoneInput from '@/components/ui/phone-input'
 import { Separator } from '@/components/ui/separator'
@@ -48,7 +49,6 @@ export function ProfileForm() {
   type ProfileFormData = z.infer<typeof profileSchema>
 
   const { session, isPending } = useSession()
-  console.log('🚀 ~ ProfileForm ~ session:', session)
   const form = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
     values: {
@@ -58,15 +58,13 @@ export function ProfileForm() {
     },
   })
 
-  // useEffect(() => {
-  //   if (!isPending && session) {
-  //     form.reset({
-  //       name: session.name,
-  //       email: session.email,
-  //       phone_number: session.phone_number,
-  //     })
-  //   }
-  // }, [isPending])
+  useEffect(() => {
+    if (!isPending) {
+      form.setValue('name', session?.name || '')
+      form.setValue('email', session?.email || '')
+      form.setValue('phone_number', session?.phone_number || '')
+    }
+  }, [isPending])
 
   const onSubmitForm = async (data: ProfileFormData) => {
     // Handle form submission
@@ -164,6 +162,7 @@ export function ProfileForm() {
                 <Loader2 className="ml-2 h-4 w-4 animate-spin" />
               )}
             </Button>
+            <FormErrorMessage />
           </form>
         </Form>
       </CardContent>

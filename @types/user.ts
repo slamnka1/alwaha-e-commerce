@@ -18,8 +18,8 @@ export interface User {
   created_at: string
   id: number
   emirate_id: string
-  region: string
-  full_address: string
+  region_id: string
+  address: string
 }
 
 export interface Session {

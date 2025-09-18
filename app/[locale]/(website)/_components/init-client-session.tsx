@@ -14,25 +14,29 @@ export function InitSession({
 }: {
   initialValue: Session | null
 }) {
+  const initSession = useSession((s) => s.initSession)
   const updateSession = useSession((s) => s.updateSession)
   useEffect(() => {
-    updateSession(initialValue)
+    initSession(initialValue)
   }, [])
 
   const { data } = useQuery({
     queryKey: ['session'],
     queryFn: async () => {
-      const response = await apiClient.get<ApiResponse<User>>('/auth/me', {
-        headers: {
-          Authorization: `Bearer ${initialValue?.access_token}`,
-        },
-      })
-      return {
-        access_token: initialValue!.access_token,
-        ...response.data,
+      try {
+        const response = await apiClient.get<ApiResponse<User>>('/auth/me', {
+          headers: {
+            Authorization: `Bearer ${initialValue?.access_token}`,
+          },
+        })
+        return {
+          access_token: initialValue!.access_token,
+          ...response.data,
+        }
+      } catch (error) {
+        return null
       }
     },
-    initialData: initialValue,
   })
 
   useEffect(() => {

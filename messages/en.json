@@ -398,7 +398,10 @@
       },
       "shopWithConfidence": "Shop with confidence, exchange is available according to",
       "policy": "policy",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "operations": {
+        "updateSuccess": "Address updated successfully "
+      }
     },
     "operations": {
       "loading": "Loading cart...",
