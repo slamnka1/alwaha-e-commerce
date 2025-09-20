@@ -1,6 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 
 import { useEffect } from 'react'
 
@@ -22,13 +23,17 @@ export function InitSession({
 
   const { data } = useQuery({
     queryKey: ['session'],
+    enabled: !!initialValue?.access_token,
     queryFn: async () => {
       try {
-        const response = await apiClient.get<ApiResponse<User>>('/auth/me', {
-          headers: {
-            Authorization: `Bearer ${initialValue?.access_token}`,
-          },
-        })
+        const response = await axios.get<ApiResponse<User>>(
+          'https://waha.droos.live/api/auth/me',
+          {
+            headers: {
+              Authorization: `Bearer ${initialValue?.access_token}`,
+            },
+          }
+        )
         return {
           access_token: initialValue!.access_token,
           ...response.data,
