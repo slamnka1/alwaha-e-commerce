@@ -53,7 +53,6 @@ export function AddressForm({}) {
 
   useEffect(() => {
     if (!isPending) {
-      console.log('🚀 ~ AddressForm ~ isPending:', isPending, session)
       form.setValue('emirate_id', session?.emirate_id || '')
       form.setValue('region_id', session?.region_id || '')
       form.setValue('address', session?.address || '')
@@ -63,7 +62,6 @@ export function AddressForm({}) {
   const onSubmitForm = async (data: AddressFormData) => {
     try {
       const response = await apiClient.post('/auth/address', data)
-      console.log('🚀 ~ onSubmitForm ~ response:', response)
       toast.success(t('operations.updateSuccess'))
     } catch (error) {
       handleFormError(error, form)

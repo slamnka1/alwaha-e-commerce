@@ -68,7 +68,6 @@ export function ProfileForm() {
 
   const onSubmitForm = async (data: ProfileFormData) => {
     // Handle form submission
-    console.log('Profile data:', data)
 
     try {
       const response = await apiClient.put('/auth/profile/update', data)

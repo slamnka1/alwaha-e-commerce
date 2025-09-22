@@ -113,30 +113,32 @@ export default function ProductDescription({
             }}
           >
             <CarouselContent>
-              {product.other_colors.map((item, index) => (
-                <CarouselItem
-                  key={item.id}
-                  className="h-16 w-14 basis-[unset] pl-2"
-                >
-                  <button
+              {product.other_colors
+                .sort((e) => e.id)
+                .map((item, index) => (
+                  <CarouselItem
                     key={item.id}
-                    onClick={() => router.push(`/search/${item.id}`)}
-                    className={cn(
-                      'relative h-full w-full overflow-hidden rounded-[8px] transition-all duration-300',
-                      slug === item.id + '' ? 'scale-95' : ''
-                    )}
+                    className="h-16 w-14 basis-[unset] pl-2"
                   >
-                    <img
-                      src={item.main_image_url}
-                      alt={item.color_name}
-                      className="h-full w-full object-cover"
-                    />
-                    {slug === item.id + '' && (
-                      <div className="absolute inset-0 bg-white/20" />
-                    )}
-                  </button>
-                </CarouselItem>
-              ))}
+                    <button
+                      key={item.id}
+                      onClick={() => router.push(`/search/${item.id}`)}
+                      className={cn(
+                        'relative h-full w-full overflow-hidden rounded-[8px] transition-all duration-300',
+                        slug === item.id + '' ? 'scale-95' : ''
+                      )}
+                    >
+                      <img
+                        src={item.main_image_url}
+                        alt={item.color_name}
+                        className="h-full w-full object-cover"
+                      />
+                      {slug === item.id + '' && (
+                        <div className="absolute inset-0 bg-white/20" />
+                      )}
+                    </button>
+                  </CarouselItem>
+                ))}
             </CarouselContent>
           </Carousel>
         </div>
