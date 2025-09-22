@@ -1,14 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import {
-  getCartItems,
-  removeCartItem,
-  updateCartItemQuantity,
-} from '@/services/cart'
+import { useTranslations } from 'next-intl'
 
-// Type for translation function
-type TranslationFunction = (key: string) => string
+import { CartResponse } from '@/@types/cart'
+import { cart } from '@/services'
+
+import { AddToCartParams } from '../services'
 
 // Query key for cart data
 export const cartQueryKey = ['cart']
@@ -17,28 +15,40 @@ export const cartQueryKey = ['cart']
 export function useCartItems() {
   return useQuery({
     queryKey: cartQueryKey,
-    queryFn: getCartItems,
+    queryFn: cart.getCart,
+  })
+}
+
+export function useAddToCart() {
+  const t = useTranslations('cart')
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: (params: AddToCartParams) => cart.addToCart(params),
   })
 }
 
 // Hook to update cart item quantity
-export function useUpdateCartItemQuantity(t?: TranslationFunction) {
+export function useUpdateCartItemQuantity() {
+  const t = useTranslations('cart')
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({ itemId, quantity }: { itemId: string; quantity: number }) =>
-      updateCartItemQuantity(itemId, quantity),
+    mutationFn: ({ itemId, quantity }: { itemId: number; quantity: number }) =>
+      cart.updateCartItemQuantity(itemId, quantity),
     onMutate: async ({ itemId, quantity }) => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: cartQueryKey })
 
       // Snapshot the previous value
-      const previousCart = queryClient.getQueryData(cartQueryKey)
+      const previousCart = queryClient.getQueryData(
+        cartQueryKey
+      ) as CartResponse['data']
 
       // Optimistically update to the new value
-      queryClient.setQueryData(cartQueryKey, (old: any) => {
+      queryClient.setQueryData(cartQueryKey, (old: CartResponse['data']) => {
         if (!old) return old
-        return old.map((item: any) =>
+        return old.items.map((item) =>
           item.id === itemId ? { ...item, quantity } : item
         )
       })
@@ -67,22 +77,25 @@ export function useUpdateCartItemQuantity(t?: TranslationFunction) {
 }
 
 // Hook to remove cart item
-export function useRemoveCartItem(t?: TranslationFunction) {
+export function useRemoveCartItem() {
+  const t = useTranslations('cart')
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (itemId: string) => removeCartItem(itemId),
+    mutationFn: (itemId: number) => cart.removeFromCart(itemId),
     onMutate: async (itemId) => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: cartQueryKey })
 
       // Snapshot the previous value
-      const previousCart = queryClient.getQueryData(cartQueryKey)
+      const previousCart = queryClient.getQueryData(
+        cartQueryKey
+      ) as CartResponse['data']
 
       // Optimistically update to the new value
-      queryClient.setQueryData(cartQueryKey, (old: any) => {
+      queryClient.setQueryData(cartQueryKey, (old: CartResponse['data']) => {
         if (!old) return old
-        return old.filter((item: any) => item.id !== itemId)
+        return old.items.filter((item) => item.id !== itemId)
       })
 
       // Return a context object with the snapshotted value

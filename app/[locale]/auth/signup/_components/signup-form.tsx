@@ -82,9 +82,8 @@ const SignupForm = () => {
     } catch (error: any) {
       handleFormError(error, form)
       console.error('Signup error:', error)
-      toast.error(
-        error.response?.data?.message || 'An error occurred during signup'
-      )
+      const serverMsg = error?.response?.data?.message as string | undefined
+      toast.error(serverMsg || t('validation.errorLoadingEmirates'))
     }
   }
 
