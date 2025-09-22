@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Session, UserResponse } from '@/@types/user'
 import { useSession } from '@/store/session-store'
 
-import { apiClient } from './axios'
+import { BASE_RUL, apiClient } from './axios'
 
 interface SignupData {
   name: string
@@ -27,7 +27,10 @@ interface SendOTPResponse {
 
 export const authService = {
   async signup(data: SignupData): Promise<Session> {
-    const response = await apiClient.post<UserResponse>('/auth/register', data)
+    const response = await axios.post<UserResponse>(
+      BASE_RUL + '/auth/register',
+      data
+    )
     return {
       ...response.data.user,
       access_token: response.data.authorization.token,

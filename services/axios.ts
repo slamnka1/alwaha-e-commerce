@@ -7,9 +7,10 @@ import { useSession } from '@/store/session-store'
 import { getLocaleFromUrl } from '@/utils/get-locale'
 import { getServerSession } from '@/utils/get-server-session'
 
+export const BASE_RUL = 'https://waha.droos.live/api'
 // Create axios instance with default config
 export const apiClient: AxiosInstance = axios.create({
-  baseURL: 'https://waha.droos.live/api',
+  baseURL: BASE_RUL,
 })
 
 // Request interceptor

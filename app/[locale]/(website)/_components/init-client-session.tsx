@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 
 import { ApiResponse } from '@/@types'
 import { Session, User } from '@/@types/user'
-import apiClient from '@/services/axios'
+import apiClient, { BASE_RUL } from '@/services/axios'
 import { useSession } from '@/store/session-store'
 
 export function InitSession({
@@ -27,7 +27,7 @@ export function InitSession({
     queryFn: async () => {
       try {
         const response = await axios.get<ApiResponse<User>>(
-          'https://waha.droos.live/api/auth/me',
+          `${BASE_RUL}/auth/me`,
           {
             headers: {
               Authorization: `Bearer ${initialValue?.access_token}`,
