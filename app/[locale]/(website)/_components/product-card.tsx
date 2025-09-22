@@ -102,12 +102,14 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
 
           {/* Add to Cart Button */}
           <Button
-            onClick={() => onAddToCart()}
+            asChild
             variant="secondary"
             size={'lg'}
             className="w-full bg-white font-semibold shadow-lg max-lg:h-11 md:text-xl 2xl:text-2xl"
           >
-            {t('add-to-cart')}
+            <Link href={`/search/${props.id}?color=${props.colors.id}`}>
+              {t('add-to-cart')}
+            </Link>
           </Button>
         </CardContent>
       )}
