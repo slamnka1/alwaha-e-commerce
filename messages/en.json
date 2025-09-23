@@ -455,5 +455,11 @@
       "removeSuccess": "Item removed from favorites",
       "removeError": "Failed to remove item from favorites"
     }
+  },
+  "size-modal": {
+    "trigger": "Know your size",
+    "title": "Say goodbye to guesswork... get the exact size you deserve.",
+    "subtitle": "Enter your bust and hip measurements at once. When you open any product, we compare them to its size chart and automatically suggest the best fit. Recommendations vary from model to model for comfort.",
+    "button": "Know your size"
   }
 }

@@ -48,72 +48,72 @@ const SizeFilter = (props: Props) => {
     }),
   ]
 
-  //   const { isAuthenticated } = useSession()
-  //   if (!isAuthenticated)
-  //     return (
-  return (
-    <div className="my-2 space-y-3">
-      <h4 className="text-sm font-semibold">{t('measurementTitle')}</h4>
+  const { isAuthenticated } = useSession()
+  if (!isAuthenticated)
+    return (
+      <div className="my-2 space-y-3">
+        <h4 className="text-sm font-semibold">{t('measurementTitle')}</h4>
 
-      {/* Measurement Input Form */}
-      <div className="mx-auto max-w-52 space-y-1 rounded-lg">
-        <div className="mx-auto flex items-center justify-between gap-2">
-          <label className="text-sm font-medium">{t('chestMeasurement')}</label>
-          <Input
-            type="number"
-            className="h-8 w-20"
-            min={0}
-            placeholder={t('measurementPlaceholder')}
-            value={measurementValues.chest}
-            onChange={(e) =>
-              setMeasurementValues({
-                ...measurementValues,
-                chest: e.target.valueAsNumber,
-              })
-            }
-          />
+        {/* Measurement Input Form */}
+        <div className="mx-auto max-w-52 space-y-1 rounded-lg">
+          <div className="mx-auto flex items-center justify-between gap-2">
+            <label className="text-sm font-medium">
+              {t('chestMeasurement')}
+            </label>
+            <Input
+              type="number"
+              className="h-8 w-20"
+              min={0}
+              placeholder={t('measurementPlaceholder')}
+              value={measurementValues.chest}
+              onChange={(e) =>
+                setMeasurementValues({
+                  ...measurementValues,
+                  chest: e.target.valueAsNumber,
+                })
+              }
+            />
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <label className="text-sm font-medium">{t('hipMeasurement')}</label>
+            <Input
+              type="number"
+              min={0}
+              placeholder={t('measurementPlaceholder')}
+              value={measurementValues.hip}
+              onChange={(e) =>
+                setMeasurementValues({
+                  ...measurementValues,
+                  hip: e.target.valueAsNumber,
+                })
+              }
+              className="h-8 w-20"
+            />
+          </div>
         </div>
-        <div className="flex items-center justify-between gap-2">
-          <label className="text-sm font-medium">{t('hipMeasurement')}</label>
-          <Input
-            type="number"
-            min={0}
-            placeholder={t('measurementPlaceholder')}
-            value={measurementValues.hip}
-            onChange={(e) =>
-              setMeasurementValues({
-                ...measurementValues,
-                hip: e.target.valueAsNumber,
-              })
-            }
-            className="h-8 w-20"
-          />
+        <div className="flex justify-center gap-2">
+          <Button
+            size="sm"
+            variant={'secondary'}
+            className="h-8 bg-white px-4 text-sm font-medium"
+            onClick={handleClearMeasurement}
+          >
+            {t('delete')}
+          </Button>
+
+          <Button
+            size="sm"
+            variant={'secondary'}
+            className="h-8 bg-white px-4 text-sm font-medium"
+            onClick={handleMeasurementSubmit}
+          >
+            {t('filterButton')}
+          </Button>
         </div>
       </div>
-      <div className="flex justify-center gap-2">
-        <Button
-          size="sm"
-          variant={'secondary'}
-          className="h-8 bg-white px-4 text-sm font-medium"
-          onClick={handleClearMeasurement}
-        >
-          {t('delete')}
-        </Button>
+    )
 
-        <Button
-          size="sm"
-          variant={'secondary'}
-          className="h-8 bg-white px-4 text-sm font-medium"
-          onClick={handleMeasurementSubmit}
-        >
-          {t('filterButton')}
-        </Button>
-      </div>
-    </div>
-  )
-  // )
-
-  //   return <SizeModal />
+  return <SizeModal />
 }
 
 export default SizeFilter
