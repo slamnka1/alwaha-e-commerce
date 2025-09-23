@@ -8,6 +8,7 @@ import { Product } from '@/@types/product'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import useFavorite from '@/hooks/use-favorites'
+import { Link } from '@/lib/i18n/navigation'
 
 interface MobileFavoriteRowProps {
   item: Product
@@ -16,10 +17,6 @@ interface MobileFavoriteRowProps {
 const MobileFavoriteRow = ({ item }: MobileFavoriteRowProps) => {
   const t = useTranslations('favorite.table')
   const { mutate: toggleFavorite, isPending } = useFavorite(item)
-  const handleAddToCart = () => {
-    // TODO: Implement add to cart functionality
-    console.log('Add to cart:', item)
-  }
 
   return (
     <Card key={item.id} className="border-none p-3 shadow-none">
@@ -51,13 +48,17 @@ const MobileFavoriteRow = ({ item }: MobileFavoriteRowProps) => {
 
               {/* Add to Cart Button */}
               <Button
-                onClick={() => handleAddToCart()}
                 variant="link"
                 size="sm"
                 className="flex items-center gap-2"
               >
-                <Plus className="h-3 w-3" />
-                {t('addToCart')}
+                <Link
+                  className="flex items-center gap-2"
+                  href={'/search/' + item.id}
+                >
+                  <Plus className="h-3 w-3" />
+                  {t('addToCart')}
+                </Link>
               </Button>
             </div>
 

@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { Product } from '@/@types/product'
 import { Button } from '@/components/ui/button'
 import useFavorite from '@/hooks/use-favorites'
+import { Link } from '@/lib/i18n/navigation'
 
 interface FavoriteRowProps {
   item: Product
@@ -15,11 +16,6 @@ interface FavoriteRowProps {
 const FavoriteRow = ({ item }: FavoriteRowProps) => {
   const t = useTranslations('favorite.table')
   const { mutate: toggleFavorite, isPending } = useFavorite(item)
-
-  const handleAddToCart = () => {
-    // TODO: Implement add to cart functionality
-    console.log('Add to cart:', item)
-  }
 
   return (
     <div key={item.id} className="px-6 py-4">
@@ -59,13 +55,17 @@ const FavoriteRow = ({ item }: FavoriteRowProps) => {
         {/* Add to Cart */}
         <div className="col-span-2 text-center">
           <Button
-            onClick={() => handleAddToCart()}
             variant="link"
             size="sm"
             className="mx-auto flex items-center gap-2"
           >
-            <Plus className="h-4 w-4" />
-            {t('addToCart')}
+            <Link
+              className="flex items-center gap-2"
+              href={'/search/' + item.id}
+            >
+              <Plus className="h-4 w-4" />
+              {t('addToCart')}
+            </Link>
           </Button>
         </div>
 

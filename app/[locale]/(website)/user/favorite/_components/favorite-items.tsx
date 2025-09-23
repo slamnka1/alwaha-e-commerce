@@ -17,11 +17,6 @@ interface FavoriteItemsProps {
 export const FavoriteItems = ({ items }: FavoriteItemsProps) => {
   const t = useTranslations('favorite.table')
 
-  const handleAddToCart = (item: Product) => {
-    // TODO: Implement add to cart functionality
-    console.log('Add to cart:', item)
-  }
-
   if (items.length === 0) {
     return (
       <Card className="overflow-hidden">

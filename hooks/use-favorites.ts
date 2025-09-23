@@ -72,7 +72,9 @@ const useFavorite = (product: Product) => {
     onSuccess(data, vars) {
       if (!vars.is_favourite) {
         toast.success(t('favorite.operations.addSuccess'))
-      } else toast.success(t('favorite.operations.removeSuccess'))
+      } else {
+        toast.success(t('favorite.operations.removeSuccess'))
+      }
       setIsFavorite((pre) => !pre)
       queryClient.invalidateQueries({
         queryKey: favoriteQueryKey,
