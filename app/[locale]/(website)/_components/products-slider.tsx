@@ -11,6 +11,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel'
+import { Link } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 import { ProductCard } from './product-card'
@@ -21,11 +22,13 @@ export default function ProductsSlider({
   title,
   imageOnly,
   titleClassName,
+  more,
 }: {
   products: Product[]
   title: string
   imageOnly?: boolean
   titleClassName?: string
+  more?: string
 }) {
   const t = useTranslations('common')
   return (
@@ -40,9 +43,11 @@ export default function ProductsSlider({
           >
             {title}
           </p>
-          <Button variant={'link'} className="text-xs lg:text-xl">
-            {t('see-more')}
-          </Button>
+          {more ? (
+            <Button asChild variant={'link'} className="text-xs lg:text-xl">
+              <Link href={more}>{t('see-more')}</Link>
+            </Button>
+          ) : null}
         </div>
         <div className="relative">
           <Carousel

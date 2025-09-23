@@ -72,9 +72,17 @@ export default async function HomePage() {
       {!session ? <KnowYourSize /> : <KnowYourSizeAuth />}
       <ProductsSlider products={newProducts} title={t('new-products')} />
       {offers.length > 0 && (
-        <ProductsSlider products={offers} title={t('offers')} />
+        <ProductsSlider
+          more="/search?offers=true"
+          products={offers}
+          title={t('offers')}
+        />
       )}
-      <ProductsSlider products={pluseSizes} title={t('pluse-size')} />
+      <ProductsSlider
+        more="/search?pluse_sizes=true"
+        products={pluseSizes}
+        title={t('pluse-size')}
+      />
     </React.Fragment>
   )
 }
