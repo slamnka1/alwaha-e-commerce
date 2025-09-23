@@ -37,8 +37,11 @@ const SizeModal: React.FC<SizeModalProps> = ({ trigger, contentClassName }) => {
       <Dialog>
         <DialogTrigger asChild>
           {trigger ?? (
-            <Button size="sm" className="rounded-3xl px-6">
-              {tHome('button')}
+            <Button
+              size={'sm'}
+              className="h-8 rounded-xl px-4 py-1 text-xs font-normal"
+            >
+              {tHome('addMeasurements')}
             </Button>
           )}
         </DialogTrigger>
