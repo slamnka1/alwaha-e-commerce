@@ -38,7 +38,7 @@ export default async function HomePage() {
   ])
 
   // Handle each result with appropriate fallbacks using helper functions
-  const pluseSizes = safeExtractNested(
+  const plusSizes = safeExtractNested(
     plusSizesResult,
     (response) => response.data,
     []
@@ -79,9 +79,9 @@ export default async function HomePage() {
         />
       )}
       <ProductsSlider
-        more="/search?pluse_sizes=true"
-        products={pluseSizes}
-        title={t('pluse-size')}
+        more="/search?plus_sizes=true"
+        products={plusSizes}
+        title={t('plus-size')}
       />
     </React.Fragment>
   )

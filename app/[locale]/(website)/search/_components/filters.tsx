@@ -31,7 +31,7 @@ const Filters = (props: Props) => {
     'category_id[]': parseAsArrayOf(parseAsString).withDefault([]),
     size: parseAsArrayOf(parseAsString).withDefault([]),
     size_size: parseAsString.withDefault(''),
-    pluse_sizes: parseAsBoolean.withDefault(false),
+    plus_sizes: parseAsBoolean.withDefault(false),
     offers: parseAsBoolean.withDefault(false),
   })
 
@@ -152,10 +152,10 @@ const Filters = (props: Props) => {
       <div className="mt-6 space-y-3">
         <div className="flex items-center space-x-3">
           <Checkbox
-            checked={filters.pluse_sizes}
+            checked={filters.plus_sizes}
             onCheckedChange={(checked) =>
               setFilters({
-                pluse_sizes: checked ? true : false,
+                plus_sizes: checked ? true : false,
               })
             }
             id="plus-size"
