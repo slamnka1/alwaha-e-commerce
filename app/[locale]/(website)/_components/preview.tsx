@@ -1,129 +1,21 @@
 'use client'
 
 import Autoplay from 'embla-carousel-autoplay'
-import Fade from 'embla-carousel-fade'
 import { UseEmblaCarouselType } from 'embla-carousel-react'
-import { ShoppingCart } from 'lucide-react'
 
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
+import { Product } from '@/@types/product'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel'
+import { useRouter } from '@/lib/i18n/navigation'
 
-import { PreviewCard, ProductCardType } from './preview-card'
-
-const slides: ProductCardType[] = [
-  {
-    id: '1',
-    image: '/girls.jpg', // Using existing image from assets
-    title: 'Traditional Cream Dress',
-    isPlusSize: true,
-    discount: 15,
-    price: 89.99,
-  },
-  {
-    id: '2',
-    image: '/girls.jpg',
-    title: 'Blue Striped Shirt',
-    isPlusSize: false,
-    discount: 10,
-    price: 45.99,
-  },
-  {
-    id: '3',
-    image: '/girls.jpg',
-    title: 'Plaid Blazer Set',
-    isPlusSize: true,
-    discount: 20,
-    price: 120.99,
-  },
-  {
-    id: '4',
-    image: '/girls.jpg',
-    title: 'Graduation Gown',
-    isPlusSize: true,
-    discount: 25,
-    price: 150.99,
-  },
-  {
-    id: '5',
-    image: '/girls.jpg',
-    title: 'Elegant Abaya',
-    isPlusSize: true,
-    discount: 30,
-    price: 200.99,
-  },
-  {
-    id: '6',
-    image: '/girls.jpg',
-    title: 'Casual Summer Dress',
-    isPlusSize: false,
-    discount: 12,
-    price: 65.99,
-  },
-  {
-    id: '7',
-    image: '/girls.jpg',
-    title: 'Casual Summer Dress',
-    isPlusSize: false,
-    discount: 12,
-    price: 65.99,
-  },
-  {
-    id: '8',
-    image: '/girls.jpg',
-    title: 'Casual Summer Dress',
-    isPlusSize: false,
-    discount: 12,
-    price: 65.99,
-  },
-  {
-    id: '9',
-    image: '/girls.jpg',
-    title: 'Casual Summer Dress',
-    isPlusSize: false,
-    discount: 12,
-    price: 65.99,
-  },
-  {
-    id: '10',
-    image: '/girls.jpg',
-    title: 'Casual Summer Dress',
-    isPlusSize: false,
-    discount: 12,
-    price: 65.99,
-  },
-
-  {
-    id: '11',
-    image: '/girls.jpg',
-    title: 'Casual Summer Dress',
-    isPlusSize: false,
-    discount: 12,
-    price: 65.99,
-  },
-  {
-    id: '12',
-    image: '/girls.jpg',
-    title: 'Casual Summer Dress',
-    isPlusSize: false,
-    discount: 12,
-    price: 65.99,
-  },
-  {
-    id: '13',
-    image: '/girls.jpg',
-    title: 'Casual Summer Dress',
-    isPlusSize: false,
-    discount: 12,
-    price: 65.99,
-  },
-]
+import { PreviewCard } from './preview-card'
 
 const TWEEN_FACTOR_BASE = 0.15
 const SCALE_MIN = 0.8
@@ -272,7 +164,7 @@ const useCarouselScaling = (emblaApi: CarouselApi | undefined) => {
   }
 }
 
-const PreviewCarousel = () => {
+const PreviewCarousel = ({ products }: { products: Product[] }) => {
   const t = useTranslations('preview')
   const [emblaApi, setApi] = useState<CarouselApi>()
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
@@ -303,6 +195,8 @@ const PreviewCarousel = () => {
       emblaApi.off('select', onSlideChange)
     }
   }, [emblaApi])
+
+  const router = useRouter()
 
   return (
     <section className="pt-6">
@@ -339,7 +233,7 @@ const PreviewCarousel = () => {
           className="w-full"
         >
           <CarouselContent className="my-14 ml-0 pb-8 sm:my-24 md:pb-16 lg:my-36 xl:my-48">
-            {slides.map((value, index) => (
+            {products.map((value, index) => (
               <CarouselItem
                 key={value.id}
                 className="basis-1/6 pl-0 md:basis-1/7"
@@ -351,7 +245,10 @@ const PreviewCarousel = () => {
                   />
                   {/* Shopping cart icon for active slide */}
                   {index === currentSlideIndex && (
-                    <div className="absolute right-1/2 bottom-0 z-20 translate-x-1/2 translate-y-1/2 cursor-pointer">
+                    <div
+                      onClick={() => router.push(`/search/${value.id}`)}
+                      className="absolute right-1/2 bottom-0 z-20 translate-x-1/2 translate-y-1/2 cursor-pointer"
+                    >
                       <div className="bg-primary rounded-full border border-white p-1 shadow-md md:p-1.5 lg:border-[3px] lg:p-2 lg:shadow-lg 2xl:p-2.5">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

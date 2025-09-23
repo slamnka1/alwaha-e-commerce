@@ -19,13 +19,23 @@ export default async function HomePage() {
   const session = await getServerSession()
   const t = await getTranslations('home-page')
   // Group all API calls to run in parallel with proper error handling
-  const [plusSizesResult, offersResult, newProductsResult, categoriesResult] =
-    await Promise.allSettled([
-      productsService.getPlusSizes(),
-      productsService.getOffers(),
-      productsService.getRecentProducts(),
-      listsService.getCategories(),
-    ])
+  const [
+    plusSizesResult,
+    offersResult,
+    newProductsResult,
+    categoriesResult,
+    productsResult,
+  ] = await Promise.allSettled([
+    productsService.getPlusSizes(),
+    productsService.getOffers(),
+    productsService.getRecentProducts(),
+    listsService.getCategories(),
+    productsService.getProducts(
+      new URLSearchParams({
+        per_page: '15',
+      })
+    ),
+  ])
 
   // Handle each result with appropriate fallbacks using helper functions
   const pluseSizes = safeExtractNested(
@@ -48,12 +58,17 @@ export default async function HomePage() {
     (response) => response.data,
     []
   )
+  const products = safeExtractNested(
+    productsResult,
+    (response) => response.data,
+    []
+  )
 
   return (
     <React.Fragment>
       <Hero />
       <TypeSlider typeData={categories} />
-      <PreviewCarousel />
+      <PreviewCarousel products={products || []} />
       {!session ? <KnowYourSize /> : <KnowYourSizeAuth />}
       <ProductsSlider products={newProducts} title={t('new-products')} />
       {offers.length > 0 && (

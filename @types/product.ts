@@ -12,6 +12,7 @@ export interface Product {
   offer_active_id: null
   discount_percent: string
   discount_amount: string
+  has_plus_size: boolean
   sizes: Size[]
   best_fit_size: null
   is_favourite: boolean

@@ -2,34 +2,18 @@
 
 import Image from 'next/image'
 
+import { Product } from '@/@types/product'
 import { discountIcon } from '@/assets'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
-export interface ProductCardType {
-  id: string
-  image: string
-  title: string
-  isPlusSize: boolean
-  discount?: number
-  price: number
-}
-
-interface PreviewCardProps extends ProductCardType {
-  onClick?: () => void
-  active?: boolean
-}
-
 export function PreviewCard({
-  image,
-  title,
-  isPlusSize,
-  discount,
-  price,
   onClick,
-  active,
-}: PreviewCardProps) {
+  main_image_url,
+  discount_percent,
+  has_plus_size,
+}: Product & { onClick?: () => void }) {
   return (
     <Card
       className={cn(
@@ -38,10 +22,10 @@ export function PreviewCard({
       onClick={onClick}
     >
       <AspectRatio ratio={9 / 16} className={cn('overflow-hidden')}>
-        <img src={image} className="h-full w-full object-cover" />
+        <img src={main_image_url} className="h-full w-full object-cover" />
 
         {/* Discount Badge */}
-        {discount && (
+        {Number(discount_percent) > 0 && (
           <div className="absolute top-0.5 right-2.5 z-10 md:right-3.5 lg:right-4.5">
             <Image
               src={discountIcon}
@@ -52,7 +36,7 @@ export function PreviewCard({
         )}
 
         {/* Plus Size Badge */}
-        {isPlusSize && (
+        {has_plus_size && (
           <div className="absolute top-0 right-0 z-10">
             <div
               style={{
