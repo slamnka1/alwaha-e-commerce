@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart, Minus, Plus } from 'lucide-react'
+import { Heart, Loader2, Minus, Plus } from 'lucide-react'
 import { parseAsInteger, useQueryState } from 'nuqs'
 
 import React from 'react'
@@ -17,6 +17,7 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { useAddToCart } from '@/hooks/use-cart'
 import useFavorite from '@/hooks/use-favorites'
 import { Link, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
@@ -35,6 +36,10 @@ export default function ProductDescription({
   const t = useTranslations('product-description')
   const { slug } = useParams<{ slug: string }>()
   const [selectedSize, setSelectedSize] = useQueryState('size')
+  const [quantity = 1] = useQueryState(
+    'quantity',
+    parseAsInteger.withDefault(1)
+  )
   const router = useRouter()
   const hasDiscount = !!Number(product.discount_percent)
   const {
@@ -48,6 +53,9 @@ export default function ProductDescription({
     colors: { id: product.id as unknown as number },
     is_favourite: product.is_favorited,
   } as unknown as any)
+
+  const addToCart = useAddToCart()
+  const isAddDisabled = !selectedSize || addToCart.isPending
 
   return (
     <div className={cn('flex w-full max-w-xl flex-col gap-6', className)}>
@@ -184,7 +192,18 @@ export default function ProductDescription({
         >
           {t('buy-now')}
         </Button>
-        <Button className="flex-1 font-normal max-lg:h-10 max-lg:text-xs">
+        <Button
+          className="flex-1 font-normal max-lg:h-10 max-lg:text-xs"
+          disabled={isAddDisabled}
+          onClick={() =>
+            addToCart.mutate({
+              product_color_id: Number(product.id),
+              product_size_id: Number(selectedSize),
+              quantity: Number(quantity) || 1,
+            })
+          }
+        >
+          {addToCart.isPending && <Loader2 className="size-4 animate-spin" />}
           {t('add-to-cart')}
         </Button>
 

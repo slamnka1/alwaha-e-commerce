@@ -41,7 +41,6 @@ interface CartItemsProps {
 
 export function CartItems({ items }: CartItemsProps) {
   const t = useTranslations('cart')
-  const [itemToDelete, setItemToDelete] = useState<string | null>(null)
 
   const updateQuantityMutation = useUpdateCartItemQuantity()
   const removeItemMutation = useRemoveCartItem()
@@ -54,15 +53,6 @@ export function CartItems({ items }: CartItemsProps) {
 
   const handleRemoveItem = (id: number) => {
     removeItemMutation.mutate(id)
-    setItemToDelete(null)
-  }
-
-  const openDeleteDialog = (id: string) => {
-    setItemToDelete(id)
-  }
-
-  const closeDeleteDialog = () => {
-    setItemToDelete(null)
   }
 
   const formatPrice = (price: number) => {
@@ -121,7 +111,7 @@ export function CartItems({ items }: CartItemsProps) {
                   <div className="flex items-center gap-3">
                     {/* Remove Button */}
                     <div className="col-span-1 flex justify-center">
-                      <AlertDialog onOpenChange={closeDeleteDialog}>
+                      <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <Button
                             variant="ghost"
@@ -264,7 +254,7 @@ export function CartItems({ items }: CartItemsProps) {
                 )}
               >
                 <div className="flex items-center gap-1">
-                  <AlertDialog onOpenChange={closeDeleteDialog}>
+                  <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <Button
                         variant="ghost"
