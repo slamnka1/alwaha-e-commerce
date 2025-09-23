@@ -38,7 +38,7 @@ export function TypeCard(props: Category) {
           className="text-primary bg-white/90 font-semibold transition-all duration-200 hover:scale-105 hover:bg-white max-lg:h-10"
           asChild
         >
-          <Link href={'/search?category=' + props.slug}>
+          <Link href={'/search?category_id[]=' + props.id}>
             {props.category_name}
           </Link>
         </Button>
