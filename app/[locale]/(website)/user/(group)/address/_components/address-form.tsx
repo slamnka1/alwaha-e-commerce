@@ -1,6 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -44,25 +45,35 @@ export function AddressForm({}) {
 
   const form = useForm<AddressFormData>({
     resolver: zodResolver(addressSchema),
-    defaultValues: {
-      emirate_id: session?.emirate_id || '',
-      region_id: session?.region_id || '',
-      address: session?.address || '',
-    },
+    defaultValues: session
+      ? {
+          emirate_id: session.emirate?.id + '' || '',
+          region_id: session.region?.id + '' || '',
+          address: session.address || '',
+        }
+      : {
+          emirate_id: '',
+          region_id: '',
+          address: '',
+        },
   })
 
   useEffect(() => {
     if (!isPending) {
-      form.setValue('emirate_id', session?.emirate_id || '')
-      form.setValue('region_id', session?.region_id || '')
+      form.setValue('emirate_id', session?.emirate?.id + '' || '')
+      form.setValue('region_id', session?.region?.id + '' || '')
       form.setValue('address', session?.address || '')
     }
   }, [isPending])
 
+  const queryClient = useQueryClient()
   const onSubmitForm = async (data: AddressFormData) => {
     try {
-      const response = await apiClient.post('/auth/address', data)
+      const response = await apiClient.put('/auth/address/update', data)
       toast.success(t('operations.updateSuccess'))
+      queryClient.invalidateQueries({
+        queryKey: ['session'],
+      })
     } catch (error) {
       handleFormError(error, form)
     }
@@ -113,7 +124,7 @@ export function AddressForm({}) {
                   <FormControl>
                     <RegionSelect
                       emirateId={form.watch('emirate_id')}
-                      value={field.value}
+                      value={form.watch('region_id')}
                       onValueChange={field.onChange}
                     />
                   </FormControl>

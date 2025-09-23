@@ -17,8 +17,14 @@ export interface User {
   updated_at: string
   created_at: string
   id: number
-  emirate_id: string
-  region_id: string
+  emirate: {
+    id: number
+    name: string
+  }
+  region: {
+    id: number
+    name: string
+  }
   address: string
 }
 
