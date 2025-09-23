@@ -43,16 +43,16 @@ export function CartItems({ items }: CartItemsProps) {
   const t = useTranslations('cart')
   const [itemToDelete, setItemToDelete] = useState<string | null>(null)
 
-  const updateQuantityMutation = useUpdateCartItemQuantity(t)
-  const removeItemMutation = useRemoveCartItem(t)
+  const updateQuantityMutation = useUpdateCartItemQuantity()
+  const removeItemMutation = useRemoveCartItem()
 
-  const handleQuantityChange = (id: string, newQuantity: number) => {
+  const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return
 
     updateQuantityMutation.mutate({ itemId: id, quantity: newQuantity })
   }
 
-  const handleRemoveItem = (id: string) => {
+  const handleRemoveItem = (id: number) => {
     removeItemMutation.mutate(id)
     setItemToDelete(null)
   }
@@ -104,10 +104,10 @@ export function CartItems({ items }: CartItemsProps) {
           {items.map((item) => {
             const isUpdating =
               updateQuantityMutation.isPending &&
-              updateQuantityMutation.variables?.itemId === item.id
+              updateQuantityMutation.variables?.itemId === Number(item.id)
             const isRemoving =
               removeItemMutation.isPending &&
-              removeItemMutation.variables === item.id
+              removeItemMutation.variables === Number(item.id)
 
             return (
               <div
@@ -153,7 +153,7 @@ export function CartItems({ items }: CartItemsProps) {
                             </AlertDialogCancel>
                             <AlertDialogAction
                               className="bg-destructive hover:bg-destructive/90 px-6 font-medium"
-                              onClick={() => handleRemoveItem(item.id)}
+                              onClick={() => handleRemoveItem(Number(item.id))}
                             >
                               {t('deleteConfirm.confirm')}
                             </AlertDialogAction>
@@ -162,11 +162,10 @@ export function CartItems({ items }: CartItemsProps) {
                       </AlertDialog>
                     </div>
                     <div className="bg-muted relative aspect-square h-18 w-18 overflow-hidden rounded-lg">
-                      <Image
+                      <img
                         src={item.image}
                         alt={item.name}
-                        fill
-                        className="object-cover"
+                        className="h-full w-full object-cover"
                       />
                     </div>
                     <div className="flex-1 space-y-4">
@@ -192,7 +191,7 @@ export function CartItems({ items }: CartItemsProps) {
                       size="icon"
                       className="h-8 w-8 rounded-none border-l"
                       onClick={() =>
-                        handleQuantityChange(item.id, item.quantity - 1)
+                        handleQuantityChange(Number(item.id), item.quantity - 1)
                       }
                       disabled={
                         item.quantity <= 1 || updateQuantityMutation.isPending
@@ -217,7 +216,7 @@ export function CartItems({ items }: CartItemsProps) {
                       size="icon"
                       className="h-8 w-8 rounded-none border-r"
                       onClick={() =>
-                        handleQuantityChange(item.id, item.quantity + 1)
+                        handleQuantityChange(Number(item.id), item.quantity + 1)
                       }
                       disabled={updateQuantityMutation.isPending}
                     >
@@ -251,10 +250,10 @@ export function CartItems({ items }: CartItemsProps) {
           {items.map((item) => {
             const isUpdating =
               updateQuantityMutation.isPending &&
-              updateQuantityMutation.variables?.itemId === item.id
+              updateQuantityMutation.variables?.itemId === Number(item.id)
             const isRemoving =
               removeItemMutation.isPending &&
-              removeItemMutation.variables === item.id
+              removeItemMutation.variables === Number(item.id)
 
             return (
               <Card
@@ -297,7 +296,7 @@ export function CartItems({ items }: CartItemsProps) {
                         </AlertDialogCancel>
                         <AlertDialogAction
                           className="bg-destructive hover:bg-destructive/90 px-6 font-medium"
-                          onClick={() => handleRemoveItem(item.id)}
+                          onClick={() => handleRemoveItem(Number(item.id))}
                         >
                           {t('deleteConfirm.confirm')}
                         </AlertDialogAction>
@@ -306,11 +305,10 @@ export function CartItems({ items }: CartItemsProps) {
                   </AlertDialog>
                   {/* Product Image */}
                   <div className="bg-muted relative aspect-square h-22 w-16 flex-shrink-0 overflow-hidden rounded-lg">
-                    <Image
+                    <img
                       src={item.image}
                       alt={item.name}
-                      fill
-                      className="object-cover"
+                      className="h-full w-full object-cover"
                     />
                   </div>
 
@@ -334,7 +332,10 @@ export function CartItems({ items }: CartItemsProps) {
                               size="icon"
                               className="h-7 w-7 rounded-none border-l"
                               onClick={() =>
-                                handleQuantityChange(item.id, item.quantity - 1)
+                                handleQuantityChange(
+                                  Number(item.id),
+                                  item.quantity - 1
+                                )
                               }
                               disabled={
                                 item.quantity <= 1 ||
@@ -360,7 +361,10 @@ export function CartItems({ items }: CartItemsProps) {
                               size="icon"
                               className="h-7 w-7 rounded-none border-r"
                               onClick={() =>
-                                handleQuantityChange(item.id, item.quantity + 1)
+                                handleQuantityChange(
+                                  Number(item.id),
+                                  item.quantity + 1
+                                )
                               }
                               disabled={updateQuantityMutation.isPending}
                             >

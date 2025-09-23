@@ -18,11 +18,9 @@ apiClient.interceptors.request.use(
   async (config) => {
     // Add auth token if available
     if (typeof window !== 'undefined') {
-      if (config.url !== '/auth/me') {
-        const session = useSession.getState().session
-        if (session) {
-          config.headers.Authorization = `Bearer ${session.access_token}`
-        }
+      const session = useSession.getState().session
+      if (session) {
+        config.headers.Authorization = `Bearer ${session.access_token}`
       }
       // Add locale header for internationalization
       const locale = getLocaleFromUrl()
@@ -75,7 +73,7 @@ apiClient.interceptors.response.use(
         redirect('/')
       } else {
         axios.post('/api/logout')
-        useSession.getState().updateSession(null)
+        useSession.getState().initSession(null)
 
         const locale = getLocaleFromUrl()
         window.location.href = `/${locale}`

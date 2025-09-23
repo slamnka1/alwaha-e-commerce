@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { useCartItems } from '@/hooks/use-cart'
 
@@ -13,31 +13,30 @@ type Props = {}
 
 const Wrapper = (props: Props) => {
   const t = useTranslations('cart')
-  const { data: cartItems = [], isLoading, error } = useCartItems()
+  const locale = useLocale()
+  const { data, isLoading, error } = useCartItems()
 
-  // Calculate summary data from cart items
+  // Map API response to UI cart items shape
+  const items = (data?.items ?? []).map((item) => ({
+    id: String(item.id),
+    name: locale === 'ar' ? item.product.name_ar : item.product.name_en,
+    price: item.product.price,
+    quantity: item.quantity,
+    image: item.product.color_image_url,
+    color: '',
+    size: item.product_size.size_code,
+  }))
+
+  // Use summary numbers from API when available
   const summaryData = {
-    itemCount: cartItems.reduce((sum, item) => sum + item.quantity, 0),
-    subtotal: cartItems.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    ),
-    purchase: cartItems.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    ),
-    purchaseTax: 45.5,
-    deliveryPrice: 25.0,
-    discountPercentage: 10,
-    total: 0, // Will be calculated
+    itemCount: items.reduce((sum, item) => sum + item.quantity, 0),
+    subtotal: data?.subtotal ?? 0,
+    purchase: data?.subtotal ?? 0,
+    purchaseTax: data?.tax_amount ?? 0,
+    deliveryPrice: data?.shipping_amount ?? 0,
+    discountPercentage: 0,
+    total: data?.total_amount ?? 0,
   }
-
-  // Calculate total
-  summaryData.total =
-    summaryData.purchase +
-    summaryData.purchaseTax +
-    summaryData.deliveryPrice -
-    (summaryData.purchase * summaryData.discountPercentage) / 100
 
   if (isLoading) {
     return (
@@ -85,7 +84,7 @@ const Wrapper = (props: Props) => {
       <div className="container">
         <div className="flex flex-col gap-4 pb-20 md:flex-row">
           <div className="flex-1">
-            <CartItems items={cartItems} />
+            <CartItems items={items} />
           </div>
           <CartSummary data={summaryData} />
         </div>

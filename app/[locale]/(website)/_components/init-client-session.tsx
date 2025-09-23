@@ -25,21 +25,10 @@ export function InitSession({
     queryKey: ['session'],
     enabled: !!initialValue?.access_token,
     queryFn: async () => {
-      try {
-        const response = await axios.get<ApiResponse<User>>(
-          `${BASE_RUL}/auth/me`,
-          {
-            headers: {
-              Authorization: `Bearer ${initialValue?.access_token}`,
-            },
-          }
-        )
-        return {
-          access_token: initialValue!.access_token,
-          ...response.data,
-        }
-      } catch (error) {
-        return null
+      const response = await apiClient.get<ApiResponse<User>>(`/auth/me`, {})
+      return {
+        access_token: initialValue!.access_token,
+        ...response.data,
       }
     },
   })
