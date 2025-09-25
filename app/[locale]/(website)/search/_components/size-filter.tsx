@@ -1,8 +1,8 @@
 'use client'
 
+import { PlusIcon, Trash2 } from 'lucide-react'
 import {
   parseAsArrayOf,
-  parseAsBoolean,
   parseAsInteger,
   parseAsString,
   useQueryStates,
@@ -12,9 +12,13 @@ import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
+import SizeModal from '@/components/size/size-modal'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
-import SizeModal from '@/components/ui/size-modal'
+import { Label } from '@/components/ui/label'
+import { RadioGroup } from '@/components/ui/radio-group'
+import { useDeleteUserSize, useUserSizes } from '@/hooks/use-user-sizes'
 import { useSession } from '@/store/session-store'
 
 type Props = {}
@@ -24,6 +28,7 @@ const SizeFilter = (props: Props) => {
   const [filters, setFilters] = useQueryStates({
     chestMeasurement: parseAsInteger.withDefault(0),
     hipMeasurement: parseAsInteger.withDefault(0),
+    'user_sizes[]': parseAsArrayOf(parseAsString).withDefault([]),
   })
 
   const [measurementValues, setMeasurementValues] = useState({
@@ -48,6 +53,8 @@ const SizeFilter = (props: Props) => {
     }),
   ]
 
+  const sizes = useUserSizes()
+  const deleteSize = useDeleteUserSize()
   const { isAuthenticated } = useSession()
   if (!isAuthenticated)
     return (
@@ -113,7 +120,67 @@ const SizeFilter = (props: Props) => {
       </div>
     )
 
-  return <SizeModal />
+  return (
+    <div className="space-y-3 pt-4">
+      <p className="text-sm font-medium">{t('size')}</p>
+      {sizes?.data && sizes.data.length > 0 && (
+        <div className="flex flex-col gap-3">
+          {sizes.data.map((size) => (
+            <div className="flex justify-between" key={size.id}>
+              <div
+                className="flex items-center gap-4"
+                style={{
+                  color: size.color,
+                }}
+              >
+                <Checkbox
+                  id={String(size.id)}
+                  checked={filters['user_sizes[]'].includes(String(size.id))}
+                  onCheckedChange={(checked) =>
+                    setFilters({
+                      'user_sizes[]': checked
+                        ? [...filters['user_sizes[]'], String(size.id)]
+                        : filters['user_sizes[]'].filter(
+                            (id) => String(id) !== String(size.id)
+                          ),
+                    })
+                  }
+                />
+                <Label htmlFor={String(size.id)}>{size.name}</Label>
+              </div>
+              <div>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="size-5"
+                  aria-label={t('delete')}
+                  onClick={() => deleteSize.mutate(size.id)}
+                  disabled={deleteSize.isPending}
+                >
+                  <Trash2 className="size-4 text-gray-400" />
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {(!sizes?.data || sizes.data?.length < 3) && (
+        <SizeModal
+          trigger={
+            sizes?.data && sizes.data.length > 0 ? (
+              <Button size="sm" variant="link" className="gap-4 px-0">
+                <span className="bg-primary flex size-5 items-center justify-center !rounded-[4px] text-white">
+                  <PlusIcon className="size-4" />
+                </span>
+                {t('addSize')}
+              </Button>
+            ) : null
+          }
+        />
+      )}
+    </div>
+  )
 }
 
 export default SizeFilter

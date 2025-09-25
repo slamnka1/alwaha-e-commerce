@@ -223,7 +223,7 @@
       "filterButton": "Filter",
       "editButton": "Edit",
       "deleteButton": "Delete",
-      "clearAll": "Clear All",
+      "clearAll": "Size deleted successfully",
       "applyFilters": "Apply Filters",
       "home": "Home",
       "products": "Products",
@@ -246,7 +246,8 @@
         "addMeasurementsDescription": "Every body has its details, based on this we let you add your size easily and recommend the most suitable for you!",
         "importantNote": "Based on your saved measurements, the most suitable size for you is:",
         "edit-importantNote": "Based on your saved measurements, the most suitable size for you is:"
-      }
+      },
+      "addSize": "Add New Size"
     }
   },
   "userSize": {
@@ -461,5 +462,25 @@
     "title": "Say goodbye to guesswork... get the exact size you deserve.",
     "subtitle": "Enter your bust and hip measurements at once. When you open any product, we compare them to its size chart and automatically suggest the best fit. Recommendations vary from model to model for comfort.",
     "button": "Know your size"
+  },
+  "addSizeForm": {
+    "title": "Add your size",
+    "title2": "Say goodbye to guesswork... get the exact size you deserve.",
+    "nameLabel": "Name",
+    "addButton": "Color for distinction",
+    "chestMeasurement": "Chest circumference measurement",
+    "hipMeasurement": "Hip rotation measurement",
+    "chestPlaceholder": "Enter measurement in centimeters",
+    "hipPlaceholder": "Enter measurement in centimeters",
+    "saveButton": "Save data",
+    "importantNote": "Your privacy is our priority: Your measurements are stored in your account only for easy shopping later.",
+    "validation": {
+      "chestRequired": "Chest measurement is required",
+      "hipRequired": "Hip measurement is required",
+      "invalidChest": "Please enter a valid chest measurement",
+      "invalidHip": "Please enter a valid hip measurement"
+    },
+    "subtitle": "Enter your bust and hip circumference in centimeters, and we'll instantly recommend the perfect size for you — For all styles, your measurements will be saved in your account. You can also customize them and add your friends' measurements for a more convenient shopping experience.",
+    "success": "Size added successfully "
   }
 }

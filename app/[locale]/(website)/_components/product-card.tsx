@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils'
 export function ProductCard(props: Product & { imageOnly?: boolean }) {
   const t = useTranslations('product-card')
   const { isFavorite, mutate: toggleFavorite, isPending } = useFavorite(props)
-  const onAddToCart = () => {}
+
   return (
     <Card className="overflow-hidden border-0 bg-transparent py-2 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
@@ -34,7 +34,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
           />
           {/* Badges */}
           <div className="absolute top-0 left-[-1px] flex gap-1" dir="ltr">
-            {props.sizes && (
+            {props.has_plus_size && (
               <div className="bg-foreground relative z-[1] rounded-br-xl border border-white px-4 py-1 text-xs font-bold text-white md:rounded-br-3xl lg:px-5 lg:text-base">
                 {t('plus-size')}
               </div>

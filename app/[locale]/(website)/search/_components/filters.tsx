@@ -28,11 +28,10 @@ type Props = {}
 const Filters = (props: Props) => {
   const t = useTranslations('search.filters')
   const [filters, setFilters] = useQueryStates({
-    'category_id[]': parseAsArrayOf(parseAsString).withDefault([]),
-    size: parseAsArrayOf(parseAsString).withDefault([]),
-    size_size: parseAsString.withDefault(''),
-    plus_sizes: parseAsBoolean.withDefault(false),
-    offers: parseAsBoolean.withDefault(false),
+    categories: parseAsArrayOf(parseAsString).withDefault([]),
+    size_id: parseAsString.withDefault(''),
+    has_plus_size: parseAsBoolean.withDefault(false),
+    has_offer: parseAsBoolean.withDefault(false),
   })
 
   const categories = useCategories()
@@ -72,14 +71,12 @@ const Filters = (props: Props) => {
                 <div key={category.id} className="flex items-center space-x-3">
                   <Checkbox
                     id={category.id}
-                    checked={filters['category_id[]'].includes(category.id)}
+                    checked={filters.categories.includes(category.id)}
                     onCheckedChange={(checked) =>
                       setFilters({
-                        'category_id[]': !checked
-                          ? filters['category_id[]'].filter(
-                              (c) => c !== category.id
-                            )
-                          : [...filters['category_id[]'], category.id],
+                        categories: !checked
+                          ? filters.categories.filter((c) => c !== category.id)
+                          : [...filters.categories, category.id],
                       })
                     }
                   />
@@ -123,8 +120,8 @@ const Filters = (props: Props) => {
           <AccordionContent>
             <div className="space-y-2 pt-2">
               <RadioGroup
-                value={filters.size_size}
-                onValueChange={(value) => setFilters({ size_size: value })}
+                value={filters.size_id}
+                onValueChange={(value) => setFilters({ size_id: value })}
                 className="space-y-2"
               >
                 {sizes.map((size) => (
@@ -152,10 +149,10 @@ const Filters = (props: Props) => {
       <div className="mt-6 space-y-3">
         <div className="flex items-center space-x-3">
           <Checkbox
-            checked={filters.plus_sizes}
+            checked={filters.has_plus_size}
             onCheckedChange={(checked) =>
               setFilters({
-                plus_sizes: checked ? true : false,
+                has_plus_size: checked ? true : false,
               })
             }
             id="plus-size"
@@ -170,16 +167,16 @@ const Filters = (props: Props) => {
 
         <div className="flex items-center space-x-3">
           <Checkbox
-            checked={filters.offers}
+            checked={filters.has_offer}
             onCheckedChange={(checked) =>
               setFilters({
-                offers: checked ? true : false,
+                has_offer: checked ? true : false,
               })
             }
-            id="exclusive-offers"
+            id="exclusive-has_offer"
           />
           <label
-            htmlFor="exclusive-offers"
+            htmlFor="exclusive-has_offer"
             className="cursor-pointer text-sm lg:text-xl"
           >
             {t('exclusiveOffers')}

@@ -4,6 +4,8 @@ import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
 
 import * as React from 'react'
 
+import { useLocale } from 'next-intl'
+
 import { cn } from '@/lib/utils'
 
 function ScrollArea({
@@ -11,8 +13,10 @@ function ScrollArea({
   children,
   ...props
 }: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+  const locale = useLocale()
   return (
     <ScrollAreaPrimitive.Root
+      dir={locale === 'ar' ? 'rtl' : 'ltr'}
       data-slot="scroll-area"
       className={cn('relative', className)}
       {...props}
