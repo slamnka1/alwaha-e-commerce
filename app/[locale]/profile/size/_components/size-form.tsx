@@ -1,8 +1,10 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import * as z from 'zod'
 
 import { useTranslations } from 'next-intl'
@@ -16,8 +18,11 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Link } from '@/lib/i18n/navigation'
+import { userSizesQueryKey } from '@/hooks/use-user-sizes'
+import { Link, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
+import { sizes as sizesService } from '@/services/sizes'
+import { handleFormError } from '@/utils/handle-form-errors'
 
 const SizeForm = ({ isHomeScreen }: { isHomeScreen?: boolean }) => {
   const t = useTranslations('profile.size')
@@ -59,9 +64,23 @@ const SizeForm = ({ isHomeScreen }: { isHomeScreen?: boolean }) => {
     },
   })
 
-  const onSubmit = (data: SizeFormData) => {
-    console.log(data)
-    // Handle size saving logic here
+  const queryClient = useQueryClient()
+  const router = useRouter()
+  const onSubmit = async (data: SizeFormData) => {
+    try {
+      await sizesService.createSize({
+        name: 'default',
+        color: '#B689FF',
+        chest_size: data.chestMeasurement,
+        hip_size: data.hipMeasurement,
+      })
+      await queryClient.invalidateQueries({ queryKey: userSizesQueryKey })
+      form.reset()
+      toast.success(t('success'))
+      router.push('/')
+    } catch (error) {
+      handleFormError(error, form)
+    }
   }
 
   return (

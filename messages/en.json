@@ -112,7 +112,8 @@
         "hipRequired": "Hip measurement is required",
         "invalidChest": "Please enter a valid chest measurement",
         "invalidHip": "Please enter a valid hip measurement"
-      }
+      },
+      "success": "Size added successfully "
     },
     "title": "My profile",
     "form": {

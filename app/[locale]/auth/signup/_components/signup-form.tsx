@@ -78,7 +78,7 @@ const SignupForm = () => {
   const onSubmit = async (data: SignupFormData) => {
     try {
       await axios.post('/api/register', data)
-      router.push('/')
+      router.push('/profile/size')
     } catch (error: any) {
       handleFormError(error, form)
       console.error('Signup error:', error)
