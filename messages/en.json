@@ -247,7 +247,8 @@
         "importantNote": "Based on your saved measurements, the most suitable size for you is:",
         "edit-importantNote": "Based on your saved measurements, the most suitable size for you is:"
       },
-      "addSize": "Add New Size"
+      "addSize": "Add New Size",
+      "user-sizes": "Manage your sizes"
     }
   },
   "userSize": {
@@ -283,7 +284,9 @@
       "edit": "Edit",
       "cancel": "Cancel",
       "yes": "Yes",
-      "deleteButton": "Delete"
+      "deleteButton": "Delete",
+      "addSize": "Add new size",
+      "user-sizes": "Manage your sizes"
     }
   },
   "categories": {

@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
+import { UserSize } from '@/@types/sizes'
 import { step1 } from '@/assets'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -17,6 +18,7 @@ import {
 } from '../ui/dialog'
 import { ScrollArea } from '../ui/scroll-area'
 import SizeForm from './add-size-form'
+import EditSizeForm from './edit-size-form'
 
 type SizeModalProps = {
   /**
@@ -27,9 +29,22 @@ type SizeModalProps = {
    * Additional class names for the dialog content wrapper
    */
   contentClassName?: string
+  /**
+   * When provided as 'edit', the modal opens directly with the edit form
+   */
+  mode?: 'create' | 'edit'
+  /**
+   * The size to edit when in edit mode
+   */
+  size?: UserSize
 }
 
-const SizeModal: React.FC<SizeModalProps> = ({ trigger, contentClassName }) => {
+const SizeModal: React.FC<SizeModalProps> = ({
+  trigger,
+  contentClassName,
+  mode = 'create',
+  size,
+}) => {
   const [isOpen, setIsOpen] = useState(false)
   const [step, setStep] = useState(1)
   const t = useTranslations('size-modal')
@@ -80,8 +95,14 @@ const SizeModal: React.FC<SizeModalProps> = ({ trigger, contentClassName }) => {
           )}
         >
           <ScrollArea className="flex max-h-full flex-col overflow-hidden">
-            {step === 1 && firstStep}
-            {step === 2 && <SizeForm closeModal={() => setIsOpen(false)} />}
+            {mode === 'edit' ? (
+              <EditSizeForm size={size!} closeModal={() => setIsOpen(false)} />
+            ) : (
+              <>
+                {step === 1 && firstStep}
+                {step === 2 && <SizeForm closeModal={() => setIsOpen(false)} />}
+              </>
+            )}
           </ScrollArea>
         </DialogContent>
       </Dialog>

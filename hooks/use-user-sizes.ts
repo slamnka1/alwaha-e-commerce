@@ -41,8 +41,8 @@ export function useUpdateUserSize() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (payload: CreateOrUpdatePayload) =>
-      sizesService.updateSize(payload),
+    mutationFn: (args: { id: number; payload: CreateOrUpdatePayload }) =>
+      sizesService.updateSize(args.id, args.payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userSizesQueryKey })
       if (t) toast.success(t('success'))

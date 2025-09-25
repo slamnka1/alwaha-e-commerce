@@ -21,10 +21,11 @@ export const sizes = {
   },
 
   async updateSize(
+    id: number,
     size: Omit<UserSize, 'id' | 'user_id' | 'created_at' | 'updated_at'>
   ) {
     const response = await apiClient.put<ApiResponse<UserSize>>(
-      '/auth/user-sizes',
+      `/auth/user-sizes/${id}`,
       size
     )
     return response.data.data

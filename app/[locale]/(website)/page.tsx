@@ -69,7 +69,7 @@ export default async function HomePage() {
       <Hero />
       <TypeSlider typeData={categories} />
       <PreviewCarousel products={products || []} />
-      {!session ? <KnowYourSize /> : <KnowYourSizeAuth />}
+      <KnowYourSize />
       <ProductsSlider products={newProducts} title={t('new-products')} />
       {offers.length > 0 && (
         <ProductsSlider

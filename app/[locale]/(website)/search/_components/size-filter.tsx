@@ -1,6 +1,6 @@
 'use client'
 
-import { PlusIcon, Trash2 } from 'lucide-react'
+import { Pencil, PlusIcon, Trash2 } from 'lucide-react'
 import {
   parseAsArrayOf,
   parseAsInteger,
@@ -148,7 +148,21 @@ const SizeFilter = (props: Props) => {
                 />
                 <Label htmlFor={String(size.id)}>{size.name}</Label>
               </div>
-              <div>
+              <div className="flex items-center gap-1">
+                <SizeModal
+                  mode="edit"
+                  size={size}
+                  trigger={
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      className="size-5"
+                      aria-label={t('edit')}
+                    >
+                      <Pencil className="size-4 text-gray-400" />
+                    </Button>
+                  }
+                />
                 <Button
                   size="icon"
                   variant="ghost"
@@ -175,7 +189,12 @@ const SizeFilter = (props: Props) => {
                 </span>
                 {t('addSize')}
               </Button>
-            ) : null
+            ) : (
+              <Button size="sm" variant="secondary" className="gap-2">
+                <PlusIcon className="size-4" />
+                {t('addSize')}
+              </Button>
+            )
           }
         />
       )}
