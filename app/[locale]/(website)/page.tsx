@@ -71,18 +71,20 @@ export default async function HomePage() {
       <PreviewCarousel products={products || []} />
       <KnowYourSize />
       <ProductsSlider products={newProducts} title={t('new-products')} />
-      {/* {offers.length > 0 && (
+      {offers.length > 0 && (
         <ProductsSlider
           more="/search?offers=true"
           products={offers}
           title={t('offers')}
         />
-      )} */}
-      <ProductsSlider
-        more="/search?plus_sizes=true"
-        products={plusSizes}
-        title={t('plus-size')}
-      />
+      )}
+      {plusSizes.length > 0 && (
+        <ProductsSlider
+          more="/search?plus_sizes=true"
+          products={plusSizes}
+          title={t('plus-size')}
+        />
+      )}
     </React.Fragment>
   )
 }

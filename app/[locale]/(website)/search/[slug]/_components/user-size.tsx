@@ -2,11 +2,15 @@
 
 import { Pencil, Plus, Trash2 } from 'lucide-react'
 
+import { useState } from 'react'
+
 import { useTranslations } from 'next-intl'
 
 import { NoteIcon } from '@/assets'
 import SizeModal from '@/components/size/size-modal'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useDeleteUserSize, useUserSizes } from '@/hooks/use-user-sizes'
 import { cn } from '@/lib/utils'
 
@@ -17,6 +21,7 @@ type UserSizeProps = {
 const UserSize = ({ className }: UserSizeProps) => {
   const sizes = useUserSizes()
   const deleteSize = useDeleteUserSize()
+  const [selectedSize, setSelectedSize] = useState<string>('')
 
   const hasSizes = (sizes.data?.length ?? 0) > 0
   const t = useTranslations('search.filters.userSize')
@@ -48,7 +53,7 @@ const UserSize = ({ className }: UserSizeProps) => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 pb-4">
       <div className={cn('', className)}>
         <h3 className="mb-4 text-xs font-bold">
           {t('savedMeasurements')}{' '}
@@ -58,27 +63,37 @@ const UserSize = ({ className }: UserSizeProps) => {
         </h3>
         {hasSizes && (
           <div className="space-y-4">
-            <div className="flex flex-col gap-3">
-              {sizes.data!.map((size) => (
-                <div
-                  key={size.id}
-                  className="flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="inline-block size-4 rounded-sm"
-                      style={{ backgroundColor: size.color }}
-                      aria-hidden
-                    />
-                    <div className="flex flex-col leading-tight">
-                      <span className="font-medium">{size.name}</span>
-                      <span className="text-muted-foreground text-xs">
+            <RadioGroup
+              value={selectedSize}
+              onValueChange={(value) => setSelectedSize(value)}
+            >
+              <div className="flex gap-8">
+                {sizes.data!.map((size) => (
+                  <div
+                    key={size.id}
+                    className="flex items-center justify-between"
+                  >
+                    <label className="flex items-center gap-3">
+                      <RadioGroupItem
+                        value={String(size.id)}
+                        style={{
+                          border: `1px solid ${size.color}`,
+                        }}
+                      />
+                      <div className="flex flex-col leading-tight">
+                        <span
+                          style={{ color: size.color }}
+                          className="font-medium"
+                        >
+                          {size.name}
+                        </span>
+                        {/* <span className="text-muted-foreground text-xs">
                         {t('chestCircumference')}: {size.chest_size} •{' '}
                         {t('hipCircumference')}: {size.hip_size}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1">
+                      </span> */}
+                      </div>
+                    </label>
+                    {/* <div className="flex items-center gap-1">
                     <SizeModal
                       mode="edit"
                       size={size}
@@ -97,11 +112,22 @@ const UserSize = ({ className }: UserSizeProps) => {
                     >
                       <Trash2 className="size-5 text-gray-400" />
                     </Button>
+                  </div> */}
                   </div>
-                </div>
-              ))}
-            </div>
-
+                ))}
+                {sizes.data!.length < 3 && (
+                  <SizeModal
+                    trigger={
+                      <Button size="icon" className="size-6 gap-2 rounded-xs">
+                        <Plus className="size-4" />
+                        {/* {t('addSize')} */}
+                      </Button>
+                    }
+                  />
+                )}
+              </div>
+            </RadioGroup>
+            {/* 
             {sizes.data!.length < 3 && (
               <SizeModal
                 trigger={
@@ -111,14 +137,14 @@ const UserSize = ({ className }: UserSizeProps) => {
                   </Button>
                 }
               />
-            )}
+            )} */}
           </div>
         )}
       </div>
-      <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
+      {/* <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
         <img src={NoteIcon.src} alt="note" className="size-4" />
         {t('edit-importantNote')}
-      </p>
+      </p> */}
     </div>
   )
 }
