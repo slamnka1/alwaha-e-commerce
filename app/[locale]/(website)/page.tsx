@@ -48,6 +48,7 @@ export default async function HomePage() {
     (response) => response.data,
     []
   )
+  console.log('🚀 ~ HomePage ~ offers:', offers)
   const newProducts = safeExtractNested(
     newProductsResult,
     (response) => response.data,

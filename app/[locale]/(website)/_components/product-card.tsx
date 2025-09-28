@@ -19,10 +19,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
   return (
     <Card className="overflow-hidden border-0 bg-transparent py-2 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
-      <Link
-        href={`/search/${props.id}?color=${props.colors.id}`}
-        className="relative"
-      >
+      <Link href={`/search/${props.id}`} className="relative">
         <AspectRatio
           ratio={9 / 13}
           className="relative w-full overflow-hidden rounded-xl shadow-lg md:rounded-[32px]"
@@ -59,7 +56,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
           {/* Header with Heart and Product Name */}
           <div className="flex items-center justify-between gap-2">
             <Link
-              href={`/search/${props.id}?color=${props.colors.id}`}
+              href={`/search/${props.id}`}
               className="flex-1 text-sm leading-tight font-semibold text-gray-900 md:text-xl 2xl:text-2xl"
             >
               {props.product_name}
@@ -107,9 +104,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
             size={'lg'}
             className="w-full bg-white font-semibold shadow-lg max-lg:h-11 md:text-xl 2xl:text-2xl"
           >
-            <Link href={`/search/${props.id}?color=${props.colors.id}`}>
-              {t('add-to-cart')}
-            </Link>
+            <Link href={`/search/${props.id}`}>{t('add-to-cart')}</Link>
           </Button>
         </CardContent>
       )}
