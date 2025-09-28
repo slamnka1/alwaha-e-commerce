@@ -246,7 +246,8 @@
         "addMeasurements": "Add my size",
         "addMeasurementsDescription": "Every body has its details, based on this we let you add your size easily and recommend the most suitable for you!",
         "importantNote": "Based on your saved measurements, the most suitable size for you is:",
-        "edit-importantNote": "Based on your saved measurements, the most suitable size for you is:"
+        "edit-importantNote": "Based on your saved measurements, the most suitable size for you is:",
+        "addSize": "Add new size"
       },
       "addSize": "Add New Size",
       "user-sizes": "Manage your sizes"

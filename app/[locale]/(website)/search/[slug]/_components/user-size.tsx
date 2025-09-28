@@ -1,76 +1,43 @@
 'use client'
 
-import { useState } from 'react'
+import { Pencil, Plus, Trash2 } from 'lucide-react'
 
 import { useTranslations } from 'next-intl'
 
 import { NoteIcon } from '@/assets'
+import SizeModal from '@/components/size/size-modal'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { useDeleteUserSize, useUserSizes } from '@/hooks/use-user-sizes'
 import { cn } from '@/lib/utils'
-
-type MeasurementData = {
-  chest: number
-  hip: number
-}
 
 type UserSizeProps = {
   className?: string
 }
 
 const UserSize = ({ className }: UserSizeProps) => {
+  const sizes = useUserSizes()
+  const deleteSize = useDeleteUserSize()
+
+  const hasSizes = (sizes.data?.length ?? 0) > 0
   const t = useTranslations('search.filters.userSize')
-  const [measurements, setMeasurements] = useState<MeasurementData>({
-    chest: 0,
-    hip: 0,
-  })
-  const [state, setState] = useState<'editing' | 'adding' | 'viewing'>(
-    'viewing'
-  )
-  const [editValues, setEditValues] = useState<MeasurementData>(measurements)
 
-  const handleEdit = () => {
-    setEditValues(measurements)
-    setState('editing')
-  }
-
-  const handleSave = () => {
-    setMeasurements(editValues)
-    setState('viewing')
-  }
-
-  const handleDelete = () => {
-    setState('viewing')
-    setMeasurements({ chest: 0, hip: 0 })
-  }
-
-  const handleAddNew = () => {
-    setState('adding')
-    setMeasurements({ chest: 80, hip: 80 })
-  }
-  const handleAdd = () => {
-    setMeasurements({ chest: editValues.chest, hip: editValues.hip })
-    setState('viewing')
-  }
-
-  if (
-    state === 'viewing' &&
-    measurements.chest === 0 &&
-    measurements.hip === 0
-  ) {
+  if (!hasSizes) {
     return (
       <div>
         <div className={cn('mt-4 mb-6', className)}>
           <p className="mb-4 text-xs font-bold">
             {t('addMeasurementsDescription')}
           </p>
-          <Button
-            onClick={handleAddNew}
-            size={'sm'}
-            className="h-8 rounded-xl px-4 py-1 text-xs font-normal"
-          >
-            {t('addMeasurements')}
-          </Button>
+          <SizeModal
+            trigger={
+              <Button
+                size={'sm'}
+                className="h-8 rounded-xl px-4 py-1 text-xs font-normal"
+              >
+                {t('addMeasurements')}
+              </Button>
+            }
+          ></SizeModal>
         </div>
         <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
           <img src={NoteIcon.src} alt="note" className="size-4" />
@@ -80,145 +47,8 @@ const UserSize = ({ className }: UserSizeProps) => {
     )
   }
 
-  if (state === 'editing') {
-    return (
-      <div>
-        <div className={cn('mt-4 mb-6', className)}>
-          <p className="mb-4 text-xs font-bold">{t('editMeasurements')}</p>
-
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <label className="block text-xs font-medium">
-                {t('enterChestMeasurement')}
-              </label>
-              <Input
-                type="number"
-                value={editValues.chest}
-                onChange={(e) =>
-                  setEditValues({
-                    ...editValues,
-                    chest: Number(e.target.value),
-                  })
-                }
-                min={0}
-                className="h-8 w-20 rounded-lg border border-[#F3E0C8] bg-white px-5 py-1 text-center text-xs text-[#00000080] shadow-md"
-                placeholder="80cm"
-              />
-            </div>
-
-            <div className="flex items-center gap-4">
-              <label className="block text-xs font-medium">
-                {t('enterHipMeasurement')}
-              </label>
-              <Input
-                type="number"
-                value={editValues.hip}
-                onChange={(e) =>
-                  setEditValues({ ...editValues, hip: Number(e.target.value) })
-                }
-                min={0}
-                className="h-8 w-20 rounded-lg border border-[#F3E0C8] bg-white px-5 py-1 text-center text-xs text-[#00000080] shadow-md"
-                placeholder="80cm"
-              />
-            </div>
-          </div>
-
-          <div className="mt-4 flex items-center gap-4">
-            <Button
-              onClick={handleSave}
-              size={'sm'}
-              className="px-10 font-normal"
-            >
-              {t('edit')}
-            </Button>
-            <div className="flex items-center gap-3">
-              <span className="text-xs font-medium">{t('deleteQuestion')}</span>
-              <Button
-                onClick={handleDelete}
-                variant="outline"
-                size="sm"
-                className="h-8 px-6 text-xs font-normal"
-              >
-                {t('yes')}
-              </Button>
-            </div>
-          </div>
-        </div>
-        <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
-          <img src={NoteIcon.src} alt="note" className="size-4" />
-          {t('edit-importantNote')}
-        </p>
-      </div>
-    )
-  }
-  if (state === 'adding') {
-    return (
-      <div>
-        <div className={cn('mt-4 mb-6', className)}>
-          <h3 className="mb-4 text-xs font-bold">
-            {t('savedMeasurements')}{' '}
-            <span className="font-normal">
-              {t('savedMeasurementsDescription')}
-            </span>
-          </h3>
-
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
-              <label className="block text-xs font-medium">
-                {t('enterChestMeasurement')}
-              </label>
-              <Input
-                type="number"
-                value={editValues.chest}
-                onChange={(e) =>
-                  setEditValues({
-                    ...editValues,
-                    chest: Number(e.target.value),
-                  })
-                }
-                min={0}
-                className="h-8 w-20 rounded-lg border border-[#F3E0C8] bg-white px-5 py-1 text-center text-xs text-[#00000080] shadow-md"
-                placeholder="80cm"
-              />
-            </div>
-
-            <div className="flex items-center gap-4">
-              <label className="block text-xs font-medium">
-                {t('enterHipMeasurement')}
-              </label>
-              <Input
-                type="number"
-                value={editValues.hip}
-                onChange={(e) =>
-                  setEditValues({ ...editValues, hip: Number(e.target.value) })
-                }
-                min={0}
-                className="h-8 w-20 rounded-lg border border-[#F3E0C8] bg-white px-5 py-1 text-center text-xs text-[#00000080] shadow-md"
-                placeholder="80cm"
-              />
-            </div>
-          </div>
-
-          <div className="mt-4 flex items-center gap-4">
-            <Button
-              onClick={handleAdd}
-              size={'sm'}
-              className="px-10 font-normal"
-            >
-              {t('addMeasurements')}
-            </Button>
-          </div>
-        </div>
-        <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
-          <img src={NoteIcon.src} alt="note" className="size-4" />
-          {t('edit-importantNote')}
-        </p>
-      </div>
-    )
-  }
-
   return (
-    <div>
+    <div className="space-y-4">
       <div className={cn('', className)}>
         <h3 className="mb-4 text-xs font-bold">
           {t('savedMeasurements')}{' '}
@@ -226,38 +56,64 @@ const UserSize = ({ className }: UserSizeProps) => {
             {t('savedMeasurementsDescription')}
           </span>
         </h3>
-
-        <div className="mb-6 flex gap-4">
-          <div className="flex items-center gap-2">
-            <label className="block text-xs font-medium">
-              {t('hipCircumference')}
-            </label>
-            <div className="rounded-lg border border-[#F3E0C8] bg-white px-5 py-1 text-xs text-[#00000080] shadow-md">
-              {measurements.hip}cm
+        {hasSizes && (
+          <div className="space-y-4">
+            <div className="flex flex-col gap-3">
+              {sizes.data!.map((size) => (
+                <div
+                  key={size.id}
+                  className="flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="inline-block size-4 rounded-sm"
+                      style={{ backgroundColor: size.color }}
+                      aria-hidden
+                    />
+                    <div className="flex flex-col leading-tight">
+                      <span className="font-medium">{size.name}</span>
+                      <span className="text-muted-foreground text-xs">
+                        {t('chestCircumference')}: {size.chest_size} •{' '}
+                        {t('hipCircumference')}: {size.hip_size}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <SizeModal
+                      mode="edit"
+                      size={size}
+                      trigger={
+                        <Button size="icon" variant="ghost" className="size-8">
+                          <Pencil className="size-5 text-gray-400" />
+                        </Button>
+                      }
+                    />
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      className="size-8"
+                      onClick={() => deleteSize.mutate(size.id)}
+                      disabled={deleteSize.isPending}
+                    >
+                      <Trash2 className="size-5 text-gray-400" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
 
-          <div className="flex items-center gap-2">
-            <label className="block text-xs font-medium">
-              {t('chestCircumference')}
-            </label>
-            <div className="rounded-lg border border-[#F3E0C8] bg-white px-5 py-1 text-xs text-[#00000080] shadow-md">
-              {measurements.chest}cm
-            </div>
+            {sizes.data!.length < 3 && (
+              <SizeModal
+                trigger={
+                  <Button size="sm" variant="secondary" className="gap-2">
+                    <Plus className="size-4" />
+                    {t('addSize')}
+                  </Button>
+                }
+              />
+            )}
           </div>
-          <div className="ms-auto flex items-center gap-6">
-            <span className="text-primary text-xs font-medium">
-              {t('editQuestion')}
-            </span>
-            <Button
-              onClick={handleEdit}
-              size={'sm'}
-              className="h-8 px-6 text-xs font-normal"
-            >
-              {t('yes')}
-            </Button>
-          </div>
-        </div>
+        )}
       </div>
       <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
         <img src={NoteIcon.src} alt="note" className="size-4" />
