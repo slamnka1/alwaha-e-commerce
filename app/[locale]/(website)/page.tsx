@@ -2,13 +2,13 @@ import React from 'react'
 
 import { getTranslations } from 'next-intl/server'
 
+import { bannersServices } from '@/services/banners'
 import { listsService } from '@/services/lists'
 import { productsService } from '@/services/products'
 import { getServerSession } from '@/utils/get-server-session'
 import { safeExtractNested } from '@/utils/promise-helpers'
 
 import Hero from './_components/hero'
-import KnowYourSizeAuth from './_components/know-you-size-auth'
 import KnowYourSize from './_components/know-your-size'
 import PreviewCarousel from './_components/preview'
 import ProductsSlider from './_components/products-slider'
@@ -25,6 +25,7 @@ export default async function HomePage() {
     newProductsResult,
     categoriesResult,
     productsResult,
+    bannersResult,
   ] = await Promise.allSettled([
     productsService.getPlusSizes(),
     productsService.getOffers(),
@@ -35,6 +36,7 @@ export default async function HomePage() {
         per_page: '15',
       })
     ),
+    bannersServices.getBanners(),
   ])
 
   // Handle each result with appropriate fallbacks using helper functions
@@ -48,7 +50,6 @@ export default async function HomePage() {
     (response) => response.data,
     []
   )
-  console.log('🚀 ~ HomePage ~ offers:', offers)
   const newProducts = safeExtractNested(
     newProductsResult,
     (response) => response.data,
@@ -64,10 +65,14 @@ export default async function HomePage() {
     (response) => response.data,
     []
   )
-
+  const banners = safeExtractNested(
+    bannersResult,
+    (response) => response.data,
+    []
+  )
   return (
     <React.Fragment>
-      <Hero />
+      <Hero banners={banners} />
       <TypeSlider typeData={categories} />
       <PreviewCarousel products={products || []} />
       <KnowYourSize />

@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { girls } from '@/assets'
+import { Banner } from '@/@types/types'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/lib/i18n/navigation'
 
-const Hero = () => {
+const Hero = ({ banners }: { banners: Banner[] }) => {
   const t = useTranslations('home-page.hero')
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  const images = [girls.src, girls.src]
+  const images = banners.map((banner) => banner.image_path)
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length)
