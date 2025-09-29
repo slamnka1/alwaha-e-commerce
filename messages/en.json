@@ -3,7 +3,8 @@
     "selectEmirate": "Select Emirate",
     "loadingEmirates": "Loading emirates...",
     "errorLoadingEmirates": "Error loading emirates",
-    "see-more": "See more"
+    "see-more": "See more",
+    "see-less": "See less"
   },
   "home-page": {
     "title": "Hello world!",
@@ -318,7 +319,9 @@
     "currency": "UAE",
     "color": "Color",
     "changing-item": "We accept the replacement according to simplified conditions -",
-    "change-policy": "Learn about the details here."
+    "change-policy": "Learn about the details here.",
+    "see-less": "See less",
+    "see-more": "See more"
   },
   "footer": {
     "description": "An Emirati online store specializing in modest hijab clothing, combining elegance and comfort in a wide range of sizes from 5 to 12, providing a unique and seamless shopping experience at any time.",

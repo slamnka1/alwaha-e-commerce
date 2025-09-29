@@ -3,7 +3,8 @@
     "selectEmirate": "اختر الإمارة",
     "loadingEmirates": "جاري تحميل الإمارات...",
     "errorLoadingEmirates": "خطأ في تحميل الإمارات",
-    "see-more": " رؤية المزيد"
+    "see-more": " رؤية المزيد",
+    "see-less": "عرض أقل"
   },
   "home-page": {
     "title": "مرحبا بك في الواحة",
@@ -320,7 +321,9 @@
     "currency": "درهم",
     "color": "لون",
     "changing-item": "نقبل الاستبدال وفق ضوابط مبسّطة — \n",
-    "change-policy": "تعرّفي على التفاصيل هنا."
+    "change-policy": "تعرّفي على التفاصيل هنا.",
+    "see-less": "عرض اقل",
+    "see-more": "عرض اكتر"
   },
   "products-slider": {
     "view-all": "رؤية المزيد"

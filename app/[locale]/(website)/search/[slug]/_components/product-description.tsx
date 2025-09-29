@@ -57,6 +57,29 @@ export default function ProductDescription({
   const addToCart = useAddToCart()
   const isAddDisabled = !selectedSize || addToCart.isPending
 
+  const [isExpanded, setIsExpanded] = React.useState(false)
+  const [showToggle, setShowToggle] = React.useState(false)
+  const descriptionRef = React.useRef<HTMLParagraphElement | null>(null)
+
+  React.useEffect(() => {
+    const element = descriptionRef.current
+    if (!element) return
+    // Ensure we measure in the clamped state
+    const wasExpanded = isExpanded
+    if (wasExpanded) {
+      setIsExpanded(false)
+      requestAnimationFrame(() => {
+        const hasOverflow = element.scrollHeight > element.clientHeight
+        setShowToggle(hasOverflow)
+        setIsExpanded(wasExpanded)
+      })
+    } else {
+      const hasOverflow = element.scrollHeight > element.clientHeight
+      setShowToggle(hasOverflow)
+    }
+    // Re-run when description changes
+  }, [product.description])
+
   return (
     <div className={cn('flex w-full max-w-xl flex-col gap-6', className)}>
       <div>
@@ -99,9 +122,24 @@ export default function ProductDescription({
             </>
           )}
         </div>
-        <p className="text-xs text-[#A97C50] lg:text-lg">
+        <p
+          ref={descriptionRef}
+          className={cn(
+            'text-xs text-[#A97C50] lg:text-lg',
+            !isExpanded && 'line-clamp-2'
+          )}
+        >
           {product.description}
         </p>
+        {showToggle && (
+          <button
+            type="button"
+            onClick={() => setIsExpanded((v) => !v)}
+            className="w-fit text-xs text-[#006FFF] hover:underline"
+          >
+            {isExpanded ? t('see-less') : t('see-more')}
+          </button>
+        )}
       </div>
 
       {product.other_colors && product.other_colors.length > 0 && (
