@@ -13,6 +13,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useDeleteUserSize, useUserSizes } from '@/hooks/use-user-sizes'
 import { cn } from '@/lib/utils'
+import { useSession } from '@/store/session-store'
 
 type UserSizeProps = {
   className?: string
@@ -20,7 +21,6 @@ type UserSizeProps = {
 
 const UserSize = ({ className }: UserSizeProps) => {
   const sizes = useUserSizes()
-  const deleteSize = useDeleteUserSize()
   const [selectedSize, setSelectedSize] = useState<string>('')
 
   const hasSizes = (sizes.data?.length ?? 0) > 0

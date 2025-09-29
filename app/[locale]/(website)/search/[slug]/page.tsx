@@ -11,6 +11,7 @@ import ProductsSlider from '../../_components/products-slider'
 import Hero from './_components/hero'
 import ProductDescription from './_components/product-description'
 import { ProductSlider } from './_components/product-slider'
+import Video from './_components/video'
 
 type Props = {
   params: Promise<{
@@ -55,6 +56,7 @@ const SearchPage = async (props: Props) => {
             <ProductDescription product={product} />
           </div>
         </div>
+        {product.video_url ? <Video src={product.video_url} /> : null}
         <ProductsSlider
           products={products.data}
           title={t('more-products')}

@@ -1,5 +1,8 @@
 'use client'
 
+import { Play } from 'lucide-react'
+import { parseAsBoolean, useQueryState } from 'nuqs'
+
 import { useParams } from 'next/navigation'
 
 import { ProductFullData } from '@/@types/product'
@@ -23,6 +26,10 @@ export function ProductSlider({
   className,
   showCounter = true,
 }: ProductSliderProps) {
+  const [opened, setOpened] = useQueryState(
+    'video',
+    parseAsBoolean.withDefault(false)
+  )
   const router = useRouter()
   const { slug } = useParams()
 
@@ -30,17 +37,6 @@ export function ProductSlider({
     <div className={cn('flex gap-2', className)}>
       {/* Main Carousel */}
       <div className="group relative flex-1">
-        {/* <Carousel
-          setApi={setApi}
-          className="w-full"
-          opts={{
-            align: 'start',
-            loop: true,
-          }}
-        > */}
-        {/* <CarouselContent className="h-screen max-h-[350px] lg:h-[95vh] lg:max-h-[700px]"> */}
-        {/* {images.map((image) => (
-              <CarouselItem key={image.id} className="basis-full"> */}
         <div
           className={cn(
             'relative h-full w-full overflow-hidden rounded-lg transition-transform duration-300'
@@ -54,37 +50,6 @@ export function ProductSlider({
             )}
           />
         </div>
-        {/* </CarouselItem>
-            ))}
-          </CarouselContent> */}
-
-        {/* Custom Navigation Buttons */}
-        {/* <div className="pointer-events-none absolute inset-0 hidden items-center justify-between p-4 lg:flex">
-            <Button
-              variant="secondary"
-              size="icon"
-              className="pointer-events-auto size-12 rounded-full border border-[#F3E0C8] bg-white/90 shadow-lg transition-opacity duration-300 group-hover:opacity-100 hover:bg-white"
-              onClick={() => api?.scrollPrev()}
-            >
-              <ChevronRight className="size-7 text-black" />
-            </Button>
-            <Button
-              variant="secondary"
-              size="icon"
-              className="pointer-events-auto size-12 rounded-full border border-[#F3E0C8] bg-white/90 shadow-lg transition-opacity duration-300 group-hover:opacity-100 hover:bg-white"
-              onClick={() => api?.scrollNext()}
-            >
-              <ChevronLeft className="size-7 text-black" />
-            </Button>
-          </div> */}
-
-        {/* Image Counter */}
-        {/* {showCounter && (
-          <div className="absolute right-4 bottom-4 rounded-full bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm lg:text-sm">
-            {selectedColor + 1} / {images.length}
-          </div>
-        )} */}
-        {/* </Carousel> */}
       </div>
       {/* Thumbnail Strip */}
       <Carousel
@@ -96,6 +61,35 @@ export function ProductSlider({
         }}
       >
         <CarouselContent className="mt-0 h-screen max-h-[350px] lg:h-[95vh] lg:max-h-[700px]">
+          {product.video_url ? (
+            <CarouselItem
+              key="video"
+              className="max-h-[90px] px-1 pt-1 lg:max-h-[160px]"
+            >
+              <button
+                onClick={() => setOpened(true)}
+                className={cn(
+                  'relative flex h-full w-full items-center justify-center overflow-hidden rounded-[12px] border-2 border-transparent bg-black/5 transition-all duration-300 hover:bg-black/10'
+                )}
+                aria-label="Open product video"
+              >
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex size-full items-center justify-center bg-gradient-to-tr from-black/40 to-black/10 text-white">
+                    <Play className="size-6 lg:size-8" />
+                  </div>
+                </div>
+                {/* Fallback preview using main image with overlay */}
+                <img
+                  src={product.main_image_url}
+                  alt="video thumbnail"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute right-1 bottom-1 left-1 rounded-md bg-black/60 px-1 py-0.5 text-center text-[10px] font-medium text-white lg:text-xs">
+                  Video
+                </div>
+              </button>
+            </CarouselItem>
+          ) : null}
           {product.other_colors.map((item, index) => (
             <CarouselItem
               key={item.id}

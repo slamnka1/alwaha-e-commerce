@@ -7,13 +7,16 @@ import { useTranslations } from 'next-intl'
 
 import { UserSize } from '@/@types/sizes'
 import { sizes as sizesService } from '@/services/sizes'
+import { useSession } from '@/store/session-store'
 
 export const userSizesQueryKey = ['user-sizes']
 
 export function useUserSizes() {
+  const { session } = useSession()
   return useQuery({
     queryKey: userSizesQueryKey,
     queryFn: () => sizesService.getSizes(),
+    enabled: !!session?.access_token,
   })
 }
 

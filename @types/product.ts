@@ -41,6 +41,7 @@ export interface ProductFullData {
   product_code: string
   color_name: string
   main_image_url: string
+  video_url?: string | null
   price: number
   product_base_price: string
   offer_active: null
