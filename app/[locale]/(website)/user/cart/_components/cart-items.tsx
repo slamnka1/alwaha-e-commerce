@@ -56,7 +56,7 @@ export function CartItems({ items }: CartItemsProps) {
   }
 
   const formatPrice = (price: number) => {
-    return `${price.toFixed(2)} ${t('currancy')}`
+    return `0 ${t('currancy')}`
   }
 
   const calculateTotal = (price: number, quantity: number) => {
