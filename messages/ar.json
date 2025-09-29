@@ -159,8 +159,10 @@
         "currentPasswordRequired": "كلمة المرور الحالية مطلوبة",
         "newPasswordMinLength": "كلمة المرور الجديدة يجب أن تكون 8 أحرف على الأقل",
         "confirmPasswordRequired": "يرجى تأكيد كلمة المرور الجديدة",
-        "passwordsDoNotMatch": "كلمات المرور غير متطابقة"
-      }
+        "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+        "otpLength": "OTP مطلوب"
+      },
+      "success": "تم تحديث كلمة المرور بنجاح"
     },
     "otp": {
       "title": "تعديل كلمة المرور",
@@ -170,6 +172,14 @@
         "otpLength": "يجب أن يكون الكود 6 أرقام بالضبط"
       },
       "resendOTP": "إعادة إرسال الرمز"
+    },
+    "sendOtp": {
+      "title": "طلب رمز التحقق",
+      "phoneLabel": "رقم الهاتف",
+      "phonePlaceholder": "50 123 4567",
+      "sendButton": "إرسال رمز التحقق",
+      "success": "تم إرسال رمز التحقق بنجاح إلى رقم هاتفك",
+      "error": "فشل في إرسال رمز التحقق. يرجى المحاولة مرة أخرى."
     }
   },
   "header": {

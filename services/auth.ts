@@ -89,4 +89,30 @@ export const authService = {
       console.error('Logout error:', error)
     }
   },
+  async forgotPassword({
+    phone_number,
+  }: {
+    phone_number: string
+  }): Promise<void> {
+    await apiClient.post('/auth/forgot-password', { phone_number })
+  },
+
+  async resetPassword({
+    phone_number,
+    otp,
+    password,
+    confirm_password,
+  }: {
+    phone_number: string
+    otp: string
+    password: string
+    confirm_password: string
+  }): Promise<void> {
+    await apiClient.post('/auth/forgot-password/check-otp', {
+      phone_number,
+      otp,
+      password,
+      confirm_password,
+    })
+  },
 }

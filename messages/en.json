@@ -159,8 +159,10 @@
         "currentPasswordRequired": "Current password is required",
         "newPasswordMinLength": "New password must be at least 8 characters",
         "confirmPasswordRequired": "Please confirm your new password",
-        "passwordsDoNotMatch": "Passwords do not match"
-      }
+        "passwordsDoNotMatch": "Passwords do not match",
+        "otpLength": "OTP required"
+      },
+      "success": "Password updated successfully "
     },
     "otp": {
       "title": "Update Password",
@@ -170,6 +172,14 @@
         "otpLength": "OTP must be exactly 6 digits"
       },
       "resendOTP": "Resend OTP"
+    },
+    "sendOtp": {
+      "title": "Request OTP",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "50 123 4567",
+      "sendButton": "Send OTP",
+      "success": "OTP sent successfully to your phone number",
+      "error": "Failed to send OTP. Please try again."
     }
   },
   "header": {

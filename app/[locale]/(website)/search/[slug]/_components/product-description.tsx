@@ -224,12 +224,12 @@ export default function ProductDescription({
       )}
 
       <div className="flex items-center gap-3">
-        <Button
+        {/* <Button
           variant="secondary"
           className="flex-1 bg-white font-normal max-lg:h-10 max-lg:text-xs"
         >
           {t('buy-now')}
-        </Button>
+        </Button> */}
         <Button
           className="flex-1 font-normal max-lg:h-10 max-lg:text-xs"
           disabled={isAddDisabled}
