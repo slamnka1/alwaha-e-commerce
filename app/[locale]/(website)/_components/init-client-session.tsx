@@ -1,13 +1,12 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 
 import { useEffect } from 'react'
 
 import { ApiResponse } from '@/@types'
 import { Session, User } from '@/@types/user'
-import apiClient, { BASE_RUL } from '@/services/axios'
+import apiClient from '@/services/axios'
 import { useSession } from '@/store/session-store'
 
 export function InitSession({
@@ -28,9 +27,10 @@ export function InitSession({
       const response = await apiClient.get<ApiResponse<User>>(`/auth/me`, {})
       return {
         access_token: initialValue!.access_token,
-        ...response.data,
+        ...response.data.data,
       }
     },
+    initialData: initialValue,
   })
 
   useEffect(() => {

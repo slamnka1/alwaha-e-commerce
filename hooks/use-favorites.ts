@@ -89,7 +89,7 @@ const useFavorite = (product: Product) => {
 
   const mutate = () => {
     if (!isAuthenticated) {
-      toast.error(t('favorite.operations.addError'))
+      toast.error(t('favorite.operations.authError'))
       return
     }
     mutation.mutate({ is_favourite: isFavorite })

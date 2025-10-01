@@ -47,7 +47,7 @@ const Results = (props: Props) => {
         })}
       </div>
       <div className="flex justify-center">
-        <DynamicPagination totalPageCount={data.last_page} />
+        <DynamicPagination totalPageCount={data.meta.last_page} />
       </div>
     </div>
   )

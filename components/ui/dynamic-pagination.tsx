@@ -20,6 +20,7 @@ export interface DynamicPaginationProps {
 }
 
 export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
+  console.log('🚀 ~ DynamicPagination ~ totalPageCount:', totalPageCount)
   const t = useTranslations('pagination')
   const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(1))
 
@@ -115,7 +116,7 @@ export function DynamicPagination({ totalPageCount }: DynamicPaginationProps) {
     return items
   }
 
-  if (totalPageCount === 1) return null
+  if (totalPageCount == 1) return null
   return (
     <div className="mt-4 flex w-fit flex-col items-center gap-3 md:flex-row">
       <Pagination>

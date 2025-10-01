@@ -14,14 +14,16 @@ export interface ApiResponse<T = any> {
 
 export interface PaginatedApiResponse<T = any> {
   data: T[]
-  from: number
-  to: number
-  total: number
-  per_page: number
-  current_page: number
-  last_page: number
-  next_page_url: string | null
-  previous_page_url: string | null
+  meta: {
+    total: number
+    per_page: number
+    current_page: number
+    last_page: number
+    next_page_url: string | null
+    previous_page_url: string | null
+    from: number
+    to: number
+  }
   message?: string
   status: number
 }

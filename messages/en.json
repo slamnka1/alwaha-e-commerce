@@ -472,7 +472,8 @@
       "addSuccess": "Item added to favorites",
       "addError": "Failed to add item to favorites",
       "removeSuccess": "Item removed from favorites",
-      "removeError": "Failed to remove item from favorites"
+      "removeError": "Failed to remove item from favorites",
+      "authError": "Login to add item to favorite "
     }
   },
   "size-modal": {
