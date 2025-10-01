@@ -150,10 +150,7 @@ const Filters = (props: Props) => {
                         size.name === 'FREE_SIZE' ? 'text-red-500' : ''
                       }`}
                     >
-                      {size.name}{' '}
-                      {sizesNumber[
-                        size.name?.toLowerCase() as keyof typeof sizesNumber
-                      ] || ''}
+                      {size.label}
                     </label>
                   </div>
                 ))}
