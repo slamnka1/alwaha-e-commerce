@@ -50,7 +50,8 @@ export default function ProductDescription({
     // Product color-level id appears as `id` on ProductFullData
     // This minimal shape satisfies what the hook needs
     product_id: product.product_id,
-    colors: { id: product.id as unknown as number },
+
+    id: product.id as unknown as number,
     is_favourite: product.is_favorited,
   } as unknown as any)
 

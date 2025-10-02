@@ -16,6 +16,8 @@ export interface Product {
   sizes: Size[]
   best_fit_size: null
   is_favourite: boolean
+  is_favorited: boolean
+
   colors: Colors
   available_quantity: string | null
   available_colors_count: number | null

@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { Product } from '@/@types/product'
+import { Product, ProductFullData } from '@/@types/product'
 import apiClient from '@/services/axios'
 import { getFavoriteItems } from '@/services/favorites'
 import { useSession } from '@/store/session-store'
@@ -49,9 +49,10 @@ const removeFromFavorite = async ({
 const useFavorite = (product: Product) => {
   const t = useTranslations()
   const { isAuthenticated } = useSession()
+  const is_favourite = product.is_favourite || product.is_favorited
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-  const [isFavorite, setIsFavorite] = useState(product.is_favourite)
+  const [isFavorite, setIsFavorite] = useState(is_favourite)
 
   const queryClient = useQueryClient()
 

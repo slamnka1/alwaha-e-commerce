@@ -19,7 +19,7 @@ type Props = {
 
 export default function SearchInput({ classNames }: Props) {
   const t = useTranslations('header')
-  const [q, setQ] = useQueryState('q', parseAsString.withDefault(''))
+  const [q, setQ] = useQueryState('search', parseAsString.withDefault(''))
   const [value, setValue] = useState(q)
 
   const search = useDebouncedCallback(setQ, 500)
