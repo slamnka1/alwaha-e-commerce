@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 
 import { Input } from '@/components/ui/input'
 import { useDebouncedCallback } from '@/hooks/user-debounced-callback'
+import { usePathname, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 type Props = {
@@ -21,8 +22,17 @@ export default function SearchInput({ classNames }: Props) {
   const t = useTranslations('header')
   const [q, setQ] = useQueryState('search', parseAsString.withDefault(''))
   const [value, setValue] = useState(q)
+  const router = useRouter()
+  const pathname = usePathname()
+  console.log('🚀 ~ SearchInput ~ pathname:', pathname)
 
-  const search = useDebouncedCallback(setQ, 500)
+  const search = useDebouncedCallback((value: string) => {
+    if (pathname != '/search') {
+      router.push(`/search?search=${value}`)
+      return
+    }
+    setQ(value)
+  }, 500)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
