@@ -26,12 +26,12 @@ const Wrapper = (props: Props) => {
   const favoriteItems = favoriteData?.data || []
   const paginationInfo = favoriteData
     ? {
-        currentPage: favoriteData.current_page,
-        lastPage: favoriteData.last_page,
-        total: favoriteData.total,
-        perPage: favoriteData.per_page,
-        from: favoriteData.from,
-        to: favoriteData.to,
+        currentPage: favoriteData.meta.current_page,
+        lastPage: favoriteData.meta.last_page,
+        total: favoriteData.meta.total,
+        perPage: favoriteData.meta.per_page,
+        from: favoriteData.meta.from,
+        to: favoriteData.meta.to,
       }
     : null
 

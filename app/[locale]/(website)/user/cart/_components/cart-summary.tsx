@@ -1,5 +1,7 @@
 'use client'
 
+import { Loader2 } from 'lucide-react'
+
 import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
@@ -7,6 +9,7 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { usePayment } from '@/hooks/use-payment'
 import { Link } from '@/lib/i18n/navigation'
 
 import { CheckoutForm } from './checkout-form'
@@ -28,7 +31,7 @@ interface CartSummaryProps {
 
 export function CartSummary({ data, className }: CartSummaryProps) {
   const t = useTranslations('cart.summary')
-  const [showCheckoutForm, setShowCheckoutForm] = useState(false)
+  const [showCheckoutForm, _] = useState(false)
 
   const formatCurrency = (amount: number) => {
     return amount.toFixed(2)
@@ -38,8 +41,11 @@ export function CartSummary({ data, className }: CartSummaryProps) {
     return `${percentage}%`
   }
 
+  const { mutate: payment, isPending } = usePayment()
+
   const handleConfirmOrder = () => {
-    setShowCheckoutForm(true)
+    payment()
+    // setShowCheckoutForm(true)
   }
 
   return (
@@ -128,6 +134,7 @@ export function CartSummary({ data, className }: CartSummaryProps) {
               onClick={handleConfirmOrder}
               className="w-full"
             >
+              {isPending ? <Loader2 className="animate-spin" /> : ''}
               {t('confirmOrder')}
             </Button>
           </div>

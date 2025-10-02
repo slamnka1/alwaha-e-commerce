@@ -507,5 +507,9 @@
   "sizeMessage": {
     "recommendedSize": "Based on your measurements, the recommended size is: {size}",
     "noRecommendedSize": "No recommended size found based on your current measurements. Please check your size settings or contact support for assistance."
+  },
+  "payment": {
+    "success": "Payment completed successfully! Your order has been placed.",
+    "error": "Payment failed. Please try again or contact support if the problem persists."
   }
 }
