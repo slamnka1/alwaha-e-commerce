@@ -16,6 +16,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useCategories, useSizes } from '@/hooks'
@@ -157,6 +158,14 @@ const Filters = (props: Props) => {
                   </div>
                 ))}
               </RadioGroup>
+              <Button
+                onClick={() => setFilters({ size_id: '' })}
+                variant="link"
+                size="sm"
+                className="w-full"
+              >
+                {t('clear')}
+              </Button>
             </div>
           </AccordionContent>
         </AccordionItem>

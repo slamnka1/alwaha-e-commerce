@@ -261,7 +261,8 @@
         "addSize": "Add new size"
       },
       "addSize": "Add New Size",
-      "user-sizes": "Manage your sizes"
+      "user-sizes": "Manage your sizes",
+      "clear": "Clear"
     }
   },
   "userSize": {
