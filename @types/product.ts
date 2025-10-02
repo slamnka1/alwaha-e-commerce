@@ -32,12 +32,6 @@ export interface Colors {
   color_image_url: string
 }
 
-export interface Size {
-  id: number
-  size_code: string
-  quantity: number
-}
-
 export interface ProductFullData {
   id: number
   product_id: number
@@ -57,15 +51,26 @@ export interface ProductFullData {
   discount_percent: string | null
   discount_amount: string | null
   price_before_discount: string
-  sizes: {
-    id: number
-    size_code: string
-    quantity: number
-  }[]
+  sizes: Size[]
   other_colors: {
     id: number
     color_name: string
     main_image_url: string
     url: string
   }[]
+}
+
+export interface Size {
+  id: number
+  size_code: string
+  quantity: number
+  chest_cm: string
+  hip_cm: string
+  user_size: {
+    id: number
+    name: string
+    hip_cm: string
+    chest_cm: string
+    color: string
+  } | null
 }

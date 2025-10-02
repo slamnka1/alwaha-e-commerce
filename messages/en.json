@@ -503,5 +503,9 @@
     },
     "subtitle": "Enter your bust and hip circumference in centimeters, and we'll instantly recommend the perfect size for you — For all styles, your measurements will be saved in your account. You can also customize them and add your friends' measurements for a more convenient shopping experience.",
     "success": "Size added successfully "
+  },
+  "sizeMessage": {
+    "recommendedSize": "Based on your measurements, the recommended size is: {size}",
+    "noRecommendedSize": "No recommended size found based on your current measurements. Please check your size settings or contact support for assistance."
   }
 }

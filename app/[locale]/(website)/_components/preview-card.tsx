@@ -44,7 +44,7 @@ export function PreviewCard({
               }}
               className="bg-primary rounded-bl-[8px] border-[0.5px] border-white px-1 py-0.5 text-[4px] font-medium text-white md:text-[6px] lg:rounded-tr-lg lg:rounded-bl-md lg:px-2 lg:py-1 lg:!text-[8px]"
             >
-              FREE SIZE
+              PLUSE SIZE
             </div>
           </div>
         )}

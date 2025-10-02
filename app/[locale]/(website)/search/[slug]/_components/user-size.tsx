@@ -1,6 +1,7 @@
 'use client'
 
 import { Plus } from 'lucide-react'
+import { useQueryState } from 'nuqs'
 
 import { useState } from 'react'
 
@@ -22,7 +23,7 @@ type UserSizeProps = {
 const UserSize = ({ className }: UserSizeProps) => {
   const { isAuthenticated } = useSession()
   const sizes = useUserSizes()
-  const [selectedSize, setSelectedSize] = useState<string>('')
+  const [selectedSize, setSelectedSize] = useQueryState('user_size')
 
   const hasSizes = (sizes.data?.length ?? 0) > 0
   const t = useTranslations('search.filters.userSize')
@@ -30,7 +31,7 @@ const UserSize = ({ className }: UserSizeProps) => {
   if (!isAuthenticated) {
     return (
       <div>
-        <div className={cn('mt-4 mb-6', className)}>
+        <div className={cn('mt-4', className)}>
           <p className="mb-4 text-xs font-bold">
             {t('addMeasurementsDescription')}
           </p>
@@ -53,7 +54,7 @@ const UserSize = ({ className }: UserSizeProps) => {
   if (!hasSizes) {
     return (
       <div>
-        <div className={cn('mt-4 mb-6', className)}>
+        <div className={cn('mt-4', className)}>
           <p className="mb-4 text-xs font-bold">
             {t('addMeasurementsDescription')}
           </p>
@@ -77,7 +78,7 @@ const UserSize = ({ className }: UserSizeProps) => {
   }
 
   return (
-    <div className="space-y-4 pb-4">
+    <div className="space-y-4">
       <div className={cn('', className)}>
         <h3 className="mb-4 text-xs font-bold">
           {t('savedMeasurements')}{' '}

@@ -7,16 +7,15 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 
 import { Separator } from '@/components/ui/separator'
-import { useInfiniteOrders } from '@/hooks/use-orders'
+import { useOrders } from '@/hooks/use-orders'
 
 import { OrderItem } from './order-item'
 
 export const OrdersList = () => {
   const t = useTranslations('profile.orders')
-  const { data, hasNextPage, isFetchingNextPage, status, error, loadMoreRef } =
-    useInfiniteOrders(5)
+  const { data, isLoading, error } = useOrders()
 
-  if (status === 'pending') {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center py-20">
         <Loader2 className="text-primary size-8 animate-spin" />
@@ -24,7 +23,7 @@ export const OrdersList = () => {
     )
   }
 
-  if (status === 'error') {
+  if (error) {
     return (
       <div className="flex items-center justify-center py-20">
         <p className="text-destructive">Error: {error?.message}</p>
@@ -32,7 +31,7 @@ export const OrdersList = () => {
     )
   }
 
-  if (!data || data.pages.length === 0) {
+  if (!data || data.data.length === 0) {
     return (
       <div className="flex items-center justify-center py-20">
         <p className="text-muted-foreground">
@@ -43,7 +42,7 @@ export const OrdersList = () => {
   }
 
   // Flatten all pages into a single array
-  const allOrders = data.pages.flatMap((page) => page.orders)
+  const allOrders = data.data
 
   return (
     <div className="space-y-2">
@@ -53,17 +52,6 @@ export const OrdersList = () => {
           {index < allOrders.length - 1 && <Separator />}
         </React.Fragment>
       ))}
-
-      {/* Load more trigger */}
-      {hasNextPage && (
-        <div ref={loadMoreRef} className="flex justify-center py-4">
-          {isFetchingNextPage ? (
-            <Loader2 className="text-primary size-6 animate-spin" />
-          ) : (
-            <div className="h-4" /> // Invisible trigger for intersection observer
-          )}
-        </div>
-      )}
     </div>
   )
 }

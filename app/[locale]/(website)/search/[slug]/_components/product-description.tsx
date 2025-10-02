@@ -1,11 +1,11 @@
 'use client'
 
 import { Heart, Loader2, Minus, Plus } from 'lucide-react'
-import { parseAsInteger, useQueryState } from 'nuqs'
+import { parseAsInteger, parseAsString, useQueryState } from 'nuqs'
 
 import React from 'react'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 
 import { ProductFullData } from '@/@types/product'
@@ -21,6 +21,7 @@ import { useAddToCart } from '@/hooks/use-cart'
 import useFavorite from '@/hooks/use-favorites'
 import { Link, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
+import { getSizeMessage } from '@/utils/get-size-message'
 
 import UserSize from './user-size'
 
@@ -34,12 +35,18 @@ export default function ProductDescription({
   className,
 }: ProductDescriptionProps) {
   const t = useTranslations('product-description')
+  const locale = useLocale()
   const { slug } = useParams<{ slug: string }>()
   const [selectedSize, setSelectedSize] = useQueryState('size')
   const [quantity = 1] = useQueryState(
     'quantity',
     parseAsInteger.withDefault(1)
   )
+  const [selectedUserSize] = useQueryState(
+    'user_size',
+    parseAsString.withDefault('')
+  )
+
   const router = useRouter()
   const hasDiscount = !!Number(product.discount_amount)
   const {
@@ -192,9 +199,16 @@ export default function ProductDescription({
       )}
 
       {product.sizes && product.sizes.length > 0 && (
-        <div className="space-y-2">
+        <div className="space-y-4">
           <p className="text-xs lg:text-base lg:font-bold">{t('sizes')}:</p>
           <UserSize />
+          <p className="text-xs lg:text-sm">
+            {getSizeMessage(
+              product.sizes,
+              selectedUserSize,
+              locale as 'ar' | 'en'
+            )}
+          </p>
           <div className="flex flex-wrap gap-2">
             <RadioGroup
               value={selectedSize}
@@ -203,6 +217,12 @@ export default function ProductDescription({
             >
               {product.sizes.map((size) => (
                 <label
+                  style={{
+                    border:
+                      size.user_size?.id == Number(selectedUserSize)
+                        ? `2px solid ${size.user_size?.color}`
+                        : '',
+                  }}
                   data-disabled={size.quantity === 0}
                   key={size.size_code}
                   className={cn(
