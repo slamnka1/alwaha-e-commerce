@@ -425,7 +425,8 @@
       "cancel": "إلغاء",
       "operations": {
         "updateSuccess": "تم تحديث العنوان بنجاح"
-      }
+      },
+      "updateAddress": "تحديث العنوان"
     },
     "operations": {
       "loading": "جاري تحميل السلة...",

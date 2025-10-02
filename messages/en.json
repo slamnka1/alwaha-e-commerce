@@ -421,7 +421,8 @@
       "cancel": "Cancel",
       "operations": {
         "updateSuccess": "Address updated successfully "
-      }
+      },
+      "updateAddress": "Update address "
     },
     "operations": {
       "loading": "Loading cart...",

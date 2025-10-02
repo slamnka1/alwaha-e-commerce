@@ -115,4 +115,20 @@ export const authService = {
       confirm_password,
     })
   },
+
+  async updateAddress({
+    emirate_id,
+    region_id,
+    address,
+  }: {
+    emirate_id: string
+    region_id: string
+    address: string
+  }): Promise<void> {
+    await apiClient.put('/auth/address/update', {
+      emirate_id,
+      region_id,
+      address,
+    })
+  },
 }

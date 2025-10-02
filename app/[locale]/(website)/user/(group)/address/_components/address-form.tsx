@@ -26,7 +26,7 @@ import { FormErrorMessage } from '@/components/ui/form-error-message'
 import { Input } from '@/components/ui/input'
 import { RegionSelect } from '@/components/ui/region-select'
 import { Separator } from '@/components/ui/separator'
-import apiClient from '@/services/axios'
+import { authService } from '@/services/auth'
 import { useSession } from '@/store/session-store'
 import { handleFormError } from '@/utils/handle-form-errors'
 
@@ -66,10 +66,21 @@ export function AddressForm({}) {
     }
   }, [isPending])
 
+  // Reset region when emirate changes
+  const handleEmirateChange = (value: string) => {
+    form.setValue('emirate_id', value)
+    form.setValue('region_id', '') // Reset region when emirate changes
+  }
+
   const queryClient = useQueryClient()
   const onSubmitForm = async (data: AddressFormData) => {
     try {
-      const response = await apiClient.put('/auth/address/update', data)
+      await authService.updateAddress({
+        emirate_id: data.emirate_id,
+        region_id: data.region_id,
+        address: data.address,
+      })
+
       toast.success(t('operations.updateSuccess'))
       queryClient.invalidateQueries({
         queryKey: ['session'],
@@ -77,6 +88,24 @@ export function AddressForm({}) {
     } catch (error) {
       handleFormError(error, form)
     }
+  }
+
+  if (isPending) {
+    return (
+      <Card className="border-[0.5px] border-transparent bg-transparent shadow-none md:border-[#1A1A1A] md:bg-white md:p-8 md:py-14 md:shadow-lg">
+        <CardHeader className="max-md:px-0">
+          <CardTitle className="font-semibold md:text-xl">
+            {t('currentAddressTitle')}
+          </CardTitle>
+        </CardHeader>
+        <Separator className="max-md:hidden" />
+        <CardContent className="space-y-6 max-md:px-2">
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="h-6 w-6 animate-spin" />
+          </div>
+        </CardContent>
+      </Card>
+    )
   }
 
   return (
@@ -105,7 +134,7 @@ export function AddressForm({}) {
                   <FormControl>
                     <EmirateSelect
                       value={field.value}
-                      onValueChange={field.onChange}
+                      onValueChange={handleEmirateChange}
                     />
                   </FormControl>
                   <FormMessage />
@@ -155,9 +184,9 @@ export function AddressForm({}) {
               variant={'secondary'}
               className="w-full font-semibold"
               type="submit"
-              disabled={form.formState.isSubmitting}
+              disabled={form.formState.isSubmitting || !form.formState.isValid}
             >
-              {t('addCurrentAddress')}
+              {session?.address ? t('updateAddress') : t('addCurrentAddress')}
               {form.formState.isSubmitting && (
                 <Loader2 className="ml-2 h-4 w-4 animate-spin" />
               )}
