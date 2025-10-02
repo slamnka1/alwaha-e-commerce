@@ -159,7 +159,7 @@ export default function ProductDescription({
               dragFree: true,
             }}
           >
-            <CarouselContent>
+            <CarouselContent className="ml-0">
               {product.other_colors
                 .sort((e) => e.id)
                 .map((item, index) => (

@@ -1,6 +1,6 @@
 'use client'
 
-import { Pencil, Plus, Trash2 } from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 import { useState } from 'react'
 
@@ -9,9 +9,9 @@ import { useTranslations } from 'next-intl'
 import { NoteIcon } from '@/assets'
 import SizeModal from '@/components/size/size-modal'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { useDeleteUserSize, useUserSizes } from '@/hooks/use-user-sizes'
+import { useUserSizes } from '@/hooks/use-user-sizes'
+import { Link } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 import { useSession } from '@/store/session-store'
 
@@ -20,12 +20,36 @@ type UserSizeProps = {
 }
 
 const UserSize = ({ className }: UserSizeProps) => {
+  const { isAuthenticated } = useSession()
   const sizes = useUserSizes()
   const [selectedSize, setSelectedSize] = useState<string>('')
 
   const hasSizes = (sizes.data?.length ?? 0) > 0
   const t = useTranslations('search.filters.userSize')
 
+  if (!isAuthenticated) {
+    return (
+      <div>
+        <div className={cn('mt-4 mb-6', className)}>
+          <p className="mb-4 text-xs font-bold">
+            {t('addMeasurementsDescription')}
+          </p>
+
+          <Button
+            asChild
+            size={'sm'}
+            className="h-8 rounded-xl px-4 py-1 text-xs font-normal"
+          >
+            <Link href="/auth/login">{t('addMeasurements')}</Link>
+          </Button>
+        </div>
+        <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
+          <img src={NoteIcon.src} alt="note" className="size-4" />
+          {t('importantNote')}
+        </p>
+      </div>
+    )
+  }
   if (!hasSizes) {
     return (
       <div>
