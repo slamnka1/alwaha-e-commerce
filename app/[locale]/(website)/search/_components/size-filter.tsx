@@ -26,26 +26,26 @@ type Props = {}
 const SizeFilter = (props: Props) => {
   const t = useTranslations('search.filters')
   const [filters, setFilters] = useQueryStates({
-    chestMeasurement: parseAsInteger.withDefault(0),
-    hipMeasurement: parseAsInteger.withDefault(0),
+    chest_size: parseAsInteger.withDefault(0),
+    hip_size: parseAsInteger.withDefault(0),
     'user_sizes[]': parseAsArrayOf(parseAsString).withDefault([]),
   })
 
   const [measurementValues, setMeasurementValues] = useState({
-    chest: filters.chestMeasurement,
-    hip: filters.hipMeasurement,
+    chest: filters.chest_size,
+    hip: filters.hip_size,
   })
 
   const handleMeasurementSubmit = () => {
     setFilters({
-      chestMeasurement: measurementValues.chest,
-      hipMeasurement: measurementValues.hip,
+      chest_size: measurementValues.chest,
+      hip_size: measurementValues.hip,
     })
   }
   const handleClearMeasurement = () => [
     setFilters({
-      chestMeasurement: 0,
-      hipMeasurement: 0,
+      chest_size: 0,
+      hip_size: 0,
     }),
     setMeasurementValues({
       hip: 0,
@@ -72,7 +72,7 @@ const SizeFilter = (props: Props) => {
               className="h-8 w-20"
               min={0}
               placeholder={t('measurementPlaceholder')}
-              value={measurementValues.chest}
+              value={measurementValues.chest || ''}
               onChange={(e) =>
                 setMeasurementValues({
                   ...measurementValues,
