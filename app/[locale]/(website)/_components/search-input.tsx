@@ -24,7 +24,6 @@ export default function SearchInput({ classNames }: Props) {
   const [value, setValue] = useState(q)
   const router = useRouter()
   const pathname = usePathname()
-  console.log('🚀 ~ SearchInput ~ pathname:', pathname)
 
   const search = useDebouncedCallback((value: string) => {
     if (pathname != '/search') {

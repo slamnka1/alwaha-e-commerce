@@ -24,10 +24,10 @@ export function InitSession({
     queryKey: ['session'],
     enabled: !!initialValue?.access_token,
     queryFn: async () => {
-      const response = await apiClient.get<ApiResponse<User>>(`/auth/me`, {})
+      const response = await apiClient.get<User>(`/auth/me`, {})
       return {
         access_token: initialValue!.access_token,
-        ...response.data.data,
+        ...response.data,
       }
     },
     // initialData: initialValue,
