@@ -43,7 +43,7 @@ const MobileFavoriteRow = ({ item }: MobileFavoriteRowProps) => {
                 {t('color')}: {item.colors.color_name}
               </p>
               <p className="text-sm font-medium">
-                {item.base_price} {t('currency')}
+                {item.price} {t('currency')}
               </p>
 
               {/* Add to Cart Button */}

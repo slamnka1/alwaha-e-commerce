@@ -48,7 +48,7 @@ const FavoriteRow = ({ item }: FavoriteRowProps) => {
         {/* Price */}
         <div className="col-span-2 text-center">
           <span className="font-semibold">
-            {item.base_price} {t('currency')}
+            {item.price} {t('currency')}
           </span>
         </div>
 

@@ -15,43 +15,48 @@ export interface Data {
 }
 
 export interface Item {
-  id: number
+  item_id: number
   cart_id: number
-  product_id: number
-  quantity: number
-  created_at: string
-  updated_at: string
   product_size_id: number
+  quantity: number
   product: Product
-  product_size: Size
 }
 
 export interface Product {
   id: number
-  color_image_url: string
-  created_at: string
-  updated_at: string
-  product_id: number
+  product_code: string
+  image_url: string
+  name: string
   price: number
-  name_ar: string
-  name_en: string
+  offer_id: null
+  discount_percent: null
+  discount_amount: null
+  price_before_discount: null
+  description: string
+  selected_size: SelectedSize
+  selected_color: Color
   sizes: Size[]
+  colors: Color[]
+}
+
+export interface Color {
+  id: number
+  color_name: null | string
+  color_image_url: string
+}
+
+export interface SelectedSize {
+  id: number
+  size_code: string
+  quantity: number
+  chest_size: string
+  hip_size: string
 }
 
 export interface Size {
   id: number
   size_code: string
-  category: null
-  waist_cm: null
-  length_cm: null
-  shoulder_cm: null
   quantity: number
-  custom_chest_cm: string
-  custom_hip_cm: string
-  sort_order: number
-  is_active: number
-  created_at: string
-  updated_at: string
-  product_color_id: number
-  size_id: number
+  chest_cm: string
+  hip_cm: string
 }

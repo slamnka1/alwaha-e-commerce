@@ -10,13 +10,16 @@ export interface Product {
   description: string
   main_image_url: string
   offer_active_id: null
-  discount_percent: string
-  discount_amount: string
+  price: string
   has_plus_size: boolean
   sizes: Size[]
   best_fit_size: null
   is_favourite: boolean
   is_favorited: boolean
+  offer_id: number | null
+  discount_percent: string | null
+  discount_amount: string | null
+  price_before_discount: string
 
   colors: Colors
   available_quantity: string | null
@@ -47,10 +50,13 @@ export interface ProductFullData {
   price: number
   product_base_price: string
   offer_active: null
-  discount_percent: null
   discounted_price: null
   sizes_quantity: string
   is_favorited: boolean
+  offer_id: number | null
+  discount_percent: string | null
+  discount_amount: string | null
+  price_before_discount: string
   sizes: {
     id: number
     size_code: string

@@ -31,7 +31,7 @@ export interface CartItem {
   price: number
   quantity: number
   image: string
-  color: string
+  color: string | null
   size: string
 }
 
@@ -56,7 +56,7 @@ export function CartItems({ items }: CartItemsProps) {
   }
 
   const formatPrice = (price: number) => {
-    return `0 ${t('currancy')}`
+    return `${price} ${t('currancy')}`
   }
 
   const calculateTotal = (price: number, quantity: number) => {

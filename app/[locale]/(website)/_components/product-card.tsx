@@ -80,12 +80,11 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
           {/* Pricing */}
           <div className="flex items-center gap-2">
             <span className="text-primary text-sm font-bold md:text-xl 2xl:text-2xl">
-              {props.base_price} {t('currency')}
+              {props.price} {t('currency')}
             </span>
             {Number(props.discount_percent) ? (
               <span className="text-xs font-semibold text-[#00000033] line-through md:text-lg">
-                {Number(props.base_price) - Number(props.discount_amount)}{' '}
-                {t('currency')}
+                {Number(props.base_price)} {t('currency')}
               </span>
             ) : null}
           </div>

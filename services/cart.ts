@@ -2,6 +2,7 @@ import { CartResponse } from '@/@types/cart'
 import { apiClient } from '@/services/axios'
 
 export type AddToCartParams = {
+  product_id: number
   product_color_id: number
   product_size_id: number
   quantity: number

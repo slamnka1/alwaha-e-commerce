@@ -41,7 +41,7 @@ export default function ProductDescription({
     parseAsInteger.withDefault(1)
   )
   const router = useRouter()
-  const hasDiscount = !!Number(product.discount_percent)
+  const hasDiscount = !!Number(product.discount_amount)
   const {
     isFavorite,
     mutate: toggleFavorite,
@@ -118,7 +118,7 @@ export default function ProductDescription({
           {hasDiscount && (
             <>
               <span className="text-xs text-[#A97C50] line-through lg:text-base lg:font-medium">
-                {product.product_base_price} {t('currency')}
+                {product.price_before_discount} {t('currency')}
               </span>
             </>
           )}
@@ -236,6 +236,7 @@ export default function ProductDescription({
           disabled={isAddDisabled}
           onClick={() =>
             addToCart.mutate({
+              product_id: Number(product.product_id),
               product_color_id: Number(product.id),
               product_size_id: Number(selectedSize),
               quantity: Number(quantity) || 1,

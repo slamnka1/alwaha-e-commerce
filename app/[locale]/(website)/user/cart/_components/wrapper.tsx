@@ -1,7 +1,5 @@
 'use client'
 
-import React from 'react'
-
 import { useLocale, useTranslations } from 'next-intl'
 
 import { useCartItems } from '@/hooks/use-cart'
@@ -18,13 +16,13 @@ const Wrapper = (props: Props) => {
 
   // Map API response to UI cart items shape
   const items = (data?.items ?? []).map((item) => ({
-    id: String(item.id),
-    name: locale === 'ar' ? item.product.name_ar : item.product.name_en,
+    id: String(item.item_id),
+    name: item.product.name,
     price: item.product.price,
     quantity: item.quantity,
-    image: item.product.color_image_url,
-    color: '',
-    size: item.product_size.size_code,
+    image: item.product.image_url,
+    color: item.product.selected_color.color_name,
+    size: item.product.selected_size.size_code,
   }))
 
   // Use summary numbers from API when available

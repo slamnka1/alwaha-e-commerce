@@ -17,7 +17,6 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { RadioGroup } from '@/components/ui/radio-group'
 import { useDeleteUserSize, useUserSizes } from '@/hooks/use-user-sizes'
 import { useSession } from '@/store/session-store'
 
@@ -62,7 +61,7 @@ const SizeFilter = (props: Props) => {
         <h4 className="text-sm font-semibold">{t('measurementTitle')}</h4>
 
         {/* Measurement Input Form */}
-        <div className="mx-auto max-w-52 space-y-1 rounded-lg">
+        <div className="mx-auto max-w-58 space-y-1 rounded-lg">
           <div className="mx-auto flex items-center justify-between gap-2">
             <label className="text-sm font-medium">
               {t('chestMeasurement')}
