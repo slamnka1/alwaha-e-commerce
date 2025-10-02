@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { Loader2 } from 'lucide-react'
+import { Loader2, SearchX } from 'lucide-react'
 
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
@@ -38,6 +38,19 @@ const Results = (props: Props) => {
         <AlertDescription>{error.message}</AlertDescription>
       </Alert>
     )
+
+  // Handle no results case
+  if (!data.data || data.data.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <div className="bg-muted mb-6 rounded-full p-6">
+          <SearchX className="text-muted-foreground h-12 w-12" />
+        </div>
+        <h3 className="mb-2 text-xl font-semibold">{t('noResults')}</h3>
+        <p className="text-muted-foreground">{t('tryAgain')}</p>
+      </div>
+    )
+  }
 
   return (
     <div className="w-full">
