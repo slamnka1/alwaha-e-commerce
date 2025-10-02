@@ -30,7 +30,7 @@ export function InitSession({
         ...response.data.data,
       }
     },
-    initialData: initialValue,
+    // initialData: initialValue,
   })
 
   useEffect(() => {

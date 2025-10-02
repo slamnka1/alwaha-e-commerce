@@ -42,7 +42,7 @@ const sizesNumber = {
 const Filters = (props: Props) => {
   const t = useTranslations('search.filters')
   const [filters, setFilters] = useQueryStates({
-    categories: parseAsArrayOf(parseAsString).withDefault([]),
+    'categories[]': parseAsArrayOf(parseAsString).withDefault([]),
     size_id: parseAsString.withDefault(''),
     has_plus_size: parseAsBoolean.withDefault(false),
     has_offer: parseAsBoolean.withDefault(false),
@@ -85,12 +85,14 @@ const Filters = (props: Props) => {
                 <div key={category.id} className="flex items-center space-x-3">
                   <Checkbox
                     id={category.id}
-                    checked={filters.categories.includes(category.id)}
+                    checked={filters['categories[]'].includes(category.id)}
                     onCheckedChange={(checked) =>
                       setFilters({
-                        categories: !checked
-                          ? filters.categories.filter((c) => c !== category.id)
-                          : [...filters.categories, category.id],
+                        'categories[]': !checked
+                          ? filters['categories[]'].filter(
+                              (c) => c !== category.id
+                            )
+                          : [...filters['categories[]'], category.id],
                       })
                     }
                   />

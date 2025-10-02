@@ -21,25 +21,11 @@ export default async function Layout({
   children: React.ReactNode
 }) {
   const session = await getServerSession()
-  const user = await (async () => {
-    if (!session) return null
-    try {
-      const response = await apiClient.get<ApiResponse<User>>(`/auth/me`, {})
-      return {
-        access_token: session!.access_token,
-        ...response.data.data,
-      }
-    } catch (error) {
-      // If the API call fails (e.g., 401), return null to let the client handle it
-      console.error('Failed to fetch user data:', error)
 
-      return null
-    }
-  })()
   return (
     <React.Fragment>
       <Header />
-      <InitSession initialValue={user} />
+      <InitSession initialValue={session} />
       {children}
       <Footer />
       <FloatingCart />
