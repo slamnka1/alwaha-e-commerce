@@ -84,7 +84,7 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
             </span>
             {Number(props.discount_percent) ? (
               <span className="text-xs font-semibold text-[#00000033] line-through md:text-lg">
-                {Number(props.base_price)} {t('currency')}
+                {Number(props.price_before_discount)} {t('currency')}
               </span>
             ) : null}
           </div>
