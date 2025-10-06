@@ -31,7 +31,7 @@ const UserSize = ({ className }: UserSizeProps) => {
   if (!isAuthenticated) {
     return (
       <div>
-        <div className={cn('mt-4', className)}>
+        <div className={cn('mt-4 mb-6', className)}>
           <p className="mb-4 text-xs font-bold">
             {t('addMeasurementsDescription')}
           </p>

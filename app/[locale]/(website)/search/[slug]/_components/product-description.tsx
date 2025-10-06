@@ -202,7 +202,7 @@ export default function ProductDescription({
         <div className="space-y-4">
           <p className="text-xs lg:text-base lg:font-bold">{t('sizes')}:</p>
           <UserSize />
-          <p className="text-xs lg:text-sm">
+          <p className="text-xs text-red-300 lg:text-sm">
             {getSizeMessage(
               product.sizes,
               selectedUserSize,
