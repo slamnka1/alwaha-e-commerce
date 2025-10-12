@@ -1,10 +1,9 @@
 'use client'
 
-import React from 'react'
-
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
+import { Category } from '@/@types/categories'
 import { LogoWithText } from '@/assets'
 import { Link } from '@/lib/i18n/navigation'
 
@@ -54,7 +53,9 @@ const FacebookIcon = () => (
   </svg>
 )
 
-type Props = {}
+type Props = {
+  categories: Category[]
+}
 
 const Footer = (props: Props) => {
   const t = useTranslations('footer')
@@ -72,31 +73,21 @@ const Footer = (props: Props) => {
           </div>
 
           {/* Sections/Categories - Second Column */}
-          <div className="mt-10 flex grow flex-col lg:mt-16">
+          <div className="relative z-10 mt-10 flex grow flex-col lg:mt-16">
             <h4 className="mb-4 font-bold">{t('sections')}</h4>
             <ul className="space-y-2">
-              <li>
-                <Link href="/search?=dresses">{t('dresses')}</Link>
-              </li>
-              <li>
-                <Link href="/search?=swimwear">{t('swimwear')}</Link>
-              </li>
-              <li>
-                <Link href="/search?=travelWear">{t('travelWear')}</Link>
-              </li>
-              <li>
-                <Link href="/search?=hijabsAndPrayer">
-                  {t('hijabsAndPrayer')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/search?=winterWear">{t('winterWear')}</Link>
-              </li>
+              {props.categories.map((category) => (
+                <li key={category.id}>
+                  <Link href={`/search?=${category.slug}`}>
+                    {category.category_name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Information - Third Column */}
-          <div className="mt-10 flex grow flex-col lg:mt-16">
+          <div className="relative z-10 mt-10 flex grow flex-col lg:mt-16">
             <h4 className="mb-4 font-bold">{t('contactUs')}</h4>
             <div className="space-y-2">
               <a href={`mailto:${t('email')}`} className="block font-bold">
