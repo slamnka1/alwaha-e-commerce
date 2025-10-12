@@ -9,7 +9,10 @@ import { Link } from '@/lib/i18n/navigation'
 export function TypeCard(props: Category) {
   const t = useTranslations('common')
   return (
-    <div className="group relative h-50 w-full max-w-xs overflow-hidden rounded-md shadow-lg transition-all duration-300 select-none hover:shadow-xl md:h-70 lg:h-100 lg:rounded-2xl">
+    <Link
+      href={'/search?category_id[]=' + props.id}
+      className="group relative h-50 w-full max-w-xs overflow-hidden rounded-md shadow-lg transition-all duration-300 select-none hover:shadow-xl md:h-70 lg:h-100 lg:rounded-2xl"
+    >
       {/* <div className="text-primary absolute top-0 left-0 z-10 rounded-br-md bg-white px-2 py-0.5 text-[8px] font-semibold shadow-md md:hidden lg:rounded-br-2xl lg:px-4 lg:py-2 lg:text-sm">
         {t('see-more')}
       </div> */}
@@ -38,11 +41,9 @@ export function TypeCard(props: Category) {
           className="text-primary bg-white/90 font-semibold transition-all duration-200 hover:scale-105 hover:bg-white max-lg:h-10 max-md:text-sm"
           asChild
         >
-          <Link href={'/search?category_id[]=' + props.id}>
-            {t('see-more')}
-          </Link>
+          {t('see-more')}
         </Button>
       </div>
-    </div>
+    </Link>
   )
 }
