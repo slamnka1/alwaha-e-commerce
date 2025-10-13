@@ -352,7 +352,20 @@
     "phone": "+990 120 129 129",
     "copyright": "{value} واحة الزين جميع الحقوق محفوظة.",
     "privacyPolicy": "سياسة الخصوصية",
-    "changePolicy": "سياسة الاستبدال"
+    "changePolicy": "سياسة الاستبدال",
+    "branches": "مواقعنا",
+    "phonesTitle": "أرقام التواصل :",
+    "addressTitle": "العنوان :",
+    "locationLabel": "الموقع",
+    "sharjah": "الشارقة :",
+    "sharjahPhone1": "00971505758362",
+    "sharjahPhone2": "00971566142600",
+    "sharjahAddress": "مجاز 3 - برج المبارك –  G02",
+    "sharjahLocationUrl": "https://maps.app.goo.gl/ZvUbYDUJYLDkNeM17",
+    "abudhabi": "أبوظبي :",
+    "abudhabiPhone1": "00971506613848",
+    "abudhabiAddress": "جوار حديقة الخالدية 2 – مقابل مصبغة الرافدين",
+    "abudhabiLocationUrl": "https://maps.app.goo.gl/Q86Um5DT9kL52NaC6?g_st=awb"
   },
   "pagination": {
     "general": {

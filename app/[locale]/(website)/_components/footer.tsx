@@ -63,7 +63,7 @@ const Footer = (props: Props) => {
   return (
     <footer className="bg-[#EADDCB] py-12">
       <div className="container mx-auto">
-        <div className="flex gap-8 max-lg:flex-wrap lg:gap-26">
+        <div className="flex gap-8 max-lg:flex-wrap lg:gap-16">
           {/* Brand Information - Rightmost Column */}
           <div className="flex h-full flex-col justify-between max-md:w-full max-md:text-center md:max-w-[300]">
             <div className="flex flex-col gap-4">
@@ -88,27 +88,70 @@ const Footer = (props: Props) => {
 
           {/* Contact Information - Third Column */}
           <div className="relative z-10 mt-10 flex grow flex-col lg:mt-16">
-            <h4 className="mb-4 font-bold">{t('contactUs')}</h4>
-            <div className="space-y-2">
-              <a href={`mailto:${t('email')}`} className="block font-bold">
-                {t('email')}
-              </a>
-              <a href={`tel:${t('phone')}`} className="block font-bold">
-                {t('phone')}
-              </a>
+            {/* Branch Locations */}
+            <div className="space-y-4">
+              <h5 className="font-bold">{t('branches')}</h5>
+              <div className="space-y-1">
+                <p className="font-bold">{t('sharjah')}</p>
+                <p>{t('phonesTitle')}</p>
+                <a
+                  href={`tel:${t('sharjahPhone1')}`}
+                  className="block hover:underline"
+                >
+                  {t('sharjahPhone1')}
+                </a>
+                <a
+                  href={`tel:${t('sharjahPhone2')}`}
+                  className="block hover:underline"
+                >
+                  {t('sharjahPhone2')}
+                </a>
+                <p>
+                  {t('addressTitle')} {t('sharjahAddress')}
+                </p>
+                <a
+                  href={t('sharjahLocationUrl')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  {t('locationLabel')}
+                </a>
+              </div>
+              <div className="space-y-1">
+                <p className="font-bold">{t('abudhabi')}</p>
+                <p>{t('phonesTitle')}</p>
+                <a
+                  href={`tel:${t('abudhabiPhone1')}`}
+                  className="block hover:underline"
+                >
+                  {t('abudhabiPhone1')}
+                </a>
+                <p>
+                  {t('addressTitle')} {t('abudhabiAddress')}
+                </p>
+                <a
+                  href={t('abudhabiLocationUrl')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline"
+                >
+                  {t('locationLabel')}
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Social Media Icons - Leftmost Column */}
           <div className="mt-10 flex grow max-lg:w-full max-lg:justify-center lg:mt-16">
             <div className="flex w-fit gap-4">
-              <a href="#">
+              <a target="_blank" href="https://www.tiktok.com/@wahatalzain">
                 <TikTokIcon />
               </a>
-              <a href="#">
+              <a target="_blank" href="https://www.instagram.com/wahatalzain/">
                 <InstagramIcon />
               </a>
-              <a href="#">
+              <a target="_blank" href="https://www.facebook.com/wahatalzain/">
                 <FacebookIcon />
               </a>
             </div>
