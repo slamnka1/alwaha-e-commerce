@@ -198,6 +198,13 @@ const PreviewCarousel = ({ products }: { products: Product[] }) => {
 
   const router = useRouter()
 
+  const onClick = (index: number) => {
+    if (currentSlideIndex === index) {
+      router.push(`/search/${products[currentSlideIndex].id}`)
+    }
+    scrollToSlide(index)
+  }
+
   return (
     <section className="pt-6">
       {/* Content Section */}
@@ -239,10 +246,7 @@ const PreviewCarousel = ({ products }: { products: Product[] }) => {
                 className="basis-1/6 pl-0 md:basis-1/7"
               >
                 <div className="relative">
-                  <PreviewCard
-                    {...value}
-                    onClick={() => scrollToSlide(index)}
-                  />
+                  <PreviewCard {...value} onClick={() => onClick(index)} />
                   {/* Shopping cart icon for active slide */}
                   {index === currentSlideIndex && (
                     <div
