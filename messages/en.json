@@ -526,5 +526,19 @@
   "payment": {
     "success": "Payment completed successfully! Your order has been placed.",
     "error": "Payment failed. Please try again or contact support if the problem persists."
+  },
+  "about": {
+    "title": "About Us",
+    "hero": {
+      "title": "Elegance, Modesty, and Comfort — Since 2021",
+      "description": "We blend contemporary Turkish design with high–quality fabrics to create modest fashion that celebrates your elegance every day."
+    },
+    "whoWeAre": "Who We Are",
+    "whoWeAreText": "Founded in 2021, Wahat Al Zain serves modest women aged 18–55 who appreciate a refined, contemporary outlook. Over five years, our diverse collections have earned a loyal community that trusts us to deliver modesty, quality, and modern design. We seamlessly combine the latest trends with comfort for women who see the world through elegance and modesty.",
+    "presence": "Our Presence",
+    "presenceText": "Wahat Al Zain has become a trusted brand and a key destination for veiled women in the UAE, with a strong presence across the community and branches in Sharjah and Abu Dhabi under direct management.",
+    "offerings": "What We Offer",
+    "offeringsText": "Discover a curated range: blazers, tracksuits, dresses, burkinis, abayas, khimar, prayer sets, and plus–size options. Our designs feature high–quality materials and vibrant colors, thoughtfully crafted for modest comfort and contemporary taste.",
+    "cta": "Shop Now"
   }
 }
