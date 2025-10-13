@@ -157,17 +157,25 @@ const Footer = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="mt-12 flex items-center justify-between gap-4">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
           <p className="font-medium">
             {t('copyright', { value: new Date().getFullYear() })}
           </p>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2 max-md:text-sm">
             <Link className="hover:underline" href="/privacy-policy">
               {t('privacyPolicy')}
             </Link>
             .
             <Link className="hover:underline" href="/change-policy">
               {t('changePolicy')}
+            </Link>
+            .
+            <Link className="hover:underline" href="/payment-policy">
+              {t('paymentPolicy')}
+            </Link>
+            .
+            <Link className="hover:underline" href="/shipping-policy">
+              {t('shippingPolicy')}
             </Link>
           </div>
         </div>
