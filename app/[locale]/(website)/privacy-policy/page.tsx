@@ -9,227 +9,283 @@ export default function PrivacyPolicyPage() {
       </h2>
       <section className="space-y-6 ltr:hidden">
         <h1 className="text-2xl font-semibold">سياسة الخصوصية</h1>
-        <p>
-          نحن في الواحة نهتم بخصوصيتك ونلتزم بحماية البيانات الشخصية التي تقدمها
-          لنا. توضح هذه السياسة كيف نقوم بجمع واستخدام وحماية معلوماتك عند
-          استخدامك لخدماتنا.
-        </p>
-
         <div className="space-y-3">
-          <h2 className="text-xl font-semibold">1. المعلومات التي نجمعها</h2>
-          <p>قد نقوم بجمع أنواع مختلفة من المعلومات، منها:</p>
-          <ul className="list-disc space-y-1 pr-6">
-            <li>
-              معلومات شخصية: مثل الاسم، البريد الإلكتروني، رقم الهاتف، عند
-              التسجيل أو ملء النماذج.
-            </li>
-            <li>
-              معلومات غير شخصية: مثل نوع الجهاز، نظام التشغيل، نوع المتصفح،
-              عنوان الـ IP، وسجل التصفح داخل الموقع/التطبيق.
-            </li>
-          </ul>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">2. كيف نستخدم المعلومات</h2>
-          <p>نستخدم المعلومات التي نجمعها من أجل:</p>
-          <ul className="list-disc space-y-1 pr-6">
-            <li>تقديم وتحسين خدماتنا.</li>
-            <li>التواصل معك بشأن تحديثات أو إشعارات مهمة.</li>
-            <li>تخصيص المحتوى حسب اهتماماتك.</li>
-            <li>الامتثال للمتطلبات القانونية والتنظيمية.</li>
-          </ul>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">3. حماية المعلومات</h2>
+          <h2 className="text-xl font-semibold">نهتم لأمنك</h2>
           <p>
-            نستخدم مجموعة من الإجراءات الأمنية لحماية معلوماتك من الوصول أو
-            التعديل أو الكشف أو الإتلاف غير المصرح به.
+            إن استخدامك لموقع الزين فاشيون (واحة الزين) يعدّ موافقة صريحة على
+            جمع، استخدام، تخزين ومعالجة بياناتك الشخصية وفقًا لسياسة الخصوصية
+            المذكورة. قد تقوم واحة الزين بجمع بعض البيانات المحدودة وفقًا لسياسة
+            الخصوصية وتتعامل مع هذه المعلومات بسريّة تامة وذلك من أجل توفير خدمة
+            أفضل. نقوم بحفظ بياناتك الشخصية واستخدامها من قبل واحة الزين حسبما
+            كان ذلك مسموحًا به بموجب القانون ومن ثم التخلّص من هذه البيانات
+            الشخصية بطريقة آمنة. تلتزم واحة الزين بالحفاظ وحماية بيانات مستخدمي
+            موقعها الإلكتروني.
           </p>
         </div>
 
         <div className="space-y-3">
           <h2 className="text-xl font-semibold">
-            4. ملفات تعريف الارتباط (Cookies)
+            1 - ما نوع البيانات الشخصية التي قد تجمعها واحة الزين؟
+          </h2>
+          <ul className="list-disc space-y-1 pr-6">
+            <li>
+              بريدك الإلكتروني، الاسم، رقم الهاتف والعنوان عند إنشاء حساب.
+            </li>
+            <li>
+              البيانات التي قد تُرسلها لنا عند حدوث أي مشكلة أثناء الاستخدام.
+            </li>
+            <li>سجل المحادثات مع فريق الدعم.</li>
+            <li>بيانات الطلبات وتفاصيل توصيلها وتسليمها.</li>
+            <li>عنوان بروتوكول الإنترنت ونوع المتصفّح، وموقع المستخدم.</li>
+            <li>
+              طول المدّة التي تقضيها في الموقع وسجلّ التصفّح وغيرها من المعلومات
+              العامة.
+            </li>
+          </ul>
+        </div>
+
+        <div className="space-y-3">
+          <h2 className="text-xl font-semibold">
+            2 - ملفات تعريف الارتباط (الكوكيز)
           </h2>
           <p>
-            قد نستخدم "الكوكيز" لتسهيل تجربتك وتحليل استخدامك للموقع/التطبيق.
-            يمكنك تعطيلها من خلال إعدادات المتصفح، لكن بعض الميزات قد لا تعمل
-            بشكل كامل.
+            تقوم واحة الزين باستخدام الكوكيز للعمليات الأساسية مثل تصفّح الموقع،
+            تقديم إعلانات تناسب اهتماماتك، إضافة أغراض إلى قائمة التسوق وغيرها
+            ذلك من أجل تحسين تجربة تصفّحك للموقع. مع ذلك، بإمكانك تغيير إعدادات
+            الكوكيز من خلال الخطوات التالية:
+          </p>
+          <ul className="list-disc space-y-1 pr-6">
+            <li>
+              ضبط المتصفّح لإعلامك عند تلقّي ملفات تعريف الارتباط/الكوكيز.
+            </li>
+            <li>ضبط المتصفّح لرفض أو قبول ملفات تعريف الارتباط.</li>
+            <li>
+              تصفّح الموقع باستخدام خاصية إنكوجنيتو/الإعداد المجهول للمتصفّح.
+            </li>
+            <li>حذف ملفات تعريف الارتباط/الكوكيز بعد زيارتك للموقع.</li>
+          </ul>
+          <p>
+            ننوّه إلى أن تعطيل عمل ملفات تعريف الارتباط/الكوكيز قد يؤدي إلى منع
+            عرض بعض صفحات الموقع أو عرضها بشكل غير دقيق. بقبولك للشروط، هذا يعدّ
+            موافقة على استخدام الزين فاشيون لملفات تعريف الارتباط/الكوكيز.
           </p>
         </div>
 
         <div className="space-y-3">
           <h2 className="text-xl font-semibold">
-            5. مشاركة المعلومات مع أطراف ثالثة
+            3 - من يمكنه الاطّلاع على بياناتي؟
           </h2>
           <p>
-            لا نشارك معلوماتك الشخصية مع أي طرف ثالث إلا في الحالات التالية:
+            لا نقوم بمشاركة معلوماتك مع أطراف ثالثة، كما أننا لا نقوم بإرسال،
+            بيع أو مقايضة بياناتك لأغراض تسويقية مع أي طرف خارج واحة الزين.
+            لكننا قد نتبادل بعض معلومات الزبائن مع شركائنا، والهيئات الحكومية
+            والسلطات عند اللزوم.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          <h2 className="text-xl font-semibold">4 - ما هي حقوقي كعميل؟</h2>
+          <p>
+            كعميل لدينا تمتلك الحقوق التالية فيما يتعلّق بمعالجة بياناتك
+            الشخصية. في حال رغبتك باستخدام إحدى هذه الحقوق، يرجى التواصل مع خدمة
+            عملاء واحة الزين عبر البريد الإلكتروني أو الهاتف أدناه وسنقوم بتلبية
+            طلبك حالما يتم إثبات هويتك.
           </p>
           <ul className="list-disc space-y-1 pr-6">
-            <li>بموافقتك الصريحة.</li>
-            <li>إذا كان ذلك مطلوبًا بموجب القانون.</li>
             <li>
-              مع مزودي الخدمة الموثوقين الذين يساعدوننا في تشغيل الموقع/التطبيق
-              (مع التزامهم بسياسة الخصوصية).
+              أ - حق الوصول: يحق لك معرفة إن كانت واحة الزين تقوم بمعالجة
+              بياناتك الشخصية وطلب الحصول على نسخة من معلوماتك التي بحوزتنا.
+            </li>
+            <li>
+              ب - الحق في التصحيح: يحق لك طلب تصحيح معلوماتك الشخصية في حال
+              احتوائها أخطاء أو في حال عدم كتابتها بشكل كامل.
+            </li>
+            <li>
+              ت - الحق في التقييد: يحق لك تحديد ما يمكن استخدامه من معلوماتك
+              الشخصية.
+            </li>
+            <li>
+              ث - حق الاعتراض: يحق لك الاعتراض على معالجة بياناتك الشخصية وبذلك
+              ستتوقّف واحة الزين عن معالجتها باستثناء الأسباب المشروعة أو ممارسة
+              الشكايات المحتملة أو الدفاع عنها.
+            </li>
+            <li>
+              ج - حق الحذف: يحق لك طلب حذف بياناتك التي لدينا في حال أصبحت غير
+              ضرورية وفي حال عدم وجود أي طلبات قائمة لك مع خدمة العملاء.
             </li>
           </ul>
+          <div>
+            <p>للتواصل:</p>
+            <ul className="list-disc space-y-1 pr-6">
+              <li>📧 البريد الإلكتروني: @alzainfashion.com</li>
+              <li>📞 رقم خدمة العملاء: 00971505758362</li>
+            </ul>
+          </div>
         </div>
 
         <div className="space-y-3">
-          <h2 className="text-xl font-semibold">6. روابط لمواقع خارجية</h2>
+          <h2 className="text-xl font-semibold">5 - تعديلات سياسة الخصوصية</h2>
           <p>
-            قد يحتوي الموقع/التطبيق على روابط لمواقع خارجية. لسنا مسؤولين عن
-            محتوى أو سياسات الخصوصية لتلك المواقع.
+            نظرًا للتحديثات المستمرة في الأنظمة والخدمات، قد نقوم ببعض التعديلات
+            في سياسة الخصوصية من حين لآخر. لذلك نحثّك على مراجعة سياسة الخصوصية
+            بشكل دوري للبقاء على اطّلاع في حال حدوث أي تحديث أو تغيير.
           </p>
         </div>
 
         <div className="space-y-3">
-          <h2 className="text-xl font-semibold">7. حقوقك</h2>
-          <p>لديك الحق في:</p>
-          <ul className="list-disc space-y-1 pr-6">
-            <li>الوصول إلى معلوماتك الشخصية.</li>
-            <li>تصحيح أو تحديث بياناتك.</li>
-            <li>
-              طلب حذف معلوماتك من سجلاتنا (ما لم يكن الاحتفاظ بها مطلوبًا
-              قانونًا).
-            </li>
-          </ul>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">8. تحديثات سياسة الخصوصية</h2>
+          <h2 className="text-xl font-semibold">تنويه</h2>
           <p>
-            قد نقوم بتحديث هذه السياسة من وقت لآخر. سيتم إشعارك بأي تغييرات
-            كبيرة من خلال البريد الإلكتروني أو إشعار على الموقع/التطبيق.
+            تنوّه شركة واحة الزين لتجارة الملابس الجاهزة إلى أن الشركة
+            والمديرين، المسؤولين، الموظّفين، العاملين لديها وشركة التأمين التي
+            تتعامل معها لا يتحمّلون أي مسؤولية من أي نوع تجاه أي شخص عن أي
+            تكاليف أو أضرار، سواءً خاصة، غير مباشرة، غير مقصودة أو لاحقة، ألحقت
+            بسبب جمع، تخزين، معالجة أو استخدام البيانات الشخصية نتيجة للدخول إلى
+            موقعنا الإلكتروني أو أي من وسائل التواصل الأخرى لدينا.
           </p>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">9. الاتصال بنا</h2>
-          <p>
-            لأي استفسار أو طلب متعلق بسياسة الخصوصية، يُرجى التواصل معنا عبر:
-          </p>
-          <ul className="list-disc space-y-1 pr-6">
-            <li>📧 البريد الإلكتروني: [your@email.com]</li>
-            <li>📞 الهاتف: [رقم الهاتف]</li>
-          </ul>
         </div>
       </section>
 
       <section className="space-y-6 rtl:hidden">
         <h1 className="text-2xl font-semibold">Privacy Policy</h1>
-        <p>
-          At Alwaha, we care about your privacy and are committed to protecting
-          the personal data you provide to us. This policy explains how we
-          collect, use, and protect your information when you use our services.
-        </p>
-
         <div className="space-y-3">
-          <h2 className="text-xl font-semibold">1. Information We Collect</h2>
-          <p>We may collect different types of information, including:</p>
-          <ul className="list-disc space-y-1 pl-6">
-            <li>
-              Personal Information: such as name, email address, and phone
-              number when you register or fill out forms.
-            </li>
-            <li>
-              Non-personal Information: such as device type, operating system,
-              browser type, IP address, and browsing history within the
-              website/app.
-            </li>
-          </ul>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">2. How We Use Information</h2>
-          <p>We use the information we collect to:</p>
-          <ul className="list-disc space-y-1 pl-6">
-            <li>Provide and improve our services.</li>
-            <li>Communicate important updates or notifications.</li>
-            <li>Personalize content based on your interests.</li>
-            <li>Comply with legal and regulatory requirements.</li>
-          </ul>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">3. Information Security</h2>
+          <h2 className="text-xl font-semibold">We Care About Your Security</h2>
           <p>
-            We implement a range of security measures to protect your
-            information from unauthorized access, alteration, disclosure, or
-            destruction.
-          </p>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">4. Cookies</h2>
-          <p>
-            We may use cookies to enhance your experience and analyze usage of
-            the website/app. You can disable cookies in your browser settings,
-            but some features may not function properly.
+            Your use of Al Zain Fashion (Wahat Al Zain) website constitutes
+            explicit consent to the collection, use, storage, and processing of
+            your personal data in accordance with this Privacy Policy. Wahat Al
+            Zain may collect limited data as outlined herein and will handle
+            this information with strict confidentiality to provide a better
+            service. Your personal data will be stored and used by Wahat Al Zain
+            as permitted by law and will then be securely disposed of. Wahat Al
+            Zain is committed to safeguarding and protecting the data of its
+            website users.
           </p>
         </div>
 
         <div className="space-y-3">
           <h2 className="text-xl font-semibold">
-            5. Sharing Information with Third Parties
+            1 - What Personal Data Might We Collect?
           </h2>
-          <p>
-            We do not share your personal information with third parties except
-            in the following cases:
-          </p>
           <ul className="list-disc space-y-1 pl-6">
-            <li>With your explicit consent.</li>
-            <li>When required by law.</li>
             <li>
-              With trusted service providers who help us operate the website/app
-              (subject to confidentiality obligations).
+              Your email, name, phone number, and address when creating an
+              account.
+            </li>
+            <li>
+              Data you send us when any issue occurs while using our services.
+            </li>
+            <li>Chat history with our support team.</li>
+            <li>Order data and delivery/fulfillment details.</li>
+            <li>IP address, browser type, and user location.</li>
+            <li>
+              Time spent on the site, browsing history, and other general
+              information.
             </li>
           </ul>
+        </div>
+
+        <div className="space-y-3">
+          <h2 className="text-xl font-semibold">2 - Cookies</h2>
+          <p>
+            Wahat Al Zain uses cookies for essential operations such as site
+            navigation, showing ads relevant to your interests, adding items to
+            the shopping cart, and more to improve your browsing experience. You
+            can change your cookie settings by:
+          </p>
+          <ul className="list-disc space-y-1 pl-6">
+            <li>
+              Setting your browser to notify you when cookies are received.
+            </li>
+            <li>Setting your browser to accept or reject cookies.</li>
+            <li>Browsing the site using Incognito/private mode.</li>
+            <li>Deleting cookies after visiting the site.</li>
+          </ul>
+          <p>
+            Please note that disabling cookies may prevent some pages from being
+            displayed or cause them to display inaccurately. By accepting the
+            terms, you consent to Al Zain Fashion's use of cookies.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          <h2 className="text-xl font-semibold">3 - Who Can Access My Data?</h2>
+          <p>
+            We do not share your information with third parties, nor do we send,
+            sell, or trade your data for marketing purposes with any party
+            outside Wahat Al Zain. However, we may share certain customer
+            information with our partners and with governmental bodies and
+            authorities when required.
+          </p>
+        </div>
+
+        <div className="space-y-3">
+          <h2 className="text-xl font-semibold">4 - What Are My Rights?</h2>
+          <p>
+            As our customer, you have the following rights regarding the
+            processing of your personal data. If you wish to exercise any of
+            these rights, please contact Wahat Al Zain customer service via the
+            email or phone below. We will fulfill your request once your
+            identity is verified.
+          </p>
+          <ul className="list-disc space-y-1 pl-6">
+            <li>
+              Right of Access: You have the right to know whether Wahat Al Zain
+              processes your personal data and to request a copy of your
+              information held by us.
+            </li>
+            <li>
+              Right to Rectification: You have the right to request correction
+              of your personal information if it contains errors or is
+              incomplete.
+            </li>
+            <li>
+              Right to Restriction: You have the right to specify how your
+              personal information may be used.
+            </li>
+            <li>
+              Right to Object: You have the right to object to the processing of
+              your personal data, after which Wahat Al Zain will cease
+              processing except for legitimate reasons or for establishing,
+              exercising, or defending potential claims.
+            </li>
+            <li>
+              Right to Erasure: You have the right to request deletion of your
+              data when it becomes unnecessary and when there are no pending
+              requests with customer service.
+            </li>
+          </ul>
+          <div>
+            <p>Contact:</p>
+            <ul className="list-disc space-y-1 pl-6">
+              <li>📧 Email: @alzainfashion.com</li>
+              <li>📞 Customer Service: 00971505758362</li>
+            </ul>
+          </div>
         </div>
 
         <div className="space-y-3">
           <h2 className="text-xl font-semibold">
-            6. Links to External Websites
+            5 - Changes to the Privacy Policy
           </h2>
           <p>
-            The website/app may contain links to external sites. We are not
-            responsible for the content or privacy practices of those sites.
+            Due to ongoing updates to systems and services, we may make changes
+            to this Privacy Policy from time to time. We encourage you to review
+            the policy periodically to stay informed about any updates or
+            changes.
           </p>
         </div>
 
         <div className="space-y-3">
-          <h2 className="text-xl font-semibold">7. Your Rights</h2>
-          <p>You have the right to:</p>
-          <ul className="list-disc space-y-1 pl-6">
-            <li>Access your personal information.</li>
-            <li>Correct or update your data.</li>
-            <li>
-              Request deletion of your information from our records (unless we
-              are legally required to retain it).
-            </li>
-          </ul>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">8. Updates to This Policy</h2>
+          <h2 className="text-xl font-semibold">Disclaimer</h2>
           <p>
-            We may update this policy from time to time. You will be notified of
-            any significant changes via email or a notice on the website/app.
+            Wahat Al Zain Ready-Made Garments Trading Company notes that the
+            company, its directors, officers, employees, workers, and its
+            insurance provider bear no liability of any kind to any person for
+            any costs or damages—whether special, indirect, incidental, or
+            consequential—arising from the collection, storage, processing, or
+            use of personal data as a result of accessing our website or any of
+            our other communication channels.
           </p>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className="text-xl font-semibold">9. Contact Us</h2>
-          <p>
-            For any inquiries or requests related to this Privacy Policy, please
-            contact us at:
-          </p>
-          <ul className="list-disc space-y-1 pl-6">
-            <li>📧 Email: [your@email.com]</li>
-            <li>📞 Phone: [Phone Number]</li>
-          </ul>
         </div>
       </section>
     </main>
