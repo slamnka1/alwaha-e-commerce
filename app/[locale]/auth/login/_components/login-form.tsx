@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import { Loader2 } from 'lucide-react'
+import { parseAsString, useQueryState } from 'nuqs'
 import { useForm } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import * as z from 'zod'
@@ -26,11 +27,10 @@ import { handleFormError } from '@/utils/handle-form-errors'
 
 const LoginForm = () => {
   const t = useTranslations('auth.login')
-  // const [{ phone_number }, setQueryStates] = useQueryStates({
-  //   phone_number: parseAsString.withDefault(''),
-  //   time: parseAsInteger,
-  //   otp: parseAsInteger,
-  // })
+  const [callbackUrl] = useQueryState(
+    'callbackUrl',
+    parseAsString.withDefault('/')
+  )
 
   const loginSchema = z.object({
     username: z
@@ -57,7 +57,7 @@ const LoginForm = () => {
     try {
       const response = await axios.post('/api/login', data)
       console.log('🚀 ~ onSubmit ~ response:', response)
-      router.push('/')
+      router.push(callbackUrl)
     } catch (error) {
       handleFormError(error, form)
     }
