@@ -68,7 +68,9 @@ const Hero = ({ banners }: { banners: Banner[] }) => {
                 asChild
                 className="text-primary mt-4 w-full max-w-60 bg-white font-semibold hover:bg-white/90"
               >
-                <Link href="/search">{t('button')}</Link>
+                <Link prefetch={true} href="/search">
+                  {t('button')}
+                </Link>
               </Button>
             </div>
           </div>
