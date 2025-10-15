@@ -123,7 +123,7 @@ export function ProfileForm() {
               )}
             />
 
-            <PhoneInput />
+            <PhoneInput withLabel />
 
             {/* Address Field
             <FormField
