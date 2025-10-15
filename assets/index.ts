@@ -1,7 +1,7 @@
 export { default as LogoWithText } from './logo-with-text.svg'
 export { default as LoginImage } from './login.svg'
 export { default as SignupImage } from './signup.svg'
-export { default as SetYourSizeImage } from './women-enjoying-mental-health.svg'
+export { default as SetYourSizeImage } from './women-enjoying-mental-health.png'
 export { default as logo } from './logo.svg'
 export { default as girls } from './girls.jpg'
 export { default as sizeBackground } from './meter.jpg'

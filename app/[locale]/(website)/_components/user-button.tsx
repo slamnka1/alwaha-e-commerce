@@ -1,9 +1,5 @@
 'use client'
 
-import { Loader2 } from 'lucide-react'
-
-import React from 'react'
-
 import { useTranslations } from 'next-intl'
 
 import { UserIcon } from '@/assets'
