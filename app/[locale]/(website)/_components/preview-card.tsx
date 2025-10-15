@@ -37,7 +37,7 @@ export function PreviewCard({
 
         {/* Plus Size Badge */}
         {has_plus_size && (
-          <div className="absolute top-0 right-0 z-10">
+          <div className="absolute top-0 right-0 z-10 shrink-0">
             <div
               style={{
                 writingMode: 'vertical-lr',

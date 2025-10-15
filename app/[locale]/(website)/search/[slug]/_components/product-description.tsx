@@ -202,7 +202,7 @@ export default function ProductDescription({
         <div className="space-y-4">
           <p className="text-xs lg:text-base lg:font-bold">{t('sizes')}:</p>
           <UserSize />
-          <p className="text-xs text-red-300 lg:text-sm">
+          <p className="text-xs text-red-600 lg:text-sm">
             {getSizeMessage(
               product.sizes,
               selectedUserSize,
@@ -232,6 +232,7 @@ export default function ProductDescription({
                   )}
                 >
                   <RadioGroupItem
+                    disabled={size.quantity === 0}
                     id={size.size_code}
                     value={size.id.toString()}
                     className="sr-only after:absolute after:inset-0"

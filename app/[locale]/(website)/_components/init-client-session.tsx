@@ -15,6 +15,9 @@ export function InitSession({
   initialValue: Session | null
 }) {
   const updateSession = useSession((s) => s.updateSession)
+  useEffect(() => {
+    updateSession(initialValue)
+  }, [initialValue, updateSession])
 
   const { data } = useQuery({
     queryKey: ['session'],
