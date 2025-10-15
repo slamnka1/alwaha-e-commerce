@@ -2,6 +2,8 @@
 
 import { Heart } from 'lucide-react'
 
+import { useState } from 'react'
+
 import { useTranslations } from 'next-intl'
 
 import { Product } from '@/@types/product'
@@ -15,11 +17,17 @@ import { cn } from '@/lib/utils'
 export function ProductCard(props: Product & { imageOnly?: boolean }) {
   const t = useTranslations('product-card')
   const { isFavorite, mutate: toggleFavorite, isPending } = useFavorite(props)
+  const [active, setActive] = useState(false)
 
   return (
     <Card className="overflow-hidden border-0 bg-transparent py-2 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
-      <Link href={`/search/${props.id}`} className="relative">
+      <Link
+        href={`/search/${props.id}`}
+        className="relative"
+        prefetch={active ? null : false}
+        onMouseEnter={() => setActive(true)}
+      >
         <AspectRatio
           ratio={9 / 13}
           className="relative w-full overflow-hidden rounded-xl shadow-lg md:rounded-[32px]"
