@@ -4,6 +4,7 @@ import React from 'react'
 
 import { useCartItems } from '@/hooks/use-cart'
 import { Link } from '@/lib/i18n/navigation'
+import { cn } from '@/lib/utils'
 
 type Props = {}
 
@@ -15,10 +16,29 @@ const FloatingCart = (props: Props) => {
     [data]
   )
 
+  const [isShaking, setIsShaking] = React.useState(false)
+  const prevCountRef = React.useRef<number>(count)
+
+  React.useEffect(() => {
+    if (prevCountRef.current !== count) {
+      setIsShaking(true)
+      const timer = setTimeout(() => setIsShaking(false), 400)
+      prevCountRef.current = count
+      return () => clearTimeout(timer)
+    }
+  }, [count])
+
   return (
-    <div className="fixed start-6 bottom-6 z-50">
+    <div
+      className={cn(
+        'fixed start-6 bottom-6 z-50',
+        isShaking ? 'cart-shake' : ''
+      )}
+    >
       <Link href={`/user/cart`} className="cursor-pointer">
-        <div className="bg-primary relative rounded-full border-[3px] border-white p-2.5 shadow-lg">
+        <div
+          className={`bg-primary relative rounded-full border-[3px] border-white p-2.5 shadow-lg`}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 31"
