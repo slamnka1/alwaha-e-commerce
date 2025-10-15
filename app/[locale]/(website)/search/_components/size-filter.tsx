@@ -61,17 +61,17 @@ const SizeFilter = (props: Props) => {
         <h4 className="text-sm font-semibold">{t('measurementTitle')}</h4>
 
         {/* Measurement Input Form */}
-        <div className="mx-auto max-w-58 space-y-1 rounded-lg">
+        <div className="mx-auto max-w-58 space-y-2 rounded-lg">
           <div className="mx-auto flex items-center justify-between gap-2">
             <label className="text-sm font-medium">
               {t('chestMeasurement')}
             </label>
             <Input
               type="number"
-              className="h-8 w-20"
+              className="h-8 w-22 md:h-8"
               min={0}
               placeholder={t('measurementPlaceholder')}
-              value={measurementValues.chest || ''}
+              value={measurementValues.chest || 0}
               onChange={(e) =>
                 setMeasurementValues({
                   ...measurementValues,
@@ -86,14 +86,14 @@ const SizeFilter = (props: Props) => {
               type="number"
               min={0}
               placeholder={t('measurementPlaceholder')}
-              value={measurementValues.hip}
+              value={measurementValues.hip || 0}
               onChange={(e) =>
                 setMeasurementValues({
                   ...measurementValues,
                   hip: e.target.valueAsNumber,
                 })
               }
-              className="h-8 w-20"
+              className="h-8 w-22 md:h-8"
             />
           </div>
         </div>

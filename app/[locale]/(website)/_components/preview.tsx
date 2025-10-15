@@ -243,7 +243,7 @@ const PreviewCarousel = ({ products }: { products: Product[] }) => {
             {products.map((value, index) => (
               <CarouselItem
                 key={value.id}
-                className="basis-1/6 pl-0 md:basis-1/7"
+                className="basis-1/5 pl-0 md:basis-1/7"
               >
                 <div className="relative">
                   <PreviewCard {...value} onClick={() => onClick(index)} />
