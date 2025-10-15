@@ -1,12 +1,11 @@
-import { useQuery } from '@tanstack/react-query'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import { useState } from 'react'
 
 import { useTranslations } from 'next-intl'
 
-import { Product, ProductFullData } from '@/@types/product'
+import { Product } from '@/@types/product'
 import apiClient from '@/services/axios'
 import { getFavoriteItems } from '@/services/favorites'
 import { useSession } from '@/store/session-store'
@@ -50,7 +49,6 @@ const useFavorite = (product: Product) => {
   const t = useTranslations()
   const { isAuthenticated } = useSession()
   const is_favourite = product.is_favourite || product.is_favorited
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   const [isFavorite, setIsFavorite] = useState(is_favourite)
 

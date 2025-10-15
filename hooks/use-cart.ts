@@ -2,8 +2,11 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
+import { useRouter } from '@/lib/i18n/navigation'
 import { cart } from '@/services'
+import { useSession } from '@/store/session-store'
 
 import { AddToCartParams } from '../services'
 
@@ -21,9 +24,22 @@ export function useCartItems() {
 export function useAddToCart() {
   const t = useTranslations('cart')
   const queryClient = useQueryClient()
+  const { isAuthenticated } = useSession()
+  const router = useRouter()
+  const { slug } = useParams()
 
   return useMutation({
-    mutationFn: (params: AddToCartParams) => cart.addToCart(params),
+    mutationFn: (params: AddToCartParams) => {
+      if (!isAuthenticated) {
+        router.push('/auth/login')
+        router.push({
+          pathname: '/auth/login',
+          query: { callbackUrl: `/search/${slug}` },
+        })
+        return new Promise((resolve) => resolve(null))
+      }
+      return cart.addToCart(params)
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: cartQueryKey })
       if (t) {

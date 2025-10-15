@@ -3,9 +3,8 @@
 import { Plus } from 'lucide-react'
 import { useQueryState } from 'nuqs'
 
-import { useState } from 'react'
-
 import { useTranslations } from 'next-intl'
+import { useParams } from 'next/navigation'
 
 import { NoteIcon } from '@/assets'
 import SizeModal from '@/components/size/size-modal'
@@ -24,6 +23,7 @@ const UserSize = ({ className }: UserSizeProps) => {
   const { isAuthenticated } = useSession()
   const sizes = useUserSizes()
   const [selectedSize, setSelectedSize] = useQueryState('user_size')
+  const { slug } = useParams()
 
   const hasSizes = (sizes.data?.length ?? 0) > 0
   const t = useTranslations('search.filters.userSize')
@@ -41,7 +41,14 @@ const UserSize = ({ className }: UserSizeProps) => {
             size={'sm'}
             className="h-8 rounded-xl px-4 py-1 text-xs font-normal"
           >
-            <Link href="/auth/login">{t('addMeasurements')}</Link>
+            <Link
+              href={{
+                pathname: '/auth/login',
+                query: { callbackUrl: `/search/${slug}` },
+              }}
+            >
+              {t('addMeasurements')}
+            </Link>
           </Button>
         </div>
         <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">

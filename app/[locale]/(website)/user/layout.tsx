@@ -15,7 +15,13 @@ export default async function Layout({
   const session = await getServerSession()
   const locale = await getLocale()
   if (!session) {
-    redirect({ href: '/auth/login', locale: locale })
+    redirect({
+      href: {
+        pathname: '/auth/login',
+        query: { callbackUrl: '/user/profile' },
+      },
+      locale: locale,
+    })
   }
   return (
     <React.Fragment>
