@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useEffect } from 'react'
 
-import { ApiResponse } from '@/@types'
 import { Session, User } from '@/@types/user'
 import apiClient from '@/services/axios'
 import { useSession } from '@/store/session-store'
@@ -14,11 +13,7 @@ export function InitSession({
 }: {
   initialValue: Session | null
 }) {
-  const initSession = useSession((s) => s.initSession)
   const updateSession = useSession((s) => s.updateSession)
-  useEffect(() => {
-    initSession(initialValue)
-  }, [])
 
   const { data } = useQuery({
     queryKey: ['session'],

@@ -23,6 +23,7 @@ import { Input } from '@/components/ui/input'
 import PhoneInput from '@/components/ui/phone-input'
 import { Link, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
+import { useSession } from '@/store/session-store'
 import { handleFormError } from '@/utils/handle-form-errors'
 
 const LoginForm = () => {
@@ -53,12 +54,15 @@ const LoginForm = () => {
   })
 
   const router = useRouter()
+  const updateSession = useSession((s) => s.updateSession)
   const onSubmit = async (data: LoginFormData) => {
     try {
       const response = await axios.post('/api/login', data)
       console.log('🚀 ~ onSubmit ~ response:', response)
+      updateSession(response.data)
       router.push(callbackUrl)
     } catch (error) {
+      console.log('🚀 ~ onSubmit ~ error:', error)
       handleFormError(error, form)
     }
   }

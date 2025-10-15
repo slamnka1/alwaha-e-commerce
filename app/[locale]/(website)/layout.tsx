@@ -27,10 +27,10 @@ export default async function Layout({
   return (
     <React.Fragment>
       <Header />
-      <InitSession initialValue={session} />
       {children}
       <Footer categories={categories.data} />
       <FloatingCart />
+      <InitSession initialValue={session} />
     </React.Fragment>
   )
 }

@@ -75,7 +75,7 @@ apiClient.interceptors.response.use(
           console.error('Logout failed:', logoutError)
         }
 
-        useSession.getState().initSession(null)
+        useSession.getState().clearSession()
 
         const locale = getLocaleFromUrl()
         window.location.href = `/${locale}`
