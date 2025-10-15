@@ -1,32 +1,32 @@
 'use client'
 
-import { ChevronRight } from 'lucide-react'
-
 import React from 'react'
 
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
+import { getLocale } from 'next-intl/server'
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
+import { redirect } from '@/lib/i18n/navigation'
+import { getServerSession } from '@/utils/get-server-session'
 
 import ProfileNav from './_components/nav'
 
-export default function ProfileLayout({
+export default async function ProfileLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   const t = useTranslations()
+  const session = await getServerSession()
+  const locale = await getLocale()
+  if (!session) {
+    redirect({
+      href: {
+        pathname: '/auth/login',
+        query: { callbackUrl: '/user/profile' },
+      },
+      locale: locale,
+    })
+  }
 
   return (
     <div className="min-h-screen py-8 md:py-16">
