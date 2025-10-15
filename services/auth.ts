@@ -5,6 +5,28 @@ import { useSession } from '@/store/session-store'
 
 import { BASE_RUL, apiClient } from './axios'
 
+export interface RegisterResponse {
+  message: string
+  user: User
+  authorization: Authorization
+}
+
+export interface Authorization {
+  token: string
+  type: string
+}
+
+export interface User {
+  name: string
+  phone_number: string
+  email: string
+  emirate_id: string
+  region_id: string
+  address: string
+  updated_at: string
+  created_at: string
+  id: number
+}
 interface SignupData {
   name: string
   phone_number: string
@@ -26,8 +48,8 @@ interface SendOTPResponse {
 }
 
 export const authService = {
-  async signup(data: SignupData): Promise<Session> {
-    const response = await axios.post<UserResponse>(
+  async signup(data: SignupData) {
+    const response = await axios.post<RegisterResponse>(
       BASE_RUL + '/auth/register',
       data
     )

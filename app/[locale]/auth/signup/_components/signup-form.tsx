@@ -26,6 +26,7 @@ import { Label } from '@/components/ui/label'
 import PhoneInput from '@/components/ui/phone-input'
 import { RegionSelect } from '@/components/ui/region-select'
 import { Link, useRouter } from '@/lib/i18n/navigation'
+import { useSession } from '@/store/session-store'
 import { handleFormError } from '@/utils/handle-form-errors'
 
 const SignupForm = () => {
@@ -75,9 +76,12 @@ const SignupForm = () => {
     },
   })
 
+  const updateSession = useSession((s) => s.updateSession)
+
   const onSubmit = async (data: SignupFormData) => {
     try {
-      await axios.post('/api/register', data)
+      const response = await axios.post('/api/register', data)
+      updateSession(response.data)
       router.push('/profile/size')
     } catch (error: any) {
       handleFormError(error, form)
@@ -126,6 +130,7 @@ const SignupForm = () => {
               <FormItem>
                 <FormControl>
                   <Input
+                    dir="ltr"
                     type="email"
                     placeholder={t('emailPlaceholder')}
                     {...field}
