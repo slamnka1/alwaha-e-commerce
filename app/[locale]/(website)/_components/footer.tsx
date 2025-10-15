@@ -1,5 +1,7 @@
 'use client'
 
+import { MapPin } from 'lucide-react'
+
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
@@ -113,9 +115,9 @@ const Footer = (props: Props) => {
                   href={t('sharjahLocationUrl')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline"
+                  className="text-primary flex w-fit items-center gap-2 rounded-md bg-white px-4 py-1.5 hover:underline"
                 >
-                  {t('locationLabel')}
+                  <MapPin className="size-5" /> {t('locationLabel')}
                 </a>
               </div>
               <div className="space-y-1">
@@ -134,9 +136,9 @@ const Footer = (props: Props) => {
                   href={t('abudhabiLocationUrl')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline"
+                  className="text-primary flex w-fit items-center gap-2 rounded-md bg-white px-4 py-1.5 hover:underline"
                 >
-                  {t('locationLabel')}
+                  <MapPin className="size-5" /> {t('locationLabel')}
                 </a>
               </div>
             </div>
