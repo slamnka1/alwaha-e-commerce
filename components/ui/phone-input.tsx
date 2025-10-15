@@ -8,6 +8,8 @@ import 'react-phone-number-input/style.css'
 
 import { useLocale, useTranslations } from 'next-intl'
 
+import { cn } from '@/lib/utils'
+
 import {
   FormControl,
   FormField,
@@ -21,9 +23,11 @@ import { Select } from './select'
 const PhoneInput = ({
   withLabel = false,
   name = 'phone_number',
+  labelClassName,
 }: {
   withLabel?: boolean
   name?: string
+  labelClassName?: string
 }) => {
   const locale = useLocale()
   const form = useFormContext()
@@ -35,7 +39,12 @@ const PhoneInput = ({
       render={({ field }) => (
         <FormItem>
           {withLabel && (
-            <FormLabel className="text-sm font-medium rtl:text-right">
+            <FormLabel
+              className={cn(
+                'text-sm font-medium rtl:text-right',
+                labelClassName
+              )}
+            >
               {t('phone')}
             </FormLabel>
           )}

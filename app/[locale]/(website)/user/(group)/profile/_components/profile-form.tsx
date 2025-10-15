@@ -123,7 +123,10 @@ export function ProfileForm() {
               )}
             />
 
-            <PhoneInput withLabel />
+            <PhoneInput
+              withLabel
+              labelClassName="block text-sm font-medium text-gray-700"
+            />
 
             {/* Address Field
             <FormField
