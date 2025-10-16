@@ -16,7 +16,9 @@ export function InitSession({
 }) {
   const updateSession = useSession((s) => s.updateSession)
   useEffect(() => {
-    updateSession(initialValue)
+    if (initialValue) {
+      updateSession(initialValue)
+    }
   }, [initialValue, updateSession])
 
   const { data } = useQuery({
