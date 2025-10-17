@@ -78,6 +78,10 @@ const Footer = (props: Props) => {
           <div className="relative z-10 mt-10 flex grow flex-col lg:mt-16">
             <h4 className="mb-4 font-bold">{t('sections')}</h4>
             <ul className="space-y-2">
+              <li>
+                <Link href={`/about`}>{t('about-us')}</Link>
+              </li>
+
               {props.categories.map((category) => (
                 <li key={category.id}>
                   <Link href={`/search?=${category.slug}`}>
@@ -108,17 +112,19 @@ const Footer = (props: Props) => {
                 >
                   {t('sharjahPhone2')}
                 </a>
-                <p>
-                  {t('addressTitle')} {t('sharjahAddress')}
-                </p>
-                <a
-                  href={t('sharjahLocationUrl')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary flex w-fit items-center gap-2 rounded-md bg-white px-4 py-1.5 hover:underline"
-                >
-                  <MapPin className="size-5" /> {t('locationLabel')}
-                </a>
+                <div className="flex items-center justify-between gap-6">
+                  <p>
+                    {t('addressTitle')} {t('sharjahAddress')}
+                  </p>
+                  <a
+                    href={t('sharjahLocationUrl')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary flex w-fit items-center gap-2 rounded-md bg-white px-4 py-1.5 hover:underline"
+                  >
+                    <MapPin className="size-5" /> {t('locationLabel')}
+                  </a>
+                </div>
               </div>
               <div className="space-y-1">
                 <p className="font-bold">{t('abudhabi')}</p>
@@ -129,17 +135,19 @@ const Footer = (props: Props) => {
                 >
                   {t('abudhabiPhone1')}
                 </a>
-                <p>
-                  {t('addressTitle')} {t('abudhabiAddress')}
-                </p>
-                <a
-                  href={t('abudhabiLocationUrl')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary flex w-fit items-center gap-2 rounded-md bg-white px-4 py-1.5 hover:underline"
-                >
-                  <MapPin className="size-5" /> {t('locationLabel')}
-                </a>
+                <div className="flex items-center justify-between gap-6">
+                  <p>
+                    {t('addressTitle')} {t('abudhabiAddress')}
+                  </p>
+                  <a
+                    href={t('abudhabiLocationUrl')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary flex w-fit items-center gap-2 rounded-md bg-white px-4 py-1.5 hover:underline"
+                  >
+                    <MapPin className="size-5" /> {t('locationLabel')}
+                  </a>
+                </div>
               </div>
             </div>
           </div>

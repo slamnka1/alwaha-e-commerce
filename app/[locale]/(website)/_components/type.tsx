@@ -19,7 +19,7 @@ export default function TypeSlider({ typeData }: { typeData: Category[] }) {
         <div className="relative">
           <Carousel
             opts={{
-              loop: true,
+              // loop: true,
               slidesToScroll: 1,
               dragFree: true,
             }}

@@ -15,6 +15,8 @@ import { Link } from '@/lib/i18n/navigation'
 import { authService } from '@/services/auth'
 import { useSession } from '@/store/session-store'
 
+import HeaderCart from './header-cart'
+
 type Props = {}
 
 const UserButton = (props: Props) => {
@@ -44,7 +46,9 @@ const UserButton = (props: Props) => {
       </>
     )
   return (
-    <div className="ms-auto w-fit shrink-0">
+    <div className="ms-auto flex w-fit shrink-0 items-center gap-4">
+      <HeaderCart />
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button

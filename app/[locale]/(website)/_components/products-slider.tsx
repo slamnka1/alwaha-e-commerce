@@ -21,30 +21,44 @@ export default function ProductsSlider({
   products,
   title,
   imageOnly,
-  titleClassName,
   more,
+  classNames = {},
 }: {
   products: Product[]
   title: string
   imageOnly?: boolean
-  titleClassName?: string
   more?: string
+  classNames?: {
+    container?: string
+    title?: string
+    header?: string
+    more?: string
+  }
 }) {
   const t = useTranslations('common')
   return (
-    <section className="relative py-8 lg:py-10">
+    <section className={cn('relative py-8 lg:py-10', classNames.container)}>
       <div className="container mx-auto px-4">
-        <div className="my-1 flex items-center justify-between gap-8 lg:my-4">
+        <div
+          className={cn(
+            'my-1 flex items-center justify-between gap-8 lg:my-4',
+            classNames.header
+          )}
+        >
           <p
             className={cn(
               'md:text-3xl md:font-bold lg:text-3xl 2xl:text-4xl',
-              titleClassName
+              classNames.title
             )}
           >
             {title}
           </p>
           {more ? (
-            <Button asChild variant={'link'} className="text-xs lg:text-xl">
+            <Button
+              asChild
+              variant={'link'}
+              className={cn('text-xs lg:text-xl', classNames.more)}
+            >
               <Link href={more}>{t('see-more')}</Link>
             </Button>
           ) : null}

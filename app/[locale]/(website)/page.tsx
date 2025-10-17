@@ -75,15 +75,6 @@ export default async function HomePage() {
       <Hero banners={banners} />
       <TypeSlider typeData={categories} />
       <PreviewCarousel products={products || []} />
-      <KnowYourSize />
-      <ProductsSlider products={newProducts} title={t('new-products')} />
-      {offers.length > 0 && (
-        <ProductsSlider
-          more="/search?offers=true"
-          products={offers}
-          title={t('offers')}
-        />
-      )}
       {plusSizes.length > 0 && (
         <ProductsSlider
           more="/search?plus_sizes=true"
@@ -91,6 +82,19 @@ export default async function HomePage() {
           title={t('plus-size')}
         />
       )}
+      <ProductsSlider products={newProducts} title={t('new-products')} />
+      {offers.length > 0 && (
+        <ProductsSlider
+          more="/search?offers=true"
+          products={offers}
+          title={t('offers')}
+          classNames={{
+            header: 'bg-primary text-white py-2 px-4 rounded-md',
+            more: 'text-white',
+          }}
+        />
+      )}
+      <KnowYourSize />
     </React.Fragment>
   )
 }

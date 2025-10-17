@@ -24,7 +24,7 @@ export default async function Layout({
       <Header />
       {children}
       <Footer categories={categories.data} />
-      <FloatingCart />
+      {/* <FloatingCart /> */}
     </React.Fragment>
   )
 }

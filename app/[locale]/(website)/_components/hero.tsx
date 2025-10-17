@@ -46,13 +46,13 @@ const Hero = ({ banners }: { banners: Banner[] }) => {
                   className="h-full w-full object-cover"
                 />
                 {/* Overlay for better text readability */}
-                <div
+                {/* <div
                   style={{
                     background:
                       'linear-gradient(179.17deg, rgba(0, 0, 0, 0) 5.48%, #000000 118.1%)',
                   }}
                   className="absolute inset-0"
-                />
+                /> */}
               </div>
             ))}
             <div className="relative z-[1] flex h-screen w-full flex-col items-center justify-center gap-3 px-4 lg:h-[calc(100vh-115px)] lg:gap-5 2xl:gap-8">
