@@ -61,7 +61,6 @@ const SearchPage = async (props: Props) => {
           products={products.data}
           title={t('more-products')}
           imageOnly
-          titleClassName="font-medium"
         />
       </React.Fragment>
     )
