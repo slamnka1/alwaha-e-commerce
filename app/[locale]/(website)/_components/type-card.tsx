@@ -30,18 +30,18 @@ export function TypeCard(props: Category) {
       {/* Content */}
       <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
         {/* Category Name */}
-        <h3 className="mb-4 font-medium whitespace-normal text-white max-lg:min-h-24 md:text-2xl">
+        <h3 className="font-medium whitespace-normal text-white max-lg:min-h-24 md:text-2xl">
           {props.category_name}
         </h3>
 
         {/* View More Button */}
-        <Button
+        {/* <Button
           variant="secondary"
           size="default"
           className="text-primary bg-white/90 font-semibold transition-all duration-200 hover:scale-105 hover:bg-white max-lg:h-10 max-md:text-sm"
         >
           {t('see-more')}
-        </Button>
+        </Button> */}
       </div>
     </Link>
   )
