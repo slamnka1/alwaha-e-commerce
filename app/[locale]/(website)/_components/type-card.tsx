@@ -30,7 +30,7 @@ export function TypeCard(props: Category) {
       {/* Content */}
       <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
         {/* Category Name */}
-        <h3 className="font-medium whitespace-normal text-white max-lg:min-h-24 md:text-2xl">
+        <h3 className="font-medium whitespace-normal text-white max-lg:min-h-24 md:text-3xl">
           {props.category_name}
         </h3>
 
