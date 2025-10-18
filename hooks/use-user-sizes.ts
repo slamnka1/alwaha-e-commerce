@@ -15,7 +15,7 @@ export function useUserSizes() {
   const { session } = useSession()
   return useQuery({
     queryKey: userSizesQueryKey,
-    queryFn: () => sizesService.getSizes(),
+    queryFn: sizesService.getSizes,
     enabled: !!session?.access_token,
   })
 }

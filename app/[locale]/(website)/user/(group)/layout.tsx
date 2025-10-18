@@ -1,9 +1,7 @@
-'use client'
-
 import React from 'react'
 
 import { useTranslations } from 'next-intl'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 
 import { redirect } from '@/lib/i18n/navigation'
 import { getServerSession } from '@/utils/get-server-session'
@@ -15,10 +13,12 @@ export default async function ProfileLayout({
 }: {
   children: React.ReactNode
 }) {
-  const t = useTranslations()
+  const t = await getTranslations()
   const session = await getServerSession()
+  console.log('🚀 ~ ProfileLayout ~ session:', session)
   const locale = await getLocale()
   if (!session) {
+    console.log('🚀 ~ ProfileLayout ~ redirecting to login')
     redirect({
       href: {
         pathname: '/auth/login',
