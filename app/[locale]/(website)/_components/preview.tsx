@@ -248,7 +248,7 @@ const PreviewCarousel = ({ products }: { products: Product[] }) => {
                 <div className="relative">
                   <PreviewCard {...value} onClick={() => onClick(index)} />
                   {/* Shopping cart icon for active slide */}
-                  {index === currentSlideIndex && (
+                  {/* {index === currentSlideIndex && (
                     <div
                       onClick={() => router.push(`/search/${value.id}`)}
                       className="absolute right-1/2 bottom-0 z-20 translate-x-1/2 translate-y-1/2 cursor-pointer"
@@ -277,7 +277,7 @@ const PreviewCarousel = ({ products }: { products: Product[] }) => {
                         </svg>
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </div>
               </CarouselItem>
             ))}
