@@ -541,5 +541,21 @@
     "offerings": "What We Offer",
     "offeringsText": "Discover a curated range: blazers, tracksuits, dresses, burkinis, abayas, khimar, prayer sets, and plus–size options. Our designs feature high–quality materials and vibrant colors, thoughtfully crafted for modest comfort and contemporary taste.",
     "cta": "Shop Now"
+  },
+  "size-guide": {
+    "button-text": "Size Guide",
+    "title": "Size Guide",
+    "image-alt": "Size guide chart showing measurements",
+    "instructions-title": "How to Measure",
+    "instruction-1": "Use a flexible measuring tape",
+    "instruction-2": "Measure your chest at the fullest part",
+    "instruction-3": "Measure your hips at the widest part",
+    "instruction-4": "Keep the tape measure parallel to the ground",
+    "size-chart-title": "Size Chart",
+    "size": "Size",
+    "chest-cm": "Chest (cm)",
+    "hip-cm": "Hip (cm)",
+    "tips-title": "Pro Tips",
+    "tips-content": "If you're between sizes, we recommend choosing the larger size for comfort. All our garments are designed with modest fit in mind."
   }
 }

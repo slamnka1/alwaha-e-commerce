@@ -23,6 +23,7 @@ import { Link, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 import { getSizeMessage } from '@/utils/get-size-message'
 
+import SizeGuideModal from './size-guide'
 import UserSize from './user-size'
 
 type ProductDescriptionProps = {
@@ -34,6 +35,7 @@ export default function ProductDescription({
   product,
   className,
 }: ProductDescriptionProps) {
+  console.log('🚀 ~ ProductDescription ~ product:', product)
   const t = useTranslations('product-description')
   const locale = useLocale()
   const { slug } = useParams<{ slug: string }>()
@@ -200,7 +202,10 @@ export default function ProductDescription({
 
       {product.sizes && product.sizes.length > 0 && (
         <div className="space-y-4">
-          <p className="text-xs lg:text-base lg:font-bold">{t('sizes')}:</p>
+          <div className="flex items-center justify-between">
+            <p className="text-xs lg:text-base lg:font-bold">{t('sizes')}:</p>
+            <SizeGuideModal sizeGuideImage={product.size_guide} />
+          </div>
           <UserSize />
           <p className="text-xs text-red-600 lg:text-sm">
             {getSizeMessage(

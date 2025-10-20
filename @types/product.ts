@@ -51,6 +51,7 @@ export interface ProductFullData {
   discount_percent: string | null
   discount_amount: string | null
   price_before_discount: string
+  size_guide: string | null
   sizes: Size[]
   other_colors: {
     id: number
