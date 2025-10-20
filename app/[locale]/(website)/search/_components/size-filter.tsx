@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useDeleteUserSize, useUserSizes } from '@/hooks/use-user-sizes'
 import { useSession } from '@/store/session-store'
 
@@ -123,59 +124,55 @@ const SizeFilter = (props: Props) => {
     <div className="space-y-3 pt-4">
       <p className="text-sm font-medium">{t('size')}</p>
       {sizes?.data && sizes.data.length > 0 && (
-        <div className="flex flex-col gap-3">
-          {sizes.data.map((size) => (
-            <div className="flex justify-between" key={size.id}>
-              <div
-                className="flex items-center gap-4"
-                style={{
-                  color: size.color,
-                }}
-              >
-                <Checkbox
-                  id={String(size.id)}
-                  checked={filters['user_sizes[]'].includes(String(size.id))}
-                  onCheckedChange={(checked) =>
-                    setFilters({
-                      'user_sizes[]': checked
-                        ? [...filters['user_sizes[]'], String(size.id)]
-                        : filters['user_sizes[]'].filter(
-                            (id) => String(id) !== String(size.id)
-                          ),
-                    })
-                  }
-                />
-                <Label htmlFor={String(size.id)}>{size.name}</Label>
-              </div>
-              <div className="flex items-center gap-1">
-                <SizeModal
-                  mode="edit"
-                  size={size}
-                  trigger={
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="size-5"
-                      aria-label={t('edit')}
-                    >
-                      <Pencil className="size-4 text-gray-400" />
-                    </Button>
-                  }
-                />
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  className="size-5"
-                  aria-label={t('delete')}
-                  onClick={() => deleteSize.mutate(size.id)}
-                  disabled={deleteSize.isPending}
+        <RadioGroup
+          value={filters['user_sizes[]'][0]}
+          onValueChange={(value) => setFilters({ 'user_sizes[]': [value] })}
+        >
+          <div className="flex flex-col gap-3">
+            {sizes.data.map((size) => (
+              <div className="flex justify-between" key={size.id}>
+                <div
+                  className="flex items-center gap-4"
+                  style={{
+                    color: size.color,
+                  }}
                 >
-                  <Trash2 className="size-4 text-gray-400" />
-                </Button>
+                  <RadioGroupItem
+                    id={String(size.id)}
+                    value={String(size.id)}
+                  />
+                  <Label htmlFor={String(size.id)}>{size.name}</Label>
+                </div>
+                <div className="flex items-center gap-1">
+                  <SizeModal
+                    mode="edit"
+                    size={size}
+                    trigger={
+                      <Button
+                        size="icon"
+                        variant="ghost"
+                        className="size-5"
+                        aria-label={t('edit')}
+                      >
+                        <Pencil className="size-4 text-gray-400" />
+                      </Button>
+                    }
+                  />
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="size-5"
+                    aria-label={t('delete')}
+                    onClick={() => deleteSize.mutate(size.id)}
+                    disabled={deleteSize.isPending}
+                  >
+                    <Trash2 className="size-4 text-gray-400" />
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </RadioGroup>
       )}
 
       {(!sizes?.data || sizes.data?.length < 3) && (

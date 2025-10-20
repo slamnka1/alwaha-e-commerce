@@ -1,6 +1,8 @@
 'use client'
 
 import { Heart } from 'lucide-react'
+import { parseAsString, useQueryState } from 'nuqs'
+import { parseAsArrayOf } from 'nuqs'
 
 import { useState } from 'react'
 
@@ -18,12 +20,21 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
   const t = useTranslations('product-card')
   const { isFavorite, mutate: toggleFavorite, isPending } = useFavorite(props)
   const [active, setActive] = useState(false)
+  const [userSizes] = useQueryState(
+    'user_sizes[]',
+    parseAsString.withDefault('')
+  )
 
   return (
     <Card className="overflow-hidden border-0 bg-transparent py-2 shadow-none select-none max-lg:gap-2.5">
       {/* Image Section */}
       <Link
-        href={`/search/${props.id}`}
+        href={{
+          pathname: `/search/${props.id}`,
+          query: {
+            user_size: userSizes,
+          },
+        }}
         className="relative"
         prefetch={active ? null : false}
         onMouseEnter={() => setActive(true)}
@@ -111,7 +122,16 @@ export function ProductCard(props: Product & { imageOnly?: boolean }) {
             size={'lg'}
             className="w-full bg-white font-semibold shadow-lg max-lg:h-11 md:text-xl 2xl:text-2xl"
           >
-            <Link href={`/search/${props.id}`}>{t('add-to-cart')}</Link>
+            <Link
+              href={{
+                pathname: `/search/${props.id}`,
+                query: {
+                  user_size: userSizes,
+                },
+              }}
+            >
+              {t('add-to-cart')}
+            </Link>
           </Button>
         </CardContent>
       )}
