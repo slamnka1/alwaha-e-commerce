@@ -557,5 +557,8 @@
     "hip-cm": "Hip (cm)",
     "tips-title": "Pro Tips",
     "tips-content": "If you're between sizes, we recommend choosing the larger size for comfort. All our garments are designed with modest fit in mind."
+  },
+  "number-input": {
+    "max-value": "{items} available only"
   }
 }

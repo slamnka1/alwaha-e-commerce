@@ -250,7 +250,7 @@ export default function ProductDescription({
         </div>
       )}
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-start gap-3">
         {/* <Button
           variant="secondary"
           className="flex-1 bg-white font-normal max-lg:h-10 max-lg:text-xs"
@@ -273,7 +273,12 @@ export default function ProductDescription({
           {t('add-to-cart')}
         </Button>
 
-        <NumberInput />
+        <NumberInput
+          maxValue={Number(
+            product.sizes?.find((size) => size.id === Number(selectedSize))
+              ?.quantity || 0
+          )}
+        />
       </div>
       <p className="text-xs font-semibold">
         <span>{t('changing-item')}</span>
