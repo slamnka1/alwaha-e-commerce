@@ -4,6 +4,7 @@ import { Ruler } from 'lucide-react'
 
 import { useTranslations } from 'next-intl'
 
+import { defaultSizeGuide } from '@/assets'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -25,11 +26,8 @@ export default function SizeGuideModal({
   const t = useTranslations('size-guide')
 
   // Default size guide image if none provided
-  // const defaultSizeGuideImage = '/size-guide-default.jpg'
-  // const imageUrl = sizeGuideImage || defaultSizeGuideImage
-  if (!sizeGuideImage) {
-    return null
-  }
+  const imageUrl = sizeGuideImage || defaultSizeGuide.src
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -49,7 +47,7 @@ export default function SizeGuideModal({
           {/* Size Guide Image */}
           <div className="relative h-auto min-h-[400px] w-full overflow-hidden rounded-lg bg-gray-50">
             <img
-              src={sizeGuideImage}
+              src={imageUrl}
               alt={t('image-alt')}
               className="h-full w-full object-contain"
             />
