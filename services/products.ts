@@ -32,4 +32,10 @@ export const productsService = {
     )
     return response.data.data
   },
+  getSpecialProducts: async () => {
+    const response = await apiClient.get<ApiResponse<Product[]>>(
+      '/home/special-items'
+    )
+    return response.data
+  },
 }

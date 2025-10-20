@@ -24,18 +24,14 @@ export default async function HomePage() {
     offersResult,
     newProductsResult,
     categoriesResult,
-    productsResult,
+    specialProductsResult,
     bannersResult,
   ] = await Promise.allSettled([
     productsService.getPlusSizes(),
     productsService.getOffers(),
     productsService.getRecentProducts(),
     listsService.getCategories(),
-    productsService.getProducts(
-      new URLSearchParams({
-        per_page: '15',
-      })
-    ),
+    productsService.getSpecialProducts(),
     bannersServices.getBanners(),
   ])
 
@@ -60,8 +56,8 @@ export default async function HomePage() {
     (response) => response.data,
     []
   )
-  const products = safeExtractNested(
-    productsResult,
+  const specialProducts = safeExtractNested(
+    specialProductsResult,
     (response) => response.data,
     []
   )
@@ -74,7 +70,7 @@ export default async function HomePage() {
     <React.Fragment>
       <Hero banners={banners} />
       <TypeSlider typeData={categories} />
-      <PreviewCarousel products={products || []} />
+      <PreviewCarousel products={specialProducts || []} />
       {plusSizes.length > 0 && (
         <ProductsSlider
           more="/search?plus_sizes=true"
