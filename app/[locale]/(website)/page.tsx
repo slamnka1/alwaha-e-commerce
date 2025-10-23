@@ -5,7 +5,6 @@ import { getTranslations } from 'next-intl/server'
 import { bannersServices } from '@/services/banners'
 import { listsService } from '@/services/lists'
 import { productsService } from '@/services/products'
-import { getServerSession } from '@/utils/get-server-session'
 import { safeExtractNested } from '@/utils/promise-helpers'
 
 import Hero from './_components/hero'
@@ -16,7 +15,6 @@ import TypeSlider from './_components/type'
 
 export const dynamic = 'force-dynamic'
 export default async function HomePage() {
-  const session = await getServerSession()
   const t = await getTranslations('home-page')
   // Group all API calls to run in parallel with proper error handling
   const [
@@ -56,11 +54,7 @@ export default async function HomePage() {
     (response) => response.data,
     []
   )
-  const specialProducts = safeExtractNested(
-    specialProductsResult,
-    (response) => response.data,
-    []
-  )
+
   const specialProductsData = safeExtractNested(
     specialProductsResult,
     (response) => ({
