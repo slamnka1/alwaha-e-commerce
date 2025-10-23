@@ -61,6 +61,15 @@ export default async function HomePage() {
     (response) => response.data,
     []
   )
+  const specialProductsData = safeExtractNested(
+    specialProductsResult,
+    (response) => ({
+      heading: response.heading,
+      subheading: response.subheading,
+      data: response.data,
+    }),
+    { heading: '', subheading: '', data: [] }
+  )
   const banners = safeExtractNested(
     bannersResult,
     (response) => response.data,
@@ -70,7 +79,7 @@ export default async function HomePage() {
     <React.Fragment>
       <Hero banners={banners} />
       <TypeSlider typeData={categories} />
-      <PreviewCarousel products={specialProducts || []} />
+      <PreviewCarousel products={specialProductsData} />
       {plusSizes.length > 0 && (
         <ProductsSlider
           more="/search?plus_sizes=true"

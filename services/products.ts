@@ -33,9 +33,9 @@ export const productsService = {
     return response.data.data
   },
   getSpecialProducts: async () => {
-    const response = await apiClient.get<ApiResponse<Product[]>>(
-      '/home/special-items'
-    )
+    const response = await apiClient.get<
+      ApiResponse<Product[]> & { heading: string; subheading: string }
+    >('/home/special-items')
     return response.data
   },
 }

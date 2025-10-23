@@ -164,7 +164,11 @@ const useCarouselScaling = (emblaApi: CarouselApi | undefined) => {
   }
 }
 
-const PreviewCarousel = ({ products }: { products: Product[] }) => {
+const PreviewCarousel = ({
+  products,
+}: {
+  products: { heading: string; subheading: string; data: Product[] }
+}) => {
   const t = useTranslations('preview')
   const [emblaApi, setApi] = useState<CarouselApi>()
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
@@ -200,7 +204,7 @@ const PreviewCarousel = ({ products }: { products: Product[] }) => {
 
   const onClick = (index: number) => {
     if (currentSlideIndex === index) {
-      router.push(`/search/${products[currentSlideIndex].id}`)
+      router.push(`/search/${products.data[currentSlideIndex].id}`)
     }
     scrollToSlide(index)
   }
@@ -210,10 +214,12 @@ const PreviewCarousel = ({ products }: { products: Product[] }) => {
       {/* Content Section */}
       <div className="container mx-auto px-4 text-center">
         <h2 className="mb-4 text-lg leading-tight font-bold lg:text-3xl 2xl:text-4xl">
-          {t('title')}
+          {/* {t('title')} */}
+          {products.heading}
         </h2>
         <p className="mx-auto max-w-3xl text-xs leading-relaxed font-medium text-[#1A1A1A] lg:text-lg">
-          {t('description')}
+          {/* {t('description')} */}
+          {products.subheading}
         </p>
       </div>
       <div className="relative container">
@@ -240,7 +246,7 @@ const PreviewCarousel = ({ products }: { products: Product[] }) => {
           className="w-full"
         >
           <CarouselContent className="my-14 ml-0 pb-8 sm:my-24 md:pb-16 lg:my-36 xl:my-48">
-            {products.map((value, index) => (
+            {products.data.map((value, index) => (
               <CarouselItem
                 key={value.id}
                 className="basis-1/5 pl-0 md:basis-1/7"
