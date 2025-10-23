@@ -5,7 +5,13 @@ import apiClient from './axios'
 
 export const bannersServices = {
   getBanners: async () => {
-    const response = await apiClient.get<ApiResponse<Banner[]>>('/home/banners')
+    const response = await apiClient.get<{
+      data: {
+        heading: string
+        subheading: string
+        banners: Banner[]
+      }
+    }>('/home/banners-with-headings')
     return response.data
   },
 }

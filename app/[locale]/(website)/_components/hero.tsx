@@ -8,7 +8,15 @@ import { Banner } from '@/@types/types'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/lib/i18n/navigation'
 
-const Hero = ({ banners }: { banners: Banner[] }) => {
+const Hero = ({
+  heading,
+  subheading,
+  banners,
+}: {
+  heading: string
+  subheading: string
+  banners: Banner[]
+}) => {
   const t = useTranslations('home-page.hero')
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -57,12 +65,10 @@ const Hero = ({ banners }: { banners: Banner[] }) => {
             ))}
             <div className="relative z-[1] flex h-screen w-full flex-col items-center justify-center gap-3 px-4 lg:h-[calc(100vh-115px)] lg:gap-5 2xl:gap-8">
               <h1 className="max-w-[840px] text-center text-3xl leading-relaxed font-bold text-white lg:text-4xl lg:font-[900] 2xl:text-5xl">
-                {t.rich('title', {
-                  br: () => <br />,
-                })}
+                {heading}
               </h1>
               <p className="text-center text-sm font-medium text-white lg:text-lg 2xl:text-xl">
-                {t('description')}
+                {subheading}
               </p>
               <Button
                 asChild
