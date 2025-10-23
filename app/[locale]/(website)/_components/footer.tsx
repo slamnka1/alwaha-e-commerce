@@ -69,7 +69,13 @@ const Footer = (props: Props) => {
           {/* Brand Information - Rightmost Column */}
           <div className="flex h-full flex-col justify-between max-md:w-full max-md:text-center md:max-w-[300]">
             <Link href="/" className="flex flex-col gap-4">
-              <Image src={LogoWithText} alt="logo" className="max-md:mx-auto" />
+              <div className="w-fit rounded-3xl bg-white p-4 max-md:mx-auto">
+                <Image
+                  src={LogoWithText}
+                  alt="logo"
+                  className="max-md:mx-auto"
+                />
+              </div>
               <p className="leading-relaxed font-medium">{t('description')}</p>
             </Link>
           </div>
@@ -78,10 +84,6 @@ const Footer = (props: Props) => {
           <div className="relative z-10 mt-10 flex grow flex-col lg:mt-16">
             <h4 className="mb-4 font-bold">{t('sections')}</h4>
             <ul className="space-y-2">
-              <li>
-                <Link href={`/about`}>{t('about-us')}</Link>
-              </li>
-
               {props.categories.map((category) => (
                 <li key={category.id}>
                   <Link href={`/search?=${category.slug}`}>
@@ -89,6 +91,34 @@ const Footer = (props: Props) => {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </div>
+          <div className="relative z-10 mt-10 flex grow flex-col lg:mt-16">
+            <h4 className="mb-4 font-bold">{t('info')}</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href={`/about`}>{t('about-us')}</Link>
+              </li>
+              <li>
+                <Link className="hover:underline" href="/privacy-policy">
+                  {t('privacyPolicy')}
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:underline" href="/change-policy">
+                  {t('changePolicy')}
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:underline" href="/payment-policy">
+                  {t('paymentPolicy')}
+                </Link>
+              </li>
+              <li>
+                <Link className="hover:underline" href="/shipping-policy">
+                  {t('shippingPolicy')}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -167,28 +197,11 @@ const Footer = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
-          <p className="font-medium">
-            {t('copyright', { value: new Date().getFullYear() })}
-          </p>
-          <div className="flex flex-wrap gap-2 max-md:text-sm">
-            <Link className="hover:underline" href="/privacy-policy">
-              {t('privacyPolicy')}
-            </Link>
-            .
-            <Link className="hover:underline" href="/change-policy">
-              {t('changePolicy')}
-            </Link>
-            .
-            <Link className="hover:underline" href="/payment-policy">
-              {t('paymentPolicy')}
-            </Link>
-            .
-            <Link className="hover:underline" href="/shipping-policy">
-              {t('shippingPolicy')}
-            </Link>
-          </div>
-        </div>
+        {/* <div className="mt-12 flex flex-wrap items-center justify-between gap-4"> */}
+        <p className="mt-12 font-medium max-md:text-center">
+          {t('copyright', { value: new Date().getFullYear() })}
+        </p>
+        {/* </div> */}
       </div>
     </footer>
   )
