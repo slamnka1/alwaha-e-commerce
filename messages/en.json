@@ -90,7 +90,13 @@
       "title": "My Previous Orders",
       "color": "Color",
       "size": "Size",
-      "noOrders": "No orders found"
+      "noOrders": "No orders found",
+      "status": {
+        "on_the_way": "On the way",
+        "completed": "Compoleted",
+        "pending": "Pending",
+        "cancelled": "cancelled"
+      }
     },
     "size": {
       "skip": "Skip",
