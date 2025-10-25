@@ -1,10 +1,9 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
 
 import { Card, CardContent } from '@/components/ui/card'
-import { usePathname } from '@/lib/i18n/navigation'
+import { Link, usePathname } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 type Props = {}
@@ -39,7 +38,7 @@ const ProfileNav = (props: Props) => {
   return (
     <Card className="border-[0.5px] shadow-lg max-md:p-0 md:col-span-1 md:border-[#1A1A1A]">
       <CardContent className="p-0">
-        <nav className="divide-border flex items-center space-y-0 px-2 md:block md:divide-y">
+        <nav className="divide-border flex items-center space-y-0 overflow-hidden px-2 md:block md:divide-y">
           {navItems.map((item, index) => {
             const isActive = pathname === item.href
 
