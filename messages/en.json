@@ -268,7 +268,8 @@
       },
       "addSize": "Add New Size",
       "user-sizes": "Manage your sizes",
-      "clear": "Clear"
+      "clear": "Clear",
+      "note": "Note: You can save your size and use it later to select the most appropriate size for products, but please log in first to activate this feature."
     }
   },
   "userSize": {

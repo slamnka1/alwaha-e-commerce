@@ -117,6 +117,7 @@ const SizeFilter = (props: Props) => {
             {t('filterButton')}
           </Button>
         </div>
+        <p className="text-center text-sm text-gray-500">{t('note')}</p>
       </div>
     )
 
