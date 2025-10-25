@@ -548,7 +548,27 @@
     "presenceText": "Wahat Al Zain has become a trusted brand and a key destination for veiled women in the UAE, with a strong presence across the community and branches in Sharjah and Abu Dhabi under direct management.",
     "offerings": "What We Offer",
     "offeringsText": "Discover a curated range: blazers, tracksuits, dresses, burkinis, abayas, khimar, prayer sets, and plus–size options. Our designs feature high–quality materials and vibrant colors, thoughtfully crafted for modest comfort and contemporary taste.",
-    "cta": "Shop Now"
+    "cta": "Shop Now",
+    "contact": {
+      "title": "Our Locations & Contact Information",
+      "subtitle": "Visit us at our branches or get in touch with us",
+      "phonesTitle": "Contact Numbers:",
+      "addressTitle": "Address:",
+      "locationLabel": "Location",
+      "sharjah": {
+        "title": "Sharjah Branch",
+        "phone1": "00971505758362",
+        "phone2": "00971566142600",
+        "address": "Al Majaz 3 - Al Mubarak Tower – G02",
+        "locationUrl": "https://maps.app.goo.gl/ZvUbYDUJYLDkNeM17"
+      },
+      "abudhabi": {
+        "title": "Abu Dhabi Branch",
+        "phone1": "00971506613848",
+        "address": "Near Al Khalidiya Park 2 – Opposite Al Rafidain Laundry",
+        "locationUrl": "https://maps.app.goo.gl/Q86Um5DT9kL52NaC6?g_st=awb"
+      }
+    }
   },
   "size-guide": {
     "button-text": "Size Guide",

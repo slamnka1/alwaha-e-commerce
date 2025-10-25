@@ -1,3 +1,5 @@
+import { MapPin } from 'lucide-react'
+
 import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 
@@ -85,6 +87,92 @@ export default async function AboutPage() {
               fill
               className="object-cover"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Information */}
+      <section className="space-y-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">{t('contact.title')}</h2>
+          <p className="mt-2 text-gray-600">{t('contact.subtitle')}</p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          {/* Sharjah Branch */}
+          <div className="rounded-lg border bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-lg font-semibold">
+              {t('contact.sharjah.title')}
+            </h3>
+            <div className="space-y-3">
+              <div>
+                <p className="font-medium text-gray-700">
+                  {t('contact.phonesTitle')}
+                </p>
+                <a
+                  href={`tel:${t('contact.sharjah.phone1')}`}
+                  className="text-primary block hover:underline"
+                >
+                  {t('contact.sharjah.phone1')}
+                </a>
+                <a
+                  href={`tel:${t('contact.sharjah.phone2')}`}
+                  className="text-primary block hover:underline"
+                >
+                  {t('contact.sharjah.phone2')}
+                </a>
+              </div>
+              <div>
+                <p className="font-medium text-gray-700">
+                  {t('contact.addressTitle')}
+                </p>
+                <p className="text-gray-600">{t('contact.sharjah.address')}</p>
+              </div>
+              <a
+                href={t('contact.sharjah.locationUrl')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary hover:bg-primary/90 inline-flex items-center gap-2 rounded-md px-4 py-2 text-white"
+              >
+                <MapPin className="size-4" />
+                {t('contact.locationLabel')}
+              </a>
+            </div>
+          </div>
+
+          {/* Abu Dhabi Branch */}
+          <div className="rounded-lg border bg-white p-6 shadow-sm">
+            <h3 className="mb-4 text-lg font-semibold">
+              {t('contact.abudhabi.title')}
+            </h3>
+            <div className="space-y-3">
+              <div>
+                <p className="font-medium text-gray-700">
+                  {t('contact.phonesTitle')}
+                </p>
+                <a
+                  href={`tel:${t('contact.abudhabi.phone1')}`}
+                  className="text-primary block hover:underline"
+                >
+                  {t('contact.abudhabi.phone1')}
+                </a>
+              </div>
+              <div>
+                <p className="font-medium text-gray-700">
+                  {t('contact.addressTitle')}
+                </p>
+                <p className="text-gray-600">{t('contact.abudhabi.address')}</p>
+              </div>
+              <a
+                href={t('contact.abudhabi.locationUrl')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary hover:bg-primary/90 inline-flex items-center gap-2 rounded-md px-4 py-2 text-white"
+              >
+                <MapPin className="size-4" />
+                {t('contact.locationLabel')}
+              </a>
+            </div>
           </div>
         </div>
       </section>
