@@ -26,7 +26,7 @@ const Results = (props: Props) => {
 
   if (status === 'pending')
     return (
-      <div className="flex items-center justify-center py-40">
+      <div className="flex min-h-svh items-center justify-center py-40">
         <Loader2 className="text-primary size-10 animate-spin" />
       </div>
     )
