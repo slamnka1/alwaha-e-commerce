@@ -125,7 +125,15 @@ const LoginForm = () => {
           <div className="text-center">
             <span className="text-gray-600">{t('noAccount')} </span>
             <Link
-              href="/auth/signup"
+              href={{
+                pathname: '/auth/signup',
+                query: {
+                  callbackUrl:
+                    callbackUrl === '/'
+                      ? encodeURIComponent('/profile/size')
+                      : callbackUrl,
+                },
+              }}
               className="text-primary font-medium hover:underline"
             >
               {t('signUp')}

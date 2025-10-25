@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import { Loader2 } from 'lucide-react'
+import { parseAsString, useQueryState } from 'nuqs'
 import { useForm } from 'react-hook-form'
 import { isPossiblePhoneNumber } from 'react-phone-number-input'
 import { toast } from 'sonner'
@@ -31,6 +32,10 @@ import { handleFormError } from '@/utils/handle-form-errors'
 
 const SignupForm = () => {
   const t = useTranslations('auth.signup')
+  const [callbackUrl] = useQueryState(
+    'callbackUrl',
+    parseAsString.withDefault(encodeURIComponent('/profile/size'))
+  )
   const router = useRouter()
 
   const signupSchema = z
@@ -82,7 +87,7 @@ const SignupForm = () => {
     try {
       const response = await axios.post('/api/register', data)
       updateSession(response.data)
-      router.push('/profile/size')
+      router.push(callbackUrl)
     } catch (error: any) {
       handleFormError(error, form)
       console.error('Signup error:', error)
