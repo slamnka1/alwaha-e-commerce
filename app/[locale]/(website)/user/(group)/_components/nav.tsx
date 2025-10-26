@@ -36,9 +36,9 @@ const ProfileNav = (props: Props) => {
   ]
 
   return (
-    <Card className="border-[0.5px] shadow-lg max-md:p-0 md:col-span-1 md:border-[#1A1A1A]">
-      <CardContent className="p-0">
-        <nav className="divide-border flex items-center space-y-0 overflow-hidden px-2 md:block md:divide-y">
+    <Card className="overflow-hidden border-[0.5px] shadow-lg max-md:p-0 md:col-span-1 md:border-[#1A1A1A]">
+      <CardContent className="overflow-hidden p-0">
+        <nav className="divide-border flex items-center space-y-0 !overflow-hidden px-2 md:block md:divide-y">
           {navItems.map((item, index) => {
             const isActive = pathname === item.href
 

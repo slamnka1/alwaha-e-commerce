@@ -60,13 +60,13 @@ const UserButton = (props: Props) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="space-y-1">
-          <DropdownMenuItem>
+          <DropdownMenuItem asChild>
             <Link className="block w-full" href={'/user/cart'}>
               {t('cart')}
             </Link>
           </DropdownMenuItem>
           <Separator />
-          <DropdownMenuItem>
+          <DropdownMenuItem asChild>
             <Link className="block w-full" href={'/user/profile'}>
               {t('profile')}
             </Link>
