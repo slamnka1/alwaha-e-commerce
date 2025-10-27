@@ -82,7 +82,11 @@ export default async function HomePage() {
           title={t('plus-size')}
         />
       )}
-      <ProductsSlider products={newProducts} title={t('new-products')} />
+      <ProductsSlider
+        more="/search"
+        products={newProducts}
+        title={t('new-products')}
+      />
       {offers.length > 0 && (
         <ProductsSlider
           more="/search?offers=true"

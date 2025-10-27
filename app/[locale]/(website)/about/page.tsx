@@ -3,7 +3,13 @@ import { MapPin } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
 
-import { ProductHeroImage } from '@/assets'
+import {
+  ProductHeroImage,
+  aboutUsImage,
+  aboutUsImage1,
+  aboutUsImage2,
+  aboutUsImage3,
+} from '@/assets'
 
 export default async function AboutPage() {
   const t = await getTranslations('about')
@@ -27,7 +33,7 @@ export default async function AboutPage() {
         </div>
         <div className="relative mx-auto aspect-video w-full max-w-xl overflow-hidden rounded-2xl shadow-sm md:max-w-full">
           <Image
-            src={ProductHeroImage}
+            src={aboutUsImage}
             alt="about-hero"
             fill
             className="object-cover"
@@ -55,35 +61,27 @@ export default async function AboutPage() {
         </div>
 
         {/* Gallery */}
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+          <div className="relative aspect-[4/5.5] overflow-hidden rounded-xl">
             <Image
-              src={ProductHeroImage}
+              src={aboutUsImage1}
               alt="gallery-1"
               fill
               className="object-cover"
             />
           </div>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
+          <div className="relative aspect-[4/5.5] overflow-hidden rounded-xl">
             <Image
-              src={ProductHeroImage}
+              src={aboutUsImage2}
               alt="gallery-2"
               fill
               className="object-cover"
             />
           </div>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
+          <div className="relative aspect-[4/5.5] overflow-hidden rounded-xl">
             <Image
-              src={ProductHeroImage}
+              src={aboutUsImage3}
               alt="gallery-3"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
-            <Image
-              src={ProductHeroImage}
-              alt="gallery-4"
               fill
               className="object-cover"
             />
