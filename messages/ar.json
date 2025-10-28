@@ -419,7 +419,8 @@
       "cancel": "إلغاء",
       "shippingAddress": "عنوان الشحن",
       "region": "المنطقة",
-      "editAddress": "تعديل العنوان"
+      "editAddress": "تعديل العنوان",
+      "redirectToPayment": "انتقل إلى الدفع"
     },
     "checkout": {
       "title": "قم بتحديث عنوان الشحن الخاص بك",

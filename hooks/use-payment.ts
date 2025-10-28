@@ -2,23 +2,25 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
 import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 
 import { paymentService } from '@/services'
 
 import { cartQueryKey } from './use-cart'
 
-export const usePayment = () => {
+export const usePayment = ({
+  shipping_address,
+  cart_id,
+}: {
+  shipping_address: string
+  cart_id: string | number
+}) => {
   const t = useTranslations('payment')
-  const queryClient = useQueryClient()
-
+  const router = useRouter()
   return useMutation({
-    mutationFn: () => paymentService.Payment(),
-    onSuccess: () => {
-      // Invalidate cart to clear it after successful payment
-      queryClient.invalidateQueries({ queryKey: cartQueryKey })
-
-      // Show success toast
-      toast.success(t('success'))
+    mutationFn: () => paymentService.Payment({ shipping_address, cart_id }),
+    onSuccess: (payment_link) => {
+      router.push(payment_link)
     },
     onError: (error) => {
       // Show error toast

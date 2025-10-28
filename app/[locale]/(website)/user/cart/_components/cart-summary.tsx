@@ -1,11 +1,12 @@
 'use client'
 
-import { Loader2 } from 'lucide-react'
+import { ArrowRight, Loader2 } from 'lucide-react'
 import { parseAsString, useQueryStates } from 'nuqs'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useLocale, useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -38,12 +39,13 @@ interface CartSummaryProps {
 
 export function CartSummary({ className }: CartSummaryProps) {
   const t = useTranslations('cart.summary')
-
+  const router = useRouter()
   const [queryStates] = useQueryStates({
     emirate_id: parseAsString.withDefault(''),
     region_id: parseAsString.withDefault(''),
     shipping_address: parseAsString.withDefault(''),
   })
+
   const { data, isLoading, error } = useCartSummary({
     region_id: queryStates.region_id,
     shipping_address: queryStates.shipping_address,
@@ -59,11 +61,20 @@ export function CartSummary({ className }: CartSummaryProps) {
     return `${percentage}%`
   }
 
-  const { mutate: payment, isPending } = usePayment()
+  const { mutateAsync: payment, isPending } = usePayment({
+    shipping_address: data?.shipping_address ?? '',
+    cart_id: data?.items[0].cart_id ?? '',
+  })
 
-  const handleConfirmOrder = () => {
-    payment()
-    // setShowCheckoutForm(true)
+  const [paymentLink, setPaymentLink] = useState<string | null>(null)
+
+  useEffect(() => {
+    setPaymentLink(null)
+  }, [showCheckoutForm])
+  const handleConfirmOrder = async () => {
+    const paymentLink = await payment()
+
+    setPaymentLink(paymentLink)
   }
 
   if (isLoading) {
@@ -193,6 +204,14 @@ export function CartSummary({ className }: CartSummaryProps) {
               {t('confirmOrder')}
             </Button>
           </div>
+
+          {paymentLink && (
+            <div className="px-3">
+              <Button variant={'link'} onClick={() => router.push(paymentLink)}>
+                {t('redirectToPayment')} <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
 
           {/* Policy Disclaimer */}
           <p className="text-center text-xs leading-relaxed font-semibold">

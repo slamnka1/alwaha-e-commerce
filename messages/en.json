@@ -414,7 +414,8 @@
       "cancel": "Cancel",
       "shippingAddress": "Shipping address",
       "region": "Region",
-      "editAddress": "Edit address"
+      "editAddress": "Edit address",
+      "redirectToPayment": "Go to payment "
     },
     "checkout": {
       "title": "Update your shipping address",
