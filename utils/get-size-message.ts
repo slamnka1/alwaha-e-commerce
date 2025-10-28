@@ -1,12 +1,13 @@
 import { ProductFullData } from '@/@types/product'
+import { FitSize } from '@/@types/sizes'
 
 export function getSizeMessage(
-  product: ProductFullData['sizes'],
+  fitSize: FitSize[],
   selectedSize: string,
   locale: 'en' | 'ar' = 'ar'
 ): string {
-  const recommendedSize = product.find(
-    (size) => size.user_size?.id?.toString() === selectedSize
+  const recommendedSize = fitSize.find((size) =>
+    size.user_size.find((user_size) => user_size.id == Number(selectedSize))
   )
 
   if (!recommendedSize) {

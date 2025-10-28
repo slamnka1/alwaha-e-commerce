@@ -19,6 +19,7 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { useAddToCart } from '@/hooks/use-cart'
 import useFavorite from '@/hooks/use-favorites'
+import { useFitSize } from '@/hooks/use-fit-size'
 import { Link, useRouter } from '@/lib/i18n/navigation'
 import { cn } from '@/lib/utils'
 import { getSizeMessage } from '@/utils/get-size-message'
@@ -56,10 +57,7 @@ export default function ProductDescription({
     mutate: toggleFavorite,
     isPending,
   } = useFavorite({
-    // Product color-level id appears as `id` on ProductFullData
-    // This minimal shape satisfies what the hook needs
     product_id: product.product_id,
-
     id: product.id as unknown as number,
     is_favourite: product.is_favorited,
   } as unknown as any)
@@ -90,6 +88,7 @@ export default function ProductDescription({
     // Re-run when description changes
   }, [product.description])
 
+  const { data: fitSize } = useFitSize(product.id)
   return (
     <div className={cn('flex w-full max-w-xl flex-col gap-6', className)}>
       <div>
@@ -208,11 +207,7 @@ export default function ProductDescription({
           </div>
           <UserSize />
           <p className="text-xs text-red-600 lg:text-sm">
-            {getSizeMessage(
-              product.sizes,
-              selectedUserSize,
-              locale as 'ar' | 'en'
-            )}
+            {getSizeMessage(fitSize, selectedUserSize, locale as 'ar' | 'en')}
           </p>
           <div className="flex flex-wrap gap-2">
             <RadioGroup
@@ -220,31 +215,38 @@ export default function ProductDescription({
               onValueChange={(value) => setSelectedSize(value)}
               className="flex flex-wrap gap-2"
             >
-              {product.sizes.map((size) => (
-                <label
-                  style={{
-                    border:
-                      size.user_size?.id == Number(selectedUserSize)
-                        ? `2px solid ${size.user_size?.color}`
-                        : '',
-                  }}
-                  data-disabled={size.quantity === 0}
-                  key={size.size_code}
-                  className={cn(
-                    'has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex size-9 cursor-pointer flex-col items-center justify-center rounded-xs border border-black text-center text-xs font-bold shadow-[4px] transition-all outline-none has-focus-visible:ring-[3px] has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50 has-data-[state=checked]:border-[#00000033] has-data-[state=checked]:bg-black has-data-[state=checked]:text-white',
-                    size.quantity === 0 &&
-                      'cursor-not-allowed bg-gray-400 opacity-50'
-                  )}
-                >
-                  <RadioGroupItem
-                    disabled={size.quantity === 0}
-                    id={size.size_code}
-                    value={size.id.toString()}
-                    className="sr-only after:absolute after:inset-0"
-                  />
-                  {size.size_code}
-                </label>
-              ))}
+              {product.sizes.map((size) => {
+                const fitSizeItem = fitSize.find(
+                  (item) => item.size_code.trim() == size.size_code.trim()
+                )
+
+                const userSize = fitSizeItem?.user_size.find(
+                  (item) => item.id == Number(selectedUserSize)
+                )
+
+                return (
+                  <label
+                    style={{
+                      border: userSize ? `2px solid ${userSize.color}` : '',
+                    }}
+                    data-disabled={size.quantity === 0}
+                    key={size.size_code}
+                    className={cn(
+                      'has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex size-9 cursor-pointer flex-col items-center justify-center rounded-xs border border-black text-center text-xs font-bold shadow-[4px] transition-all outline-none has-focus-visible:ring-[3px] has-data-disabled:cursor-not-allowed has-data-disabled:opacity-50 has-data-[state=checked]:border-[#00000033] has-data-[state=checked]:bg-black has-data-[state=checked]:text-white',
+                      size.quantity === 0 &&
+                        'cursor-not-allowed bg-gray-400 opacity-50'
+                    )}
+                  >
+                    <RadioGroupItem
+                      disabled={size.quantity === 0}
+                      id={size.size_code}
+                      value={size.id.toString()}
+                      className="sr-only after:absolute after:inset-0"
+                    />
+                    {size.size_code}
+                  </label>
+                )
+              })}
             </RadioGroup>
           </div>
         </div>

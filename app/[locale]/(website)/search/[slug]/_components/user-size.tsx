@@ -119,32 +119,8 @@ const UserSize = ({ className }: UserSizeProps) => {
                         >
                           {size.name}
                         </span>
-                        {/* <span className="text-muted-foreground text-xs">
-                        {t('chestCircumference')}: {size.chest_size} •{' '}
-                        {t('hipCircumference')}: {size.hip_size}
-                      </span> */}
                       </div>
                     </label>
-                    {/* <div className="flex items-center gap-1">
-                    <SizeModal
-                      mode="edit"
-                      size={size}
-                      trigger={
-                        <Button size="icon" variant="ghost" className="size-8">
-                          <Pencil className="size-5 text-gray-400" />
-                        </Button>
-                      }
-                    />
-                    <Button
-                      size="icon"
-                      variant="ghost"
-                      className="size-8"
-                      onClick={() => deleteSize.mutate(size.id)}
-                      disabled={deleteSize.isPending}
-                    >
-                      <Trash2 className="size-5 text-gray-400" />
-                    </Button>
-                  </div> */}
                   </div>
                 ))}
                 {sizes.data!.length < 3 && (
@@ -152,31 +128,15 @@ const UserSize = ({ className }: UserSizeProps) => {
                     trigger={
                       <Button size="icon" className="size-6 gap-2 rounded-xs">
                         <Plus className="size-4" />
-                        {/* {t('addSize')} */}
                       </Button>
                     }
                   />
                 )}
               </div>
             </RadioGroup>
-            {/* 
-            {sizes.data!.length < 3 && (
-              <SizeModal
-                trigger={
-                  <Button size="sm" variant="secondary" className="gap-2">
-                    <Plus className="size-4" />
-                    {t('addSize')}
-                  </Button>
-                }
-              />
-            )} */}
           </div>
         )}
       </div>
-      {/* <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
-        <img src={NoteIcon.src} alt="note" className="size-4" />
-        {t('edit-importantNote')}
-      </p> */}
     </div>
   )
 }

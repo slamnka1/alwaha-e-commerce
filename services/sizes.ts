@@ -1,5 +1,5 @@
 import { ApiResponse } from '@/@types'
-import { UserSize } from '@/@types/sizes'
+import { FitSize, UserSize } from '@/@types/sizes'
 
 import apiClient from './axios'
 
@@ -34,6 +34,12 @@ export const sizes = {
   async deleteSize(id: number) {
     const response = await apiClient.delete<ApiResponse<UserSize>>(
       `/auth/user-sizes/${id}`
+    )
+    return response.data.data
+  },
+  async getFitSize(id: string | number) {
+    const response = await apiClient.get<ApiResponse<FitSize[]>>(
+      `/products/${id}/sizes`
     )
     return response.data.data
   },
