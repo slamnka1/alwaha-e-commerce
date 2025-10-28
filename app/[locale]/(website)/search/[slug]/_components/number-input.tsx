@@ -38,11 +38,11 @@ export default function NumberInput({ maxValue }: { maxValue: number }) {
           </Group>
         </div>
       </NumberField>
-      {maxValue && (
+      {/* {maxValue && (
         <p className="mt-1 text-xs text-gray-600">
           {t('max-value', { items: maxValue })}
         </p>
-      )}
+      )} */}
     </div>
   )
 }

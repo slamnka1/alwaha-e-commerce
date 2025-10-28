@@ -1,14 +1,22 @@
 'use client'
 
 import { Loader2 } from 'lucide-react'
+import { parseAsString, useQueryStates } from 'nuqs'
 
 import { useState } from 'react'
 
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import { useCartSummary } from '@/hooks/use-cart'
 import { usePayment } from '@/hooks/use-payment'
 import { Link } from '@/lib/i18n/navigation'
 
@@ -25,13 +33,23 @@ interface CartSummaryData {
 }
 
 interface CartSummaryProps {
-  data: CartSummaryData
   className?: string
 }
 
-export function CartSummary({ data, className }: CartSummaryProps) {
+export function CartSummary({ className }: CartSummaryProps) {
   const t = useTranslations('cart.summary')
-  const [showCheckoutForm, _] = useState(false)
+
+  const [queryStates] = useQueryStates({
+    emirate_id: parseAsString.withDefault(''),
+    region_id: parseAsString.withDefault(''),
+    shipping_address: parseAsString.withDefault(''),
+  })
+  const { data, isLoading, error } = useCartSummary({
+    region_id: queryStates.region_id,
+    shipping_address: queryStates.shipping_address,
+  })
+  const [showCheckoutForm, setShowCheckoutForm] = useState(false)
+  const locale = useLocale()
 
   const formatCurrency = (amount: number) => {
     return amount.toFixed(2)
@@ -48,10 +66,24 @@ export function CartSummary({ data, className }: CartSummaryProps) {
     // setShowCheckoutForm(true)
   }
 
+  if (isLoading) {
+    return (
+      <div className="flex min-h-[250px] min-w-[250px] items-center justify-center md:min-w-[320]">
+        <Loader2 className="animate-spin" />
+      </div>
+    )
+  }
+  if (error) {
+    return (
+      <div className="flex min-h-[250px] min-w-[250px] items-center justify-center md:min-w-[320]">
+        <p className="text-muted-foreground text-sm">{error.message}</p>
+      </div>
+    )
+  }
   return (
-    <div className="min-w-[250px] space-y-3">
+    <div className="min-w-[250px] space-y-3 md:min-w-[320]">
       {showCheckoutForm ? (
-        <CheckoutForm />
+        <CheckoutForm setShowCheckoutForm={setShowCheckoutForm} />
       ) : (
         <>
           <Card className={`gap-3 bg-white py-4 shadow-none ${className}`}>
@@ -59,6 +91,27 @@ export function CartSummary({ data, className }: CartSummaryProps) {
               <CardTitle className="font-semibold max-lg:text-sm lg:text-xl">
                 {t('title')}
               </CardTitle>
+              <CardDescription className="text-muted-foreground mt-3">
+                <div className="flex flex-nowrap items-center">
+                  <div className="flex-1 space-y-1.5 text-sm">
+                    <p>
+                      {t('shippingAddress')}: {data?.shipping_address}
+                    </p>
+                    <p>
+                      {t('region')}:{' '}
+                      {data?.region[locale === 'ar' ? 'name_ar' : 'name_en']}
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={() => setShowCheckoutForm(true)}
+                    size={'sm'}
+                    variant={'secondary'}
+                  >
+                    {t('editAddress')}
+                  </Button>
+                </div>
+              </CardDescription>
             </CardHeader>
             <Separator />
 
@@ -69,7 +122,9 @@ export function CartSummary({ data, className }: CartSummaryProps) {
                   <span className="font-semibold max-lg:text-xs">
                     {t('itemCount')}
                   </span>
-                  <span className="font-medium">{data.itemCount}</span>
+                  <span className="font-medium">
+                    {data?.items.reduce((sum, item) => sum + item.quantity, 0)}
+                  </span>
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -77,25 +132,25 @@ export function CartSummary({ data, className }: CartSummaryProps) {
                     {t('subtotal')}
                   </span>
                   <span className="font-medium">
-                    {formatCurrency(data.subtotal)}
+                    {formatCurrency(data?.subtotal ?? 0)}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                   <span className="font-semibold max-lg:text-xs">
                     {t('purchase')}
                   </span>
                   <span className="font-medium">
-                    {formatCurrency(data.purchase)}
+                    {formatCurrency(data?.total_amount ?? 0)}
                   </span>
-                </div>
+                </div> */}
 
                 <div className="flex items-center justify-between">
                   <span className="font-semibold max-lg:text-xs">
                     {t('purchaseTax')}
                   </span>
                   <span className="font-medium">
-                    {formatCurrency(data.purchaseTax)}
+                    {formatCurrency(data?.tax_amount ?? 0)}
                   </span>
                 </div>
 
@@ -104,7 +159,7 @@ export function CartSummary({ data, className }: CartSummaryProps) {
                     {t('deliveryPrice')}
                   </span>
                   <span className="font-medium">
-                    {formatCurrency(data.deliveryPrice)}
+                    {formatCurrency(data?.shipping_amount ?? 0)}
                   </span>
                 </div>
 
@@ -113,7 +168,7 @@ export function CartSummary({ data, className }: CartSummaryProps) {
                     {t('discountCoupon')}
                   </span>
                   <span className="font-medium">
-                    {formatPercentage(data.discountPercentage)}
+                    {formatPercentage(data?.discount_amount ?? 0)}
                   </span>
                 </div>
                 <Separator />
@@ -121,7 +176,7 @@ export function CartSummary({ data, className }: CartSummaryProps) {
                 <div className="flex items-center justify-between">
                   <span className="font-semibold">{t('total')}</span>
                   <span className="font-bold">
-                    {formatCurrency(data.total)}
+                    {formatCurrency(data?.total_amount ?? 0)}
                   </span>
                 </div>
               </div>

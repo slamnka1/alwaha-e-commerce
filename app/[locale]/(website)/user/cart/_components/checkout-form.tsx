@@ -3,11 +3,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
+import { parseAsString, useQueryStates } from 'nuqs'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import * as z from 'zod'
 
-import { useEffect } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 import { useTranslations } from 'next-intl'
 
@@ -26,46 +27,40 @@ import { FormErrorMessage } from '@/components/ui/form-error-message'
 import { Input } from '@/components/ui/input'
 import { RegionSelect } from '@/components/ui/region-select'
 import { Separator } from '@/components/ui/separator'
+import { cartSummaryQueryKey } from '@/hooks/use-cart'
 import { Link } from '@/lib/i18n/navigation'
-import { authService } from '@/services/auth'
-import { useSession } from '@/store/session-store'
 import { handleFormError } from '@/utils/handle-form-errors'
 
-export function CheckoutForm() {
+export function CheckoutForm({
+  setShowCheckoutForm,
+}: {
+  setShowCheckoutForm: Dispatch<SetStateAction<boolean>>
+}) {
   const t = useTranslations('cart.checkout')
+
+  const [_, setQueryStates] = useQueryStates({
+    emirate_id: parseAsString.withDefault(''),
+    region_id: parseAsString.withDefault(''),
+    shipping_address: parseAsString.withDefault(''),
+  })
 
   // Form validation schema
   const checkoutSchema = z.object({
     emirate_id: z.string().min(1, t('validation.emirateRequired')),
     region_id: z.string().min(1, t('validation.regionRequired')),
-    address: z.string().min(1, t('validation.addressRequired')),
+    shipping_address: z.string().min(1, t('validation.addressRequired')),
   })
 
   type CheckoutFormData = z.infer<typeof checkoutSchema>
-  const { session, isPending } = useSession()
 
   const form = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
-    defaultValues: session
-      ? {
-          emirate_id: session.emirate?.id + '' || '',
-          region_id: session.region?.id + '' || '',
-          address: session.address || '',
-        }
-      : {
-          emirate_id: '',
-          region_id: '',
-          address: '',
-        },
+    defaultValues: {
+      emirate_id: '',
+      region_id: '',
+      shipping_address: '',
+    },
   })
-
-  useEffect(() => {
-    if (!isPending) {
-      form.setValue('emirate_id', session?.emirate?.id + '' || '')
-      form.setValue('region_id', session?.region?.id + '' || '')
-      form.setValue('address', session?.address || '')
-    }
-  }, [isPending])
 
   // Reset region when emirate changes
   const handleEmirateChange = (value: string) => {
@@ -76,37 +71,20 @@ export function CheckoutForm() {
   const queryClient = useQueryClient()
   const onSubmitForm = async (data: CheckoutFormData) => {
     try {
-      await authService.updateAddress({
+      setQueryStates({
         emirate_id: data.emirate_id,
         region_id: data.region_id,
-        address: data.address,
+        shipping_address: data.shipping_address,
       })
 
-      toast.success(t('operations.updateSuccess'))
-      queryClient.invalidateQueries({
-        queryKey: ['session'],
+      await queryClient.invalidateQueries({
+        queryKey: cartSummaryQueryKey,
       })
+      toast.success(t('operations.updateSuccess'))
+      setShowCheckoutForm(false)
     } catch (error) {
       handleFormError(error, form)
     }
-  }
-
-  if (isPending) {
-    return (
-      <Card className="border-[0.5px] border-transparent bg-transparent shadow-none md:border-[#1A1A1A] md:bg-white md:p-8 md:py-14 md:shadow-lg">
-        <CardHeader className="max-md:px-0">
-          <CardTitle className="font-semibold md:text-xl">
-            {t('title')}
-          </CardTitle>
-        </CardHeader>
-        <Separator className="max-md:hidden" />
-        <CardContent className="space-y-6 max-md:px-2">
-          <div className="flex items-center justify-center py-8">
-            <Loader2 className="h-6 w-6 animate-spin" />
-          </div>
-        </CardContent>
-      </Card>
-    )
   }
 
   return (
@@ -165,7 +143,7 @@ export function CheckoutForm() {
             {/* Full Address Field */}
             <FormField
               control={form.control}
-              name="address"
+              name="shipping_address"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="block text-sm font-medium text-gray-700">
@@ -180,17 +158,25 @@ export function CheckoutForm() {
             />
 
             {/* Action Button */}
-            <Button
-              variant={'secondary'}
-              className="w-full font-semibold"
-              type="submit"
-              disabled={form.formState.isSubmitting}
-            >
-              {t('completePayment')}
-              {form.formState.isSubmitting && (
-                <Loader2 className="ml-2 h-4 w-4 animate-spin" />
-              )}
-            </Button>
+            <div className="grid grid-cols-2 gap-2">
+              <Button
+                className="font-semibold"
+                type="submit"
+                disabled={form.formState.isSubmitting}
+              >
+                {t('completePayment')}
+                {form.formState.isSubmitting && (
+                  <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+                )}
+              </Button>
+
+              <Button
+                variant={'secondary'}
+                onClick={() => setShowCheckoutForm(false)}
+              >
+                {t('cancel')}
+              </Button>
+            </div>
             <FormErrorMessage />
           </form>
         </Form>

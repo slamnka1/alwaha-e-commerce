@@ -12,6 +12,7 @@ import { AddToCartParams } from '../services'
 
 // Query key for cart data
 export const cartQueryKey = ['cart']
+export const cartSummaryQueryKey = ['cart-summary']
 
 // Hook to fetch cart items
 export function useCartItems() {
@@ -42,6 +43,7 @@ export function useAddToCart() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: cartQueryKey })
+      queryClient.invalidateQueries({ queryKey: cartSummaryQueryKey })
       if (t) {
         toast.success(t('operations.updateSuccess'))
       }
@@ -73,6 +75,7 @@ export function useUpdateCartItemQuantity() {
     onSuccess: (data) => {
       // Always refetch after error or success to ensure we have the latest data
       queryClient.invalidateQueries({ queryKey: cartQueryKey })
+      queryClient.invalidateQueries({ queryKey: cartSummaryQueryKey })
       if (t) {
         toast.success(t('operations.updateSuccess'))
       }
@@ -97,9 +100,24 @@ export function useRemoveCartItem() {
     onSuccess: (data) => {
       // Always refetch after error or success to ensure we have the latest data
       queryClient.invalidateQueries({ queryKey: cartQueryKey })
+      queryClient.invalidateQueries({ queryKey: cartSummaryQueryKey })
       if (t) {
         toast.success(t('operations.removeSuccess'))
       }
     },
+  })
+}
+
+export function useCartSummary(params?: {
+  shipping_address: string
+  region_id: string
+}) {
+  return useQuery({
+    queryKey: [
+      ...cartSummaryQueryKey,
+      params?.region_id,
+      params?.shipping_address,
+    ],
+    queryFn: () => cart.getCartSummary(params),
   })
 }

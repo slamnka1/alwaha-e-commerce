@@ -1,4 +1,6 @@
+import { ApiResponse } from '@/@types'
 import { CartResponse } from '@/@types/cart'
+import { CartSummary } from '@/@types/cart-summary'
 import { apiClient } from '@/services/axios'
 
 export type AddToCartParams = {
@@ -27,5 +29,17 @@ export const cart = {
       quantity: quantity,
     })
     return response.data
+  },
+  async getCartSummary(params?: {
+    shipping_address: string
+    region_id: string
+  }) {
+    const response = await apiClient.get<ApiResponse<CartSummary>>(
+      '/checkout/summary',
+      {
+        params,
+      }
+    )
+    return response.data.data
   },
 }

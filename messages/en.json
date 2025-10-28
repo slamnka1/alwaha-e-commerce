@@ -411,10 +411,13 @@
       "confirmOrder": "Confirm Order",
       "shopWithConfidence": "Shop with confidence, exchange is available according to",
       "policy": "policy",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "shippingAddress": "Shipping address",
+      "region": "Region",
+      "editAddress": "Edit address"
     },
     "checkout": {
-      "title": "Please, complete your data",
+      "title": "Update your shipping address",
       "firstName": "First Name",
       "lastName": "Last Name",
       "phone": "Phone Number",
@@ -422,7 +425,7 @@
       "emirate": "Emirate",
       "region": "Region/Area",
       "fullAddress": "Full Address",
-      "completePayment": "Complete Payment Process",
+      "completePayment": "Update",
       "firstNamePlaceholder": "First Name",
       "lastNamePlaceholder": "Last Name",
       "phonePlaceholder": "50 123 4567",

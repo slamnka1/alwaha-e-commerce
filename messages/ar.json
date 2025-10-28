@@ -416,10 +416,13 @@
       "confirmOrder": "تأكيد الطلب",
       "shopWithConfidence": "تسوقي بثقة الاستبدال متاح وفق",
       "policy": "السياسة",
-      "cancel": "إلغاء"
+      "cancel": "إلغاء",
+      "shippingAddress": "عنوان الشحن",
+      "region": "المنطقة",
+      "editAddress": "تعديل العنوان"
     },
     "checkout": {
-      "title": "من فضلك, أكمل بياناتك",
+      "title": "قم بتحديث عنوان الشحن الخاص بك",
       "firstName": "الاسم الأول",
       "lastName": "اسم العائلة",
       "phone": "رقم الهاتف",
@@ -427,7 +430,7 @@
       "emirate": "الإمارة",
       "region": "المنطقة",
       "fullAddress": "العنوان الكامل",
-      "completePayment": "أكمل عملية الدفع",
+      "completePayment": "تحديث",
       "firstNamePlaceholder": "الاسم الأول",
       "lastNamePlaceholder": "اسم العائلة",
       "phonePlaceholder": "50 123 4567",

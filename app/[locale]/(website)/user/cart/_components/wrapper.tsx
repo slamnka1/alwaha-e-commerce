@@ -11,7 +11,6 @@ type Props = {}
 
 const Wrapper = (props: Props) => {
   const t = useTranslations('cart')
-  const locale = useLocale()
   const { data, isLoading, error } = useCartItems()
 
   // Map API response to UI cart items shape
@@ -24,17 +23,6 @@ const Wrapper = (props: Props) => {
     color: item.product.selected_color.color_name,
     size: item.product.selected_size.size_code,
   }))
-
-  // Use summary numbers from API when available
-  const summaryData = {
-    itemCount: items.reduce((sum, item) => sum + item.quantity, 0),
-    subtotal: data?.subtotal ?? 0,
-    purchase: data?.subtotal ?? 0,
-    purchaseTax: data?.tax_amount ?? 0,
-    deliveryPrice: data?.shipping_amount ?? 0,
-    discountPercentage: 0,
-    total: data?.total_amount ?? 0,
-  }
 
   if (isLoading) {
     return (
@@ -84,7 +72,7 @@ const Wrapper = (props: Props) => {
           <div className="flex-1">
             <CartItems items={items} />
           </div>
-          <CartSummary data={summaryData} />
+          <CartSummary />
         </div>
       </div>
     </section>
