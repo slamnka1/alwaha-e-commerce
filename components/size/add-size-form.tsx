@@ -75,6 +75,7 @@ const SizeForm = ({ closeModal }: { closeModal: () => void }) => {
       await sizesService.createSize(data)
       form.reset()
       queryClient.invalidateQueries({ queryKey: userSizesQueryKey })
+      queryClient.invalidateQueries({ queryKey: ['fit-size'] })
       toast.success(t('success'))
       closeModal()
     } catch (error) {

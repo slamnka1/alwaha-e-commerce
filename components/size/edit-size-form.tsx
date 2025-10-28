@@ -83,6 +83,7 @@ const EditSizeForm = ({
     try {
       await sizesService.updateSize(size.id, data)
       queryClient.invalidateQueries({ queryKey: userSizesQueryKey })
+      queryClient.invalidateQueries({ queryKey: ['fit-size'] })
       toast.success(t('success'))
       closeModal()
     } catch (error) {
