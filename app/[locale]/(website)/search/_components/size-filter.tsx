@@ -46,6 +46,7 @@ const SizeFilter = (props: Props) => {
     setFilters({
       chest_size: 0,
       hip_size: 0,
+      'user_sizes[]': [],
     }),
     setMeasurementValues({
       hip: 0,
@@ -126,7 +127,7 @@ const SizeFilter = (props: Props) => {
       <p className="text-sm font-medium">{t('size')}</p>
       {sizes?.data && sizes.data.length > 0 && (
         <RadioGroup
-          value={filters['user_sizes[]'][0]}
+          value={filters['user_sizes[]']?.[0] || ''}
           onValueChange={(value) => setFilters({ 'user_sizes[]': [value] })}
         >
           <div className="flex flex-col gap-3">
@@ -195,6 +196,14 @@ const SizeFilter = (props: Props) => {
           }
         />
       )}
+      <Button
+        onClick={() => handleClearMeasurement()}
+        variant="link"
+        size="sm"
+        className="w-full"
+      >
+        {t('clear')}
+      </Button>
     </div>
   )
 }
