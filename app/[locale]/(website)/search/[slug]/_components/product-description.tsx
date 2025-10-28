@@ -216,11 +216,11 @@ export default function ProductDescription({
               className="flex flex-wrap gap-2"
             >
               {product.sizes.map((size) => {
-                const fitSizeItem = fitSize.find(
+                const fitSizeItem = fitSize?.find(
                   (item) => item.size_code.trim() == size.size_code.trim()
                 )
 
-                const userSize = fitSizeItem?.user_size.find(
+                const userSize = fitSizeItem?.user_size?.find(
                   (item) => item.id == Number(selectedUserSize)
                 )
 

@@ -538,7 +538,17 @@
   },
   "payment": {
     "success": "Payment completed successfully! Your order has been placed.",
-    "error": "Payment failed. Please try again or contact support if the problem persists."
+    "error": "Payment failed. Please try again or contact support if the problem persists.",
+    "processing": "Processing Payment...",
+    "processingDescription": "Please wait while we verify your payment status.",
+    "successTitle": "Payment Successful!",
+    "failureTitle": "Payment Failed",
+    "orderConfirmed": "Your order has been confirmed and will be processed shortly.",
+    "paymentFailedDescription": "We couldn't process your payment. Please try again or contact support if the problem persists.",
+    "viewOrders": "View My Orders",
+    "continueShopping": "Continue Shopping",
+    "tryAgain": "Try Again",
+    "needHelp": "Need help? Contact our support team."
   },
   "about": {
     "title": "About Us",
