@@ -1,7 +1,8 @@
 'use client'
 
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
+import { Card } from '@/components/ui/card'
 import { useCartItems } from '@/hooks/use-cart'
 
 import { CartItems } from './cart-items'
@@ -72,7 +73,15 @@ const Wrapper = (props: Props) => {
           <div className="flex-1">
             <CartItems items={items} />
           </div>
-          <CartSummary />
+          {items.length > 0 ? (
+            <CartSummary />
+          ) : (
+            <Card className="p-8 text-center">
+              <p className="text-muted-foreground text-lg">
+                {t('table.noItems')}
+              </p>
+            </Card>
+          )}
         </div>
       </div>
     </section>
