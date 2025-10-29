@@ -51,7 +51,7 @@ const UserSize = ({ className }: UserSizeProps) => {
             </Link>
           </Button>
         </div>
-        <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
+        <p className="mt-4 mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
           <img src={NoteIcon.src} alt="note" className="size-4" />
           {t('importantNote')}
         </p>
@@ -76,7 +76,7 @@ const UserSize = ({ className }: UserSizeProps) => {
             }
           ></SizeModal>
         </div>
-        <p className="mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
+        <p className="mt-4 mb-3 flex w-fit items-center gap-2 border-b border-b-[#FF0000] px-2 pb-1 text-xs font-bold">
           <img src={NoteIcon.src} alt="note" className="size-4" />
           {t('importantNote')}
         </p>
