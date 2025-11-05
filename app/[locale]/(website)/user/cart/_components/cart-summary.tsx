@@ -1,7 +1,7 @@
 'use client'
 
 import { ArrowRight, Loader2 } from 'lucide-react'
-import { parseAsString, useQueryStates } from 'nuqs'
+import { parseAsBoolean, parseAsString, useQueryStates } from 'nuqs'
 
 import { useEffect, useState } from 'react'
 
@@ -16,22 +16,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { useCartSummary } from '@/hooks/use-cart'
 import { usePayment } from '@/hooks/use-payment'
 import { Link } from '@/lib/i18n/navigation'
 
 import { CheckoutForm } from './checkout-form'
-
-interface CartSummaryData {
-  itemCount: number
-  subtotal: number
-  purchase: number
-  purchaseTax: number
-  deliveryPrice: number
-  discountPercentage: number
-  total: number
-}
 
 interface CartSummaryProps {
   className?: string
@@ -40,15 +32,17 @@ interface CartSummaryProps {
 export function CartSummary({ className }: CartSummaryProps) {
   const t = useTranslations('cart.summary')
   const router = useRouter()
-  const [queryStates] = useQueryStates({
+  const [queryStates, setQueryStates] = useQueryStates({
     emirate_id: parseAsString.withDefault(''),
     region_id: parseAsString.withDefault(''),
     shipping_address: parseAsString.withDefault(''),
+    fast_shipping: parseAsBoolean.withDefault(false),
   })
 
   const { data, isLoading, error } = useCartSummary({
     region_id: queryStates.region_id,
     shipping_address: queryStates.shipping_address,
+    fast_shipping: queryStates.fast_shipping,
   })
   const [showCheckoutForm, setShowCheckoutForm] = useState(false)
   const locale = useLocale()
@@ -103,24 +97,58 @@ export function CartSummary({ className }: CartSummaryProps) {
                 {t('title')}
               </CardTitle>
               <CardDescription className="text-muted-foreground mt-3">
-                <div className="flex flex-nowrap items-center">
-                  <div className="flex-1 space-y-1.5 text-sm">
-                    <p>
-                      {t('shippingAddress')}: {data?.shipping_address}
-                    </p>
-                    <p>
-                      {t('region')}:{' '}
-                      {data?.region[locale === 'ar' ? 'name_ar' : 'name_en']}
+                <div>
+                  <div className="flex flex-nowrap items-center">
+                    <div className="flex-1 space-y-1.5 text-sm">
+                      <p>
+                        {t('shippingAddress')}: {data?.shipping_address}
+                      </p>
+                      <p>
+                        {t('region')}:{' '}
+                        {data?.region[locale === 'ar' ? 'name_ar' : 'name_en']}
+                      </p>
+                    </div>
+
+                    <Button
+                      onClick={() => setShowCheckoutForm(true)}
+                      size={'sm'}
+                      variant={'secondary'}
+                    >
+                      {t('editAddress')}
+                    </Button>
+                  </div>
+                  <div className="mt-4 space-y-2">
+                    <Label className="flex flex-nowrap items-center">
+                      <Checkbox
+                        checked={queryStates.fast_shipping}
+                        onCheckedChange={() => {
+                          setQueryStates({
+                            fast_shipping: !queryStates.fast_shipping,
+                          })
+                        }}
+                      />
+                      <span className="text-primary underline">
+                        {t('fastShipping')}
+                      </span>
+                    </Label>
+                    <p className="text-xs">
+                      {t('fastShippingDescription')}
+                      <br />
+                      <a
+                        href="tel:0566142600"
+                        className="text-foreground font-medium"
+                      >
+                        0566142600
+                      </a>{' '}
+                      /
+                      <a
+                        href="tel:0505758362"
+                        className="text-foreground font-medium"
+                      >
+                        0505758362
+                      </a>
                     </p>
                   </div>
-
-                  <Button
-                    onClick={() => setShowCheckoutForm(true)}
-                    size={'sm'}
-                    variant={'secondary'}
-                  >
-                    {t('editAddress')}
-                  </Button>
                 </div>
               </CardDescription>
             </CardHeader>

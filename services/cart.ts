@@ -33,6 +33,7 @@ export const cart = {
   async getCartSummary(params?: {
     shipping_address: string
     region_id: string
+    fast_shipping: boolean
   }) {
     const response = await apiClient.get<ApiResponse<CartSummary>>(
       '/checkout/summary',

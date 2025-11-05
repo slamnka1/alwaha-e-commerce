@@ -415,7 +415,9 @@
       "shippingAddress": "Shipping address",
       "region": "Region",
       "editAddress": "Edit address",
-      "redirectToPayment": "Go to payment "
+      "redirectToPayment": "Go to payment ",
+      "fastShipping": "Fast shipping",
+      "fastShippingDescription": "You must contact the store to confirm immediate delivery requirements,\n\nIf you do not communicate, the order will be canceled without us bearing any responsibility"
     },
     "checkout": {
       "title": "Update your shipping address",
