@@ -1,5 +1,6 @@
 import { ApiResponse, PaginatedApiResponse } from '@/@types'
-import { Product, ProductFullData } from '@/@types/product'
+import { Product } from '@/@types/product'
+import { ProductFullData } from '@/@types/product-full-data'
 
 import { apiClient } from './axios'
 

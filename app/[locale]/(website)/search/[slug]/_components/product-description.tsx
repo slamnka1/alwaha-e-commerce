@@ -8,7 +8,7 @@ import React from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
 
-import { ProductFullData } from '@/@types/product'
+import { ProductFullData } from '@/@types/product-full-data'
 import NumberInput from '@/app/[locale]/(website)/search/[slug]/_components/number-input'
 import { Button } from '@/components/ui/button'
 import {

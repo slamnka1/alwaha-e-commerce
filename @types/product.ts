@@ -32,35 +32,6 @@ export interface Colors {
   color_image_url: string
 }
 
-export interface ProductFullData {
-  id: number
-  product_id: number
-  product_name: string
-  description: string
-  product_code: string
-  color_name: string
-  main_image_url: string
-  video_url?: string | null
-  price: number
-  product_base_price: string
-  offer_active: null
-  discounted_price: null
-  sizes_quantity: string
-  is_favorited: boolean
-  offer_id: number | null
-  discount_percent: string | null
-  discount_amount: string | null
-  price_before_discount: string
-  size_guide: string | null
-  sizes: Size[]
-  other_colors: {
-    id: number
-    color_name: string
-    main_image_url: string
-    url: string
-  }[]
-}
-
 export interface Size {
   id: number
   size_code: string
