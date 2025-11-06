@@ -111,14 +111,14 @@ export function useRemoveCartItem() {
 export function useCartSummary(params?: {
   shipping_address: string
   region_id: string
-  fast_shipping: boolean
+  apply_fast_delivery: boolean
 }) {
   return useQuery({
     queryKey: [
       ...cartSummaryQueryKey,
       params?.region_id,
       params?.shipping_address,
-      params?.fast_shipping,
+      params?.apply_fast_delivery,
     ],
     queryFn: () => cart.getCartSummary(params),
   })

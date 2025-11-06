@@ -36,13 +36,13 @@ export function CartSummary({ className }: CartSummaryProps) {
     emirate_id: parseAsString.withDefault(''),
     region_id: parseAsString.withDefault(''),
     shipping_address: parseAsString.withDefault(''),
-    fast_shipping: parseAsBoolean.withDefault(false),
+    apply_fast_delivery: parseAsBoolean.withDefault(false),
   })
 
   const { data, isLoading, error } = useCartSummary({
     region_id: queryStates.region_id,
     shipping_address: queryStates.shipping_address,
-    fast_shipping: queryStates.fast_shipping,
+    apply_fast_delivery: queryStates.apply_fast_delivery,
   })
   const [showCheckoutForm, setShowCheckoutForm] = useState(false)
   const locale = useLocale()
@@ -120,10 +120,11 @@ export function CartSummary({ className }: CartSummaryProps) {
                   <div className="mt-4 space-y-2">
                     <Label className="flex flex-nowrap items-center">
                       <Checkbox
-                        checked={queryStates.fast_shipping}
+                        checked={queryStates.apply_fast_delivery}
                         onCheckedChange={() => {
                           setQueryStates({
-                            fast_shipping: !queryStates.fast_shipping,
+                            apply_fast_delivery:
+                              !queryStates.apply_fast_delivery,
                           })
                         }}
                       />
