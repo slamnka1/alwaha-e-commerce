@@ -1,4 +1,3 @@
-import { ProductFullData } from '@/@types/product'
 import { FitSize } from '@/@types/sizes'
 
 export function getSizeMessage(

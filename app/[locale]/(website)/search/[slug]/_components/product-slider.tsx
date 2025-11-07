@@ -5,7 +5,7 @@ import { parseAsBoolean, useQueryState } from 'nuqs'
 
 import { useParams } from 'next/navigation'
 
-import { ProductFullData } from '@/@types/product'
+import { ProductFullData } from '@/@types/product-full-data'
 import {
   Carousel,
   CarouselContent,
