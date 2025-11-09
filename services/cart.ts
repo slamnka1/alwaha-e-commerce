@@ -31,8 +31,8 @@ export const cart = {
     return response.data
   },
   async getCartSummary(params?: {
-    shipping_address: string
-    region_id: string
+    shipping_address?: string
+    region_id?: string
     apply_fast_delivery: '0' | '1'
   }) {
     const response = await apiClient.get<ApiResponse<CartSummary>>(

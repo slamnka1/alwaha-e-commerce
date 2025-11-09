@@ -109,8 +109,8 @@ export function useRemoveCartItem() {
 }
 
 export function useCartSummary(params?: {
-  shipping_address: string
-  region_id: string
+  shipping_address?: string
+  region_id?: string
   apply_fast_delivery: boolean
 }) {
   return useQuery({

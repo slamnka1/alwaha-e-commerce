@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import * as z from 'zod'
 
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 
 import { useTranslations } from 'next-intl'
 
@@ -29,6 +29,7 @@ import { RegionSelect } from '@/components/ui/region-select'
 import { Separator } from '@/components/ui/separator'
 import { cartSummaryQueryKey } from '@/hooks/use-cart'
 import { Link } from '@/lib/i18n/navigation'
+import { useSession } from '@/store/session-store'
 import { handleFormError } from '@/utils/handle-form-errors'
 
 export function CheckoutForm({
@@ -38,7 +39,7 @@ export function CheckoutForm({
 }) {
   const t = useTranslations('cart.checkout')
 
-  const [_, setQueryStates] = useQueryStates({
+  const [queryState, setQueryStates] = useQueryStates({
     emirate_id: parseAsString.withDefault(''),
     region_id: parseAsString.withDefault(''),
     shipping_address: parseAsString.withDefault(''),
@@ -56,9 +57,9 @@ export function CheckoutForm({
   const form = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
-      emirate_id: '',
-      region_id: '',
-      shipping_address: '',
+      emirate_id: queryState.emirate_id || '',
+      region_id: queryState.region_id || '',
+      shipping_address: queryState.shipping_address || '',
     },
   })
 

@@ -40,8 +40,8 @@ export function CartSummary({ className }: CartSummaryProps) {
   })
 
   const { data, isLoading, error } = useCartSummary({
-    region_id: queryStates.region_id,
-    shipping_address: queryStates.shipping_address,
+    region_id: queryStates.region_id || undefined,
+    shipping_address: queryStates.shipping_address || undefined,
     apply_fast_delivery: queryStates.apply_fast_delivery,
   })
   const [showCheckoutForm, setShowCheckoutForm] = useState(false)
