@@ -42,7 +42,7 @@ export function CartSummary({ className }: CartSummaryProps) {
   const { data, isLoading, error } = useCartSummary({
     region_id: queryStates.region_id,
     shipping_address: queryStates.shipping_address,
-    apply_fast_delivery: queryStates.apply_fast_delivery ? '1' : '0',
+    apply_fast_delivery: queryStates.apply_fast_delivery,
   })
   const [showCheckoutForm, setShowCheckoutForm] = useState(false)
   const locale = useLocale()

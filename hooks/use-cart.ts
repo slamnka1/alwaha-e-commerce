@@ -111,7 +111,7 @@ export function useRemoveCartItem() {
 export function useCartSummary(params?: {
   shipping_address: string
   region_id: string
-  apply_fast_delivery: '0' | '1'
+  apply_fast_delivery: boolean
 }) {
   return useQuery({
     queryKey: [
@@ -120,6 +120,11 @@ export function useCartSummary(params?: {
       params?.shipping_address,
       params?.apply_fast_delivery,
     ],
-    queryFn: () => cart.getCartSummary(params),
+    staleTime: 0,
+    queryFn: () =>
+      cart.getCartSummary({
+        ...params!,
+        apply_fast_delivery: params?.apply_fast_delivery ? '1' : '0',
+      }),
   })
 }
