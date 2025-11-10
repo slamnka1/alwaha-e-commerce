@@ -53,4 +53,5 @@ export interface Branch {
   address_en: string
   phone: string
   email: string
+  quantity: number
 }
