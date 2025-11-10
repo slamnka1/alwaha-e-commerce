@@ -247,7 +247,10 @@ export default function ProductDescription({
                     <div className="absolute right-0 -bottom-4 left-0 flex items-center justify-center gap-1 px-1">
                       {size.branches.map((branch) => {
                         return branch.quantity > 0 ? (
-                          <span key={branch.id} className="text-xs text-black">
+                          <span
+                            key={branch.id}
+                            className="text-light text-xs text-black"
+                          >
                             {branch.code[0].toUpperCase()}
                           </span>
                         ) : null
