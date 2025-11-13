@@ -286,13 +286,13 @@ export default function ProductDescription({
           {addToCart.isPending && <Loader2 className="size-4 animate-spin" />}
           {t('add-to-cart')}
         </Button>
-
+        {/* 
         <NumberInput
           maxValue={Number(
             product.sizes?.find((size) => size.id === Number(selectedSize))
               ?.quantity || 0
           )}
-        />
+        /> */}
       </div>
       <p className="text-xs font-semibold">
         <span>{t('changing-item')}</span>
