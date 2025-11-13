@@ -6,7 +6,9 @@ export interface CartSummary {
   tax_amount: number
   total_amount: number
   coupon: null
-  shipping_address: null
+  shipping_address: string
+  fast_delivery_charges: string
+  fast_delivery_applied: boolean
   region: Region
 }
 
@@ -79,4 +81,6 @@ export interface Emirate {
   shipping_price: string
   created_at: string
   updated_at: string
+  fast_delivery: string
+  time_in_minutes: number
 }

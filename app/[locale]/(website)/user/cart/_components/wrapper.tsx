@@ -23,6 +23,7 @@ const Wrapper = (props: Props) => {
     image: item.product.image_url,
     color: item.product.selected_color.color_name,
     size: item.product.selected_size.size_code,
+    isDisabled: item.product.selected_size.quantity <= 0,
   }))
 
   if (isLoading) {

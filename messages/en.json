@@ -397,7 +397,10 @@
       "color": "Color",
       "size": "Size",
       "noItems": "No items in cart",
-      "shopping-cart": "Shopping cart"
+      "shopping-cart": "Shopping cart",
+      "quantityLimit": "The available quantity is insufficient",
+      "maxQuantityLimit": "It is not possible to add more than 3 items of the same product",
+      "outOfStock": "The item is no longer available"
     },
     "summary": {
       "title": "Order Summary",

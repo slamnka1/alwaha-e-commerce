@@ -1,6 +1,7 @@
 'use client'
 
 import { CircleX, Loader2, Minus, Plus } from 'lucide-react'
+import { toast } from 'sonner'
 
 import { useState } from 'react'
 
@@ -33,6 +34,7 @@ export interface CartItem {
   image: string
   color: string | null
   size: string
+  isDisabled: boolean
 }
 
 interface CartItemsProps {
@@ -47,7 +49,16 @@ export function CartItems({ items }: CartItemsProps) {
 
   const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return
+    const item = items.find((item) => String(item.id) === String(id))!
+    if (newQuantity > item.quantity) {
+      toast.error(t('table.quantityLimit'))
+      return
+    }
 
+    if (newQuantity > 3) {
+      toast.error(t('table.maxQuantityLimit'))
+      return
+    }
     updateQuantityMutation.mutate({ itemId: id, quantity: newQuantity })
   }
 
@@ -102,54 +113,69 @@ export function CartItems({ items }: CartItemsProps) {
             return (
               <div
                 key={item.id}
-                className={`grid grid-cols-11 items-center gap-4 p-2 transition-opacity ${
-                  isRemoving ? 'opacity-50' : ''
-                }`}
+                className={cn(
+                  'grid grid-cols-11 items-center gap-4 p-2 transition-opacity',
+                  isRemoving ? 'opacity-50' : '',
+                  item.isDisabled ? 'bg-muted opacity-70' : ''
+                )}
               >
                 {/* Item Details */}
                 <div className="col-span-5">
                   <div className="flex items-center gap-3">
                     {/* Remove Button */}
                     <div className="col-span-1 flex justify-center">
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="size-9"
-                            disabled={removeItemMutation.isPending}
-                          >
-                            {isRemoving ? (
-                              <Loader2 className="size-4 animate-spin" />
-                            ) : (
-                              <CircleX className="size-8" strokeWidth={1} />
-                            )}
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>
-                              {t('deleteConfirm.title')}
-                            </AlertDialogTitle>
-                            <AlertDialogDescription>
-                              {t('deleteConfirm.description', {
-                                itemName: item.name,
-                              })}
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel className="px-6 font-medium">
-                              {t('deleteConfirm.cancel')}
-                            </AlertDialogCancel>
-                            <AlertDialogAction
-                              className="bg-destructive hover:bg-destructive/90 px-6 font-medium"
-                              onClick={() => handleRemoveItem(Number(item.id))}
+                      {!item.isDisabled ? (
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="size-9"
+                              disabled={removeItemMutation.isPending}
                             >
-                              {t('deleteConfirm.confirm')}
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+                              {isRemoving ? (
+                                <Loader2 className="size-4 animate-spin" />
+                              ) : (
+                                <CircleX className="size-8" strokeWidth={1} />
+                              )}
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                {t('deleteConfirm.title')}
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                {t('deleteConfirm.description', {
+                                  itemName: item.name,
+                                })}
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel className="px-6 font-medium">
+                                {t('deleteConfirm.cancel')}
+                              </AlertDialogCancel>
+                              <AlertDialogAction
+                                className="bg-destructive hover:bg-destructive/90 px-6 font-medium"
+                                onClick={() =>
+                                  handleRemoveItem(Number(item.id))
+                                }
+                              >
+                                {t('deleteConfirm.confirm')}
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      ) : (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="size-9"
+                          onClick={() => handleRemoveItem(Number(item.id))}
+                        >
+                          <CircleX className="size-8" strokeWidth={1} />
+                        </Button>
+                      )}
                     </div>
                     <div className="bg-muted relative aspect-square h-18 w-18 overflow-hidden rounded-lg">
                       <img
@@ -175,48 +201,66 @@ export function CartItems({ items }: CartItemsProps) {
 
                 {/* Quantity Controls */}
                 <div className="col-span-2 flex items-center justify-center">
-                  <div className="flex items-center overflow-hidden rounded-lg border bg-white">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 rounded-none border-l"
-                      onClick={() =>
-                        handleQuantityChange(Number(item.id), item.quantity - 1)
-                      }
-                      disabled={
-                        item.quantity <= 1 || updateQuantityMutation.isPending
-                      }
-                    >
-                      {isUpdating ? (
-                        <Loader2 className="h-3 w-3 animate-spin" />
-                      ) : (
-                        <Minus className="h-3 w-3" />
-                      )}
-                    </Button>
-                    <Input
-                      readOnly
-                      type="number"
-                      value={item.quantity}
-                      className="h-8 w-fit rounded-none border-0 px-1 text-center shadow-none focus-visible:ring-0"
-                      min="1"
-                      disabled={updateQuantityMutation.isPending}
-                    />
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-8 w-8 rounded-none border-r"
-                      onClick={() =>
-                        handleQuantityChange(Number(item.id), item.quantity + 1)
-                      }
-                      disabled={updateQuantityMutation.isPending}
-                    >
-                      {isUpdating ? (
-                        <Loader2 className="h-3 w-3 animate-spin" />
-                      ) : (
-                        <Plus className="h-3 w-3" />
-                      )}
-                    </Button>
-                  </div>
+                  {!item.isDisabled ? (
+                    <div className="flex items-center overflow-hidden rounded-lg border bg-white">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 rounded-none border-l"
+                        onClick={() =>
+                          handleQuantityChange(
+                            Number(item.id),
+                            item.quantity - 1
+                          )
+                        }
+                        disabled={
+                          item.quantity <= 1 ||
+                          updateQuantityMutation.isPending ||
+                          item.isDisabled
+                        }
+                      >
+                        {isUpdating ? (
+                          <Loader2 className="h-3 w-3 animate-spin" />
+                        ) : (
+                          <Minus className="h-3 w-3" />
+                        )}
+                      </Button>
+                      <Input
+                        readOnly
+                        type="number"
+                        value={item.quantity}
+                        className="h-8 w-fit rounded-none border-0 px-1 text-center shadow-none focus-visible:ring-0"
+                        min="1"
+                        disabled={
+                          updateQuantityMutation.isPending || item.isDisabled
+                        }
+                      />
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 rounded-none border-r"
+                        onClick={() =>
+                          handleQuantityChange(
+                            Number(item.id),
+                            item.quantity + 1
+                          )
+                        }
+                        disabled={
+                          updateQuantityMutation.isPending || item.isDisabled
+                        }
+                      >
+                        {isUpdating ? (
+                          <Loader2 className="h-3 w-3 animate-spin" />
+                        ) : (
+                          <Plus className="h-3 w-3" />
+                        )}
+                      </Button>
+                    </div>
+                  ) : (
+                    <p className="text-sm text-red-500">
+                      {t('table.outOfStock')}
+                    </p>
+                  )}
                 </div>
 
                 {/* Total */}

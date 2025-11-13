@@ -44,6 +44,17 @@ export function CartSummary({ className }: CartSummaryProps) {
     shipping_address: queryStates.shipping_address || undefined,
     apply_fast_delivery: queryStates.apply_fast_delivery,
   })
+
+  useEffect(() => {
+    if (data) {
+      setQueryStates({
+        emirate_id: data.region.emirate_id + '',
+        region_id: data.region.id + '',
+        shipping_address: data.shipping_address,
+        apply_fast_delivery: data.fast_delivery_applied,
+      })
+    }
+  }, [data])
   const [showCheckoutForm, setShowCheckoutForm] = useState(false)
   const locale = useLocale()
 

@@ -402,7 +402,10 @@
       "color": "اللون",
       "size": "المقاس",
       "noItems": "لا توجد منتجات في السلة",
-      "shopping-cart": "السلة"
+      "shopping-cart": "السلة",
+      "quantityLimit": "الكمية المتاحة غير كافية",
+      "maxQuantityLimit": "لا يمكن اضافة اكتر من 3 عناصر من نفس المنتج",
+      "outOfStock": "العنصر لم يعد متاح "
     },
     "summary": {
       "title": "ملخص الطلب",
