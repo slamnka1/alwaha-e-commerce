@@ -74,7 +74,9 @@ export default async function HomePage() {
     <React.Fragment>
       <Hero {...banners} />
       <TypeSlider typeData={categories} />
-      <PreviewCarousel products={specialProductsData} />
+      {specialProductsData.data.length > 0 && (
+        <PreviewCarousel products={specialProductsData} />
+      )}
       {plusSizes.length > 0 && (
         <ProductsSlider
           more="/search?plus_sizes=true"
