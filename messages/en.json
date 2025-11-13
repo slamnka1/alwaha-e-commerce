@@ -420,7 +420,8 @@
       "editAddress": "Edit address",
       "redirectToPayment": "Go to payment ",
       "fastShipping": "Fast shipping",
-      "fastShippingDescription": "You must contact the store to confirm immediate delivery requirements,\n\nIf you do not communicate, the order will be canceled without us bearing any responsibility"
+      "fastShippingDescription": "You must contact the store to confirm immediate delivery requirements,\n\nIf you do not communicate, the order will be canceled without us bearing any responsibility",
+      "outOfStock": "Delete items that are not available to complete the order"
     },
     "checkout": {
       "title": "Update your shipping address",

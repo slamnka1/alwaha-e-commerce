@@ -32,12 +32,17 @@ interface CartSummaryProps {
 export function CartSummary({ className }: CartSummaryProps) {
   const t = useTranslations('cart.summary')
   const router = useRouter()
-  const [queryStates, setQueryStates] = useQueryStates({
-    emirate_id: parseAsString.withDefault(''),
-    region_id: parseAsString.withDefault(''),
-    shipping_address: parseAsString.withDefault(''),
-    apply_fast_delivery: parseAsBoolean.withDefault(false),
-  })
+  const [queryStates, setQueryStates] = useQueryStates(
+    {
+      emirate_id: parseAsString.withDefault(''),
+      region_id: parseAsString.withDefault(''),
+      shipping_address: parseAsString.withDefault(''),
+      apply_fast_delivery: parseAsBoolean.withDefault(false),
+    },
+    {
+      history: 'replace',
+    }
+  )
 
   const { data, isLoading, error } = useCartSummary({
     region_id: queryStates.region_id || undefined,
@@ -81,6 +86,9 @@ export function CartSummary({ className }: CartSummaryProps) {
 
     setPaymentLink(paymentLink)
   }
+
+  const outOfStock =
+    data?.items.filter((item) => item.product.selected_size.quantity <= 0) || []
 
   if (isLoading) {
     return (
@@ -236,6 +244,7 @@ export function CartSummary({ className }: CartSummaryProps) {
           <div className="px-3">
             {/* Confirm Order Button */}
             <Button
+              disabled={outOfStock?.length > 0}
               variant={'secondary'}
               onClick={handleConfirmOrder}
               className="w-full"
@@ -243,6 +252,11 @@ export function CartSummary({ className }: CartSummaryProps) {
               {isPending ? <Loader2 className="animate-spin" /> : ''}
               {t('confirmOrder')}
             </Button>
+            {outOfStock && (
+              <p className="mt-2 text-center text-sm text-red-500">
+                {t('outOfStock')}
+              </p>
+            )}
           </div>
 
           {paymentLink && (
