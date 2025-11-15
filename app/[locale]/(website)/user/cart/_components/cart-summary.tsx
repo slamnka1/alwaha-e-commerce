@@ -252,7 +252,7 @@ export function CartSummary({ className }: CartSummaryProps) {
               {isPending ? <Loader2 className="animate-spin" /> : ''}
               {t('confirmOrder')}
             </Button>
-            {outOfStock && (
+            {outOfStock.length > 0 && (
               <p className="mt-2 text-center text-sm text-red-500">
                 {t('outOfStock')}
               </p>
