@@ -21,7 +21,7 @@ export function InitSession({
     }
   }, [initialValue, updateSession])
 
-  const { data } = useQuery({
+  const { data, error } = useQuery({
     queryKey: ['session'],
     enabled: initialValue ? (initialValue.access_token ? true : false) : false,
     queryFn: async () => {
@@ -38,6 +38,7 @@ export function InitSession({
     },
     // initialData: initialValue,
   })
+  console.log('🚀 ~ InitSession ~ error:', error)
 
   useEffect(() => {
     if (data) {
@@ -45,5 +46,13 @@ export function InitSession({
     }
   }, [data, updateSession])
 
+  useEffect(() => {
+    if (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        updateSession(null)
+        axios.post('/api/logout')
+      }
+    }
+  }, [error, updateSession])
   return null
 }
