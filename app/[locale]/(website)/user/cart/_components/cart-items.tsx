@@ -34,6 +34,7 @@ export interface CartItem {
   image: string
   color: string | null
   size: string
+  availableQuantity: number
   isDisabled: boolean
 }
 
@@ -50,7 +51,7 @@ export function CartItems({ items }: CartItemsProps) {
   const handleQuantityChange = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return
     const item = items.find((item) => String(item.id) === String(id))!
-    if (newQuantity > item.quantity) {
+    if (newQuantity > item.availableQuantity) {
       toast.error(t('table.quantityLimit'))
       return
     }

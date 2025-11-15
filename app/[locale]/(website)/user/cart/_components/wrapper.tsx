@@ -20,6 +20,7 @@ const Wrapper = (props: Props) => {
     name: item.product.name,
     price: item.product.price,
     quantity: item.quantity,
+    availableQuantity: item.product.selected_size.quantity,
     image: item.product.image_url,
     color: item.product.selected_color.color_name,
     size: item.product.selected_size.size_code,
