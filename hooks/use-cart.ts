@@ -29,16 +29,8 @@ export function useAddToCart() {
   const router = useRouter()
   const { slug } = useParams()
 
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: (params: AddToCartParams) => {
-      if (!isAuthenticated) {
-        router.push('/auth/login')
-        router.push({
-          pathname: '/auth/login',
-          query: { callbackUrl: `/search/${slug}` },
-        })
-        return new Promise((resolve) => resolve(null))
-      }
       return cart.addToCart(params)
     },
     onSuccess: () => {
@@ -55,6 +47,20 @@ export function useAddToCart() {
       console.error('Error adding to cart:', err)
     },
   })
+
+  const mutate = (params: AddToCartParams) => {
+    if (!isAuthenticated) {
+      router.push('/auth/login')
+      router.push({
+        pathname: '/auth/login',
+        query: { callbackUrl: `/search/${slug}` },
+      })
+      return
+    }
+
+    mutation.mutate(params)
+  }
+  return { ...mutation, mutate }
 }
 
 // Hook to update cart item quantity
