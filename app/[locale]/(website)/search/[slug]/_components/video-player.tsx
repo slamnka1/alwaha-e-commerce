@@ -1,5 +1,6 @@
-import React from "react"
-import ReactPlayer from "react-player"
+import ReactPlayer from 'react-player'
+
+import React from 'react'
 
 type Props = {
   src: string
@@ -12,10 +13,10 @@ const VideoPlayer = ({ src }: Props) => {
         width="100%"
         height="100%"
         style={{
-          padding: "0 20px",
+          padding: '0 20px',
         }}
         controls
-        url={src}
+        src={src}
       />
     </div>
   )
